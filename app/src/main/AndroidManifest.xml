@@ -2,34 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="ru.android.monstrici.monstrici">
 
-    <permission
-        android:name="android.permission.BLUETOOTH"
-        android:label="BLUETOOTH"/>
-    <permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_GPS"/>
-    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS"/>
-
-    <uses-feature android:name="android.hardware.location.gps"/>
-
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true"></uses-feature>
-
     <application
         android:name=".ui.view.application.Application"
         android:allowBackup="true"
@@ -37,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme">s
         <activity
             android:name=".ui.view.auth.AuthorisationActivity"
             android:label="@string/title_activity_login"
