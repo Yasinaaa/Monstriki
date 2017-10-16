@@ -22,7 +22,6 @@
             android:name=".ui.view.registation.RegistrationActivity"
             android:label="@string/title_activity_reg"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.view.auth.AuthorisationActivity"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -32,8 +31,13 @@
         </activity>
 
         <activity
-            android:name=".ui.view.base.BaseActivity">
+            android:name=".ui.view.parameters.ParametersActivity"
+            android:screenOrientation="portrait">
         </activity>
+
+        <!-- android:parentActivityName=".ui.view.auth.AuthorisationActivity" -->
+
+
     </application>
 
 </manifest>

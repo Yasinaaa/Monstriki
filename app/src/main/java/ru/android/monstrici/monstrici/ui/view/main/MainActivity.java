@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.ui.view.auth;
+package ru.android.monstrici.monstrici.ui.view.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,15 +7,15 @@ import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 
 /**
- * Created by yasina on 14.10.17.
+ * Created by yasina on 16.10.17.
  */
 
-public class AuthorisationActivity extends BaseActivity{
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_registration);
         start();
     }
 
@@ -26,8 +26,7 @@ public class AuthorisationActivity extends BaseActivity{
 
     @Override
     public void setTag() {
-        TAG = AuthorisationActivity.class.getCanonicalName();
+        TAG = MainActivity.class.getCanonicalName();
     }
 }
-
 
