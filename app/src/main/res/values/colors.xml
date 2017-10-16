@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="color_register">#D47575</color>
+    <color name="color_register">#f3647a</color>
+    <color name="color_toolbar">#f9a71a</color>
+    <color name="color_question">#4f2254</color>
 </resources>

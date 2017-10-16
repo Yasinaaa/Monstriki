@@ -15,4 +15,10 @@
     <string name="letter">Буква</string>
     <string name="register">Зарегистрироваться</string>
 
+    <!-- activity_parameters.xml -->
+    <string name="question">Какие глаза\n у твоего монстрика?</string>
+    <string name="next">Дальше</string>
+    <string name="need_your_name">Твоему монстру нужно имя</string>
+    <string name="write_name">Напиши сюда имя монстра</string>
+
 </resources>
