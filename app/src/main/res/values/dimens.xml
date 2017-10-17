@@ -3,6 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="margin_xsmall">5dp</dimen>
     <dimen name="margin_small">10dp</dimen>
     <dimen name="margin_normal">20dp</dimen>
     <dimen name="margin_large">30dp</dimen>
@@ -25,11 +26,21 @@
     <dimen name="width_logo">100dp</dimen>
     <dimen name="height_logo">100dp</dimen>
 
-    <!-- view_toolbar.xmlr.xml -->
+    <!-- activity_main.xml -->
     <dimen name="height_toolbar">70dp</dimen>
 
     <!-- activity_parameters.xml-->
     <dimen name="textsize_question">30dp</dimen>
     <dimen name="width_monster_without_eyes">200dp</dimen>
     <dimen name="height_monster_without_eyes">200dp</dimen>
+
+    <!-- view_toolbar_monstriki.xml -->
+    <dimen name="cardview_elevation">4dp</dimen>
+    <dimen name="cardview_corner_radius">4dp</dimen>
+    <dimen name="textsize_monster_name">45sp</dimen>
+
+    <!-- fragment_settings.xml -->
+    <dimen name="width_monster_settings">40dp</dimen>
+    <dimen name="height_monster_settings">40dp</dimen>
+    <dimen name="width_btn_save">200dp</dimen>
 </resources>

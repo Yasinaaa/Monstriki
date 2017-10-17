@@ -32,8 +32,11 @@
 
         <activity
             android:name=".ui.view.parameters.ParametersActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.view.main.MainActivity"
+            android:screenOrientation="portrait"></activity>
 
         <!-- android:parentActivityName=".ui.view.auth.AuthorisationActivity" -->
 

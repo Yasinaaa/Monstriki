@@ -59,4 +59,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     provided 'javax.annotation:jsr250-api:1.0'
     testCompile 'org.testng:testng:6.9.6'
+    compile 'com.aurelhubert:ahbottomnavigation:2.1.0'
 }

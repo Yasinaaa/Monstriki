@@ -2,7 +2,6 @@ package ru.android.monstrici.monstrici.ui.view.registation;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -11,9 +10,6 @@ import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 
-/**
- * Created by yasina on 13.10.17.
- */
 
 public class RegistrationActivity extends BaseActivity {
 

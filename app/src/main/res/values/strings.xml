@@ -21,4 +21,14 @@
     <string name="need_your_name">Твоему монстру нужно имя</string>
     <string name="write_name">Напиши сюда имя монстра</string>
 
+    <!-- fragment_monster.xml -->
+    <string name="i_want_to_eat">Я кушать \nхочу!</string>
+
+    <!-- fragment_settings.xml -->
+    <string name="settings">Настройки</string>
+    <string name="eyes">Глаза</string>
+    <string name="mouth">Рот</string>
+    <string name="hands">Руки</string>
+    <string name="save">Сохранить</string>
+
 </resources>
