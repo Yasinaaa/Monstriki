@@ -15,7 +15,7 @@
         android:id="@+id/tv_large_text"
         android:text="@string/question"
         android:textAlignment="center"
-        android:textColor="@color/color_question"
+        android:textColor="@color/color_purple"
         android:textSize="@dimen/textsize_question"
         android:layout_below="@+id/iv_logo"/>
 

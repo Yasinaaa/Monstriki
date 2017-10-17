@@ -63,9 +63,8 @@ public class ParametersActivity extends BaseActivity {
     public void setOnRegistrationBtnClickListener(){
         if (isQuestionMode){
             setCreateNameMode();
-
         }else {
-
+            mParametersPresenter.goNext();
         }
     }
 
@@ -82,9 +81,11 @@ public class ParametersActivity extends BaseActivity {
 
     private void setCreateNameMode(){
         mRvEyes.setVisibility(View.GONE);
+        mTilMonsterName.setVisibility(View.VISIBLE);
 
-        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams) mIvMonster.getLayoutParams();
+
+
         params1.addRule(RelativeLayout.BELOW, R.id.til_monster_name);
         mIvMonster.setLayoutParams(params1);
         isQuestionMode = false;

@@ -21,4 +21,7 @@
     <string name="need_your_name">Твоему монстру нужно имя</string>
     <string name="write_name">Напиши сюда имя монстра</string>
 
+    <!-- activity_main.xml -->
+    <string name="i_want_to_eat">Я кушать \nхочу!</string>
+
 </resources>
