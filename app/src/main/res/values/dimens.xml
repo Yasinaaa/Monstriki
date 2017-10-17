@@ -26,7 +26,7 @@
     <dimen name="width_logo">100dp</dimen>
     <dimen name="height_logo">100dp</dimen>
 
-    <!-- view_toolbar_monstriki.xmlr.xml -->
+    <!-- activity_main.xml -->
     <dimen name="height_toolbar">70dp</dimen>
 
     <!-- activity_parameters.xml-->
@@ -34,8 +34,13 @@
     <dimen name="width_monster_without_eyes">200dp</dimen>
     <dimen name="height_monster_without_eyes">200dp</dimen>
 
-    <!-- activity_main.xml -->
+    <!-- view_toolbar_monstriki.xml -->
     <dimen name="cardview_elevation">4dp</dimen>
     <dimen name="cardview_corner_radius">4dp</dimen>
     <dimen name="textsize_monster_name">45sp</dimen>
+
+    <!-- fragment_settings.xml -->
+    <dimen name="width_monster_settings">40dp</dimen>
+    <dimen name="height_monster_settings">40dp</dimen>
+    <dimen name="width_btn_save">200dp</dimen>
 </resources>

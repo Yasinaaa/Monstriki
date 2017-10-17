@@ -29,5 +29,6 @@
     <string name="eyes">Глаза</string>
     <string name="mouth">Рот</string>
     <string name="hands">Руки</string>
+    <string name="save">Сохранить</string>
 
 </resources>
