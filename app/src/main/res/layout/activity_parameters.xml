@@ -7,7 +7,7 @@
     android:id="@+id/rl">
 
     <include
-        layout="@layout/view_toolbar" />
+        layout="@layout/view_toolbar_monstriki" />
 
     <TextView
         android:layout_width="match_parent"

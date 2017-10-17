@@ -26,7 +26,7 @@
     <dimen name="width_logo">100dp</dimen>
     <dimen name="height_logo">100dp</dimen>
 
-    <!-- view_toolbar.xmlr.xml -->
+    <!-- view_toolbar_monstriki.xmlr.xml -->
     <dimen name="height_toolbar">70dp</dimen>
 
     <!-- activity_parameters.xml-->
