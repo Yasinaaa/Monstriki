@@ -1,74 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/background_registration">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_registration"
-        android:text="Sign IN"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_log_in"
-        android:text="Log IN"
-        android:layout_toRightOf="@+id/btn_registration"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:id="@+id/iv_logo"
-        android:background="@drawable/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/btn_registration"/>
-
-    <android.support.v7.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:layout_below="@+id/iv_logo">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_registration"
+            android:text="@string/registration"
+            android:layout_alignBaseline="@+id/btn_login"
+            android:layout_alignBottom="@+id/btn_login"
+            android:layout_alignLeft="@+id/card_view"
+            android:layout_alignStart="@+id/card_view"
+            android:textColor="@android:color/white"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_login"
+            android:text="@string/login"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/card_view"
+            android:layout_alignEnd="@+id/card_view"
+            android:textColor="@android:color/white"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="@dimen/margin_small"/>
+
+        <include
+            layout="@layout/view_monstriki"/>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            cardview:cardElevation="@dimen/elevation_card"
+            android:layout_below="@+id/tv_n">
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name" />
-
-            <EditText
-                android:id="@+id/et_name"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@android:color/darker_gray" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_xlarge">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="@dimen/width_text_edit_view"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:textColor="@android:color/background_dark"
+                    android:layout_centerHorizontal="true" />
 
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="@dimen/width_text_edit_view"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@+id/tv_name"
+                    android:maxLines="@integer/max_lines_edit_text"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:nextFocusForward="@+id/et_surname"/>
 
-    </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/tv_surname"
+                    android:layout_width="@dimen/width_text_edit_view"
+                    android:layout_height="wrap_content"
+                    android:text="@string/surname"
+                    android:layout_below="@+id/et_name"
+                    android:textColor="@android:color/background_dark"
+                    android:layout_centerHorizontal="true" />
 
+                <EditText
+                    android:id="@+id/et_surname"
+                    android:layout_width="@dimen/width_text_edit_view"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    android:background="@android:color/darker_gray"
+                    android:maxLines="@integer/max_lines_edit_text"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tv_surname"
+                    android:nextFocusForward="@+id/et_form"/>
 
+                <TextView
+                    android:id="@+id/tv_form"
+                    android:layout_width="@dimen/width_text_edit_view"
+                    android:layout_height="wrap_content"
+                    android:text="@string/form"
+                    android:layout_below="@+id/et_surname"
+                    android:textColor="@android:color/background_dark"
+                    android:maxLines="@integer/max_lines_edit_text"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
 
-</RelativeLayout>
+                <EditText
+                    android:id="@+id/et_form"
+                    android:layout_width="@dimen/width_text_edit_view"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@+id/tv_form"
+                    android:maxLines="@integer/max_lines_edit_text"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:nextFocusForward="@+id/et_letter"/>
+
+                <TextView
+                    android:id="@+id/tv_letter"
+                    android:layout_width="@dimen/width_text_edit_view"
+                    android:layout_height="wrap_content"
+                    android:text="@string/letter"
+                    android:layout_below="@+id/et_form"
+                    android:textColor="@android:color/background_dark"
+                    android:maxLines="@integer/max_lines_edit_text"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+                <EditText
+                    android:id="@+id/et_letter"
+                    android:layout_width="@dimen/width_text_edit_view"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@+id/tv_letter"
+                    android:maxLines="@integer/max_lines_edit_text"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:nextFocusForward="@+id/btn_register"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_register"
+                    android:text="@string/register"
+                    android:layout_below="@+id/et_letter"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:padding="@dimen/padding_small"
+                    android:background="@drawable/btn_corner"
+                    android:textColor="@color/color_register"
+                    android:layout_margin="@dimen/margin_normal"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
