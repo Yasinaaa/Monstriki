@@ -31,4 +31,7 @@
     <string name="hands">Руки</string>
     <string name="save">Сохранить</string>
 
+    <!-- fragment_przes.xml -->
+    <string name="the_smartest">Самый умный</string>
+
 </resources>

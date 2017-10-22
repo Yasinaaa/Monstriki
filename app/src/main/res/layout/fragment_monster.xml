@@ -1,47 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cardview="http://schemas.android.com/apk/res-auto">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_name"
-        android:text="Брозябр"
-        android:textSize="@dimen/textsize_monster_name"
-        android:textColor="@android:color/white"
-        android:padding="@dimen/padding_small"
-        android:layout_marginLeft="@dimen/margin_small" />
 
-    <View
-        android:layout_width="130dp"
-        android:layout_height="70dp"
-        android:background="@color/color_toolbar"
-        android:id="@+id/view2"
-        android:layout_alignBottom="@+id/view_toolbar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-    </View>
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/iv_donut"
-        android:background="@drawable/donut"
-        android:layout_alignBottom="@+id/view_toolbar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_small"/>
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/iv_donut2"
-        android:background="@drawable/donut"
-        android:layout_toLeftOf="@+id/iv_donut"
-        android:layout_alignBottom="@+id/view_toolbar"
-        android:layout_marginBottom="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_small"/>
 
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
@@ -50,7 +16,8 @@
         android:layout_below="@+id/view_toolbar"
         cardview:cardCornerRadius="@dimen/cardview_corner_radius"
         cardview:cardElevation="@dimen/cardview_elevation"
-        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:layout_above="@+id/iv_bubbles"
         android:layout_marginRight="@dimen/margin_normal"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
@@ -77,8 +44,12 @@
         android:layout_below="@+id/cv_monster_talk"/>
 
     <ImageView
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:layout_width="@dimen/width_bubble_imageview"
+        android:layout_height="@dimen/height_bubble_imageview"
         android:id="@+id/iv_bubbles"
-        android:layout_marginLeft="@dimen/margin_small" />
-</merge>
+        android:background="@drawable/circle_idea"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/margin_max"/>
+
+</RelativeLayout>

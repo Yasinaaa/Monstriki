@@ -10,6 +10,7 @@
     <dimen name="margin_xlarge">40dp</dimen>
     <dimen name="margin_xxlarge">50dp</dimen>
     <dimen name="margin_xxxlarge">60dp</dimen>
+    <dimen name="margin_max">100dp</dimen>
 
     <dimen name="padding_small">10dp</dimen>
     <dimen name="padding_normal">20dp</dimen>
@@ -43,4 +44,17 @@
     <dimen name="width_monster_settings">40dp</dimen>
     <dimen name="height_monster_settings">40dp</dimen>
     <dimen name="width_btn_save">200dp</dimen>
+
+    <!-- fragment_monster.xml -->
+    <dimen name="width_donuts_toolbar_view">130dp</dimen>
+    <dimen name="height_donuts_toolbar_view">70dp</dimen>
+    <dimen name="width_donuts_view">50dp</dimen>
+    <dimen name="height_donuts_view">50dp</dimen>
+    <dimen name="width_bubble_imageview">130dp</dimen>
+    <dimen name="height_bubble_imageview">130dp</dimen>
+
+    <!-- fragment_prizes.xml -->
+    <dimen name="textsize_prize_title">20dp</dimen>
+    <dimen name="size_prize_imageview">60dp</dimen>
+
 </resources>
