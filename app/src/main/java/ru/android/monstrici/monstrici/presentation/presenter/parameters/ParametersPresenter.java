@@ -1,8 +1,8 @@
-package ru.android.monstrici.monstrici.ui.view.parameters;
+package ru.android.monstrici.monstrici.presentation.presenter.parameters;
 
 import android.app.Activity;
 
-import ru.android.monstrici.monstrici.ui.view.base.BasePresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
 import ru.android.monstrici.monstrici.ui.view.main.MainActivity;
 import ru.android.monstrici.monstrici.utils.ActivityUtils;
 

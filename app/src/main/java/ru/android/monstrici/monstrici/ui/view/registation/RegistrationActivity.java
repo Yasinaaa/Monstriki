@@ -8,6 +8,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.presentation.presenter.registration.RegistrationPresenter;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 
 
