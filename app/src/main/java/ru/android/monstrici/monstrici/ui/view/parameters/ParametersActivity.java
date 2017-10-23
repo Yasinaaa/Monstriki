@@ -3,6 +3,8 @@ package ru.android.monstrici.monstrici.ui.view.parameters;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -14,14 +16,16 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.presentation.adapter.EyesAdapter;
 import ru.android.monstrici.monstrici.presentation.presenter.parameters.ParametersPresenter;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
+import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 16.10.17.
  */
 
-public class ParametersActivity extends BaseActivity {
+public class ParametersActivity extends BaseActivity implements EyesAdapter.OnItemClicked {
 
     @BindView(R.id.tv_large_text)
     TextView mTvLargeText;
@@ -40,7 +44,8 @@ public class ParametersActivity extends BaseActivity {
 
     private ParametersPresenter mParametersPresenter;
     private boolean isQuestionMode = true; // can be 2 modes: QUESTION and CREATE_NAME
-    //private FrameLayout.LayoutParams mLayoutParams;
+    private EyesAdapter mEyesAdapter;
+    private int mCurrentMonster = R.drawable.m1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,11 +57,11 @@ public class ParametersActivity extends BaseActivity {
     @Override
     public void init() {
         mParametersPresenter = new ParametersPresenter(this);
-        //mLayoutParams = (FrameLayout.LayoutParams) mRelativeLayout.getLayoutParams();
-
-        //set question mode
-        //mTilMonsterName.setVisibility(View.GONE);
-
+        mEyesAdapter = new EyesAdapter(Resources.mEyesDrawables, this);
+        mRvEyes.setItemAnimator(new DefaultItemAnimator());
+        mRvEyes.setHasFixedSize(true);
+        mRvEyes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mRvEyes.setAdapter(mEyesAdapter);
     }
 
     @OnClick(R.id.btn_next)
@@ -64,18 +69,14 @@ public class ParametersActivity extends BaseActivity {
         if (isQuestionMode){
             setCreateNameMode();
         }else {
-            mParametersPresenter.goNext();
+            mParametersPresenter.goNext(mEtMonsterName.getText().toString(), mCurrentMonster);
         }
     }
 
-    //TODO: use it this method onBackButton <-
+    //TODO: use this on onBackButton <- method
     private void setQuestionMode(){
         mTilMonsterName.setVisibility(View.GONE);
-        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        params1.addRule(RelativeLayout.BELOW, R.id.rv_eyes);
-        mIvMonster.setLayoutParams(params1);
+        setLayoutBelow(mIvMonster, R.id.rv_eyes);
         isQuestionMode = true;
     }
 
@@ -83,16 +84,24 @@ public class ParametersActivity extends BaseActivity {
         mRvEyes.setVisibility(View.GONE);
         mTilMonsterName.setVisibility(View.VISIBLE);
 
-        RelativeLayout.LayoutParams params1 = (RelativeLayout.LayoutParams) mIvMonster.getLayoutParams();
-
-
-        params1.addRule(RelativeLayout.BELOW, R.id.til_monster_name);
-        mIvMonster.setLayoutParams(params1);
+        setLayoutBelow(mIvMonster, R.id.til_monster_name);
         isQuestionMode = false;
+    }
+
+    private void setLayoutBelow(View view, int parentId){
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
+        params.addRule(RelativeLayout.BELOW, parentId);
+        view.setLayoutParams(params);
     }
 
     @Override
     public void setTag() {
         TAG = ParametersActivity.class.getCanonicalName();
+    }
+
+    @Override
+    public void onItemClick(int image) {
+        mIvMonster.setBackgroundResource(Resources.mMonstersWithEyesDrawables[image]);
+        mCurrentMonster = Resources.mMonstersWithEyesDrawables[image];
     }
 }
