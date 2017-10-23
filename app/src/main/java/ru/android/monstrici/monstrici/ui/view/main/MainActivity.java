@@ -15,6 +15,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentWithToolbar;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.MonsterFragment;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.PrizesFragment;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.SettingsFragment;
@@ -33,6 +34,11 @@ public class MainActivity extends BaseActivity {
     ViewStub mViewStub;
     @BindView(R.id.ll)
     LinearLayout mLinearLayout;
+
+    //@BindView(R.id.iv_fragment_logo)
+    ImageView mIvFragmentLogo;
+    //@BindView(R.id.tv_fragment_title)
+    TextView mTvFragmentTitle;
 
     private int mMainToolbar = R.layout.view_toolbar_main;
     private int mUsualToolbar = R.layout.view_toolbar;
@@ -83,17 +89,21 @@ public class MainActivity extends BaseActivity {
                         mFragmentManager.beginTransaction().replace(R.id.fl_main, new MonsterFragment()).commit();
                         setToolbar(mMainToolbar);
                         break;
+
                     case 1:
-                        mFragmentManager.beginTransaction().replace(R.id.fl_main, new PrizesFragment()).commit();
-                        setToolbar(mUsualToolbar);
+                        PrizesFragment prizesFragment = new PrizesFragment();
+                        mFragmentManager.beginTransaction().replace(R.id.fl_main, prizesFragment).commit();
+                        setToolbar(mUsualToolbar, prizesFragment);
                         break;
                     case 2:
-                        mFragmentManager.beginTransaction().replace(R.id.fl_main, new SweetsFragment()).commit();
-                        setToolbar(mUsualToolbar);
+                        SweetsFragment sweetsFragment = new SweetsFragment();
+                        mFragmentManager.beginTransaction().replace(R.id.fl_main, sweetsFragment).commit();
+                        setToolbar(mUsualToolbar, sweetsFragment);
                         break;
                     case 3:
-                        mFragmentManager.beginTransaction().replace(R.id.fl_main, new SettingsFragment()).commit();
-                        setToolbar(mUsualToolbar);
+                        SettingsFragment settingsFragment = new SettingsFragment();
+                        mFragmentManager.beginTransaction().replace(R.id.fl_main, settingsFragment).commit();
+                        setToolbar(mUsualToolbar, settingsFragment);
                         break;
                 }
                 return true;
@@ -112,11 +122,21 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setToolbar(int id){
+        setToolbar(id, null);
+    }
+
+    private void setToolbar(int id, BaseFragmentWithToolbar baseFragmentWithToolbar){
         if (id != mCurrentToolbar) {
             mLinearLayout.removeAllViews();
             mLinearLayout.addView(LayoutInflater.from(getApplicationContext()).inflate(id,
                     mLinearLayout, false));
             mCurrentToolbar = id;
+        }
+        if (id == mUsualToolbar && baseFragmentWithToolbar != null){
+            mIvFragmentLogo = (ImageView) findViewById(R.id.iv_fragment_logo);
+            mTvFragmentTitle = (TextView) findViewById(R.id.tv_fragment_title);
+            mIvFragmentLogo.setBackgroundResource(baseFragmentWithToolbar.getToolbarImage());
+            mTvFragmentTitle.setText(getString(baseFragmentWithToolbar.getToolbarTitle()));
         }
     }
 

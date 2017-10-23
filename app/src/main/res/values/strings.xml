@@ -31,7 +31,10 @@
     <string name="hands">Руки</string>
     <string name="save">Сохранить</string>
 
-    <!-- fragment_przes.xml -->
+    <!-- fragment_prizes.xml -->
+    <string name="prize">Призы</string>
     <string name="the_smartest">Самый умный</string>
 
+    <!-- fragment_sweets.xml -->
+    <string name="sweets">Сладости</string>
 </resources>

@@ -1,33 +1,28 @@
 package ru.android.monstrici.monstrici.ui.view.main.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentWithToolbar;
 
 /**
  * Created by yasina on 17.10.17.
  */
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends BaseFragmentWithToolbar {
 
-    private LayoutInflater inflater;
-    private View mView;
-    @BindView(R.id.iv_fragment_logo)
-    ImageView mIvFragmentLogo;
-    @BindView(R.id.tv_fragment_title)
-    TextView mTvFragmentTitle;
+    public static int TOOLBAR_IMAGE = R.drawable.settings_icon_transparent;
+    public static int TOOLBAR_TITLE = R.string.settings;
 
     public SettingsFragment() {
+        super(TOOLBAR_IMAGE, TOOLBAR_TITLE);
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,9 +37,17 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_settings, container, false);
-        ButterKnife.bind(mView);
+        createLayout(inflater, container, R.layout.fragment_settings);
         return mView;
+    }
+
+    @Override
+    public void setTag() {
+
+    }
+
+    @Override
+    public void init() {
 
     }
 
