@@ -1,9 +1,11 @@
 package ru.android.monstrici.monstrici.ui.view.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,11 +17,14 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
-import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentWithToolbar;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.MonsterFragment;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.PrizesFragment;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.SettingsFragment;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.SweetsFragment;
+import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
+import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 16.10.17.
@@ -34,7 +39,15 @@ public class MainActivity extends BaseActivity {
     ViewStub mViewStub;
     @BindView(R.id.ll)
     LinearLayout mLinearLayout;
+    @BindView(R.id.view_toolbar)
+    View mViewToolbar;
 
+    //@BindView(R.id.tv_name)
+    TextView mTvMonsterName;
+    //@BindView(R.id.tv_donut_num)
+    TextView mTvDonutNum;
+    //@BindView(R.id.iv_donut)
+    ImageView mIvDonut;
     //@BindView(R.id.iv_fragment_logo)
     ImageView mIvFragmentLogo;
     //@BindView(R.id.tv_fragment_title)
@@ -42,7 +55,7 @@ public class MainActivity extends BaseActivity {
 
     private int mMainToolbar = R.layout.view_toolbar_main;
     private int mUsualToolbar = R.layout.view_toolbar;
-    private int mCurrentToolbar;
+    private int mCurrentToolbar = mMainToolbar;
 
     private FragmentManager mFragmentManager;
 
@@ -53,8 +66,18 @@ public class MainActivity extends BaseActivity {
         start();
     }
 
+    private void getIntentValues(){
+        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
+        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
+        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
+        mTvMonsterName.setText(getIntent().getStringExtra(Resources.MONSTER_NAME));
+        //TODO: change to real data values
+        mTvDonutNum.setText("10");
+    }
+
     @Override
     public void init() {
+
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("",
                 R.drawable.main_icon, R.color.color_selected_item);
@@ -75,10 +98,10 @@ public class MainActivity extends BaseActivity {
         mBottomNavigationView.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
 
         mFragmentManager = getSupportFragmentManager();
-        mFragmentManager.beginTransaction().replace(R.id.fl_main, new MonsterFragment()).commit();
 
         mViewStub.setLayoutResource(R.layout.view_toolbar_main);
         mViewStub.inflate();
+        setMonsterFragment();
 
         mBottomNavigationView.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
@@ -86,8 +109,7 @@ public class MainActivity extends BaseActivity {
 
                 switch (position){
                     case 0:
-                        mFragmentManager.beginTransaction().replace(R.id.fl_main, new MonsterFragment()).commit();
-                        setToolbar(mMainToolbar);
+                        setMonsterFragment();
                         break;
 
                     case 1:
@@ -116,28 +138,46 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    private void setMonsterFragment(){
+        MonsterFragment monsterFragment = MonsterFragment.newInstance(getIntent().getIntExtra(Resources.MONSTER_IMAGE, 0));
+        mFragmentManager.beginTransaction().replace(R.id.fl_main, monsterFragment).commit();
+        setToolbar(mMainToolbar, null, monsterFragment);
+    }
+
     @Override
     public void setTag() {
         TAG = MainActivity.class.getCanonicalName();
     }
 
-    private void setToolbar(int id){
-        setToolbar(id, null);
+    private void setToolbar(int id, BaseFragmentUsualToolbar baseFragmentWithToolbar) {
+        setToolbar(id, baseFragmentWithToolbar, null);
     }
 
-    private void setToolbar(int id, BaseFragmentWithToolbar baseFragmentWithToolbar){
+    private void setToolbar(int id, BaseFragmentUsualToolbar baseFragmentWithToolbar, MonsterFragment monsterFragment){
         if (id != mCurrentToolbar) {
             mLinearLayout.removeAllViews();
             mLinearLayout.addView(LayoutInflater.from(getApplicationContext()).inflate(id,
                     mLinearLayout, false));
             mCurrentToolbar = id;
-        }
-        if (id == mUsualToolbar && baseFragmentWithToolbar != null){
+
+            if (id == mUsualToolbar){
+                mViewToolbar.setBackgroundColor(getResources().getColor(R.color.color_toolbar_brown));
+            }
+
+        }else if (id == mUsualToolbar && baseFragmentWithToolbar != null){
             mIvFragmentLogo = (ImageView) findViewById(R.id.iv_fragment_logo);
             mTvFragmentTitle = (TextView) findViewById(R.id.tv_fragment_title);
             mIvFragmentLogo.setBackgroundResource(baseFragmentWithToolbar.getToolbarImage());
             mTvFragmentTitle.setText(getString(baseFragmentWithToolbar.getToolbarTitle()));
+
         }
+
+        if(id == mMainToolbar){
+            mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
+            //TODO: change to real data values
+            getIntentValues();
+        }
+
     }
 
 }

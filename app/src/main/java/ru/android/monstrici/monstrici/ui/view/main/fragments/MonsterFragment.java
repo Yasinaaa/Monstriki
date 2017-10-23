@@ -5,49 +5,59 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
+import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 17.10.17.
  */
 
-public class MonsterFragment extends Fragment {
+public class MonsterFragment extends BaseFragment {
 
-    public static final String ARG_PAGE = "ARG_PAGE";
-    private int mPageNo;
-    private LayoutInflater inflater;
-    private View mView;
+    @BindView(R.id.iv_monster)
+    ImageView mIvMonster;
+
+    private int mMonsterImageId;
 
     public MonsterFragment() {
     }
 
-    public static MonsterFragment newInstance(int pageNo) {
-
+    public static MonsterFragment newInstance(int monsterImageId){
         Bundle args = new Bundle();
-        args.putInt(ARG_PAGE, pageNo);
-       MonsterFragment fragment = new MonsterFragment();
-        fragment.setArguments(args);
-        return fragment;
+        args.putInt(Resources.MONSTER_IMAGE, monsterImageId);
+        MonsterFragment newFragment = new MonsterFragment();
+        newFragment.setArguments(args);
+        return newFragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
-            /*mListOn = getArguments().getIntArray(ON_LIST);
-            mListOff = getArguments().getIntArray(OFF_LIST);
-            mCurrentMonth = getArguments().getInt(MONTH);*/
+            mMonsterImageId = getArguments().getInt(Resources.MONSTER_IMAGE);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_monster, container, false);
-
+        createLayout(inflater, container, R.layout.fragment_monster);
         return mView;
+    }
 
+    @Override
+    public void init() {
+        mIvMonster.setBackgroundResource(mMonsterImageId);
+    }
+
+    @Override
+    public void setTag() {
+        TAG = "MonsterFragment";
     }
 
 }

@@ -8,43 +8,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_name"
-        android:text="Брозябр"
         android:textSize="@dimen/textsize_monster_name"
         android:textColor="@android:color/white"
-        android:padding="@dimen/padding_small"
         android:layout_marginLeft="@dimen/margin_small" />
 
-    <View
-        android:layout_width="@dimen/width_donuts_toolbar_view"
-        android:layout_height="@dimen/height_donuts_toolbar_view"
-        android:background="@color/color_toolbar"
-        android:id="@+id/view_donuts"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_donut_num"
+        android:textAlignment="center"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"
         android:layout_alignBottom="@+id/view_toolbar"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-    </View>
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"/>
 
     <ImageView
         android:layout_width="@dimen/width_donuts_view"
         android:layout_height="@dimen/height_donuts_view"
         android:id="@+id/iv_donut"
         android:background="@drawable/donut"
-        android:layout_alignBottom="@+id/view_toolbar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_small"
         android:layout_marginBottom="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_small"/>
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_toLeftOf="@+id/tv_donut_num"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/iv_donut2"
-        android:text="10"
-        android:textAlignment="center"
-        android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"
-        android:layout_toLeftOf="@+id/iv_donut"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_marginBottom="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_small"/>
+
 </RelativeLayout>

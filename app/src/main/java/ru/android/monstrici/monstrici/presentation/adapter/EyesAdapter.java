@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.ui.view.parameters;
+package ru.android.monstrici.monstrici.presentation.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import java.util.List;
 
 import ru.android.monstrici.monstrici.R;
 

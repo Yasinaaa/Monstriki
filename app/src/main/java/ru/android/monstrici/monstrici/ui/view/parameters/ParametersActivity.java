@@ -16,6 +16,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.presentation.adapter.EyesAdapter;
 import ru.android.monstrici.monstrici.presentation.presenter.parameters.ParametersPresenter;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.utils.Resources;
@@ -44,6 +45,7 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
     private ParametersPresenter mParametersPresenter;
     private boolean isQuestionMode = true; // can be 2 modes: QUESTION and CREATE_NAME
     private EyesAdapter mEyesAdapter;
+    private int mCurrentMonster = R.drawable.m1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +69,7 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
         if (isQuestionMode){
             setCreateNameMode();
         }else {
-            mParametersPresenter.goNext();
+            mParametersPresenter.goNext(mEtMonsterName.getText().toString(), mCurrentMonster);
         }
     }
 
@@ -100,5 +102,6 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
     @Override
     public void onItemClick(int image) {
         mIvMonster.setBackgroundResource(Resources.mMonstersWithEyesDrawables[image]);
+        mCurrentMonster = Resources.mMonstersWithEyesDrawables[image];
     }
 }

@@ -1,27 +1,25 @@
 package ru.android.monstrici.monstrici.ui.view.main.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
-import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentWithToolbar;
+import ru.android.monstrici.monstrici.presentation.adapter.PrizeAdapter;
+import ru.android.monstrici.monstrici.presentation.model.Prize;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 
 /**
  * Created by yasina on 17.10.17.
  */
 
-public class PrizesFragment extends BaseFragmentWithToolbar implements PrizeAdapter.OnItemClicked{
+public class PrizesFragment extends BaseFragmentUsualToolbar implements PrizeAdapter.OnItemClicked{
 
     public static int TOOLBAR_IMAGE = R.drawable.cup_icon_transparent;
     public static int TOOLBAR_TITLE = R.string.prize;
@@ -48,7 +46,6 @@ public class PrizesFragment extends BaseFragmentWithToolbar implements PrizeAdap
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         createLayout(inflater, container, R.layout.fragment_prizes);
-        init();
         return mView;
     }
 

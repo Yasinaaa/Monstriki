@@ -1,21 +1,20 @@
 package ru.android.monstrici.monstrici.ui.view.main.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import ru.android.monstrici.monstrici.R;
-import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentWithToolbar;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
+import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
 
 /**
  * Created by yasina on 17.10.17.
  */
 
-public class SettingsFragment extends BaseFragmentWithToolbar {
+public class SettingsFragment extends BaseFragmentUsualToolbar {
 
     public static int TOOLBAR_IMAGE = R.drawable.settings_icon_transparent;
     public static int TOOLBAR_TITLE = R.string.settings;

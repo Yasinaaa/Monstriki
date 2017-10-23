@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.ui.view.main.fragments;
+package ru.android.monstrici.monstrici.presentation.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.presentation.model.Prize;
 
 /**
  * Created by yasina on 23.10.17.

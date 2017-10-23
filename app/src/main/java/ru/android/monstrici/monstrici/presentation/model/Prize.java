@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.ui.view.main.fragments;
+package ru.android.monstrici.monstrici.presentation.model;
 
 /**
  * Created by yasina on 23.10.17.
