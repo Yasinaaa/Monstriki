@@ -2,25 +2,10 @@ package ru.android.monstrici.monstrici.presentation.presenter.parameters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputLayout;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.Button;
-import android.widget.EditText;
 
-import java.util.concurrent.TimeUnit;
-
-import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
-import ru.android.monstrici.monstrici.ui.view.main.MainActivity;
-import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
+import ru.android.monstrici.monstrici.ui.view.main.MainMenu;
 import ru.android.monstrici.monstrici.utils.Resources;
-import rx.Observable;
-import rx.Subscription;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.subjects.PublishSubject;
 /**
  * Created by yasina on 16.10.17.
  */
@@ -33,7 +18,7 @@ public class ParametersPresenter extends BasePresenter {
 
     public void goNext(String monsterName, int monsterImage){
 
-        Intent intent = new Intent(mActivity, MainActivity.class);
+        Intent intent = new Intent(mActivity, MainMenu.class);
         //TODO: change with Obserable to check this
         if (monsterName.equals("")){
             monsterName = "Брозябр";

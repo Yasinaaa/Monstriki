@@ -72,4 +72,13 @@ public class SplashFragment extends BaseFragment implements ISplashView {
             getActivity().getFragmentManager().popBackStack();
     }
 
+    @Override
+    public void setTag() {
+
+    }
+
+    @Override
+    public void init() {
+
+    }
 }

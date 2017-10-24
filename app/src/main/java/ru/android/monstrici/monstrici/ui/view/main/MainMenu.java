@@ -182,7 +182,8 @@ public class MainMenu extends BaseActivity {
         }
 
         if(id == mMainToolbar){
-            mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
+            //TODO вернуть когда зальешь файл toolbar_full
+            //mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
             //TODO: change to real data values
             getIntentValues();
         }

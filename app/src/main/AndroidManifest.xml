@@ -37,7 +37,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.view.main.MainActivity"
+            android:name=".ui.view.main.MainMenu"
             android:screenOrientation="portrait">
         </activity>
 

@@ -36,7 +36,10 @@ public class LocalUserRepository implements IUserRepository {
     @Override
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
         Response<User> response = new Response<>();
-        response.setBody(new User());
+        User user=new User();
+        user.setId(1L);
+        response.setBody(user);
+
         callback.onReceiveDataSuccess(response);
     }
 }
