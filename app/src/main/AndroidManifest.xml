@@ -9,6 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
         <activity
@@ -36,11 +37,9 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.view.main.MainMenu"
-            android:screenOrientation="portrait"/>
-
-        <!-- android:parentActivityName=".ui.view.auth.AuthorisationActivity" -->
-
+            android:name=".ui.view.main.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
     </application>
 
