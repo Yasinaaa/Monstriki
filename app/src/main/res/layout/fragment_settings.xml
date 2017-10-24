@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/width_monster_settings"
+        android:layout_height="@dimen/height_monster_settings"
+        android:id="@+id/iv_monster"
+        android:background="@drawable/monster_without_eyes"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_monster_name"
+        android:layout_below="@+id/iv_monster"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginRight="@dimen/margin_normal" />
+
+    <ImageView
+        android:layout_width="@dimen/width_monster_body_item_settings"
+        android:layout_height="@dimen/height_monster_body_item_settings"
+        android:id="@+id/iv_eyes"
+        android:background="@drawable/eye"
+        android:layout_below="@+id/et_monster_name"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_alignLeft="@+id/et_monster_name"
+        android:layout_alignStart="@+id/et_monster_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_eyes"
+        android:text="@string/eyes"
+        android:layout_below="@+id/et_monster_name"
+        android:layout_toRightOf="@+id/iv_eyes"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginLeft="@dimen/margin_normal" />
+
+    <ImageView
+        android:layout_width="@dimen/width_monster_body_item_settings"
+        android:layout_height="@dimen/height_monster_body_item_settings"
+        android:id="@+id/iv_mouth"
+        android:background="@drawable/mouth"
+        android:layout_below="@+id/tv_eyes"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_alignLeft="@+id/et_monster_name"
+        android:layout_alignStart="@+id/et_monster_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_mouth"
+        android:text="@string/mouth"
+        android:layout_below="@+id/tv_eyes"
+        android:layout_toRightOf="@+id/iv_eyes"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginLeft="@dimen/margin_normal" />
+
+    <ImageView
+        android:layout_width="@dimen/width_monster_body_item_settings"
+        android:layout_height="@dimen/height_monster_body_item_settings"
+        android:id="@+id/iv_hands"
+        android:background="@drawable/hand"
+        android:layout_below="@+id/iv_mouth"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_alignLeft="@+id/et_monster_name"
+        android:layout_alignStart="@+id/et_monster_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_hands"
+        android:text="@string/hands"
+        android:layout_below="@+id/tv_mouth"
+        android:layout_toRightOf="@+id/iv_eyes"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginLeft="@dimen/margin_normal" />
+
+    <Button
+        android:layout_width="@dimen/width_btn_save"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_save"
+        android:text="@string/save"
+        android:layout_below="@+id/tv_hands"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/padding_small"
+        android:background="@drawable/btn_corner_purple"
+        android:textColor="@color/color_purple"
+        android:layout_margin="@dimen/margin_large"/>
+
+</RelativeLayout>

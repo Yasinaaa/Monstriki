@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_name"
+        android:textSize="@dimen/textsize_monster_name"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="@dimen/margin_small" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_donut_num"
+        android:textAlignment="center"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"
+        android:layout_alignBottom="@+id/view_toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"/>
+
+    <ImageView
+        android:layout_width="@dimen/width_donuts_view"
+        android:layout_height="@dimen/height_donuts_view"
+        android:id="@+id/iv_donut"
+        android:background="@drawable/donut"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_toLeftOf="@+id/tv_donut_num"/>
+
+
+</RelativeLayout>
