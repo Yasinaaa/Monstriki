@@ -1,11 +1,8 @@
 package ru.android.monstrici.monstrici.ui.view.main;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,17 +30,10 @@ import ru.android.monstrici.monstrici.utils.Resources;
  * Created by yasina on 16.10.17.
  */
 
-public class MainMenu extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
-    private static final String USER_ID = "user_id";
     @BindView(R.id.bottom_navigation)
     AHBottomNavigation mBottomNavigationView;
-
-    public static Intent newIntent(Context packageContext, long id) {
-        Intent intent = new Intent(packageContext, MainMenu.class);
-        intent.putExtra(USER_ID, id);
-        return intent;
-    }
 
     @BindView(R.id.view_stub)
     ViewStub mViewStub;
@@ -87,14 +77,16 @@ public class MainMenu extends BaseActivity {
 
     @Override
     public void init() {
+
+
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("",
                 R.drawable.main_icon, R.color.color_selected_item);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem("",
                 R.drawable.cup_icon, R.color.color_selected_item);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem("",
-                R.drawable.candy_icon, R.color.color_selected_item);
+                R.drawable.candy_icon,R.color.color_selected_item);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem("",
-                R.drawable.settings_icon, R.color.color_selected_item);
+                R.drawable.settings_icon,R.color.color_selected_item);
 
         mBottomNavigationView.addItem(item1);
         mBottomNavigationView.addItem(item2);
@@ -140,8 +132,7 @@ public class MainMenu extends BaseActivity {
             }
         });
         mBottomNavigationView.setOnNavigationPositionListener(new AHBottomNavigation.OnNavigationPositionListener() {
-            @Override
-            public void onPositionChange(int y) {
+            @Override public void onPositionChange(int y) {
 
             }
         });
@@ -155,7 +146,7 @@ public class MainMenu extends BaseActivity {
 
     @Override
     public void setTag() {
-        TAG = MainMenu.class.getCanonicalName();
+        TAG = MainActivity.class.getCanonicalName();
     }
 
     private void setToolbar(int id, BaseFragmentUsualToolbar baseFragmentWithToolbar) {
@@ -182,8 +173,7 @@ public class MainMenu extends BaseActivity {
         }
 
         if(id == mMainToolbar){
-            //TODO вернуть когда зальешь файл toolbar_full
-            //mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
+            mViewToolbar.setBackground(getResources().getDrawable(R.drawable.e1));
             //TODO: change to real data values
             getIntentValues();
         }

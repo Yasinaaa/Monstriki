@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--TODO вернуть background когда зальешь файл toolbar_full-->
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_toolbar"
-        android:background="@null"
+        android:background="@drawable/e1"
         android:id="@+id/view_toolbar">
     </View>
 
