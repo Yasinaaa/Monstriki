@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.data.repository.server;
+package ru.android.monstrici.monstrici.data.repository.remote;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,7 +80,7 @@ public class APIService implements IAPIClient {
 
     @Override
     public void get(String id, IAPICallback callback) {
-        Call<ResponseBody> result = client.get(id);
+        Call<ResponseBody> result = client.checkLogin(id);
         executeCallback(result, callback);
     }
 

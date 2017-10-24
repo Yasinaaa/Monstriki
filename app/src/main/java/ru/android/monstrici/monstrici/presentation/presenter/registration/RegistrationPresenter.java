@@ -16,6 +16,7 @@ public class RegistrationPresenter extends BasePresenter {
         super(activity);
     }
 
+
     public void goNext(){
         ActivityUtils.startActivityAndFinishCurrent(mActivity, ParametersActivity.class);
     }

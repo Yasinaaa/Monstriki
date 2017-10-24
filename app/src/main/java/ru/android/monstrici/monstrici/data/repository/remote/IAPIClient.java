@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.data.repository.server;
+package ru.android.monstrici.monstrici.data.repository.remote;
 
 /**
  * Created by elisiumGusev

@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.data.repository.server;
+package ru.android.monstrici.monstrici.data.repository.remote;
 
 import org.json.JSONException;
 import org.json.JSONObject;

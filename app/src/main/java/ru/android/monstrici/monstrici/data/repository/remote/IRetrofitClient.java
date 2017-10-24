@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.data.repository.server;
+package ru.android.monstrici.monstrici.data.repository.remote;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -13,12 +13,12 @@ import retrofit2.http.Query;
  * @Author Andrei Gusev
  */
 
-interface IRetrofitClient {
+public interface IRetrofitClient {
     /**
      * GET
      */
-    @GET("get/getId")
-    Call<ResponseBody> get(@Query("id") String id);
+    @GET("checkLogin/getId")
+    Call<ResponseBody> checkLogin(@Query("id") String id);
 
     /**
      * POST

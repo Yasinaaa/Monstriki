@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.data.repository.localdb;
+package ru.android.monstrici.monstrici.data.repository.local;
 
 import android.content.Context;
 

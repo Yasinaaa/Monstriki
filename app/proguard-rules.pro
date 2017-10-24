@@ -23,3 +23,27 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# Moxy
+-keep class $$PresentersBinder
+-keep class **$$State
+-keep class **$$ViewStateClassNameProvider
+-keepnames class * extends com.arellomobile.mvp.*
+
+-keep class com.abbyy.mobile.ocr4. {*;}
+-dontwarn com.abbyy.mobile.ocr4.
+
+-keep class com.tune. {*;}
+-dontwarn com.tune.
+
+-keep class de.greenrobot. {*;}
+-dontwarn de.greenrobot.**
+
+#Butterknife
+# Retain generated class which implement Unbinder.
+-keep public class * implements butterknife.Unbinder { public <init>(**, android.view.View); }
+
+# Prevent obfuscation of types which use ButterKnife annotations since the simple name
+# is used to reflectively look up the generated ViewBinding.
+-keep class butterknife.*
+-keepclasseswithmembernames class * { @butterknife.* <methods>; }
+-keepclasseswithmembernames class * { @butterknife.* <fields>; }
