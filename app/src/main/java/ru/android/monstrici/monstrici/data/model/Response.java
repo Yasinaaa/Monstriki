@@ -1,6 +1,6 @@
 package ru.android.monstrici.monstrici.data.model;
 
-import ru.android.monstrici.monstrici.utils.ErrorMessage;
+import ru.android.monstrici.monstrici.utils.Message;
 
 /**
  * Created by elisiumGusev
@@ -10,16 +10,17 @@ import ru.android.monstrici.monstrici.utils.ErrorMessage;
  */
 
 public class Response<T> {
-    private ErrorMessage mMessage;
+    private Message mMessage;
     private Status mStatus;
     private T body;
 
-    public ErrorMessage getMessage() {
+    public Message getMessage() {
         return mMessage;
     }
 
-    public void setMessage(ErrorMessage message) {
+    public Response<T> setMessage(Message message) {
         mMessage = message;
+        return this;
     }
 
     public Status getStatus() {
@@ -34,7 +35,8 @@ public class Response<T> {
         return body;
     }
 
-    public void setBody(T body) {
+    public Response<T> setBody(T body) {
         this.body = body;
+        return this;
     }
 }

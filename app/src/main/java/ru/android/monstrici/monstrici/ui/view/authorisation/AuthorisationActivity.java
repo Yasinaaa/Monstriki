@@ -3,6 +3,7 @@ package ru.android.monstrici.monstrici.ui.view.authorisation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,8 +12,7 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-
-import javax.inject.Inject;
+import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +21,7 @@ import ru.android.monstrici.monstrici.presentation.presenter.authorisation.Autho
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.main.MainMenu;
-import ru.android.monstrici.monstrici.utils.ErrorMessage;
+import ru.android.monstrici.monstrici.utils.Message;
 
 /**
  * Created by yasina on 14.10.17.
@@ -37,7 +37,7 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
     protected Button mLoginButton;
     @BindView(R.id.login_progress)
     ProgressBar mProgressBar;
-   // @Inject
+    // @Inject
     @InjectPresenter
     public AuthorisationPresenter mPresenter;
 
@@ -47,6 +47,7 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
         getApplicationComponent().inject(presenter);
         return presenter;
     }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,19 +69,49 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
 
     @Override
     public void onClick(View view) {
-        mLoginButton.setEnabled(false);
-        mPresenter.login(mEmailEditText.getText().toString(), mPasswordEditText.getText().toString());
+        switch (view.getId()) {
+            case R.id.btn_login: {
+                if (validateForm()) {
+                    mLoginButton.setEnabled(false);
+                    mPresenter.login(mEmailEditText.getText().toString(),
+                            mPasswordEditText.getText().toString());
+                }
+                break;
+            }
+        }
     }
 
     @Override
     public void onLoginSuccess(Long id) {
         Intent menu = MainMenu.newIntent(this, id);
         startActivity(menu);
-        //finish();
+        finish();
+    }
+
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = mEmailEditText.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            mEmailEditText.setError(getString(R.string.required));
+            valid = false;
+        } else {
+            mEmailEditText.setError(null);
+        }
+
+        String password = mPasswordEditText.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            mPasswordEditText.setError(getString(R.string.required));
+            valid = false;
+        } else {
+            mPasswordEditText.setError(null);
+        }
+
+        return valid;
     }
 
     @Override
-    public void onLoginFailed(ErrorMessage message) {
+    public void onLoginFailed(Message message) {
         showError(message);
     }
 
@@ -92,7 +123,7 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
     }
 
     @Override
-    public void showError(ErrorMessage message) {
+    public void showError(Message message) {
         Toast.makeText(getBaseContext(), message.getMessage(), Toast.LENGTH_LONG).show();
     }
 

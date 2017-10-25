@@ -10,15 +10,4 @@ import dagger.Module;
  */
 @Module
 public class NetModule {
-
-//    @Provides
-//    @Singleton
-//    IRetrofitClient provideRetrofit() {
-//        IRetrofitClient retrofit = new Retrofit.Builder()
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .baseUrl(BASE_URL)
-//                .build()
-//                .create(IRetrofitClient.class);
-//        return retrofit;
-//    }
 }

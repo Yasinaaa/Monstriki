@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "100353181861",
+    "firebase_url": "https://named-perigee-143718.firebaseio.com",
+    "project_id": "named-perigee-143718",
+    "storage_bucket": "named-perigee-143718.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100353181861:android:c6190c43768054b1",
+        "android_client_info": {
+          "package_name": "ru.android.monstrici.monstrici"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100353181861-s3fi0ee8d8em31rd4nriolv6mrp686tj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBORPHgpyDcAYwxQGz5qkZD4XXb8J1LhPw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

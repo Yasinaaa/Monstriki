@@ -11,14 +11,12 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
-import javax.inject.Inject;
-
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.SplashPresenter;
 import ru.android.monstrici.monstrici.presentation.view.authorisation.ISplashView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.main.MainMenu;
-import ru.android.monstrici.monstrici.utils.ErrorMessage;
+import ru.android.monstrici.monstrici.utils.Message;
 
 /**
  * Created by elisiumGusev
@@ -55,7 +53,7 @@ public class SplashFragment extends BaseFragment implements ISplashView {
     }
 
     @Override
-    public void showError(ErrorMessage message) {
+    public void showError(Message message) {
         Toast.makeText(getActivity(), message.getMessage(), Toast.LENGTH_SHORT).show();
     }
 

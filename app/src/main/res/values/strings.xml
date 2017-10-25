@@ -19,6 +19,8 @@
     <string name="letter">Буква</string>
     <string name="register">Зарегистрироваться</string>
 
+    <!--acitivty_authorisation-->
+    <string name="required">Обязательное поле.</string>
 
     <!-- activity_parameters.xml -->
     <string name="question">Какие глаза\n у твоего монстрика?</string>

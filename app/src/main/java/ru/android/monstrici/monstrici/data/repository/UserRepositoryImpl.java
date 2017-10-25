@@ -41,7 +41,7 @@ public class UserRepositoryImpl implements IUserRepository {
     @Override
     public void getUser(String id, @NonNull IDataCallback<User> callback) {
         if (mCacheIsDirty) {
-             mRemoteUserRepository.getUser(id, callback);
+            mRemoteUserRepository.getUser(id, callback);
         } else {
         }
     }
@@ -53,7 +53,7 @@ public class UserRepositoryImpl implements IUserRepository {
 
     @Override
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
-        if (mCacheIsDirty) {
+        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
             mRemoteUserRepository.checkLogin(login, password, callback);
         } else {
             mLocalUserRepository.checkLogin(login, password, callback);

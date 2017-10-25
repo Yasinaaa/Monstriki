@@ -4,7 +4,7 @@ import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
-import ru.android.monstrici.monstrici.utils.ErrorMessage;
+import ru.android.monstrici.monstrici.utils.Message;
 
 /**
  * Created by elisiumGusev
@@ -16,5 +16,5 @@ import ru.android.monstrici.monstrici.utils.ErrorMessage;
 public interface IAuthorisationView extends IBaseView {
     void onLoginSuccess(Long id);
 
-    void onLoginFailed(ErrorMessage message);
+    void onLoginFailed(Message message);
 }

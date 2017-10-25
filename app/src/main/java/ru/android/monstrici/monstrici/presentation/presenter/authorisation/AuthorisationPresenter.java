@@ -12,7 +12,7 @@ import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
-import ru.android.monstrici.monstrici.utils.ErrorMessage;
+import ru.android.monstrici.monstrici.utils.Message;
 
 /**
  * Created by elisiumGusev
@@ -36,13 +36,13 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
                 }
 
                 @Override
-                public void onReceiveDataFailure(ErrorMessage message) {
+                public void onReceiveDataFailure(Message message) {
                     getViewState().showLoading(false);
                     getViewState().onLoginFailed(message);
                 }
             });
         } else {
-            getViewState().onLoginFailed(new ErrorMessage());//TODO
+            getViewState().onLoginFailed(new Message(""));//TODO
         }
     }
 

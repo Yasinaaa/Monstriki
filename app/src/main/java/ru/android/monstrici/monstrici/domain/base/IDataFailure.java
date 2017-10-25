@@ -1,6 +1,6 @@
 package ru.android.monstrici.monstrici.domain.base;
 
-import ru.android.monstrici.monstrici.utils.ErrorMessage;
+import ru.android.monstrici.monstrici.utils.Message;
 
 /**
  * Created by elisiumGusev
@@ -10,5 +10,5 @@ import ru.android.monstrici.monstrici.utils.ErrorMessage;
  */
 
 interface IDataFailure {
-    void onReceiveDataFailure(ErrorMessage message);
+    void onReceiveDataFailure(Message message);
 }

@@ -3,6 +3,8 @@ package ru.android.monstrici.monstrici.ui.view.application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
+import com.google.firebase.FirebaseApp;
+
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.DaggerAppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.IHasComponent;
@@ -22,14 +24,14 @@ public class ApplicationCore extends MultiDexApplication implements IHasComponen
     @Override
     public void onCreate() {
         super.onCreate();
-
+        FirebaseApp.initializeApp(this);
         mAppComponent = DaggerAppComponent
                 .builder()
                 .appModule(new AppModule(this))
                 .build();
         mAppComponent.inject(this);
-
     }
+
 
     @Override
     public AppComponent getComponent() {
