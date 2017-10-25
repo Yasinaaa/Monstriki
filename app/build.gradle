@@ -60,5 +60,7 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     testCompile 'org.testng:testng:6.9.6'
     compile 'com.aurelhubert:ahbottomnavigation:2.1.0'
+    compile "com.github.bumptech.glide:glide:${project.GLIDE_VERSION}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${project.GLIDE_VERSION}"
 
 }

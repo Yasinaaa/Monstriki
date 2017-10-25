@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import ru.android.monstrici.monstrici.R;
 
 /**
@@ -39,8 +41,7 @@ public class EyesAdapter extends RecyclerView.Adapter<EyesAdapter.EyeHolder>{
 
     @Override
     public void onBindViewHolder(final EyeHolder holder, final int position) {
-
-        holder.imageView.setBackgroundResource(mList[position]);
+        Glide.with(mContext).load(mList[position]).into(holder.imageView);
         holder.itemView.getRootView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
