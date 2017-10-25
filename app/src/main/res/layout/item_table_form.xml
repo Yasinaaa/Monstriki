@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_small"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_day"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:textSize="@dimen/text_size_schedule_table_item"
+        android:textColor="@color/color_purple"
+        android:drawableBottom="@drawable/cell_shape"
+        android:padding="@dimen/padding_small" />
+
+    <TextView
+        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_on_time"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_schedule_table_item"
+        android:padding="@dimen/padding_small"
+        android:textColor="@color/color_purple"
+        android:drawableBottom="@drawable/cell_shape" />
+
+    <TextView
+        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_off_time"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_schedule_table_item"
+        android:padding="@dimen/padding_small"
+        android:textColor="@color/color_purple"
+        android:drawableBottom="@drawable/cell_shape" />
+
+</LinearLayout>

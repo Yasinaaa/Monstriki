@@ -61,4 +61,20 @@
         <item>@string/saturday</item>
     </string-array>
 
+
+    <string name="title_activity_main_teacher">MainTeacherActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- activity_main_teacher.xml -->
+    <string name="fill_today">Заполнить на сегодня</string>
+    <string name="look_form">Посмотреть класс</string>
+    <string name="exit">Выход</string>
+    <string name="journal">Журнал</string>
+    <string name="data">Дата</string>
+    <string name="pupil">Ученик</string>
+    <string name="for_answer">За ответ</string>
+    <string name="for_cleaning">За уборку</string>
+
 </resources>
