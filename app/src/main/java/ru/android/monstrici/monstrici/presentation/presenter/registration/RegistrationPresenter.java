@@ -16,6 +16,7 @@ public class RegistrationPresenter extends BasePresenter {
         super(activity);
     }
 
+
     public void goNext(){
         Intent intent = new Intent(mActivity, ParametersActivity.class);
         mActivity.startActivity(intent);

@@ -2,18 +2,25 @@
     <string name="app_name">Monstriki</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_reg">Registration</string>
+    <string name="loading">Подождите</string>
+    <string name="authorisation_login">Логин</string>
 
     <!-- activity_registration.xml -->
     <string name="m">M</string>
     <string name="n">N</string>
     <string name="striki">STRIKI</string>
     <string name="registration">Регистрация</string>
+
+    <string name="password">Пароль</string>
     <string name="login">Вход</string>
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="form">Класс</string>
     <string name="letter">Буква</string>
     <string name="register">Зарегистрироваться</string>
+
+    <!--acitivty_authorisation-->
+    <string name="required">Обязательное поле.</string>
 
     <!-- activity_parameters.xml -->
     <string name="question">Какие глаза\n у твоего монстрика?</string>
