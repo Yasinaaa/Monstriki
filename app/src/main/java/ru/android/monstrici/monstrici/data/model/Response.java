@@ -31,7 +31,8 @@ public class Response<T> {
         mStatus = status;
     }
 
-    public T getBody() {
+    public T
+    getBody() {
         return body;
     }
 

@@ -113,7 +113,7 @@ public class MainMenu extends BaseActivity {
 
                 switch (position){
                     case 0:
-                        setMonsterFragment();
+                       setMonsterFragment();
                         break;
 
                     case 1:
@@ -178,7 +178,7 @@ public class MainMenu extends BaseActivity {
         }
 
         if(id == mMainToolbar){
-            //mViewToolbar.setBackground(getResources().getDrawable(R.drawable.e1));
+            mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
             //TODO: change to real data values
             getIntentValues();
         }

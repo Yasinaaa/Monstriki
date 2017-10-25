@@ -47,25 +47,28 @@ dependencies {
     compile "com.android.support:appcompat-v7:${project.ANDROID_SUPPORT_VERSION}"
     compile "com.android.support:design:${project.ANDROID_SUPPORT_VERSION}"
     compile "com.android.support:cardview-v7:${project.ANDROID_SUPPORT_VERSION}"
-//    //Moxy
+    //Moxy
     compile "com.arello-mobile:moxy:${project.MOXY_VERSION}"
     compile "com.arello-mobile:moxy-app-compat:${project.MOXY_VERSION}"
     annotationProcessor "com.arello-mobile:moxy-compiler:${project.MOXY_VERSION}"
-//    //GreenDao
+    //GreenDao
     compile "org.greenrobot:greendao:${project.GREENDAO_VERSION}"
-//    //ButterKnife
+    //ButterKnife
     annotationProcessor "com.jakewharton:butterknife-compiler:${project.BUTTER_KNIFE_VERSION}"
     compile "com.jakewharton:butterknife:${project.BUTTER_KNIFE_VERSION}"
-//    //Dagger
+    //Dagger
     compile "com.google.dagger:dagger:${project.DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${project.DAGGER_VERSION}"
-//    //RxJava
+    //RxJava
     compile "io.reactivex.rxjava2:rxandroid:${project.RX_ANDROID_VERSION}"
     compile "io.reactivex.rxjava2:rxjava:${project.RX_JAVA_VERSION}"
     //Firebase
     compile "com.google.firebase:firebase-auth:${project.FIREBASE_VERSION}"
     compile "com.google.firebase:firebase-core:${project.FIREBASE_VERSION}"
     compile "com.google.firebase:firebase-database:${project.FIREBASE_VERSION}"
+    //Glide
+    compile "com.github.bumptech.glide:glide:${project.GLIDE_VERSION}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${project.GLIDE_VERSION}"
 
     compile 'com.android.support:multidex:1.0.1'
 

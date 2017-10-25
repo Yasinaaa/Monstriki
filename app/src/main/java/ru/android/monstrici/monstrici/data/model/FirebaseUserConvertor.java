@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class FirebaseUserConvertor {
 
     public static User convert(FirebaseUser user) {
-        return new User();
+        User user1 = new User();
+        user1.setId(1L);
+        return user1;
     }
 }
