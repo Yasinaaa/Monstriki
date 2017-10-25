@@ -1,5 +1,6 @@
 package ru.android.monstrici.monstrici.ui.view.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,22 +18,21 @@ import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
-import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.MonsterFragment;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.PrizesFragment;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.SettingsFragment;
 import ru.android.monstrici.monstrici.ui.view.main.fragments.SweetsFragment;
-import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 16.10.17.
  */
 
-public class MainActivity extends BaseActivity {
-
+public class MainMenu extends BaseActivity {
+    private static final String USER_ID = "user_id";
     @BindView(R.id.bottom_navigation)
     AHBottomNavigation mBottomNavigationView;
 
@@ -59,7 +59,11 @@ public class MainActivity extends BaseActivity {
     private int mCurrentToolbar = mMainToolbar;
 
     private FragmentManager mFragmentManager;
-
+    public static Intent newIntent(Context packageContext, long id) {
+        Intent intent = new Intent(packageContext, MainMenu.class);
+        intent.putExtra(USER_ID, id);
+        return intent;
+    }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +113,7 @@ public class MainActivity extends BaseActivity {
 
                 switch (position){
                     case 0:
-                        setMonsterFragment();
+                       setMonsterFragment();
                         break;
 
                     case 1:
@@ -146,7 +150,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setTag() {
-        TAG = MainActivity.class.getCanonicalName();
+        TAG = MainMenu.class.getCanonicalName();
     }
 
     private void setToolbar(int id, BaseFragmentUsualToolbar baseFragmentWithToolbar) {
@@ -180,6 +184,7 @@ public class MainActivity extends BaseActivity {
         }
 
     }
+
 
 }
 

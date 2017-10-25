@@ -46,4 +46,11 @@ public class User {
         this.key = key;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", key='" + key + '\'' +
+                '}';
+    }
 }
