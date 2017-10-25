@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -47,7 +49,7 @@ public class PrizeAdapter extends RecyclerView.Adapter<PrizeAdapter.PrizeHolder>
     public void onBindViewHolder(final PrizeHolder holder, final int position) {
 
         Prize prize = mList.get(position);
-        holder.mIvPrize.setBackgroundResource(prize.getPrizePicture());
+        Glide.with(mContext).load(prize.getPrizePicture()).into(holder.mIvPrize);
         holder.mTvPrizeTitle.setText(prize.getPrizeTitle());
         holder.mTvPrizeDate.setText(prize.getPrizeDate());
 

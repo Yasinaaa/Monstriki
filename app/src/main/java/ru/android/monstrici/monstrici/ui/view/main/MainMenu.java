@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
@@ -81,7 +82,6 @@ public class MainMenu extends BaseActivity {
 
     @Override
     public void init() {
-
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("",
                 R.drawable.main_icon, R.color.color_selected_item);
@@ -168,10 +168,11 @@ public class MainMenu extends BaseActivity {
                 mViewToolbar.setBackgroundColor(getResources().getColor(R.color.color_toolbar_brown));
             }
 
-        }else if (id == mUsualToolbar && baseFragmentWithToolbar != null){
+        }
+        if (id == mUsualToolbar && baseFragmentWithToolbar != null){
             mIvFragmentLogo = (ImageView) findViewById(R.id.iv_fragment_logo);
             mTvFragmentTitle = (TextView) findViewById(R.id.tv_fragment_title);
-            mIvFragmentLogo.setBackgroundResource(baseFragmentWithToolbar.getToolbarImage());
+            Glide.with(this).load(baseFragmentWithToolbar.getToolbarImage()).into(mIvFragmentLogo);
             mTvFragmentTitle.setText(getString(baseFragmentWithToolbar.getToolbarTitle()));
 
         }

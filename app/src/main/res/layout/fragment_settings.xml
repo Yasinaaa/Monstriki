@@ -8,7 +8,6 @@
         android:layout_width="@dimen/width_monster_settings"
         android:layout_height="@dimen/height_monster_settings"
         android:id="@+id/iv_monster"
-        android:background="@drawable/monster_without_eyes"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_centerHorizontal="true"/>
 
@@ -25,7 +24,6 @@
         android:layout_width="@dimen/width_monster_body_item_settings"
         android:layout_height="@dimen/height_monster_body_item_settings"
         android:id="@+id/iv_eyes"
-        android:background="@drawable/eye"
         android:layout_below="@+id/et_monster_name"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_alignLeft="@+id/et_monster_name"
@@ -47,7 +45,6 @@
         android:layout_width="@dimen/width_monster_body_item_settings"
         android:layout_height="@dimen/height_monster_body_item_settings"
         android:id="@+id/iv_mouth"
-        android:background="@drawable/mouth"
         android:layout_below="@+id/tv_eyes"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_alignLeft="@+id/et_monster_name"
@@ -69,7 +66,6 @@
         android:layout_width="@dimen/width_monster_body_item_settings"
         android:layout_height="@dimen/height_monster_body_item_settings"
         android:id="@+id/iv_hands"
-        android:background="@drawable/hand"
         android:layout_below="@+id/iv_mouth"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_alignLeft="@+id/et_monster_name"
