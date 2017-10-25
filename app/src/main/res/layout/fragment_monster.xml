@@ -42,7 +42,6 @@
         android:layout_width="@dimen/width_bubble_imageview"
         android:layout_height="@dimen/height_bubble_imageview"
         android:id="@+id/iv_bubbles"
-        android:background="@drawable/circle_idea"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/margin_max"/>

@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
+import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
@@ -18,6 +22,15 @@ public class SettingsFragment extends BaseFragmentUsualToolbar {
 
     public static int TOOLBAR_IMAGE = R.drawable.settings_icon_transparent;
     public static int TOOLBAR_TITLE = R.string.settings;
+
+    @BindView(R.id.iv_eyes)
+    ImageView mIvEyes;
+    @BindView(R.id.iv_mouth)
+    ImageView mIvMouth;
+    @BindView(R.id.iv_hands)
+    ImageView mIvHands;
+    @BindView(R.id.iv_monster)
+    ImageView mIvMonster;
 
     public SettingsFragment() {
         super(TOOLBAR_IMAGE, TOOLBAR_TITLE);
@@ -47,7 +60,10 @@ public class SettingsFragment extends BaseFragmentUsualToolbar {
 
     @Override
     public void init() {
-
+        Glide.with(this).load(R.drawable.eye).into(mIvEyes);
+        Glide.with(this).load(R.drawable.mouth).into(mIvMouth);
+        Glide.with(this).load(R.drawable.hand).into(mIvHands);
+        Glide.with(this).load(R.drawable.m1).into(mIvMonster);
     }
 
 }

@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
@@ -56,6 +58,7 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
 
     @Override
     public void init() {
+        Glide.with(this).load(R.drawable.m1).into(mIvMonster);
         mParametersPresenter = new ParametersPresenter(this);
         mEyesAdapter = new EyesAdapter(Resources.mEyesDrawables, this);
         mRvEyes.setItemAnimator(new DefaultItemAnimator());
@@ -101,7 +104,7 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
 
     @Override
     public void onItemClick(int image) {
-        mIvMonster.setBackgroundResource(Resources.mMonstersWithEyesDrawables[image]);
+        Glide.with(this).load(Resources.mMonstersWithEyesDrawables[image]).into(mIvMonster);
         mCurrentMonster = Resources.mMonstersWithEyesDrawables[image];
     }
 }

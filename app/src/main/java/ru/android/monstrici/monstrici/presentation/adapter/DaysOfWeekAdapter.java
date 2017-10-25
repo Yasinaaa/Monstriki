@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -49,10 +51,11 @@ public class DaysOfWeekAdapter extends RecyclerView.Adapter<DaysOfWeekAdapter.Da
         DayOfWeek day = mList.get(position);
         holder.mTvDayTitle.setText(day.getDayTitle());
         holder.mTvDate.setText(day.getDate());
-        //holder.mIvDonut.setBackgroundResource(R.drawable.donut);
+
         if(day.getDonutsCount() <= 0){
             holder.mIvDonut.setVisibility(View.GONE);
         }else {
+            Glide.with(mContext).load(R.drawable.donut).into(holder.mIvDonut);
             holder.mTvDonutNum.setText(String.valueOf(day.getDonutsCount()));
         }
 
