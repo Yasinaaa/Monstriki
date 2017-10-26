@@ -8,8 +8,6 @@ buildscript {
         classpath "com.android.tools.build:gradle:${project.GRADLE_VERSION}"
         //GreenDAO
         classpath "org.greenrobot:greendao-gradle-plugin:${project.GREENDAO_VERSION}"
-        //Retrolambda
-        classpath "me.tatarka:gradle-retrolambda:${project.RETROLAMBDA_VERSION}"
         //Firebase
         classpath 'com.google.gms:google-services:3.1.1' // google-services plugin
         // NOTE: Do not place your application dependencies here; they belong
