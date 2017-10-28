@@ -1,11 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
-apply plugin: 'me.tatarka.retrolambda'
 
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "ru.android.monstrici.monstrici"
         minSdkVersion 16
@@ -24,11 +23,6 @@ android {
     packagingOptions {
         exclude 'META-INF/LICENSE'
     }
-    //Rx
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     //GreenDAO
     greendao {
         schemaVersion 1
@@ -36,6 +30,10 @@ android {
     android.dexOptions {
         incremental true
         javaMaxHeapSize "4g"
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 

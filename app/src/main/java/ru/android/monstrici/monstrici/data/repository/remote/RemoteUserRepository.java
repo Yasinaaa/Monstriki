@@ -64,6 +64,7 @@ public class RemoteUserRepository implements IUserRepository {
                         callback.onReceiveDataFailure(new Message(task.getException().getMessage()));
                     }
                 });
+
     }
 
 
@@ -96,14 +97,4 @@ public class RemoteUserRepository implements IUserRepository {
                     }
                 });
     }
-
-
-//        Observable.create(e -> {
-//
-//            runnable.run();
-//
-//        }).subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe();
-//
 }
