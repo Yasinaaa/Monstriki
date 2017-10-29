@@ -1,7 +1,6 @@
-package ru.android.monstrici.monstrici.ui.view.main.fragments;
+package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import com.bumptech.glide.Glide;
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**

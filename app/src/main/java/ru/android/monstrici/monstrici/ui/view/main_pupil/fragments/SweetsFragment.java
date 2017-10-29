@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.ui.view.main.fragments;
+package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;

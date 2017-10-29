@@ -11,6 +11,7 @@ import ru.android.monstrici.monstrici.R;
 
 public class Resources {
 
+    public final static String TAG_FRAGMENT = "tag_fragment";
     public final static String MONSTER_NAME = "monster_name";
     public final static String MONSTER_IMAGE = "monster_image";
 

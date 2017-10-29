@@ -35,7 +35,7 @@
             android:name=".ui.view.parameters.ParametersActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.view.main.MainMenu"
+            android:name=".ui.view.main_pupil.MainMenu"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.view.main_teacher.MainTeacherActivity"

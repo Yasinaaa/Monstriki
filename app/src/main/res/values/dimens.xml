@@ -78,4 +78,11 @@
     <integer name="weight_large_item_linear_layout">1</integer>
     <dimen name="text_size_schedule_table_item">17sp</dimen>
 
+    <!-- view_mocnstriki_with_menu.xml -->
+    <dimen name="textsize_logo_in_menu_toolbar">40sp</dimen>
+    <dimen name="size_monster_in_menu_roolbar">70dp</dimen>
+
+    <!-- fragment_form_parameters.xml -->
+
+
 </resources>

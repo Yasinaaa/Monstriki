@@ -15,7 +15,7 @@ import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.SplashPresenter;
 import ru.android.monstrici.monstrici.presentation.view.authorisation.ISplashView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.ui.view.main.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**

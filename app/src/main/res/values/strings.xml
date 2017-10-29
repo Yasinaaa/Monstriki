@@ -8,7 +8,10 @@
     <!-- activity_registration.xml -->
     <string name="m">M</string>
     <string name="n">N</string>
+    <string name="ns">NS</string>
+    <string name="triki">TRIKI</string>
     <string name="striki">STRIKI</string>
+    <string name="nstriki">NSTRIKI</string>
     <string name="registration">Регистрация</string>
 
     <string name="password">Пароль</string>
@@ -61,13 +64,12 @@
         <item>@string/saturday</item>
     </string-array>
 
-
     <string name="title_activity_main_teacher">MainTeacherActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
 
-    <!-- activity_main_teacher.xml -->
+    <!-- fragment_journal.xml -->
     <string name="fill_today">Заполнить на сегодня</string>
     <string name="look_form">Посмотреть класс</string>
     <string name="exit">Выход</string>
@@ -76,5 +78,25 @@
     <string name="pupil">Ученик</string>
     <string name="for_answer">За ответ</string>
     <string name="for_cleaning">За уборку</string>
+
+    <!-- fragment_form_parameters.xml -->
+    <string name="litera">Литера</string>
+    <string name="ready">Готово</string>
+
+    <string-array name="literas">
+        <item>А</item>
+        <item>Б</item>
+        <item>В</item>
+        <item>Г</item>
+        <item>Д</item>
+    </string-array>
+
+    <string-array name="forms_num">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 
 </resources>
