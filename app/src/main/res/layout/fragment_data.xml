@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:id="@+id/view1"
-        android:layout_below="@+id/tv_journal"
+        android:layout_below="@+id/tv_data"
         android:background="@android:color/darker_gray" />
 
     <CalendarView

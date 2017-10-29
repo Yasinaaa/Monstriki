@@ -11,31 +11,43 @@
         android:layout_height="match_parent"
         android:id="@+id/tv_day_of_week"
         android:layout_weight="@integer/weight_large_item_linear_layout"
-        android:textSize="@dimen/text_size_schedule_table_item"
+        android:textSize="@dimen/textsize_day_of_week"
+        android:textAlignment="center"
+        android:text="@string/monday"
         android:textColor="@color/color_purple"
-        android:drawableBottom="@drawable/cell_shape"
-        android:padding="@dimen/padding_small" />
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="@dimen/height_large_item_linear_layout"
         android:layout_height="match_parent"
         android:id="@+id/tv_date"
+        android:text="18.09.2017"
         android:layout_weight="@integer/weight_large_item_linear_layout"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_schedule_table_item"
         android:padding="@dimen/padding_small"
-        android:textColor="@color/color_purple"
-        android:drawableBottom="@drawable/cell_shape" />
+        android:textColor="@color/color_purple" />
 
     <TextView
         android:layout_width="@dimen/height_large_item_linear_layout"
         android:layout_height="match_parent"
-        android:id="@+id/tv_off_time"
+        android:id="@+id/tv_for_answer"
         android:layout_weight="@integer/weight_large_item_linear_layout"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_schedule_table_item"
         android:padding="@dimen/padding_small"
         android:textColor="@color/color_purple"
-        android:drawableBottom="@drawable/cell_shape" />
+        android:text="2"/>
+
+    <TextView
+        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_for_cleaning"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_schedule_table_item"
+        android:padding="@dimen/padding_small"
+        android:textColor="@color/color_purple"
+        android:text="1" />
 
 </LinearLayout>

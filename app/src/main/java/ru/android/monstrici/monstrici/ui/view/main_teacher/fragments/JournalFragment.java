@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -64,8 +63,8 @@ public class JournalFragment extends BaseFragment {
                     getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.item_table_form, null);
 
-            final TextView day = (TextView) view.findViewById(R.id.tv_day);
-            final TextView on = (TextView) view.findViewById(R.id.tv_on_time);
+            final TextView day = (TextView) view.findViewById(R.id.tv_day_of_week);
+            final TextView on = (TextView) view.findViewById(R.id.tv_date);
             final TextView off = (TextView) view.findViewById(R.id.tv_off_time);
 
             if (i == 0) {
@@ -73,7 +72,7 @@ public class JournalFragment extends BaseFragment {
                 on.setText(getResources().getString(R.string.for_answer));
                 off.setText(getResources().getString(R.string.for_cleaning));
             } else {
-                day.setText("Антонов И.");
+                day.setText(Resources.mTempPupils[i]);
                 on.setText(String.valueOf(0));
                 off.setText(String.valueOf(1));
             }
@@ -97,11 +96,6 @@ public class JournalFragment extends BaseFragment {
         openFragment(new FormParametersFragment());
     }
 
-    private void openFragment(BaseFragment fragment){
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fl_main, fragment, Resources.TAG_FRAGMENT)
-                .addToBackStack(null)
-                .commit();
-    }
+
 
 }

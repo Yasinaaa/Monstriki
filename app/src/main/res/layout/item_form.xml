@@ -10,6 +10,7 @@
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginBottom="@dimen/margin_small"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

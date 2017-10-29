@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,7 @@ public class FormParametersFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
+
         }
     }
 
@@ -75,11 +77,23 @@ public class FormParametersFragment extends BaseFragment {
                 mChoosedFormNum = Integer.valueOf(value);
             }
         });
+
+        mRvLetters.setHasFixedSize(true);
+        mRvForms.setHasFixedSize(true);
+        mRvLetters.setLayoutManager(new
+                LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mRvForms.setLayoutManager(new
+                LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        mRvLetters.setAdapter(mLiteraAdapter);
+        mRvForms.setAdapter(mNumAdapter);
     }
 
     @OnClick(R.id.btn_ready)
     private void onBtnReadyClick(){
-
+        ChoosedFormFragment choosedFormFragment = ChoosedFormFragment.newInstance(
+                mChoosedFormNum + mChoosedLitera);
+        openFragment(choosedFormFragment);
     }
 
     @Override

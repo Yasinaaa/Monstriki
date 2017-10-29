@@ -74,6 +74,7 @@ public class SweetsFragment extends BaseFragmentUsualToolbar implements DaysOfWe
 
 
     public void setTempValue(){
+        //todo: temp values, remove this
         int[] tempDonutValues = new int[Resources.mStudyDaysOfWeek];
         tempDonutValues[0] = 5;
         tempDonutValues[1] = 2;

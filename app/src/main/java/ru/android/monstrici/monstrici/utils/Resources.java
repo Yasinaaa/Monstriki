@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.presentation.model.DayDesition;
 
 /**
  * Created by yasina on 19.10.17.
@@ -24,5 +25,20 @@ public class Resources {
     };
 
     public static int mStudyDaysOfWeek = 6;
+
+    //TODO: remove this items, after creating real values
+    public static String[] mTempPupils = new String[]{
+            "Антонов И.", "Гараева С.","Денисов Л.","Железная Я.","Закиров М.",
+            "Иванова А.","Каримова З.","Липатов П.","Носов Р.", "Петрова Н."
+    };
+
+    public static DayDesition[] mDesitionsOfWeek = new DayDesition[]{
+            new DayDesition(R.string.monday),
+            new DayDesition(R.string.tuesday),
+            new DayDesition(R.string.wednesday),
+            new DayDesition(R.string.thursday),
+            new DayDesition(R.string.friday),
+            new DayDesition(R.string.saturday)
+    };
 
 }
