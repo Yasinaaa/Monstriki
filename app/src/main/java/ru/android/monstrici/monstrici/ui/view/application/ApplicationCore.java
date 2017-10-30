@@ -33,7 +33,7 @@ public class ApplicationCore extends MultiDexApplication implements IHasComponen
                 .build();
         mAppComponent.inject(this);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Roboto-ThinItalic.ttf")
+                .setDefaultFontPath(getResources().getString(R.string.main_font))
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
