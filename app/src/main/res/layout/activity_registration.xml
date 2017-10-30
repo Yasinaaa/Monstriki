@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_registration">
@@ -15,6 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_registration"
             android:text="@string/registration"
+            fontPath="fonts/Roboto-Bold.ttf"
             android:layout_alignBaseline="@+id/btn_login"
             android:layout_alignBottom="@+id/btn_login"
             android:layout_alignLeft="@+id/card_view"
@@ -22,7 +24,8 @@
             android:textColor="@android:color/white"
             android:background="@android:color/transparent"
             android:layout_marginLeft="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_normal"/>
+            android:layout_marginTop="@dimen/margin_normal"
+            tools:ignore="MissingPrefix" />
 
         <Button
             android:layout_width="wrap_content"

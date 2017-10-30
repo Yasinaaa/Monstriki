@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
-import ru.android.monstrici.monstrici.ui.view.main.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
 import ru.android.monstrici.monstrici.utils.Resources;
 /**
  * Created by yasina on 16.10.17.

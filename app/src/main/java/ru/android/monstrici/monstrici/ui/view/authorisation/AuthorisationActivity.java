@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +19,7 @@ import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.AuthorisationPresenter;
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
-import ru.android.monstrici.monstrici.ui.view.main.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**

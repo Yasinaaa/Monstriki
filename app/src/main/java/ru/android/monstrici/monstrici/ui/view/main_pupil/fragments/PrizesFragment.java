@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.ui.view.main.fragments;
+package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +12,6 @@ import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.adapter.PrizeAdapter;
 import ru.android.monstrici.monstrici.presentation.model.Prize;
-import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 
 /**

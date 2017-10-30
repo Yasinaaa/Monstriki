@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity">
+
+    <TextView
+        android:id="@+id/tv_journal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:text="@string/journal"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_large" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view1"
+        android:layout_below="@+id/tv_journal"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_data"
+        android:layout_below="@+id/tv_journal"
+        android:text="@string/data"
+        android:textSize="@dimen/textsize_medium"
+        android:textColor="@color/color_purple"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_very_small" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_data_bracket"
+        android:text=">"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/textsize_xlarge"
+        android:textColor="@color/color_purple"
+        android:layout_below="@+id/view1"
+        android:layout_alignRight="@+id/tv_journal"
+        android:layout_alignEnd="@+id/tv_journal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_data_day"
+        android:text="Сегодня"
+        android:textSize="@dimen/textsize_small"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_small"
+        android:textColor="@color/color_purple"
+        android:paddingBottom="@dimen/padding_small"
+        android:layout_toLeftOf="@+id/tv_data_bracket"
+        android:layout_alignTop="@+id/tv_data_bracket" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view2"
+        android:layout_below="@+id/tv_data"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/tv_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view2"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="sans-serif"
+        android:paddingBottom="@dimen/padding_very_small"
+        android:paddingTop="@dimen/padding_small"
+        android:text="@string/form"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_medium" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_form_bracket"
+        android:text=">"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/textsize_xlarge"
+        android:textColor="@color/color_purple"
+        android:layout_below="@+id/view2"
+        android:layout_alignRight="@+id/tv_journal"
+        android:layout_alignEnd="@+id/tv_journal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_form_text"
+        android:text="1C"
+        android:textSize="@dimen/textsize_small"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_small"
+        android:textColor="@color/color_purple"
+        android:paddingBottom="@dimen/padding_small"
+        android:layout_toLeftOf="@+id/tv_form_bracket"
+        android:layout_alignTop="@+id/tv_form_bracket" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:layout_below="@+id/tv_form"
+        android:background="@android:color/darker_gray" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view3"
+        android:layout_margin="@dimen/margin_xsmall">
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:stretchColumns="*"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small">
+        </TableLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

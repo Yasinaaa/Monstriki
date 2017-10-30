@@ -12,6 +12,7 @@
     <dimen name="margin_xxxlarge">60dp</dimen>
     <dimen name="margin_max">100dp</dimen>
 
+    <dimen name="padding_very_small">5dp</dimen>
     <dimen name="padding_small">10dp</dimen>
     <dimen name="padding_normal">20dp</dimen>
 
@@ -62,5 +63,26 @@
     <!-- fragment_sweets.xml -->
     <dimen name="textsize_day_of_week">50sp</dimen>
     <dimen name="textsize_date">20sp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- activity_main_teacher.xml -->
+    <dimen name="textsize_small">15sp</dimen>
+    <dimen name="textsize_medium">20sp</dimen>
+    <dimen name="textsize_large">25sp</dimen>
+    <dimen name="textsize_xlarge">30sp</dimen>
+    <dimen name="padding_xsmall">15dp</dimen>
+
+    <dimen name="height_large_item_linear_layout">0dip</dimen>
+    <integer name="weight_large_item_linear_layout">1</integer>
+    <dimen name="text_size_schedule_table_item">17sp</dimen>
+
+    <!-- view_mocnstriki_with_menu.xml -->
+    <dimen name="textsize_logo_in_menu_toolbar">40sp</dimen>
+    <dimen name="size_monster_in_menu_roolbar">70dp</dimen>
+
+    <!-- fragment_form_parameters.xml -->
+
 
 </resources>

@@ -12,4 +12,13 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.AppCompat.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.AppCompat.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextAppearance.FontPath" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/alex_brush.ttf</item>
+    </style>
+
 </resources>

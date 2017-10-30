@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/iv_menu_item"
+        android:background="@drawable/menu_3line"
+        android:layout_toLeftOf="@+id/tv_m"
+        android:visibility="gone"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_normal"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_m"
         android:text="@string/m"
-        android:textSize="@dimen/textsize_logo"
+        android:textSize="@dimen/textsize_logo_in_menu_toolbar"
         android:textColor="@android:color/white"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginBottom="@dimen/margin_small"
@@ -17,10 +28,10 @@
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="@dimen/width_logo"
-        android:layout_height="@dimen/height_logo"
+        android:layout_width="@dimen/size_monster_in_menu_roolbar"
+        android:layout_height="@dimen/size_monster_in_menu_roolbar"
         android:elevation="@dimen/elevation_logo"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_normal"
         android:layout_centerHorizontal="true"
         android:layout_toLeftOf="@+id/tv_n"
         android:layout_below="@+id/btn_registration"
@@ -31,7 +42,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_n"
         android:text="@string/n"
-        android:textSize="@dimen/textsize_logo"
+        android:textSize="@dimen/textsize_logo_in_menu_toolbar"
         android:textColor="@android:color/white"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_centerHorizontal="true"
@@ -42,7 +53,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_stiki"
         android:text="@string/striki"
-        android:textSize="@dimen/textsize_logo"
+        android:textSize="@dimen/textsize_logo_in_menu_toolbar"
         android:textColor="@android:color/white"
         android:layout_toRightOf="@+id/tv_n"
         android:layout_marginTop="@dimen/margin_small"

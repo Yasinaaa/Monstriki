@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
 
 /**
@@ -41,7 +43,7 @@ public class EyesAdapter extends RecyclerView.Adapter<EyesAdapter.EyeHolder>{
 
     @Override
     public void onBindViewHolder(final EyeHolder holder, final int position) {
-        Glide.with(mContext).load(mList[position]).into(holder.imageView);
+        Glide.with(mContext).load(mList[position]).into(holder.mImageView);
         holder.itemView.getRootView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,11 +65,12 @@ public class EyesAdapter extends RecyclerView.Adapter<EyesAdapter.EyeHolder>{
 
     public class EyeHolder extends RecyclerView.ViewHolder{
 
-        public ImageView imageView;
+        @BindView(R.id.iv_eye)
+        public ImageView mImageView;
 
         public EyeHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.iv_eye);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

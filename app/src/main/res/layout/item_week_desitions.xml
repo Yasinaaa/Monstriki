@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_day_of_week"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:textSize="@dimen/textsize_day_of_week"
+        android:textAlignment="center"
+        android:text="@string/monday"
+        android:textColor="@color/color_purple"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_date"
+        android:text="18.09.17"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_schedule_table_item"
+        android:padding="@dimen/padding_small"
+        android:textColor="@color/color_purple" />
+
+    <TextView
+        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_for_answer"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_schedule_table_item"
+        android:padding="@dimen/padding_small"
+        android:textColor="@color/color_purple"
+        android:text="2"/>
+
+    <TextView
+        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_for_cleaning"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_schedule_table_item"
+        android:padding="@dimen/padding_small"
+        android:textColor="@color/color_purple"
+        android:text="1" />
+
+</LinearLayout>

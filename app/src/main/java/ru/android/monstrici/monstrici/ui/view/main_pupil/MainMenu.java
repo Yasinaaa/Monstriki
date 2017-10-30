@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.ui.view.main;
+package ru.android.monstrici.monstrici.ui.view.main_pupil;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,13 +18,12 @@ import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
-import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
-import ru.android.monstrici.monstrici.ui.view.main.fragments.MonsterFragment;
-import ru.android.monstrici.monstrici.ui.view.main.fragments.PrizesFragment;
-import ru.android.monstrici.monstrici.ui.view.main.fragments.SettingsFragment;
-import ru.android.monstrici.monstrici.ui.view.main.fragments.SweetsFragment;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.PrizesFragment;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SettingsFragment;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SweetsFragment;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**

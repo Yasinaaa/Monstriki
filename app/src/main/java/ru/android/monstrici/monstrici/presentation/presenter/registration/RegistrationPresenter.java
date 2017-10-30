@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
+import ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity;
 import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
 
 /**
@@ -18,7 +19,7 @@ public class RegistrationPresenter extends BasePresenter {
 
 
     public void goNext(){
-        Intent intent = new Intent(mActivity, ParametersActivity.class);
+        Intent intent = new Intent(mActivity, MainTeacherActivity.class);
         mActivity.startActivity(intent);
         mActivity.finish();
     }
