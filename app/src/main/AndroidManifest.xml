@@ -16,15 +16,11 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name=".ui.view.authorisation.AuthorisationActivity"
-            android:label="@string/title_activity_login"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".ui.view.registation.RegistrationActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize">
-
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.view.parameters.ParametersActivity"
@@ -36,11 +32,7 @@
             android:name=".ui.view.main_teacher.MainTeacherActivity"
             android:label="@string/title_activity_main_teacher"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>

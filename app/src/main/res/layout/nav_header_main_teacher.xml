@@ -1,19 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:ignore="MissingPrefix"
-    android:layout_marginTop="@dimen/margin_small">
+    android:background="@drawable/background_main_teacher">
 
     <TextView
         android:id="@+id/tv_teacher_name"
         fontPath="fonts/acquestscript.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:padding="@dimen/padding_xsmall"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_xxlarge"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="fonts/acquestscript.ttf"
-        android:padding="@dimen/padding_normal"
-        android:text="@string/maria" />
+        android:id="@+id/tv_fill_today"
+        android:text="@string/fill_today"
+        android:layout_margin="@dimen/margin_small"
+        android:textSize="@dimen/textsize_large"
+        fontPath="fonts/chalk_3892.ttf"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_look_form"
+        android:text="@string/look_form"
+        android:layout_margin="@dimen/margin_small"
+        android:textSize="@dimen/textsize_large"
+        fontPath="fonts/chalk_3892.ttf"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_settings"
+        android:text="@string/settings"
+        android:layout_margin="@dimen/margin_small"
+        android:textSize="@dimen/textsize_large"
+        fontPath="fonts/chalk_3892.ttf"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_exit"
+        android:text="@string/exit"
+        android:layout_margin="@dimen/margin_small"
+        android:textSize="@dimen/textsize_large"
+        fontPath="fonts/chalk_3892.ttf"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

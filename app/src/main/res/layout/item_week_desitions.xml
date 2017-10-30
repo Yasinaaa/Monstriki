@@ -23,7 +23,7 @@
         android:text="18.09.17"
         android:layout_weight="@integer/weight_large_item_linear_layout"
         android:gravity="center"
-        android:textSize="@dimen/text_size_schedule_table_item"
+        android:textSize="@dimen/text_size_small_schedule_table_item"
         android:padding="@dimen/padding_small"
         android:textColor="@color/color_purple" />
 
@@ -33,7 +33,7 @@
         android:id="@+id/tv_for_answer"
         android:layout_weight="@integer/weight_large_item_linear_layout"
         android:gravity="center"
-        android:textSize="@dimen/text_size_schedule_table_item"
+        android:textSize="@dimen/text_size_small_schedule_table_item"
         android:padding="@dimen/padding_small"
         android:textColor="@color/color_purple"
         android:text="2"/>
@@ -44,7 +44,7 @@
         android:id="@+id/tv_for_cleaning"
         android:layout_weight="@integer/weight_large_item_linear_layout"
         android:gravity="center"
-        android:textSize="@dimen/text_size_schedule_table_item"
+        android:textSize="@dimen/text_size_small_schedule_table_item"
         android:padding="@dimen/padding_small"
         android:textColor="@color/color_purple"
         android:text="1" />

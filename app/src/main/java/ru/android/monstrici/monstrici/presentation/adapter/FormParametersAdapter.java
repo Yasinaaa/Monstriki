@@ -62,8 +62,7 @@ public class FormParametersAdapter extends RecyclerView.Adapter
                 mOnClick.onItemClick(mList[position]);
                 if (mSelectedItem != position) {
 
-                    mAllViews.get(position).setBackgroundColor(mContext.getResources().
-                            getColor(R.color.color_toolbar));
+                    mAllViews.get(position).setBackgroundResource(R.drawable.circle_yellow_background);
 
                     if (mSelectedItem != -1) {
                         mAllViews.get(mSelectedItem).

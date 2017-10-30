@@ -4,6 +4,7 @@
     <string name="title_activity_reg">Registration</string>
     <string name="loading">Подождите</string>
     <string name="authorisation_login">Логин</string>
+    <string name="main_font">fonts/GOTHIC.TTF</string>
 
     <!-- activity_registration.xml -->
     <string name="m">M</string>
@@ -76,8 +77,8 @@
     <string name="journal">Журнал</string>
     <string name="data">Дата</string>
     <string name="pupil">Ученик</string>
-    <string name="for_answer">За ответ</string>
-    <string name="for_cleaning">За уборку</string>
+    <string name="for_answer">За \nответ</string>
+    <string name="for_cleaning">За \nуборку</string>
 
     <!-- fragment_form_parameters.xml -->
     <string name="litera">Литера</string>
@@ -98,7 +99,5 @@
         <item>4</item>
         <item>5</item>
     </string-array>
-
-    <string name="maria">"Мария Ивановна</string>
 
 </resources>

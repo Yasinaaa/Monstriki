@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
@@ -52,7 +49,14 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
             holder.mTvDate.setText("");
             holder.mForCleaning.setText(mResource.getString(R.string.for_cleaning));
             holder.mForAnswer.setText(mResource.getString(R.string.for_answer));
+
+            setHeight(setWrapContentHeight(),holder.mTvDayOfWeek, holder.mTvDate,
+                    holder.mForCleaning, holder.mForAnswer);
+
         }else {
+
+            setHeight(setMatchParentHeight(),holder.mTvDayOfWeek, holder.mTvDate,
+                    holder.mForCleaning, holder.mForAnswer);
             dayDesition = mList[position-1];
             holder.mTvDayOfWeek.setText(mContext.getResources().
                     getString(dayDesition.getDayOfWeek()));
@@ -61,6 +65,25 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
             holder.mForAnswer.setText(String.valueOf(dayDesition.getForAnswer()));
         }
 
+    }
+
+    private void setHeight(int height, View v, View v1, View v2, View v3){
+        setHeight(height,v);
+        setHeight(height,v1);
+        setHeight(height,v2);
+        setHeight(height,v3);
+    }
+
+    private void setHeight(int height, View v){
+        v.getLayoutParams().height = height;
+    }
+
+    private int setWrapContentHeight(){
+        return ViewGroup.LayoutParams.WRAP_CONTENT;
+    }
+
+    private int setMatchParentHeight(){
+        return ViewGroup.LayoutParams.MATCH_PARENT;
     }
 
     @Override
