@@ -9,10 +9,11 @@
 
     <TextView
         android:id="@+id/tv_teacher_name"
+        fontPath="fonts/acquestscript.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
+        android:fontFamily="fonts/acquestscript.ttf"
         android:padding="@dimen/padding_normal"
-        android:text="Мария Ивановна" />
+        android:text="@string/maria" />
 
 </LinearLayout>

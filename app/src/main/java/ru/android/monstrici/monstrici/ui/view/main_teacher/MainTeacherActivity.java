@@ -1,5 +1,6 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,7 @@ import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainTeacherActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -102,19 +104,11 @@ public class MainTeacherActivity extends BaseActivity
 
     @Override
     public void init() {
-        /*Typeface normalTypeface = Typeface.createFromAsset(getAssets(),
-                "alex/alex_brush.ttf");
-
-        mTvTeacherName = (TextView) mNavigationView.findViewById(R.id.tv_teacher_name);
-        mTvTeacherName.setTypeface(normalTypeface);*/
 
         mIvMenuItem = (ImageView) findViewById(R.id.iv_menu_item);
         mFragmentManager = getSupportFragmentManager();
         setFragment(new JournalFragment());
         mIvMenuItem.setVisibility(View.VISIBLE);
-        //Toolbar toolbar = new Toolbar();
-        //ButterKnife.bind(toolbar, mToolbar);
-
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(mToggle);
@@ -129,6 +123,11 @@ public class MainTeacherActivity extends BaseActivity
 
     private void setFragment(BaseFragment baseFragment){
         mFragmentManager.beginTransaction().replace(R.id.fl_main, baseFragment).commit();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override

@@ -99,4 +99,6 @@
         <item>5</item>
     </string-array>
 
+    <string name="maria">"Мария Ивановна</string>
+
 </resources>

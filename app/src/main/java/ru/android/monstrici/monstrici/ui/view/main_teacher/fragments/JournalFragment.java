@@ -15,6 +15,7 @@ import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.utils.Resources;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by yasina on 29.10.17.
@@ -61,10 +62,6 @@ public class JournalFragment extends BaseFragment {
 
     @Override
     public void init() {
-
-        //Typeface normalTypeface = Typeface.createFromAsset(getActivity().getAssets(),
-                //"alex/alex_brush.ttf");
-        //mTvJournal.setTypeface(normalTypeface);
 
         for (int i=0; i<10; i++) {
             LayoutInflater inflater = (LayoutInflater)
