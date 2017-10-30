@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +22,16 @@ import ru.android.monstrici.monstrici.utils.Resources;
 
 public class JournalFragment extends BaseFragment {
 
+    @BindView(R.id.tv_journal)
+    TextView mTvJournal;
     @BindView(R.id.tv_form_bracket)
-    ImageButton mIbFormBracket;
+    TextView mTvFormBracket;
     @BindView(R.id.tv_data_bracket)
     TextView mTvData;
     @BindView(R.id.tableLayout)
     TableLayout mTableLayout;
 
+    private Typeface normalTypeface;
 
     public JournalFragment() {
     }
@@ -57,6 +61,10 @@ public class JournalFragment extends BaseFragment {
 
     @Override
     public void init() {
+
+        //Typeface normalTypeface = Typeface.createFromAsset(getActivity().getAssets(),
+                //"alex/alex_brush.ttf");
+        //mTvJournal.setTypeface(normalTypeface);
 
         for (int i=0; i<10; i++) {
             LayoutInflater inflater = (LayoutInflater)

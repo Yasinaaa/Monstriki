@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +68,7 @@ public class PupilFragment extends BaseFragment {
     @Override
     public void init() {
         mCurrentWeekCalendar = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("d MMMM \nyyyy");
+        SimpleDateFormat format = new SimpleDateFormat("d.MM.yy");
 
         //todo: temp values, remove this
         for (int i=0; i<mDayDesitions.length; i++){
@@ -76,6 +77,10 @@ public class PupilFragment extends BaseFragment {
             mDayDesitions[i].setForCleaning(i-1);
         }
         mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);
+
+        mRvDesitionsOfWeek.setHasFixedSize(true);
+        mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);
     }
 
     @Override

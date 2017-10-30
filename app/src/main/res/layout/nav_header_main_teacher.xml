@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_marginTop="@dimen/margin_small"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    tools:ignore="MissingPrefix"
+    android:layout_marginTop="@dimen/margin_small">
 
     <TextView
+        android:id="@+id/tv_teacher_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Мария Ивановна"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/textsize_prize_title"
-        android:padding="@dimen/padding_normal"/>
+        android:fontFamily="casual"
+        android:padding="@dimen/padding_normal"
+        android:text="Мария Ивановна" />
 
 </LinearLayout>

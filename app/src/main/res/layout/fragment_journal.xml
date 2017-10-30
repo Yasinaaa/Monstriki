@@ -2,20 +2,21 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity">
 
     <TextView
+        android:id="@+id/tv_journal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_journal"
-        android:text="@string/journal"
-        android:textSize="@dimen/textsize_large"
-        android:textColor="@color/color_purple"
-        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
         android:layout_marginLeft="@dimen/margin_small"
-        android:layout_marginBottom="@dimen/margin_small"/>
+        android:layout_marginRight="@dimen/margin_small"
+        android:text="@string/journal"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_large" />
 
     <View
         android:layout_width="match_parent"
@@ -37,7 +38,7 @@
         android:layout_marginBottom="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
         android:paddingTop="@dimen/padding_small"
-        android:paddingBottom="@dimen/padding_very_small"/>
+        android:paddingBottom="@dimen/padding_very_small" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,19 +73,20 @@
         android:background="@android:color/darker_gray" />
 
     <TextView
+        android:id="@+id/tv_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_form"
         android:layout_below="@+id/view2"
-        android:text="@string/form"
-        android:textSize="@dimen/textsize_medium"
-        android:textColor="@color/color_purple"
-        android:layout_marginRight="@dimen/margin_small"
-        android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="sans-serif"
+        android:paddingBottom="@dimen/padding_very_small"
         android:paddingTop="@dimen/padding_small"
-        android:paddingBottom="@dimen/padding_very_small"/>
+        android:text="@string/form"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_medium" />
 
     <TextView
         android:layout_width="wrap_content"

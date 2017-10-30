@@ -4,7 +4,7 @@
     <ImageView
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:id="@+id/ib_menu_item"
+        android:id="@+id/iv_menu_item"
         android:background="@drawable/menu_3line"
         android:layout_toLeftOf="@+id/tv_m"
         android:visibility="gone"

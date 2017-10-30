@@ -90,7 +90,7 @@ public class FormParametersFragment extends BaseFragment {
     }
 
     @OnClick(R.id.btn_ready)
-    private void onBtnReadyClick(){
+    public void onBtnReadyClick(){
         ChoosedFormFragment choosedFormFragment = ChoosedFormFragment.newInstance(
                 mChoosedFormNum + mChoosedLitera);
         openFragment(choosedFormFragment);

@@ -4,7 +4,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_fill_today"
-            android:title="@string/fill_today" />
+            android:title="@string/fill_today"
+            />
         <item
             android:id="@+id/nav_look_form"
             android:title="@string/look_form" />

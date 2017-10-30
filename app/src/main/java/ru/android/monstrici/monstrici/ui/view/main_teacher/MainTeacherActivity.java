@@ -1,19 +1,17 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher;
 
-import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TableLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -26,15 +24,26 @@ import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFrag
 public class MainTeacherActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.ib_menu_item)
-    ImageButton mIbMenuItem;
+    //@BindView(R.id.include_toolbar)
+    //View mToolbar;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
+    ImageView mIvMenuItem;
+    TextView mTvTeacherName;
 
     private ActionBarDrawerToggle mToggle;
     private FragmentManager mFragmentManager;
+
+    static class Toolbar{
+        @BindView(R.id.iv_menu_item)
+        ImageButton mIbMenuItem;
+    }
+
+    static class ToolbarItems{
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +102,18 @@ public class MainTeacherActivity extends BaseActivity
 
     @Override
     public void init() {
+        /*Typeface normalTypeface = Typeface.createFromAsset(getAssets(),
+                "alex/alex_brush.ttf");
 
+        mTvTeacherName = (TextView) mNavigationView.findViewById(R.id.tv_teacher_name);
+        mTvTeacherName.setTypeface(normalTypeface);*/
+
+        mIvMenuItem = (ImageView) findViewById(R.id.iv_menu_item);
         mFragmentManager = getSupportFragmentManager();
         setFragment(new JournalFragment());
-        mIbMenuItem.setVisibility(View.VISIBLE);
+        mIvMenuItem.setVisibility(View.VISIBLE);
+        //Toolbar toolbar = new Toolbar();
+        //ButterKnife.bind(toolbar, mToolbar);
 
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -105,8 +122,8 @@ public class MainTeacherActivity extends BaseActivity
         mNavigationView.setNavigationItemSelectedListener(this);
     }
 
-    @OnClick(R.id.ib_menu_item)
-    private void onMenuToggleClick(){
+    @OnClick(R.id.iv_menu_item)
+    public void onMenuToggleClick(){
         mDrawerLayout.openDrawer(GravityCompat.START);
     }
 

@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.presentation.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,6 @@ public class FormParametersAdapter extends RecyclerView.Adapter
     private FormParametersAdapter.OnItemClicked mOnClick;
     private int mSelectedItem = -1;
     private List<View> mAllViews;
-    private Resources mResource;
 
     public interface OnItemClicked {
         void onItemClick(String value);
@@ -44,7 +44,6 @@ public class FormParametersAdapter extends RecyclerView.Adapter
     public FormParametersAdapter.FormParametersHolder onCreateViewHolder(ViewGroup parent,
                                                                          int viewType) {
         mContext = parent.getContext();
-        mResource = mContext.getResources();
         View itemView =
                 LayoutInflater.from(mContext).inflate(R.layout.item_form_parameter,
                         parent, false);
@@ -68,12 +67,13 @@ public class FormParametersAdapter extends RecyclerView.Adapter
 
                     if (mSelectedItem != -1) {
                         mAllViews.get(mSelectedItem).
-                                setBackgroundColor(mResource.getColor(R.color.white));
+                                setBackgroundColor(Color.TRANSPARENT);
                     }
+                    mSelectedItem = position;
 
                 }else {
                     mAllViews.get(position).
-                            setBackgroundColor(mResource.getColor(R.color.white));
+                            setBackgroundColor(Color.TRANSPARENT);
                     mSelectedItem = -1;
                 }
             }

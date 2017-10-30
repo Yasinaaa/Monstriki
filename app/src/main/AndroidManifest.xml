@@ -21,15 +21,10 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.view.registation.RegistrationActivity"
-            android:label="@string/title_activity_reg"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.view.parameters.ParametersActivity"
@@ -40,7 +35,14 @@
         <activity
             android:name=".ui.view.main_teacher.MainTeacherActivity"
             android:label="@string/title_activity_main_teacher"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

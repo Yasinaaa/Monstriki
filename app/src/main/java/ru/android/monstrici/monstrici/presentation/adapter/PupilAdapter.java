@@ -41,7 +41,7 @@ public class PupilAdapter extends RecyclerView.Adapter
                                                        int viewType) {
         mContext = parent.getContext();
         View itemView =
-                LayoutInflater.from(mContext).inflate(R.layout.item_form_parameter,
+                LayoutInflater.from(mContext).inflate(R.layout.item_form,
                         parent, false);
         return new PupilAdapter.PupilHolder(itemView);
     }
