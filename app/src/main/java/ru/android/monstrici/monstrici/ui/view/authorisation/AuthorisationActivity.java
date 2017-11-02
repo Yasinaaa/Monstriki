@@ -27,6 +27,7 @@ import ru.android.monstrici.monstrici.presentation.presenter.authorisation.Autho
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
@@ -69,16 +70,6 @@ public class AuthorisationActivity extends BaseActivity
     public void init() {
         getApplicationComponent().inject(this);
         mBtnLogin.setOnClickListener(this);
-        /*Glide.with(this).asBitmap().load(R.drawable.background_light).into(
-                new SimpleTarget<Bitmap>(mRl.getWidth(), mRl.getHeight()) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-                        Drawable drawable = new BitmapDrawable(resource);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            mRl.setBackground(drawable);
-                        }
-                    }
-            });*/
     }
 
     @Override
@@ -91,9 +82,12 @@ public class AuthorisationActivity extends BaseActivity
         switch (view.getId()) {
             case R.id.btn_login: {
                 if (validateForm()) {
-                    mBtnLogin.setEnabled(false);
+                    /*mBtnLogin.setEnabled(false);
                     mPresenter.login(mEtEmail.getText().toString(),
-                            mEtPassword.getText().toString());
+                            mEtPassword.getText().toString());*/
+                    Intent menu = new Intent(this, MainTeacherActivity.class);
+                    startActivity(menu);
+                    finish();
                 }
                 break;
             }
@@ -110,7 +104,7 @@ public class AuthorisationActivity extends BaseActivity
     private boolean validateForm() {
         boolean valid = true;
 
-        String email = mEtEmail.getText().toString();
+        /*String email = mEtEmail.getText().toString();
         if (TextUtils.isEmpty(email)) {
             mEtEmail.setError(getString(R.string.required));
             valid = false;
@@ -125,7 +119,7 @@ public class AuthorisationActivity extends BaseActivity
         } else {
             mEtPassword.setError(null);
         }
-
+*/
         return valid;
     }
 

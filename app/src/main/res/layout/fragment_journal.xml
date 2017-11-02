@@ -123,14 +123,12 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/view3"
-        android:layout_margin="@dimen/margin_xsmall">
+        android:layout_below="@+id/view3">
         <TableLayout
             android:id="@+id/tableLayout"
             android:stretchColumns="*"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small">
+            android:layout_height="wrap_content">
         </TableLayout>
     </android.support.v4.widget.NestedScrollView>
 
