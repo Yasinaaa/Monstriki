@@ -3,8 +3,10 @@ package ru.android.monstrici.monstrici.ui.view.application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.FirebaseApp;
 
+import io.fabric.sdk.android.Fabric;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.DaggerAppComponent;
@@ -26,6 +28,7 @@ public class ApplicationCore extends MultiDexApplication implements IHasComponen
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         FirebaseApp.initializeApp(this);
         mAppComponent = DaggerAppComponent
                 .builder()

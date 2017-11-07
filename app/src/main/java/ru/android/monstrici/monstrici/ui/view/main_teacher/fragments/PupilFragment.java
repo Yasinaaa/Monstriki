@@ -69,6 +69,17 @@ public class PupilFragment extends BaseFragment {
     public void init() {
         mCurrentWeekCalendar = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("d.MM.yy");
+        String[] tempDates = new String[]{
+          "18.09.2017", "19.09.2017", "20.09.2017", "21.09.2017",
+                "22.09.2017", "23.09.2017", "24.09.2017"
+        };
+
+        mTvDataBracket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFragment(DataFragment.newInstance(false));
+            }
+        });
 
         //todo: temp values, remove this
         for (int i=0; i<mDayDesitions.length; i++){

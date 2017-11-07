@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MonsterPictureFunction;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.utils.Resources;
 
@@ -24,7 +25,7 @@ public class MonsterFragment extends BaseFragment {
     @BindView(R.id.iv_bubbles)
     ImageView mIvBubbles;
 
-    private int mMonsterImageId;
+    private int mMonsterImageId = 0;
 
     public MonsterFragment() {
     }
@@ -54,7 +55,7 @@ public class MonsterFragment extends BaseFragment {
 
     @Override
     public void init() {
-        Glide.with(this).load(mMonsterImageId).into(mIvMonster);
+        MonsterPictureFunction.setMonsterPicture(this, mMonsterImageId, mIvMonster);
         Glide.with(this).load(R.drawable.circle_idea).into(mIvBubbles);
     }
 

@@ -23,16 +23,19 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class JournalFragment extends BaseFragment {
 
+    protected static final String JOURNAL_DATE = "journal_date";
     @BindView(R.id.tv_journal)
     TextView mTvJournal;
     @BindView(R.id.tv_form_bracket)
     TextView mTvFormBracket;
     @BindView(R.id.tv_data_bracket)
+    TextView mTvDataBracket;
+    @BindView(R.id.tv_data_day)
     TextView mTvData;
     @BindView(R.id.tableLayout)
     TableLayout mTableLayout;
 
-    private Typeface normalTypeface;
+    private String mDate;
 
     public JournalFragment() {
     }
@@ -45,11 +48,19 @@ public class JournalFragment extends BaseFragment {
         return newFragment;
     }
 
+    public static JournalFragment newInstance(String date){
+        Bundle args = new Bundle();
+        args.putString(JOURNAL_DATE, date);
+        JournalFragment newFragment = new JournalFragment();
+        newFragment.setArguments(args);
+        return newFragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
-            //mMonsterImageId = getArguments().getInt(Resources.MONSTER_IMAGE);
+            mDate = getArguments().getString(JOURNAL_DATE);
         }
     }
 
@@ -63,6 +74,9 @@ public class JournalFragment extends BaseFragment {
     @Override
     public void init() {
 
+        if (mDate != null){
+            mTvData.setText(mDate);
+        }
         for (int i=0; i<10; i++) {
             LayoutInflater inflater = (LayoutInflater)
                     getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -93,7 +107,7 @@ public class JournalFragment extends BaseFragment {
 
     @OnClick(R.id.tv_data_bracket)
     public void onDataClick(){
-        openFragment(new DataFragment());
+        openFragment(DataFragment.newInstance(true));
     }
 
     @OnClick(R.id.tv_form_bracket)

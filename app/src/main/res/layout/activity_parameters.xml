@@ -44,6 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionUnspecified"
+            android:inputType="text"
+            android:nextFocusForward="@+id/btn_next"
             android:maxLines="@integer/max_lines_edit_text"/>
 
     </android.support.design.widget.TextInputLayout>

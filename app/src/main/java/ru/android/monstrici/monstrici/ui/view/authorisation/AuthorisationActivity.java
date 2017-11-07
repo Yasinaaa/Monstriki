@@ -28,6 +28,7 @@ import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisa
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity;
+import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
@@ -85,9 +86,23 @@ public class AuthorisationActivity extends BaseActivity
                     /*mBtnLogin.setEnabled(false);
                     mPresenter.login(mEtEmail.getText().toString(),
                             mEtPassword.getText().toString());*/
-                    Intent menu = new Intent(this, MainTeacherActivity.class);
+
+                    String text = mEtEmail.getText().toString();
+                    Intent menu = null;
+                    if (text.equals("student")){
+                        menu = new Intent(this, ParametersActivity.class);
+                        startActivity(menu);
+                        finish();
+                    }else if (text.equals("teacher")){
+                        menu = new Intent(this, MainTeacherActivity.class);
+                        startActivity(menu);
+                        finish();
+                    }
+
+                    /*menu = new Intent(this, MainTeacherActivity.class);
                     startActivity(menu);
-                    finish();
+                    finish();*/
+
                 }
                 break;
             }
@@ -104,7 +119,7 @@ public class AuthorisationActivity extends BaseActivity
     private boolean validateForm() {
         boolean valid = true;
 
-        /*String email = mEtEmail.getText().toString();
+        String email = mEtEmail.getText().toString();
         if (TextUtils.isEmpty(email)) {
             mEtEmail.setError(getString(R.string.required));
             valid = false;
@@ -119,7 +134,7 @@ public class AuthorisationActivity extends BaseActivity
         } else {
             mEtPassword.setError(null);
         }
-*/
+
         return valid;
     }
 

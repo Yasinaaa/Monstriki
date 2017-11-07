@@ -18,7 +18,7 @@
         android:id="@+id/iv_monstriki"
         android:layout_width="@dimen/width_login_monstriki_logo"
         android:layout_height="@dimen/height_login_monstriki_logo"
-        android:src="@drawable/monstriki"
+        android:src="@drawable/logo_purple"
         android:layout_above="@+id/tv_name_title"/>
 
     <TextView
@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_name_title"
         android:text="@string/name"
-
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
         android:textColor="@color/color_purple"
@@ -41,7 +40,9 @@
         android:layout_marginRight="@dimen/margin_small"
         android:paddingLeft="@dimen/margin_left_large"
         android:maxLines="@integer/max_lines_edit_text"
+        android:inputType="text"
         android:background="@drawable/et1"
+        android:nextFocusForward="@+id/et_password"
         android:layout_above="@+id/tv_password_title"/>
 
     <TextView

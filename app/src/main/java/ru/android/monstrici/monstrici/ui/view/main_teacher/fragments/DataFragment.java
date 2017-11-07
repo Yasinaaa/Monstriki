@@ -1,14 +1,16 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.ImageView;
 
+import com.squareup.timessquare.CalendarPickerView;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
@@ -20,16 +22,20 @@ import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 
 public class DataFragment extends BaseFragment {
 
+    public static String DATE_TYPE = "date_type";
     @BindView(R.id.cv_calendar)
-    CalendarView mCvCalendar;
+    com.squareup.timessquare.CalendarPickerView mCvCalendar;
 
     private Calendar mSelectedCalendar;
+    private boolean mIsAloneDate;
+    private SimpleDateFormat mDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
     public DataFragment() {
     }
 
-    public static DataFragment newInstance(){
+    public static DataFragment newInstance(boolean isAloneDate){
         Bundle args = new Bundle();
+        args.putBoolean(DATE_TYPE, isAloneDate);
         DataFragment newFragment = new DataFragment();
         newFragment.setArguments(args);
         return newFragment;
@@ -39,6 +45,7 @@ public class DataFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
+            mIsAloneDate = getArguments().getBoolean(DATE_TYPE);
         }
     }
 
@@ -49,20 +56,80 @@ public class DataFragment extends BaseFragment {
         return mView;
     }
 
+
     @Override
     public void init() {
 
         mSelectedCalendar = Calendar.getInstance();
-        mCvCalendar.setDate(mSelectedCalendar.getTimeInMillis(),false,true);
-        mCvCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        mSelectedCalendar.set(Calendar.DAY_OF_MONTH,1);
+        mSelectedCalendar.set(Calendar.MONTH, Calendar.JANUARY);
+
+        Calendar finishDate = Calendar.getInstance();
+        finishDate.set(Calendar.DAY_OF_MONTH, 31);
+        finishDate.set(Calendar.MONTH, Calendar.DECEMBER);
+
+        CalendarPickerView.FluentInitializer fluentInitializer =
+                mCvCalendar.init(mSelectedCalendar.getTime(), finishDate.getTime());
+
+        if (mIsAloneDate){
+            initOneDayView(fluentInitializer);
+        }else {
+            initWeekView(fluentInitializer);
+        }
+
+
+
+    }
+
+    private void initWeekView(CalendarPickerView.FluentInitializer fluentInitializer){
+    fluentInitializer
+                .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
+                .withSelectedDates(createWeekDates(Calendar.getInstance()));
+    }
+
+    private void initOneDayView(CalendarPickerView.FluentInitializer fluentInitializer){
+        fluentInitializer
+                .inMode(CalendarPickerView.SelectionMode.SINGLE)
+                .withSelectedDate(Calendar.getInstance().getTime());
+        mCvCalendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                mSelectedCalendar.set(Calendar.YEAR, year);
-                mSelectedCalendar.set(Calendar.MONTH, month);
-                mSelectedCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            public void onDateSelected(Date date) {
+
+                openFragment(JournalFragment.newInstance(mDateFormat.format(date)));
+            }
+
+            @Override
+            public void onDateUnselected(Date date) {
+
             }
         });
+    }
 
+    private ArrayList<Date> createWeekDates(Calendar today){
+        ArrayList<Date> dates = new ArrayList<Date>();
+        Date currentDate = today.getTime();
+        int dayOfWeek = today.get(Calendar.WEEK_OF_YEAR);
+
+        for (int i=2; i<7; i++){
+            today.set(Calendar.DAY_OF_WEEK, i);
+            Date date = today.getTime();
+            dates.add(date);
+        }
+
+        for (int i=1; i>-1; i--){
+            today.set(Calendar.DAY_OF_WEEK, i);
+            Date date = today.getTime();
+            dates.add(date);
+        }
+
+        /*today.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+        Date date = today.getTime();
+        dates.add(date);
+
+        today.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        date = today.getTime();
+        dates.add(date);*/
+        return dates;
     }
 
     @Override

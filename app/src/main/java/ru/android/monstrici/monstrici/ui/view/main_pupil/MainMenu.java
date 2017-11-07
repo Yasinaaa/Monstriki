@@ -77,6 +77,7 @@ public class MainMenu extends BaseActivity {
         mTvMonsterName.setText(getIntent().getStringExtra(Resources.MONSTER_NAME));
         //TODO: change to real data values
         mTvDonutNum.setText("10");
+        mTvMonsterName.setText("Брозябр");
     }
 
     @Override
@@ -178,6 +179,7 @@ public class MainMenu extends BaseActivity {
 
         if(id == mMainToolbar){
             mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
+
             //TODO: change to real data values
             getIntentValues();
         }

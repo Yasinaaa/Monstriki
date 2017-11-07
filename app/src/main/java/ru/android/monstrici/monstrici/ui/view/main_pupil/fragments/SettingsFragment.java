@@ -1,16 +1,21 @@
 package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MonsterPictureFunction;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
+import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 17.10.17.
@@ -29,6 +34,18 @@ public class SettingsFragment extends BaseFragmentUsualToolbar {
     ImageView mIvHands;
     @BindView(R.id.iv_monster)
     ImageView mIvMonster;
+    @BindView(R.id.et_monster_name)
+    EditText mEtMonsterName;
+
+    private int mMonsterImageId = 0;
+
+    public static SettingsFragment newInstance(int monsterImageId){
+        Bundle args = new Bundle();
+        args.putInt(Resources.MONSTER_IMAGE, monsterImageId);
+        SettingsFragment newFragment = new SettingsFragment();
+        newFragment.setArguments(args);
+        return newFragment;
+    }
 
     public SettingsFragment() {
         super(TOOLBAR_IMAGE, TOOLBAR_TITLE);
@@ -38,9 +55,7 @@ public class SettingsFragment extends BaseFragmentUsualToolbar {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
-            /*mListOn = getArguments().getIntArray(ON_LIST);
-            mListOff = getArguments().getIntArray(OFF_LIST);
-            mCurrentMonth = getArguments().getInt(MONTH);*/
+            mMonsterImageId = getArguments().getInt(Resources.MONSTER_IMAGE);
         }
     }
 
@@ -58,6 +73,8 @@ public class SettingsFragment extends BaseFragmentUsualToolbar {
 
     @Override
     public void init() {
+        mEtMonsterName.setText("Брозябр");
+        MonsterPictureFunction.setMonsterPicture(this, mMonsterImageId, mIvMonster);
         Glide.with(this).load(R.drawable.eye).into(mIvEyes);
         Glide.with(this).load(R.drawable.mouth).into(mIvMouth);
         Glide.with(this).load(R.drawable.hand).into(mIvHands);
