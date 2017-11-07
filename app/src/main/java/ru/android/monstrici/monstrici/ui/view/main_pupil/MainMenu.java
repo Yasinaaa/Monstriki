@@ -74,10 +74,13 @@ public class MainMenu extends BaseActivity {
         mTvMonsterName = (TextView) findViewById(R.id.tv_name);
         mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
         mIvDonut = (ImageView) findViewById(R.id.iv_donut);
-        mTvMonsterName.setText(getIntent().getStringExtra(Resources.MONSTER_NAME));
+        String monsterName = getIntent().getStringExtra(Resources.MONSTER_NAME);
+        if (monsterName == null){
+            mTvMonsterName.setText("Брозябр");
+        }else
+            mTvMonsterName.setText(monsterName);
         //TODO: change to real data values
         mTvDonutNum.setText("10");
-        mTvMonsterName.setText("Брозябр");
     }
 
     @Override

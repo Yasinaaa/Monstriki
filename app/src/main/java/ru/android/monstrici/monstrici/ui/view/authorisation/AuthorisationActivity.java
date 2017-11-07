@@ -83,26 +83,9 @@ public class AuthorisationActivity extends BaseActivity
         switch (view.getId()) {
             case R.id.btn_login: {
                 if (validateForm()) {
-                    /*mBtnLogin.setEnabled(false);
+                    mBtnLogin.setEnabled(false);
                     mPresenter.login(mEtEmail.getText().toString(),
-                            mEtPassword.getText().toString());*/
-
-                    String text = mEtEmail.getText().toString();
-                    Intent menu = null;
-                    if (text.equals("student")){
-                        menu = new Intent(this, ParametersActivity.class);
-                        startActivity(menu);
-                        finish();
-                    }else if (text.equals("teacher")){
-                        menu = new Intent(this, MainTeacherActivity.class);
-                        startActivity(menu);
-                        finish();
-                    }
-
-                    /*menu = new Intent(this, MainTeacherActivity.class);
-                    startActivity(menu);
-                    finish();*/
-
+                            mEtPassword.getText().toString());
                 }
                 break;
             }
