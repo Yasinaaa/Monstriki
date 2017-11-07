@@ -39,7 +39,7 @@
     <!-- view_toolbar_monstriki.xml -->
     <dimen name="cardview_elevation">4dp</dimen>
     <dimen name="cardview_corner_radius">4dp</dimen>
-    <dimen name="textsize_monster_name">45sp</dimen>
+    <dimen name="textsize_monster_name">40sp</dimen>
 
     <!-- fragment_settings.xml -->
     <dimen name="width_monster_settings">130dp</dimen>
@@ -91,5 +91,7 @@
     <!-- activity_autorization.xml -->
     <dimen name="height_login_monstriki_logo">80dp</dimen>
     <dimen name="width_login_monstriki_logo">300dp</dimen>
+    <dimen name="margin_left_large">37dp</dimen>
+    <dimen name="height_edit_text">30dp</dimen>
 
 </resources>

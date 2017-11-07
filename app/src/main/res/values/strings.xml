@@ -16,7 +16,7 @@
     <string name="registration">Регистрация</string>
 
     <string name="password">Пароль</string>
-    <string name="login">Вход</string>
+    <string name="login">Войти</string>
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="form">Класс</string>
@@ -77,8 +77,8 @@
     <string name="journal">Журнал</string>
     <string name="data">Дата</string>
     <string name="pupil">Ученик</string>
-    <string name="for_answer">За \nответ</string>
-    <string name="for_cleaning">За \nуборку</string>
+    <string name="for_answer">За \nответ\n</string>
+    <string name="for_cleaning">За \nуборку\n</string>
 
     <!-- fragment_form_parameters.xml -->
     <string name="litera">Литера</string>

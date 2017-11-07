@@ -11,4 +11,5 @@
     <color name="color_unselected_item">#483747</color>
     <color name="color_selected_item">#a0549f</color>
     <color name="color_gray">#bcb7b7</color>
+    <color name="calendar_selected_day_bg">#f9a71a</color>
 </resources>

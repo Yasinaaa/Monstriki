@@ -74,7 +74,6 @@
         android:id="@+id/rv_desitions_of_week"
         android:layout_below="@+id/view2"
         android:layout_marginLeft="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_small"
-       />
+        android:layout_marginRight="@dimen/margin_small" />
 
 </RelativeLayout>

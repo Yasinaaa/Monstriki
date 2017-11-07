@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
@@ -59,13 +61,14 @@ public class MainTeacherActivity extends BaseActivity {
         @OnClick(R.id.tv_settings)
         public void onSettings(){
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            //setFragment(new JournalFragment());
+
         }
         @OnClick(R.id.tv_exit)
         public void onExit(){
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            //
-            // setFragment(new JournalFragment());
+            Intent intent = new Intent(MainTeacherActivity.this,
+                    AuthorisationActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -115,8 +118,6 @@ public class MainTeacherActivity extends BaseActivity {
         mDrawerLayout.setDrawerListener(mToggle);
         mToggle.syncState();
     }
-
-
 
     @OnClick(R.id.iv_menu_item)
     public void onMenuToggleClick(){

@@ -22,10 +22,11 @@
         android:layout_below="@+id/tv_data"
         android:background="@android:color/darker_gray" />
 
-    <CalendarView
+    <com.squareup.timessquare.CalendarPickerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/cv_calendar"
-        android:layout_below="@+id/tv_data"/>
+        android:layout_below="@+id/tv_data"
+        />
 
 </RelativeLayout>

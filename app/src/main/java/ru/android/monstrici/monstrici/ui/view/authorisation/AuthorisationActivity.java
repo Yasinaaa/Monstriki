@@ -27,6 +27,8 @@ import ru.android.monstrici.monstrici.presentation.presenter.authorisation.Autho
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity;
+import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
@@ -69,16 +71,6 @@ public class AuthorisationActivity extends BaseActivity
     public void init() {
         getApplicationComponent().inject(this);
         mBtnLogin.setOnClickListener(this);
-        /*Glide.with(this).asBitmap().load(R.drawable.background_light).into(
-                new SimpleTarget<Bitmap>(mRl.getWidth(), mRl.getHeight()) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-                        Drawable drawable = new BitmapDrawable(resource);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            mRl.setBackground(drawable);
-                        }
-                    }
-            });*/
     }
 
     @Override
