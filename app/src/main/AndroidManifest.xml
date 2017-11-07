@@ -17,10 +17,7 @@
         <activity
             android:name=".ui.view.authorisation.AuthorisationActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.view.parameters.ParametersActivity"
@@ -28,7 +25,10 @@
         <activity
             android:name=".ui.view.main_pupil.MainMenu"
             android:screenOrientation="portrait">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.view.main_teacher.MainTeacherActivity"
