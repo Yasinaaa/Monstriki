@@ -15,23 +15,56 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.User;
+import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
+import ru.android.monstrici.monstrici.utils.Message;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainTeacherActivity extends BaseActivity {
+public class MainTeacherActivity extends BaseActivity implements IMainMenu {
 
     //@BindView(R.id.include_toolbar)
     //View mToolbar;
+    @InjectPresenter
+    public MainMenuPresenter mPresenter;
 
-    public class NavigationViewsItems{
+    @Override
+    public void onUsersGet(List<User> users) {
+
+    }
+
+    @Override
+    public void showLoading(boolean flag) {
+
+    }
+
+    @Override
+    public void showError(Message message) {
+
+    }
+
+    @ProvidePresenter
+    public MainMenuPresenter providePresenter() {
+        MainMenuPresenter presenter = new MainMenuPresenter();
+        getApplicationComponent().inject(presenter);
+        return presenter;
+    }
+
+    public class NavigationViewsItems {
         @BindView(R.id.tv_teacher_name)
         TextView mTvTeacherName;
         @BindView(R.id.tv_fill_today)
@@ -44,27 +77,29 @@ public class MainTeacherActivity extends BaseActivity {
         TextView mExit;
 
         public NavigationViewsItems(View view) {
-            ButterKnife.bind(this,view);
+            ButterKnife.bind(this, view);
         }
 
         @OnClick(R.id.tv_fill_today)
-        public void onFillTodayClick(){
+        public void onFillTodayClick() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
             setFragment(new JournalFragment());
         }
 
         @OnClick(R.id.tv_look_form)
-        public void onLookForm(){
+        public void onLookForm() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
             setFragment(new FormParametersFragment());
         }
+
         @OnClick(R.id.tv_settings)
-        public void onSettings(){
+        public void onSettings() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
 
         }
+
         @OnClick(R.id.tv_exit)
-        public void onExit(){
+        public void onExit() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
             Intent intent = new Intent(MainTeacherActivity.this,
                     AuthorisationActivity.class);
@@ -82,7 +117,7 @@ public class MainTeacherActivity extends BaseActivity {
     private FragmentManager mFragmentManager;
     private NavigationViewsItems mNavigationViewsItems;
 
-    static class Toolbar{
+    static class Toolbar {
         @BindView(R.id.iv_menu_item)
         ImageButton mIbMenuItem;
     }
@@ -105,7 +140,7 @@ public class MainTeacherActivity extends BaseActivity {
 
     @Override
     public void init() {
-        mNavigationViewsItems = new NavigationViewsItems( mNavigationView.getHeaderView(0));
+        mNavigationViewsItems = new NavigationViewsItems(mNavigationView.getHeaderView(0));
         //TODO: change to real values
         mNavigationViewsItems.mTvTeacherName.setText("Мария Ивановна");
 
@@ -120,11 +155,11 @@ public class MainTeacherActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_menu_item)
-    public void onMenuToggleClick(){
+    public void onMenuToggleClick() {
         mDrawerLayout.openDrawer(GravityCompat.START);
     }
 
-    private void setFragment(BaseFragment baseFragment){
+    private void setFragment(BaseFragment baseFragment) {
         mFragmentManager.beginTransaction().replace(R.id.fl_main, baseFragment).commit();
     }
 

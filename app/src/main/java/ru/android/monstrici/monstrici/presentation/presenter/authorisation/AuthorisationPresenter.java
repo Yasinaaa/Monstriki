@@ -32,14 +32,6 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
     @Inject
     UserRepositoryImpl mRepository;
 
-    public AuthorisationPresenter() {
-        subscribe();
-    }
-
-    void subscribe() {
-
-    }
-
     public void login(final String login, final String password) {
         if (isLoginValid(login, password)) {
             getViewState().showLoading(true);

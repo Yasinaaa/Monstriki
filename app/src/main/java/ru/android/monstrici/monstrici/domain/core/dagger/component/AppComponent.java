@@ -9,6 +9,7 @@ import ru.android.monstrici.monstrici.domain.core.dagger.module.AppModule;
 import ru.android.monstrici.monstrici.domain.core.dagger.module.CoreModule;
 import ru.android.monstrici.monstrici.domain.core.dagger.module.NetModule;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.AuthorisationPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
 import ru.android.monstrici.monstrici.ui.view.application.ApplicationCore;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
@@ -35,6 +36,7 @@ public interface AppComponent extends
     void inject(AuthorisationActivity activity);
     void inject(BaseActivity activity);
     void inject(AuthorisationPresenter presenter);
+    void inject(MainMenuPresenter presenter);
 
     UserRepositoryImpl getUserRepository();
 }

@@ -5,10 +5,6 @@ import android.support.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 import io.fabric.sdk.android.Fabric;
 import ru.android.monstrici.monstrici.R;

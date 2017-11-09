@@ -12,29 +12,38 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.User;
+import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.PrizesFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SettingsFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SweetsFragment;
+import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 16.10.17.
  */
 
-public class MainMenu extends BaseActivity {
+public class MainMenu extends BaseActivity implements IMainMenu{
     private static final String USER_ID = "user_id";
     @BindView(R.id.bottom_navigation)
     AHBottomNavigation mBottomNavigationView;
-
+    @InjectPresenter
+    public MainMenuPresenter mPresenter;
     @BindView(R.id.view_stub)
     ViewStub mViewStub;
     @BindView(R.id.ll)
@@ -63,6 +72,14 @@ public class MainMenu extends BaseActivity {
         intent.putExtra(USER_ID, id);
         return intent;
     }
+
+    @ProvidePresenter
+    public MainMenuPresenter providePresenter() {
+        MainMenuPresenter presenter = new MainMenuPresenter();
+        getApplicationComponent().inject(presenter);
+        return presenter;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +102,8 @@ public class MainMenu extends BaseActivity {
 
     @Override
     public void init() {
+
+        mPresenter.getAllUsers();
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("",
                 R.drawable.main_icon, R.color.color_selected_item);
@@ -190,5 +209,19 @@ public class MainMenu extends BaseActivity {
     }
 
 
+    @Override
+    public void onUsersGet(List<User> users) {
+
+    }
+
+    @Override
+    public void showLoading(boolean flag) {
+
+    }
+
+    @Override
+    public void showError(Message message) {
+
+    }
 }
 

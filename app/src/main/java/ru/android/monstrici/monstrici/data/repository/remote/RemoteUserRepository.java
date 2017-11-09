@@ -145,7 +145,7 @@ public class RemoteUserRepository implements IUserRepository {
         user.setSurname((String) hashMap.get("surname"));
         user.setPosition((String) hashMap.get("position"));
         ArrayList<HashMap> starsList = (ArrayList<HashMap>) hashMap.get("stars");
-        if (starsList.size() != 0)
+        if (starsList != null)
             user.setStars(starsList.get(0));
         return user;
     }

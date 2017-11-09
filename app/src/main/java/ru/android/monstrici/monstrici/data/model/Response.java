@@ -34,9 +34,12 @@ public class Response<T> {
         mStatus = status;
     }
 
-    public T
-    getBody() {
+    public T getBody() {
         return body;
+    }
+
+    public List<T> getBodyList() {
+        return bodyList;
     }
 
     public Response<T> setBody(T body) {
