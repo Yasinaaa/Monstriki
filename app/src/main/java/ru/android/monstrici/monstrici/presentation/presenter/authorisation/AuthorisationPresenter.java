@@ -39,7 +39,11 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
                 @Override
                 public void onReceiveDataSuccess(Response<User> response) {
                     getViewState().showLoading(false);
-                    getViewState().onLoginSuccess(response.getBody().getId());
+                    getViewState().onLoginSuccess(response
+                                    .getBody()
+                                    .getPosition()
+                                    .equals("teacher")
+                            , response.getBody().getId());
                 }
 
                 @Override

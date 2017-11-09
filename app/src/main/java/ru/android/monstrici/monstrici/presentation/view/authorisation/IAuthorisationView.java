@@ -14,7 +14,7 @@ import ru.android.monstrici.monstrici.utils.Message;
  */
 @StateStrategyType(AddToEndStrategy.class)
 public interface IAuthorisationView extends IBaseView {
-    void onLoginSuccess(String id);
+    void onLoginSuccess(boolean isTeacher, String id);
 
     void onLoginFailed(Message message);
 }

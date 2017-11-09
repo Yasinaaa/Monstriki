@@ -20,6 +20,7 @@ import ru.android.monstrici.monstrici.presentation.presenter.authorisation.Autho
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
@@ -54,7 +55,7 @@ public class AuthorisationActivity extends BaseActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorisation);
-       // getApplicationComponent().inject(this);
+        // getApplicationComponent().inject(this);
         start();
     }
 
@@ -84,8 +85,12 @@ public class AuthorisationActivity extends BaseActivity
     }
 
     @Override
-    public void onLoginSuccess(String id) {
-        Intent menu = MainMenu.newIntent(this, id);
+    public void onLoginSuccess(boolean isTeacher, String id) {
+        Intent menu;
+        if (isTeacher)
+            menu = MainTeacherActivity.newIntent(this, id);
+        else
+            menu = MainMenu.newIntent(this, id);
         startActivity(menu);
         finish();
     }
@@ -115,6 +120,7 @@ public class AuthorisationActivity extends BaseActivity
     @Override
     public void onLoginFailed(Message message) {
         showError(message);
+        mBtnLogin.setEnabled(true);
     }
 
     @Override

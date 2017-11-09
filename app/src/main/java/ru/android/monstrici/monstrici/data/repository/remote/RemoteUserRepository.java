@@ -46,7 +46,7 @@ public class RemoteUserRepository implements IUserRepository {
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = dataSnapshot.getValue(User.class);
+                        User user = parseUser((HashMap) dataSnapshot.getValue());
                         if (user == null) {
                             callback.onReceiveDataFailure(new Message("User " + userId + " is unexpectedly null"));
                         } else {
@@ -63,8 +63,7 @@ public class RemoteUserRepository implements IUserRepository {
 
     @Override
     public void getUsers(@NonNull IDataCallback<User> callback) {
-        FirebaseUser user = mAuth.getCurrentUser();
-        mDatabase.child(user.getUid()).child("users").addListenerForSingleValueEvent(
+        mDatabase.child("users").addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,8 +94,8 @@ public class RemoteUserRepository implements IUserRepository {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
-                        callback.onReceiveDataSuccess(new Response<User>()
-                                .setBody(new User(user.getUid())));
+                        getUser(user.getUid(), callback);
+
                     } else {
                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                         callback.onReceiveDataFailure(new Message(task.getException().getMessage()));

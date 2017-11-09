@@ -38,8 +38,9 @@ import ru.android.monstrici.monstrici.utils.Resources;
  * Created by yasina on 16.10.17.
  */
 
-public class MainMenu extends BaseActivity implements IMainMenu{
+public class MainMenu extends BaseActivity implements IMainMenu {
     private static final String USER_ID = "user_id";
+    private String mUserId;
     @BindView(R.id.bottom_navigation)
     AHBottomNavigation mBottomNavigationView;
     @InjectPresenter
@@ -67,6 +68,7 @@ public class MainMenu extends BaseActivity implements IMainMenu{
     private int mCurrentToolbar = mMainToolbar;
 
     private FragmentManager mFragmentManager;
+
     public static Intent newIntent(Context packageContext, String id) {
         Intent intent = new Intent(packageContext, MainMenu.class);
         intent.putExtra(USER_ID, id);
@@ -84,17 +86,18 @@ public class MainMenu extends BaseActivity implements IMainMenu{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mUserId=getIntent().getStringExtra(USER_ID);
         start();
     }
 
-    private void getIntentValues(){
+    private void getIntentValues() {
         mTvMonsterName = (TextView) findViewById(R.id.tv_name);
         mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
         mIvDonut = (ImageView) findViewById(R.id.iv_donut);
         String monsterName = getIntent().getStringExtra(Resources.MONSTER_NAME);
-        if (monsterName == null){
+        if (monsterName == null) {
             mTvMonsterName.setText("Брозябр");
-        }else
+        } else
             mTvMonsterName.setText(monsterName);
         //TODO: change to real data values
         mTvDonutNum.setText("10");
@@ -103,16 +106,14 @@ public class MainMenu extends BaseActivity implements IMainMenu{
     @Override
     public void init() {
 
-        mPresenter.getAllUsers();
-
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("",
                 R.drawable.main_icon, R.color.color_selected_item);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem("",
                 R.drawable.cup_icon, R.color.color_selected_item);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem("",
-                R.drawable.candy_icon,R.color.color_selected_item);
+                R.drawable.candy_icon, R.color.color_selected_item);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem("",
-                R.drawable.settings_icon,R.color.color_selected_item);
+                R.drawable.settings_icon, R.color.color_selected_item);
 
         mBottomNavigationView.addItem(item1);
         mBottomNavigationView.addItem(item2);
@@ -133,9 +134,9 @@ public class MainMenu extends BaseActivity implements IMainMenu{
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
 
-                switch (position){
+                switch (position) {
                     case 0:
-                       setMonsterFragment();
+                        setMonsterFragment();
                         break;
 
                     case 1:
@@ -158,13 +159,14 @@ public class MainMenu extends BaseActivity implements IMainMenu{
             }
         });
         mBottomNavigationView.setOnNavigationPositionListener(new AHBottomNavigation.OnNavigationPositionListener() {
-            @Override public void onPositionChange(int y) {
+            @Override
+            public void onPositionChange(int y) {
 
             }
         });
     }
 
-    private void setMonsterFragment(){
+    private void setMonsterFragment() {
         MonsterFragment monsterFragment = MonsterFragment.newInstance(getIntent().getIntExtra(Resources.MONSTER_IMAGE, 0));
         mFragmentManager.beginTransaction().replace(R.id.fl_main, monsterFragment).commit();
         setToolbar(mMainToolbar, null, monsterFragment);
@@ -179,19 +181,19 @@ public class MainMenu extends BaseActivity implements IMainMenu{
         setToolbar(id, baseFragmentWithToolbar, null);
     }
 
-    private void setToolbar(int id, BaseFragmentUsualToolbar baseFragmentWithToolbar, MonsterFragment monsterFragment){
+    private void setToolbar(int id, BaseFragmentUsualToolbar baseFragmentWithToolbar, MonsterFragment monsterFragment) {
         if (id != mCurrentToolbar) {
             mLinearLayout.removeAllViews();
             mLinearLayout.addView(LayoutInflater.from(getApplicationContext()).inflate(id,
                     mLinearLayout, false));
             mCurrentToolbar = id;
 
-            if (id == mUsualToolbar){
+            if (id == mUsualToolbar) {
                 mViewToolbar.setBackgroundColor(getResources().getColor(R.color.color_toolbar_brown));
             }
 
         }
-        if (id == mUsualToolbar && baseFragmentWithToolbar != null){
+        if (id == mUsualToolbar && baseFragmentWithToolbar != null) {
             mIvFragmentLogo = (ImageView) findViewById(R.id.iv_fragment_logo);
             mTvFragmentTitle = (TextView) findViewById(R.id.tv_fragment_title);
             Glide.with(this).load(baseFragmentWithToolbar.getToolbarImage()).into(mIvFragmentLogo);
@@ -199,7 +201,7 @@ public class MainMenu extends BaseActivity implements IMainMenu{
 
         }
 
-        if(id == mMainToolbar){
+        if (id == mMainToolbar) {
             mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
 
             //TODO: change to real data values

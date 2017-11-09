@@ -1,140 +1,138 @@
 {
-  "DWyVALCmuyfS9DmkfYOW0DA8Ror1": {
-    "users": [
-      {
-        "id": "DWyVALCmuyfS9DmkfYOW0DA8Ror1",
-        "login": "a@a.com",
-        "password": "qwerty",
-        "name": "Alex",
-        "surname": "Bill",
-        "position": "pupil",
-        "class": [
-          {
-            "number": "1",
-            "letter": "B"
-          }
-        ],
-        "stars": [
-          {
-            "answer": "3",
-            "cleaning": "2"
-          }
-        ]
-      },
-      {
-        "id": "NTM8kSKRcFTPAHJRNDt9KUYsiKk1",
-        "login": "qwerty@q.com",
-        "password": "qwerty",
-        "name": "Json",
-        "surname": "Ja",
-        "position": "pupil",
-        "class": [
-          {
-            "number": "1",
-            "letter": "B"
-          }
-        ],
-        "stars": [
-          {
-            "answer": "5",
-            "cleaning": "4"
-          }
-        ]
-      },
-      {
-        "id": "kw1P1VKaamNYYZSoxCy2f9FdET03",
-        "login": "kenn@a.com",
-        "password": "qwerty",
-        "name": "Kenn",
-        "surname": "Kola",
-        "position": "pupil",
-        "class": [
-          {
-            "number": "1",
-            "letter": "A"
-          }
-        ],
-        "stars": [
-          {
-            "answer": "0",
-            "cleaning": "1"
-          }
-        ]
-      },
-      {
-        "id": "ertIBkbUl4W6SWdGbdfR5zojddF2",
-        "login": "mara@a.com",
-        "password": "qwerty",
-        "name": "Mara",
-        "surname": "Squart",
-        "position": "pupil",
-        "class": [
-          {
-            "number": "1",
-            "letter": "A"
-          }
-        ],
-        "stars": [
-          {
-            "answer": "1",
-            "cleaning": "1"
-          }
-        ]
-      },
-      {
-        "id": "eDKiRgBRnFNhJ1VUDUmT6J7heR92",
-        "login": "marta@a.com",
-        "password": "qwerty",
-        "name": "Marta",
-        "surname": "Urt",
-        "position": "teacher",
-        "class": [
-          {
-            "number": "1",
-            "letter": "B"
-          }
-        ]
-      },
-      {
-        "id": "o2aDTFWGW6fp3OoOJwkiLUnA4xq1",
-        "login": "lisa@a.com",
-        "password": "qwerty",
-        "name": "Lisa",
-        "surname": "Sir",
-        "position": "teacher",
-        "class": [
-          {
-            "number": "1",
-            "letter": "A"
-          }
-        ]
-      }
-    ],
-    "class": [
-      {
-        "number": "1",
-        "letter": "A",
-        "pupils": [
-          {
-            "id": "ertIBkbUl4W6SWdGbdfR5zojddF2"
-          },
-          {
-            "id": "kw1P1VKaamNYYZSoxCy2f9FdET03"
-          }
-        ]
-      },
-      {
-        "number": "1",
-        "letter": "B",
-        "pupils": [
-          {
-            "id": "NTM8kSKRcFTPAHJRNDt9KUYsiKk1"
-          },
-          {
-            "id": "DWyVALCmuyfS9DmkfYOW0DA8Ror1"
-          }
-        ]
-      }
-    ]
-  }
+  "users": {
+    "DWyVALCmuyfS9DmkfYOW0DA8Ror1": {
+      "id": "DWyVALCmuyfS9DmkfYOW0DA8Ror1",
+      "login": "a@a.com",
+      "password": "qwerty",
+      "name": "Alex",
+      "surname": "Bill",
+      "position": "pupil",
+      "class": [
+        {
+          "number": "1",
+          "letter": "B"
+        }
+      ],
+      "stars": [
+        {
+          "answer": "3",
+          "cleaning": "2"
+        }
+      ]
+    },
+    "NTM8kSKRcFTPAHJRNDt9KUYsiKk1": {
+      "id": "NTM8kSKRcFTPAHJRNDt9KUYsiKk1",
+      "login": "qwerty@q.com",
+      "password": "qwerty",
+      "name": "Json",
+      "surname": "Ja",
+      "position": "pupil",
+      "class": [
+        {
+          "number": "1",
+          "letter": "B"
+        }
+      ],
+      "stars": [
+        {
+          "answer": "5",
+          "cleaning": "4"
+        }
+      ]
+    },
+    "kw1P1VKaamNYYZSoxCy2f9FdET03": {
+      "id": "kw1P1VKaamNYYZSoxCy2f9FdET03",
+      "login": "kenn@a.com",
+      "password": "qwerty",
+      "name": "Kenn",
+      "surname": "Kola",
+      "position": "pupil",
+      "class": [
+        {
+          "number": "1",
+          "letter": "A"
+        }
+      ],
+      "stars": [
+        {
+          "answer": "0",
+          "cleaning": "1"
+        }
+      ]
+    },
+    "ertIBkbUl4W6SWdGbdfR5zojddF2": {
+      "id": "ertIBkbUl4W6SWdGbdfR5zojddF2",
+      "login": "mara@a.com",
+      "password": "qwerty",
+      "name": "Mara",
+      "surname": "Squart",
+      "position": "pupil",
+      "class": [
+        {
+          "number": "1",
+          "letter": "A"
+        }
+      ],
+      "stars": [
+        {
+          "answer": "1",
+          "cleaning": "1"
+        }
+      ]
+    },
+    "eDKiRgBRnFNhJ1VUDUmT6J7heR92": {
+      "id": "eDKiRgBRnFNhJ1VUDUmT6J7heR92",
+      "login": "marta@a.com",
+      "password": "qwerty",
+      "name": "Marta",
+      "surname": "Urt",
+      "position": "teacher",
+      "class": [
+        {
+          "number": "1",
+          "letter": "B"
+        }
+      ]
+    },
+    "o2aDTFWGW6fp3OoOJwkiLUnA4xq1": {
+      "id": "o2aDTFWGW6fp3OoOJwkiLUnA4xq1",
+      "login": "lisa@a.com",
+      "password": "qwerty",
+      "name": "Lisa",
+      "surname": "Sir",
+      "position": "teacher",
+      "class": [
+        {
+          "number": "1",
+          "letter": "A"
+        }
+      ]
+    }
+  },
+  "class": [
+    {
+      "number": "1",
+      "letter": "A",
+      "pupils": [
+        {
+          "id": "ertIBkbUl4W6SWdGbdfR5zojddF2"
+        },
+        {
+          "id": "kw1P1VKaamNYYZSoxCy2f9FdET03"
+        }
+      ]
+    },
+    {
+      "number": "1",
+      "letter": "B",
+      "pupils": [
+        {
+          "id": "NTM8kSKRcFTPAHJRNDt9KUYsiKk1"
+        },
+        {
+          "id": "DWyVALCmuyfS9DmkfYOW0DA8Ror1"
+        }
+      ]
+    }
+  ]
 }

@@ -36,10 +36,7 @@ public class UserRepositoryImpl implements IUserRepository {
     private boolean mCacheIsDirty = false;
 
     @Inject
-    public UserRepositoryImpl(
-    ) {
-        //mRemoteUserRepository = checkNotNull(userRemoteRepository);
-        //mLocalUserRepository = checkNotNull(userLocalRepository);
+    public UserRepositoryImpl() {
     }
 
     @Override

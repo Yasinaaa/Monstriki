@@ -30,17 +30,26 @@ import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 import ru.android.monstrici.monstrici.utils.Message;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainTeacherActivity extends BaseActivity implements IMainMenu {
-
+    private static final String USER_ID = "user_id";
+    private String mUserId;
     //@BindView(R.id.include_toolbar)
     //View mToolbar;
     @InjectPresenter
     public MainMenuPresenter mPresenter;
+
+
+    public static Intent newIntent(Context packageContext, String id) {
+        Intent intent = new Intent(packageContext, MainMenu.class);
+        intent.putExtra(USER_ID, id);
+        return intent;
+    }
 
     @Override
     public void onUsersGet(List<User> users) {
@@ -126,6 +135,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
+        mUserId=getIntent().getStringExtra(USER_ID);
         start();
     }
 
