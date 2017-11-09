@@ -58,7 +58,7 @@ public class MainMenu extends BaseActivity {
     private int mCurrentToolbar = mMainToolbar;
 
     private FragmentManager mFragmentManager;
-    public static Intent newIntent(Context packageContext, long id) {
+    public static Intent newIntent(Context packageContext, String id) {
         Intent intent = new Intent(packageContext, MainMenu.class);
         intent.putExtra(USER_ID, id);
         return intent;
