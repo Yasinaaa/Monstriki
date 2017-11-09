@@ -58,7 +58,7 @@ public class SplashFragment extends BaseFragment implements ISplashView {
     }
 
     @Override
-    public void loginSuccess(long id) {
+    public void loginSuccess(String id) {
         Intent menu = MainMenu.newIntent(getContext(), id);
         startActivity(menu);
         getActivity().finish();

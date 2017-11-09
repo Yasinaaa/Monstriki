@@ -1,10 +1,6 @@
 package ru.android.monstrici.monstrici.ui.view.authorisation;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -17,9 +13,6 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
@@ -28,7 +21,6 @@ import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisa
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity;
-import ru.android.monstrici.monstrici.ui.view.parameters.ParametersActivity;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
@@ -63,7 +55,7 @@ public class AuthorisationActivity extends BaseActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorisation);
-       // getApplicationComponent().inject(this);
+        // getApplicationComponent().inject(this);
         start();
     }
 
@@ -93,8 +85,12 @@ public class AuthorisationActivity extends BaseActivity
     }
 
     @Override
-    public void onLoginSuccess(Long id) {
-        Intent menu = MainMenu.newIntent(this, id);
+    public void onLoginSuccess(boolean isTeacher, String id) {
+        Intent menu;
+        if (isTeacher)
+            menu = MainTeacherActivity.newIntent(this, id);
+        else
+            menu = MainMenu.newIntent(this, id);
         startActivity(menu);
         finish();
     }
@@ -124,6 +120,7 @@ public class AuthorisationActivity extends BaseActivity
     @Override
     public void onLoginFailed(Message message) {
         showError(message);
+        mBtnLogin.setEnabled(true);
     }
 
     @Override

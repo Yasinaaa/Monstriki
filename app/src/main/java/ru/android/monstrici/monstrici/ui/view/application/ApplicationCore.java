@@ -30,6 +30,7 @@ public class ApplicationCore extends MultiDexApplication implements IHasComponen
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         FirebaseApp.initializeApp(this);
+        firebaseSetup();
         mAppComponent = DaggerAppComponent
                 .builder()
                 .appModule(new AppModule(this))
@@ -42,6 +43,9 @@ public class ApplicationCore extends MultiDexApplication implements IHasComponen
         );
     }
 
+    private void firebaseSetup() {
+            FirebaseApp.initializeApp(this);
+    }
 
     @Override
     public AppComponent getComponent() {
