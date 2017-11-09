@@ -2,10 +2,17 @@ package ru.android.monstrici.monstrici.presentation.presenter.authorisation;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import org.reactivestreams.Subscriber;
+
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
@@ -24,6 +31,14 @@ import ru.android.monstrici.monstrici.utils.Message;
 public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
     @Inject
     UserRepositoryImpl mRepository;
+
+    public AuthorisationPresenter() {
+        subscribe();
+    }
+
+    void subscribe() {
+
+    }
 
     public void login(final String login, final String password) {
         if (isLoginValid(login, password)) {

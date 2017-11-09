@@ -16,9 +16,9 @@ import ru.android.monstrici.monstrici.domain.base.IDataCallback;
  * @Date 20/10/2017
  * @Author Andrei Gusev
  */
-@Singleton
+
 public class LocalUserRepository implements IUserRepository {
-    @Inject
+
     public LocalUserRepository() {
     }
 
@@ -29,7 +29,7 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getUsers(@NonNull String userId, @NonNull IDataCallback<User> callback) {
+    public void getUsers(@NonNull IDataCallback<User> callback) {
 
     }
 
@@ -37,7 +37,7 @@ public class LocalUserRepository implements IUserRepository {
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
         Response<User> response = new Response<>();
         User user=new User();
-        user.setId(1L);
+        user.setId("1");
         response.setBody(user);
 
         callback.onReceiveDataSuccess(response);

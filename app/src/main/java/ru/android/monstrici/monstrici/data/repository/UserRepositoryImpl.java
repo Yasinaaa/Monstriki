@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import ru.android.monstrici.monstrici.data.model.Response;
@@ -23,31 +24,34 @@ import static ru.android.monstrici.monstrici.utils.Preconditions.checkNotNull;
  */
 @Singleton
 public class UserRepositoryImpl implements IUserRepository {
-
+    @Inject
+    @Named("Local")
     IUserRepository mLocalUserRepository;
 
+    @Inject
+    @Named("Remote")
     IUserRepository mRemoteUserRepository;
 
     private Map<Long, User> mCachedUserMap;
     private boolean mCacheIsDirty = false;
 
     @Inject
-    public UserRepositoryImpl(@Remote IUserRepository userRemoteRepository,
-                              @Local IUserRepository userLocalRepository) {
-        mRemoteUserRepository = checkNotNull(userRemoteRepository);
-        mLocalUserRepository = checkNotNull(userLocalRepository);
+    public UserRepositoryImpl(
+                              ) {
+        //mRemoteUserRepository = checkNotNull(userRemoteRepository);
+        //mLocalUserRepository = checkNotNull(userLocalRepository);
     }
 
     @Override
     public void getUser(String id, @NonNull IDataCallback<User> callback) {
-        if (mCacheIsDirty) {
+        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
             mRemoteUserRepository.getUser(id, callback);
         } else {
         }
     }
 
     @Override
-    public void getUsers(@NonNull String userId, @NonNull IDataCallback<User> callback) {
+    public void getUsers(@NonNull IDataCallback<User> callback) {
 
     }
 

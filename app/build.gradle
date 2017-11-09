@@ -28,7 +28,6 @@ android {
         schemaVersion 1
     }
     android.dexOptions {
-        incremental true
         javaMaxHeapSize "4g"
     }
     compileOptions {

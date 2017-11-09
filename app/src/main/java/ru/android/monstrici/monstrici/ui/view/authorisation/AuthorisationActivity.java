@@ -82,7 +82,7 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
     }
 
     @Override
-    public void onLoginSuccess(Long id) {
+    public void onLoginSuccess(String id) {
         Intent menu = MainMenu.newIntent(this, id);
         startActivity(menu);
         finish();

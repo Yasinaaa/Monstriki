@@ -13,7 +13,7 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
  */
 @StateStrategyType(AddToEndStrategy.class)
 public interface ISplashView extends IBaseView {
-    void loginSuccess(long id);
+    void loginSuccess(String id);
 
     void loginFail();
 }
