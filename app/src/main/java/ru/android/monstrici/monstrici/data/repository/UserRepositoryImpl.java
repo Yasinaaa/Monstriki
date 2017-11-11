@@ -2,12 +2,17 @@ package ru.android.monstrici.monstrici.data.repository;
 
 import android.support.annotation.NonNull;
 
+import org.reactivestreams.Subscription;
+
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import io.reactivex.Flowable;
+import io.reactivex.functions.Consumer;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -32,7 +37,7 @@ public class UserRepositoryImpl implements IUserRepository {
     @Named("Remote")
     IUserRepository mRemoteUserRepository;
 
-    private Map<Long, User> mCachedUserMap;
+    private Map<String, User> mCachedUserMap;
     private boolean mCacheIsDirty = false;
 
     @Inject
@@ -48,11 +53,21 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
-    public void getUsers(@NonNull IDataCallback<User> callback) {
-        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
-            mRemoteUserRepository.getUsers(callback);
-        } else {
-        }
+    public Flowable<User> getUsers(@NonNull IDataCallback<User> callback) {
+//        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
+//            mRemoteUserRepository.getUsers(callback);
+//            mRemoteUserRepository
+//                    .getUsers(callback)
+//                    .subscribe(new Consumer<User>() {
+//                        @Override
+//                        public void accept(User user) throws Exception {
+//                            mCachedUserMap.put(user.getId(), user);
+//
+//                        }
+//                    });
+//        } else {
+//        }
+        return null;
     }
 
     @Override
@@ -63,4 +78,5 @@ public class UserRepositoryImpl implements IUserRepository {
             mLocalUserRepository.checkLogin(login, password, callback);
         }
     }
+
 }

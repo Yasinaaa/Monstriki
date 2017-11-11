@@ -1,6 +1,9 @@
 package ru.android.monstrici.monstrici.ui.view.authorisation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -14,8 +17,11 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.domain.ConnectionManager;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.AuthorisationPresenter;
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
@@ -39,8 +45,9 @@ public class AuthorisationActivity extends BaseActivity
     @BindView(R.id.pb_login)
     protected ProgressBar mProgressBar;
     @BindView(R.id.rl)
-    RelativeLayout mRl;
-    // @Inject
+    protected RelativeLayout mRl;
+    @Inject
+    ConnectionManager mConnectionManager;
     @InjectPresenter
     public AuthorisationPresenter mPresenter;
 
@@ -55,8 +62,10 @@ public class AuthorisationActivity extends BaseActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorisation);
-        // getApplicationComponent().inject(this);
         start();
+        if(mConnectionManager.isOnline()){
+
+        }
     }
 
     @Override
@@ -134,7 +143,6 @@ public class AuthorisationActivity extends BaseActivity
     public void showError(Message message) {
         Toast.makeText(getBaseContext(), message.getMessage(), Toast.LENGTH_LONG).show();
     }
-
 }
 
 

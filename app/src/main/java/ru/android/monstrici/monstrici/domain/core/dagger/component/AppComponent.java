@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
+import ru.android.monstrici.monstrici.domain.ConnectionManager;
 import ru.android.monstrici.monstrici.domain.core.dagger.module.RepositoryModule;
 import ru.android.monstrici.monstrici.domain.core.dagger.module.AppModule;
 import ru.android.monstrici.monstrici.domain.core.dagger.module.CoreModule;

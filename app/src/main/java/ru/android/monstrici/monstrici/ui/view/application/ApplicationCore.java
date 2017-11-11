@@ -12,6 +12,7 @@ import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.DaggerAppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.IHasComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.module.AppModule;
+import ru.android.monstrici.monstrici.domain.core.dagger.module.CoreModule;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -34,6 +35,7 @@ public class ApplicationCore extends MultiDexApplication implements IHasComponen
         mAppComponent = DaggerAppComponent
                 .builder()
                 .appModule(new AppModule(this))
+                .coreModule(new CoreModule())
                 .build();
         mAppComponent.inject(this);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -44,7 +46,7 @@ public class ApplicationCore extends MultiDexApplication implements IHasComponen
     }
 
     private void firebaseSetup() {
-            FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
     }
 
     @Override

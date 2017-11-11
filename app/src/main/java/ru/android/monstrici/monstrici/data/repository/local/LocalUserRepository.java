@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Flowable;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.IUserRepository;
@@ -29,14 +30,14 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getUsers(@NonNull IDataCallback<User> callback) {
-
+    public Flowable<User> getUsers(@NonNull IDataCallback<User> callback) {
+        return null;
     }
 
     @Override
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
         Response<User> response = new Response<>();
-        User user=new User();
+        User user = new User();
         user.setId("1");
         response.setBody(user);
 
