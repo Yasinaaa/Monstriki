@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
         android:padding="@dimen/padding_xsmall"
-        android:textColor="@color/white"
+        android:textColor="@color/color_white"
         android:textSize="@dimen/textsize_xxlarge"/>
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_margin="@dimen/margin_small"
         android:textSize="@dimen/textsize_large"
         fontPath="fonts/chalk_3892.ttf"
-        android:textColor="@color/white"/>
+        android:textColor="@color/color_white"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:layout_margin="@dimen/margin_small"
         android:textSize="@dimen/textsize_large"
         fontPath="fonts/chalk_3892.ttf"
-        android:textColor="@color/white"/>
+        android:textColor="@color/color_white"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:layout_margin="@dimen/margin_small"
         android:textSize="@dimen/textsize_large"
         fontPath="fonts/chalk_3892.ttf"
-        android:textColor="@color/white"/>
+        android:textColor="@color/color_white"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -55,6 +55,6 @@
         android:layout_margin="@dimen/margin_small"
         android:textSize="@dimen/textsize_large"
         fontPath="fonts/chalk_3892.ttf"
-        android:textColor="@color/white"/>
+        android:textColor="@color/color_white"/>
 
 </LinearLayout>

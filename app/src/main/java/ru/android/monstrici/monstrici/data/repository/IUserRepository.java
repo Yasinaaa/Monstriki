@@ -22,7 +22,7 @@ public interface IUserRepository {
 
     void getUser(String id, @NonNull IDataCallback<User> callback);
 
-    Flowable<User> getUsers(@NonNull IDataCallback<User> callback);
+    void getUsers(@NonNull IDataCallback<User> callback);
 
     void checkLogin(String login, String password, @NonNull IDataCallback<User> callback);
 }

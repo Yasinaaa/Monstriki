@@ -41,6 +41,7 @@
     <string name="eyes">Глаза</string>
     <string name="mouth">Рот</string>
     <string name="hands">Руки</string>
+    <string name="logout">Выйти из пользователя</string>
     <string name="save">Сохранить</string>
 
     <!-- fragment_prizes.xml -->

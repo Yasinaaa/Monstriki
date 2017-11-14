@@ -30,8 +30,7 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
-    public Flowable<User> getUsers(@NonNull IDataCallback<User> callback) {
-        return null;
+    public void getUsers(@NonNull IDataCallback<User> callback) {
     }
 
     @Override

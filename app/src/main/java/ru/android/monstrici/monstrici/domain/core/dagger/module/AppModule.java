@@ -9,6 +9,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import ru.android.monstrici.monstrici.domain.core.dagger.scope.ApplicationContext;
+import ru.android.monstrici.monstrici.ui.view.application.ApplicationCore;
 
 /**
  * Created by elisiumGusev
@@ -19,9 +20,9 @@ import ru.android.monstrici.monstrici.domain.core.dagger.scope.ApplicationContex
 
 @Module
 public class AppModule {
-    private final Application mApplication;
+    private final ApplicationCore mApplication;
 
-    public AppModule(Application application) {
+    public AppModule(ApplicationCore application) {
         mApplication = application;
     }
 
@@ -33,7 +34,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    protected Application provideApplication() {
+    protected ApplicationCore provideApplication() {
         return mApplication;
     }
 

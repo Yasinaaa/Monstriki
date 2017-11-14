@@ -32,7 +32,7 @@
     <dimen name="height_toolbar">70dp</dimen>
 
     <!-- activity_parameters.xml-->
-    <dimen name="textsize_question">30dp</dimen>
+    <dimen name="textsize_question">28dp</dimen>
     <dimen name="width_monster_without_eyes">200dp</dimen>
     <dimen name="height_monster_without_eyes">200dp</dimen>
 
