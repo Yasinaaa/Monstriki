@@ -5,95 +5,117 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/iv_monster"
         android:layout_width="@dimen/width_monster_settings"
         android:layout_height="@dimen/height_monster_settings"
-        android:id="@+id/iv_monster"
-        android:layout_marginTop="@dimen/margin_small"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_small"/>
 
     <EditText
+        android:id="@+id/et_monster_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_monster_name"
         android:layout_below="@+id/iv_monster"
-        android:layout_marginTop="@dimen/margin_normal"
         android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginRight="@dimen/margin_normal" />
+        android:layout_marginRight="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"/>
 
     <ImageView
-        android:layout_width="@dimen/width_monster_body_item_settings"
-        android:layout_height="@dimen/height_monster_body_item_settings"
         android:id="@+id/iv_eyes"
-        android:layout_below="@+id/et_monster_name"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_width="@dimen/width_monster_body_item_settings"
+        android:layout_height="@dimen/height_monster_body_item_settings"
         android:layout_alignLeft="@+id/et_monster_name"
-        android:layout_alignStart="@+id/et_monster_name" />
+        android:layout_alignStart="@+id/et_monster_name"
+        android:layout_below="@+id/et_monster_name"
+        android:layout_marginTop="@dimen/margin_normal"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_eyes"
-        android:text="@string/eyes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/et_monster_name"
-        android:layout_toRightOf="@+id/iv_eyes"
-        android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"
+        android:layout_marginLeft="@dimen/margin_normal"
         android:layout_marginTop="@dimen/margin_normal"
-        android:layout_marginLeft="@dimen/margin_normal" />
+        android:layout_toRightOf="@+id/iv_eyes"
+        android:text="@string/eyes"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"/>
 
     <ImageView
-        android:layout_width="@dimen/width_monster_body_item_settings"
-        android:layout_height="@dimen/height_monster_body_item_settings"
         android:id="@+id/iv_mouth"
-        android:layout_below="@+id/tv_eyes"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_alignLeft="@+id/et_monster_name"
-        android:layout_alignStart="@+id/et_monster_name" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_mouth"
-        android:text="@string/mouth"
-        android:layout_below="@+id/tv_eyes"
-        android:layout_toRightOf="@+id/iv_eyes"
-        android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_marginLeft="@dimen/margin_normal" />
-
-    <ImageView
         android:layout_width="@dimen/width_monster_body_item_settings"
         android:layout_height="@dimen/height_monster_body_item_settings"
-        android:id="@+id/iv_hands"
-        android:layout_below="@+id/iv_mouth"
-        android:layout_marginTop="@dimen/margin_normal"
         android:layout_alignLeft="@+id/et_monster_name"
-        android:layout_alignStart="@+id/et_monster_name" />
+        android:layout_alignStart="@+id/et_monster_name"
+        android:layout_below="@+id/tv_eyes"
+        android:layout_marginTop="@dimen/margin_normal"/>
 
     <TextView
+        android:id="@+id/tv_mouth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_hands"
-        android:text="@string/hands"
-        android:layout_below="@+id/tv_mouth"
-        android:layout_toRightOf="@+id/iv_eyes"
-        android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"
+        android:layout_below="@+id/tv_eyes"
+        android:layout_marginLeft="@dimen/margin_normal"
         android:layout_marginTop="@dimen/margin_normal"
-        android:layout_marginLeft="@dimen/margin_normal" />
+        android:layout_toRightOf="@+id/iv_eyes"
+        android:text="@string/mouth"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"/>
+
+    <ImageView
+        android:id="@+id/iv_hands"
+        android:layout_width="@dimen/width_monster_body_item_settings"
+        android:layout_height="@dimen/height_monster_body_item_settings"
+        android:layout_alignLeft="@+id/et_monster_name"
+        android:layout_alignStart="@+id/et_monster_name"
+        android:layout_below="@+id/iv_mouth"
+        android:layout_marginTop="@dimen/margin_normal"/>
+
+    <TextView
+        android:id="@+id/tv_hands"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_mouth"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_toRightOf="@+id/iv_eyes"
+        android:text="@string/hands"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"/>
+
+    <ImageView
+        android:id="@+id/iv_logout"
+        android:layout_width="@dimen/width_monster_body_item_settings"
+        android:layout_height="@dimen/height_monster_body_item_settings"
+        android:layout_alignLeft="@+id/et_monster_name"
+        android:layout_alignStart="@+id/et_monster_name"
+        android:layout_below="@+id/iv_hands"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:src="@drawable/ic_exit_to_app"/>
+
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_hands"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_toRightOf="@+id/iv_logout"
+        android:text="@string/logout"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"/>
 
     <Button
+        android:id="@+id/btn_save"
         android:layout_width="@dimen/width_btn_save"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_save"
-        android:text="@string/save"
-        android:layout_below="@+id/tv_hands"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/tv_logout"
         android:layout_centerHorizontal="true"
-        android:padding="@dimen/padding_small"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/margin_large"
         android:background="@drawable/btn_corner_purple"
-        android:textColor="@color/color_purple"
-        android:layout_margin="@dimen/margin_large"/>
+        android:padding="@dimen/padding_small"
+        android:text="@string/save"
+        android:textColor="@color/color_purple"/>
 
 </RelativeLayout>

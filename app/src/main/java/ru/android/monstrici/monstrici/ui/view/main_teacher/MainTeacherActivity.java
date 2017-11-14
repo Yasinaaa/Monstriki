@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
 
 
     public static Intent newIntent(Context packageContext, String id) {
-        Intent intent = new Intent(packageContext, MainMenu.class);
+        Intent intent = new Intent(packageContext, MainTeacherActivity.class);
         intent.putExtra(USER_ID, id);
         return intent;
     }
@@ -110,8 +111,9 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         @OnClick(R.id.tv_exit)
         public void onExit() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            Intent intent = new Intent(MainTeacherActivity.this,
-                    AuthorisationActivity.class);
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainTeacherActivity.this, AuthorisationActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
     }
@@ -135,7 +137,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
-        mUserId=getIntent().getStringExtra(USER_ID);
+        mUserId = getIntent().getStringExtra(USER_ID);
         start();
     }
 

@@ -39,8 +39,7 @@ public class AuthorisationActivity extends BaseActivity
     @BindView(R.id.pb_login)
     protected ProgressBar mProgressBar;
     @BindView(R.id.rl)
-    RelativeLayout mRl;
-    // @Inject
+    protected RelativeLayout mRl;
     @InjectPresenter
     public AuthorisationPresenter mPresenter;
 
@@ -55,7 +54,6 @@ public class AuthorisationActivity extends BaseActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorisation);
-        // getApplicationComponent().inject(this);
         start();
     }
 
@@ -134,7 +132,6 @@ public class AuthorisationActivity extends BaseActivity
     public void showError(Message message) {
         Toast.makeText(getBaseContext(), message.getMessage(), Toast.LENGTH_LONG).show();
     }
-
 }
 
 
