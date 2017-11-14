@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_data"
+        android:text="@string/data"
+        android:textSize="@dimen/textsize_large"
+        android:textColor="@color/color_purple"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view1"
+        android:layout_below="@+id/tv_data"
+        android:background="@android:color/darker_gray" />
+
+    <com.squareup.timessquare.CalendarPickerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cv_calendar"
+        android:layout_below="@+id/tv_data"
+        />
+
+</RelativeLayout>

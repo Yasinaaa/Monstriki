@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
-
     <application
         android:name=".ui.view.application.ApplicationCore"
         android:allowBackup="true"
@@ -15,37 +14,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-
         <activity
             android:name=".ui.view.authorisation.AuthorisationActivity"
-            android:label="@string/title_activity_login"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity
-            android:name=".ui.view.registation.RegistrationActivity"
-            android:label="@string/title_activity_reg"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize">
+            android:launchMode="singleTop">
         </activity>
-
-
         <activity
             android:name=".ui.view.parameters.ParametersActivity"
             android:screenOrientation="portrait"/>
-
         <activity
-            android:name=".ui.view.main.MainMenu"
+            android:name=".ui.view.main_pupil.MainMenu"
             android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.view.main_teacher.MainTeacherActivity"
+            android:label="@string/title_activity_main_teacher"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.view.authorisation.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e0f8001fa4d63a923a7494c7cc08d1d2595d1cf9" />
     </application>
 
 </manifest>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_pupil"
+        android:text="Антонов Иван 1А"
+        android:textSize="@dimen/textsize_large"
+        android:textColor="@color/color_purple"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view1"
+        android:layout_below="@+id/tv_pupil"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_data"
+        android:layout_below="@+id/view1"
+        android:text="@string/data"
+        android:textSize="@dimen/textsize_medium"
+        android:textColor="@color/color_purple"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_very_small"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_data_bracket"
+        android:text=">"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/textsize_xlarge"
+        android:textColor="@color/color_purple"
+        android:layout_below="@+id/view1"
+        android:layout_alignRight="@+id/tv_pupil"
+        android:layout_alignEnd="@+id/tv_pupil" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_data_day"
+        android:text="18.09.2017-24.09.2017"
+        android:textSize="@dimen/textsize_small"
+        android:padding="@dimen/padding_xsmall"
+        android:textColor="@color/color_purple"
+        android:paddingBottom="@dimen/padding_small"
+        android:layout_toLeftOf="@+id/tv_data_bracket"
+        android:layout_alignTop="@+id/tv_data_bracket" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view2"
+        android:layout_below="@+id/tv_data"
+        android:background="@android:color/darker_gray" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_desitions_of_week"
+        android:layout_below="@+id/view2"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small" />
+
+</RelativeLayout>

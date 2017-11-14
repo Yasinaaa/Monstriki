@@ -3,15 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
+    <color name="color_white">#FFFFFF</color>
     <color name="color_register">#f3647a</color>
     <color name="color_toolbar">#f9a71a</color>
     <color name="color_purple">#4f2254</color>
     <color name="color_toolbar_brown">#a15f3f</color>
-
     <color name="color_unselected_item">#483747</color>
     <color name="color_selected_item">#a0549f</color>
-
     <color name="color_gray">#bcb7b7</color>
-
+    <color name="calendar_selected_day_bg">#f9a71a</color>
 </resources>

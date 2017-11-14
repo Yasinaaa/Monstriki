@@ -3,9 +3,13 @@ package ru.android.monstrici.monstrici.domain.core.dagger.module;
 import android.app.Activity;
 import android.content.Context;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
+import ru.android.monstrici.monstrici.domain.ConnectionManager;
 import ru.android.monstrici.monstrici.domain.core.dagger.scope.ActivityContext;
+import ru.android.monstrici.monstrici.domain.core.dagger.scope.ApplicationContext;
 
 /**
  * Created by elisiumGusev
@@ -15,20 +19,15 @@ import ru.android.monstrici.monstrici.domain.core.dagger.scope.ActivityContext;
  */
 @Module
 public class CoreModule {
-    private Activity mActivity;
 
-    public CoreModule(Activity activity) {
-        mActivity = activity;
+
+    public CoreModule() {
+
     }
 
     @Provides
-    @ActivityContext
-    Context provideContext() {
-        return mActivity;
-    }
-
-    @Provides
-    Activity provideActivity() {
-        return mActivity;
+    @Singleton
+    ConnectionManager provideConnectionManager(@ApplicationContext Context context) {
+        return new ConnectionManager(context);
     }
 }

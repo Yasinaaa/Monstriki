@@ -1,5 +1,7 @@
 package ru.android.monstrici.monstrici.data.model;
 
+import java.util.List;
+
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
@@ -13,6 +15,7 @@ public class Response<T> {
     private Message mMessage;
     private Status mStatus;
     private T body;
+    private List<T> bodyList;
 
     public Message getMessage() {
         return mMessage;
@@ -31,13 +34,21 @@ public class Response<T> {
         mStatus = status;
     }
 
-    public T
-    getBody() {
+    public T getBody() {
         return body;
+    }
+
+    public List<T> getBodyList() {
+        return bodyList;
     }
 
     public Response<T> setBody(T body) {
         this.body = body;
+        return this;
+    }
+
+    public Response<T> setBody(List<T> bodyList) {
+        this.bodyList = bodyList;
         return this;
     }
 }

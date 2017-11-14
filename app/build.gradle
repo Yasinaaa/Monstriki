@@ -1,11 +1,25 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 apply plugin: 'org.greenrobot.greendao'
-apply plugin: 'me.tatarka.retrolambda'
 
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "ru.android.monstrici.monstrici"
         minSdkVersion 16
@@ -14,6 +28,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -24,18 +39,19 @@ android {
     packagingOptions {
         exclude 'META-INF/LICENSE'
     }
-    //Rx
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     //GreenDAO
     greendao {
         schemaVersion 1
     }
     android.dexOptions {
-        incremental true
         javaMaxHeapSize "4g"
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    aaptOptions {
+        additionalParameters "--no-version-vectors"
     }
 }
 
@@ -70,11 +86,19 @@ dependencies {
     compile "com.github.bumptech.glide:glide:${project.GLIDE_VERSION}"
     annotationProcessor "com.github.bumptech.glide:compiler:${project.GLIDE_VERSION}"
 
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.android.support:multidex:1.0.1'
-
-    provided 'javax.annotation:jsr250-api:1.0'
-    testCompile 'org.testng:testng:6.9.6'
     compile 'com.aurelhubert:ahbottomnavigation:2.1.0'
     compile 'org.jetbrains:annotations:15.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'org.testng:testng:6.9.6'
+    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.squareup:android-times-square:1.6.5@aar'
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true;
+    }
+    compile('com.crashlytics.sdk.android:answers:1.4.1@aar') {
+        transitive = true;
+    }
 }
 apply plugin: 'com.google.gms.google-services'

@@ -8,36 +8,38 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.AuthorisationPresenter;
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
-import ru.android.monstrici.monstrici.ui.view.main.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
  * Created by yasina on 14.10.17.
  */
 
-public class AuthorisationActivity extends BaseActivity implements IAuthorisationView, View.OnClickListener {
+public class AuthorisationActivity extends BaseActivity
+        implements IAuthorisationView, View.OnClickListener {
 
-    @BindView(R.id.input_email)
-    protected EditText mEmailEditText;
-    @BindView(R.id.input_password)
-    protected EditText mPasswordEditText;
+    @BindView(R.id.et_login)
+    protected EditText mEtEmail;
+    @BindView(R.id.et_password)
+    protected EditText mEtPassword;
     @BindView(R.id.btn_login)
-    protected Button mLoginButton;
-    @BindView(R.id.login_progress)
-    ProgressBar mProgressBar;
-    // @Inject
+    protected Button mBtnLogin;
+    @BindView(R.id.pb_login)
+    protected ProgressBar mProgressBar;
+    @BindView(R.id.rl)
+    protected RelativeLayout mRl;
     @InjectPresenter
     public AuthorisationPresenter mPresenter;
 
@@ -52,14 +54,13 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorisation);
-        getApplicationComponent().inject(this);
-        ButterKnife.bind(this);
-        mLoginButton.setOnClickListener(this);
+        start();
     }
 
     @Override
     public void init() {
-
+        getApplicationComponent().inject(this);
+        mBtnLogin.setOnClickListener(this);
     }
 
     @Override
@@ -72,9 +73,9 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
         switch (view.getId()) {
             case R.id.btn_login: {
                 if (validateForm()) {
-                    mLoginButton.setEnabled(false);
-                    mPresenter.login(mEmailEditText.getText().toString(),
-                            mPasswordEditText.getText().toString());
+                    mBtnLogin.setEnabled(false);
+                    mPresenter.login(mEtEmail.getText().toString(),
+                            mEtPassword.getText().toString());
                 }
                 break;
             }
@@ -82,8 +83,12 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
     }
 
     @Override
-    public void onLoginSuccess(Long id) {
-        Intent menu = MainMenu.newIntent(this, id);
+    public void onLoginSuccess(boolean isTeacher, String id) {
+        Intent menu;
+        if (isTeacher)
+            menu = MainTeacherActivity.newIntent(this, id);
+        else
+            menu = MainMenu.newIntent(this, id);
         startActivity(menu);
         finish();
     }
@@ -91,20 +96,20 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
     private boolean validateForm() {
         boolean valid = true;
 
-        String email = mEmailEditText.getText().toString();
+        String email = mEtEmail.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mEmailEditText.setError(getString(R.string.required));
+            mEtEmail.setError(getString(R.string.required));
             valid = false;
         } else {
-            mEmailEditText.setError(null);
+            mEtEmail.setError(null);
         }
 
-        String password = mPasswordEditText.getText().toString();
+        String password = mEtPassword.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            mPasswordEditText.setError(getString(R.string.required));
+            mEtPassword.setError(getString(R.string.required));
             valid = false;
         } else {
-            mPasswordEditText.setError(null);
+            mEtPassword.setError(null);
         }
 
         return valid;
@@ -113,6 +118,7 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
     @Override
     public void onLoginFailed(Message message) {
         showError(message);
+        mBtnLogin.setEnabled(true);
     }
 
     @Override
@@ -126,7 +132,6 @@ public class AuthorisationActivity extends BaseActivity implements IAuthorisatio
     public void showError(Message message) {
         Toast.makeText(getBaseContext(), message.getMessage(), Toast.LENGTH_LONG).show();
     }
-
 }
 
 

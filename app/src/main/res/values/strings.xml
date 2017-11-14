@@ -4,15 +4,19 @@
     <string name="title_activity_reg">Registration</string>
     <string name="loading">Подождите</string>
     <string name="authorisation_login">Логин</string>
+    <string name="main_font">fonts/GOTHIC.TTF</string>
 
     <!-- activity_registration.xml -->
     <string name="m">M</string>
     <string name="n">N</string>
+    <string name="ns">NS</string>
+    <string name="triki">TRIKI</string>
     <string name="striki">STRIKI</string>
+    <string name="nstriki">NSTRIKI</string>
     <string name="registration">Регистрация</string>
 
     <string name="password">Пароль</string>
-    <string name="login">Вход</string>
+    <string name="login">Войти</string>
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="form">Класс</string>
@@ -37,6 +41,7 @@
     <string name="eyes">Глаза</string>
     <string name="mouth">Рот</string>
     <string name="hands">Руки</string>
+    <string name="logout">Выйти из пользователя</string>
     <string name="save">Сохранить</string>
 
     <!-- fragment_prizes.xml -->
@@ -59,6 +64,41 @@
         <item>@string/thursday</item>
         <item>@string/friday</item>
         <item>@string/saturday</item>
+    </string-array>
+
+    <string name="title_activity_main_teacher">MainTeacherActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- fragment_journal.xml -->
+    <string name="fill_today">Заполнить на сегодня</string>
+    <string name="look_form">Посмотреть класс</string>
+    <string name="exit">Выход</string>
+    <string name="journal">Журнал</string>
+    <string name="data">Дата</string>
+    <string name="pupil">Ученик</string>
+    <string name="for_answer">За \nответ\n</string>
+    <string name="for_cleaning">За \nуборку\n</string>
+
+    <!-- fragment_form_parameters.xml -->
+    <string name="litera">Литера</string>
+    <string name="ready">Готово</string>
+
+    <string-array name="literas">
+        <item>А</item>
+        <item>Б</item>
+        <item>В</item>
+        <item>Г</item>
+        <item>Д</item>
+    </string-array>
+
+    <string-array name="forms_num">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
 </resources>

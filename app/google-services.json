@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "100353181861-rb0vhj1c0qk0r7b1ftdksdnjobv32bf1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.android.monstrici.monstrici",
+            "certificate_hash": "1f17971110c91bca79f788fa37aa7d4bd70ff9f6"
+          }
+        },
+        {
           "client_id": "100353181861-s3fi0ee8d8em31rd4nriolv6mrp686tj.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100353181861-s3fi0ee8d8em31rd4nriolv6mrp686tj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
