@@ -3,13 +3,11 @@ package ru.android.monstrici.monstrici.ui.view.main_teacher;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,7 +28,7 @@ import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainPupilActivity;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 import ru.android.monstrici.monstrici.utils.Message;
@@ -46,7 +44,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
 
 
     public static Intent newIntent(Context packageContext, String id) {
-        Intent intent = new Intent(packageContext, MainMenu.class);
+        Intent intent = new Intent(packageContext, MainPupilActivity.class);
         intent.putExtra(USER_ID, id);
         return intent;
     }
@@ -92,13 +90,13 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         @OnClick(R.id.tv_fill_today)
         public void onFillTodayClick() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            setFragment(new JournalFragment());
+            setFragment(JournalFragment.newInstance());
         }
 
         @OnClick(R.id.tv_look_form)
         public void onLookForm() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            setFragment(new FormParametersFragment());
+            setFragment(FormParametersFragment.newInstance(true));
         }
 
         @OnClick(R.id.tv_settings)
@@ -156,7 +154,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
 
         mIvMenuItem = (ImageView) findViewById(R.id.iv_menu_item);
         mFragmentManager = getSupportFragmentManager();
-        setFragment(new JournalFragment());
+        setFragment(JournalFragment.newInstance("1C", "Сегодня"));
         mIvMenuItem.setVisibility(View.VISIBLE);
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

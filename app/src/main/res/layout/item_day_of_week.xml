@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="@integer/weight_large_item_linear_layout"
         android:id="@+id/tv_day_title"
         android:textSize="@dimen/textsize_day_of_week"
         android:textAlignment="center"
         android:layout_marginTop="@dimen/margin_small"
         android:textColor="@color/color_purple"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:text="ПН"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +25,9 @@
         android:layout_marginLeft="@dimen/margin_normal"
         android:layout_alignBottom="@+id/tv_day_title"
         android:layout_toRightOf="@+id/tv_day_title"
-        android:layout_toEndOf="@+id/tv_day_title" />
+        android:layout_toEndOf="@+id/tv_day_title"
+        android:text="9 ноября
+        2017"/>
 
     <ImageView
         android:layout_width="@dimen/width_donuts_view"
@@ -43,6 +47,7 @@
         android:layout_toRightOf="@+id/iv_day_donut"
         android:layout_alignTop="@+id/tv_day_date"
         android:layout_marginLeft="@dimen/margin_normal"
-        android:textColor="@color/color_purple"/>
+        android:textColor="@color/color_purple"
+        android:text="10"/>
 
 </RelativeLayout>

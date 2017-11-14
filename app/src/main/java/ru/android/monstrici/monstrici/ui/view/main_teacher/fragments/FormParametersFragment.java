@@ -24,6 +24,7 @@ import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 
 public class FormParametersFragment extends BaseFragment {
 
+    protected static final String LOOK_PAGE = "look_page";
     @BindView(R.id.rv_forms)
     RecyclerView mRvForms;
     @BindView(R.id.rv_letters)
@@ -35,12 +36,14 @@ public class FormParametersFragment extends BaseFragment {
     private String[] mLiterasArray, mFormsNumArray;
     private String mChoosedLitera;
     private int mChoosedFormNum;
+    private boolean mIsLookPage = false;
 
     public FormParametersFragment() {
     }
 
-    public static FormParametersFragment newInstance(){
+    public static FormParametersFragment newInstance(boolean isLookPage){
         Bundle args = new Bundle();
+        args.putBoolean(LOOK_PAGE, isLookPage);
         FormParametersFragment newFragment = new FormParametersFragment();
         newFragment.setArguments(args);
         return newFragment;
@@ -50,7 +53,7 @@ public class FormParametersFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
-
+            mIsLookPage = getArguments().getBoolean(LOOK_PAGE);
         }
     }
 
@@ -91,9 +94,13 @@ public class FormParametersFragment extends BaseFragment {
 
     @OnClick(R.id.btn_ready)
     public void onBtnReadyClick(){
-        ChoosedFormFragment choosedFormFragment = ChoosedFormFragment.newInstance(
-                mChoosedFormNum + mChoosedLitera);
-        openFragment(choosedFormFragment);
+        if (mIsLookPage){
+            openFragment(DataFragment.newInstance());
+        }else {
+            JournalFragment journalFragment = JournalFragment.newInstance(mChoosedFormNum + mChoosedLitera,
+                    "Сегодня");
+            openFragment(journalFragment);
+        }
     }
 
     @Override

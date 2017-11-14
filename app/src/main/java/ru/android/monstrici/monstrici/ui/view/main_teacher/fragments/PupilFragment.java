@@ -77,7 +77,7 @@ public class PupilFragment extends BaseFragment {
         mTvDataBracket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFragment(DataFragment.newInstance(false));
+                openFragment(DataFragment.newInstance());
             }
         });
 
