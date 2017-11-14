@@ -13,7 +13,9 @@ import ru.android.monstrici.monstrici.presentation.presenter.authorisation.Autho
 import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
 import ru.android.monstrici.monstrici.ui.view.application.ApplicationCore;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
+import ru.android.monstrici.monstrici.ui.view.authorisation.SplashActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 
 /**
  * Created by elisiumGusev
@@ -34,9 +36,17 @@ public interface AppComponent extends
         NetComponent {
 
     void inject(ApplicationCore application);
+
     void inject(AuthorisationActivity activity);
+
+    void inject(SplashActivity activity);
+
     void inject(BaseActivity activity);
+
+    void inject(BaseFragment fragment);
+
     void inject(AuthorisationPresenter presenter);
+
     void inject(MainMenuPresenter presenter);
 
     UserRepositoryImpl getUserRepository();

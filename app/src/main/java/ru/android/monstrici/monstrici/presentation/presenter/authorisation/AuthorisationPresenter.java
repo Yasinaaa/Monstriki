@@ -1,6 +1,8 @@
 package ru.android.monstrici.monstrici.presentation.presenter.authorisation;
 
 import com.arellomobile.mvp.InjectViewState;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.reactivestreams.Subscriber;
 
@@ -54,6 +56,30 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
             });
         } else {
             getViewState().onLoginFailed(new Message(""));//TODO
+        }
+    }
+
+    public void checkUserToken() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null) {
+            mRepository.getUser(user.getUid(), new IDataCallback<User>() {
+                @Override
+                public void onReceiveDataSuccess(Response<User> response) {
+                    getViewState().onLoginSuccess(response
+                                    .getBody()
+                                    .getPosition()
+                                    .equals("teacher")
+                            , response.getBody().getId());
+                }
+
+                @Override
+                public void onReceiveDataFailure(Message message) {
+                    getViewState().onLoginFailed(message);
+                }
+            });
+        } else {
+            getViewState().onLoginFailed(new Message(""));
         }
     }
 

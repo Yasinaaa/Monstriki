@@ -69,41 +69,29 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
-    public Flowable<User> getUsers(@NonNull IDataCallback<User> callback) {
-        return Flowable.create(new FlowableOnSubscribe<User>() {
-            @Override
-            public void subscribe(FlowableEmitter<User> e) throws Exception {
+    public void getUsers(@NonNull IDataCallback<User> callback) {
+        mDatabase.child("users").addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        ArrayList<User> users = new ArrayList<>();
+                        Iterator<DataSnapshot> dataSnapshotsChat = dataSnapshot.getChildren().iterator();
+                        while (dataSnapshotsChat.hasNext()) {
+                            DataSnapshot dataSnapshotChild = dataSnapshotsChat.next();
+                            users.add(parseUser((HashMap) dataSnapshotChild.getValue()));
+                        }
+                        if (users.size() == 0) {
+                            callback.onReceiveDataFailure(new Message("Users " + " are unexpectedly null"));
+                        } else {
+                            callback.onReceiveDataSuccess(new Response<User>().setBody(users));
+                        }
+                    }
 
-                mDatabase.child("users").addListenerForSingleValueEvent(
-                        new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                //ArrayList<User> users = new ArrayList<>();
-                                Iterator<DataSnapshot> dataSnapshotsChat = dataSnapshot.getChildren().iterator();
-                                while (dataSnapshotsChat.hasNext()) {
-                                    DataSnapshot dataSnapshotChild = dataSnapshotsChat.next();
-                                    e.onNext(parseUser((HashMap) dataSnapshotChild.getValue()));
-                                    e.onComplete();
-                                    //users.add(parseUser((HashMap) dataSnapshotChild.getValue()));
-                                }
-//                                if (users.size() == 0) {
-//                                    callback.onReceiveDataFailure(new Message("Users " + " are unexpectedly null"));
-//                                } else {
-//                                    callback.onReceiveDataSuccess(new Response<User>().setBody(users));
-//                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                e.onError(databaseError.toException());
-                                //callback.onReceiveDataFailure(new Message(databaseError.toException().getMessage()));
-                            }
-                        });
-            }
-        }, BackpressureStrategy.BUFFER);
-
-
-
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        callback.onReceiveDataFailure(new Message(databaseError.toException().getMessage()));
+                    }
+                });
     }
 
     @Override

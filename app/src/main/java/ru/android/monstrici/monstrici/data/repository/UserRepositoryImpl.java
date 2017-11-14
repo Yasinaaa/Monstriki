@@ -2,9 +2,6 @@ package ru.android.monstrici.monstrici.data.repository;
 
 import android.support.annotation.NonNull;
 
-import org.reactivestreams.Subscription;
-
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -12,14 +9,8 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
-import io.reactivex.functions.Consumer;
-import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
-import ru.android.monstrici.monstrici.domain.core.dagger.scope.Local;
-import ru.android.monstrici.monstrici.domain.core.dagger.scope.Remote;
-
-import static ru.android.monstrici.monstrici.utils.Preconditions.checkNotNull;
 
 /**
  * Created by elisiumGusev
@@ -49,25 +40,17 @@ public class UserRepositoryImpl implements IUserRepository {
         if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
             mRemoteUserRepository.getUser(id, callback);
         } else {
+
         }
     }
 
     @Override
-    public Flowable<User> getUsers(@NonNull IDataCallback<User> callback) {
-//        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
-//            mRemoteUserRepository.getUsers(callback);
-//            mRemoteUserRepository
-//                    .getUsers(callback)
-//                    .subscribe(new Consumer<User>() {
-//                        @Override
-//                        public void accept(User user) throws Exception {
-//                            mCachedUserMap.put(user.getId(), user);
-//
-//                        }
-//                    });
-//        } else {
-//        }
-        return null;
+    public void getUsers(@NonNull IDataCallback<User> callback) {
+        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
+            mRemoteUserRepository.getUsers(callback);
+        } else {
+
+        }
     }
 
     @Override
