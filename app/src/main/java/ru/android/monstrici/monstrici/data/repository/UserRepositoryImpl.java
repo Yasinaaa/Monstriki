@@ -8,13 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import ru.android.monstrici.monstrici.data.model.Response;
+import io.reactivex.Flowable;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
-import ru.android.monstrici.monstrici.domain.core.dagger.scope.Local;
-import ru.android.monstrici.monstrici.domain.core.dagger.scope.Remote;
-
-import static ru.android.monstrici.monstrici.utils.Preconditions.checkNotNull;
 
 /**
  * Created by elisiumGusev
@@ -32,7 +28,7 @@ public class UserRepositoryImpl implements IUserRepository {
     @Named("Remote")
     IUserRepository mRemoteUserRepository;
 
-    private Map<Long, User> mCachedUserMap;
+    private Map<String, User> mCachedUserMap;
     private boolean mCacheIsDirty = false;
 
     @Inject
@@ -44,6 +40,7 @@ public class UserRepositoryImpl implements IUserRepository {
         if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
             mRemoteUserRepository.getUser(id, callback);
         } else {
+
         }
     }
 
@@ -52,6 +49,7 @@ public class UserRepositoryImpl implements IUserRepository {
         if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
             mRemoteUserRepository.getUsers(callback);
         } else {
+
         }
     }
 
@@ -63,4 +61,5 @@ public class UserRepositoryImpl implements IUserRepository {
             mLocalUserRepository.checkLogin(login, password, callback);
         }
     }
+
 }

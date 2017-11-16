@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rl"
     android:background="@drawable/background_light"
     android:padding="@dimen/margin_small">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <ProgressBar
         android:id="@+id/pb_login"
@@ -20,56 +26,56 @@
         android:id="@+id/iv_monstriki"
         android:layout_width="@dimen/width_login_monstriki_logo"
         android:layout_height="@dimen/height_login_monstriki_logo"
-        android:src="@drawable/logo_purple"
-        android:layout_above="@+id/tv_name_title"/>
+        android:layout_above="@+id/tv_name_title"
+        android:src="@drawable/logo_purple"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_name_title"
-        android:text="@string/name"
-        android:layout_marginLeft="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_small"
-        android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_small"
-        android:layout_above="@+id/et_login"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_edit_text"
-        android:id="@+id/et_login"
-        android:layout_marginLeft="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_small"
-        android:paddingLeft="@dimen/margin_left_large"
-        android:maxLines="@integer/max_lines_edit_text"
-        android:inputType="text"
-        android:background="@drawable/et1"
-        android:nextFocusForward="@+id/et_password"
-        android:layout_above="@+id/tv_password_title"/>
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_password_title"
-        android:text="@string/password"
+        android:layout_above="@+id/et_login"
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/name"
         android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_small"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:textSize="@dimen/textsize_small"/>
 
     <EditText
+        android:id="@+id/et_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_edit_text"
-        android:id="@+id/et_password"
-        android:background="@drawable/et2"
+        android:layout_above="@+id/tv_password_title"
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_small"
-        android:paddingLeft="@dimen/margin_left_large"
-        android:layout_below="@+id/tv_password_title"
+        android:background="@drawable/et1"
+        android:inputType="text"
         android:maxLines="@integer/max_lines_edit_text"
-        android:inputType="textPassword"/>
+        android:nextFocusForward="@+id/et_password"
+        android:paddingLeft="@dimen/margin_left_large"/>
+
+    <TextView
+        android:id="@+id/tv_password_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/password"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_small"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_edit_text"
+        android:layout_below="@+id/tv_password_title"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:background="@drawable/et2"
+        android:inputType="textPassword"
+        android:maxLines="@integer/max_lines_edit_text"
+        android:paddingLeft="@dimen/margin_left_large"/>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_login"
@@ -82,6 +88,6 @@
         android:background="@drawable/btn_corner_purple"
         android:gravity="center"
         android:text="@string/login"
-        android:textColor="@color/color_purple" />
+        android:textColor="@color/color_purple"/>
 
 </RelativeLayout>

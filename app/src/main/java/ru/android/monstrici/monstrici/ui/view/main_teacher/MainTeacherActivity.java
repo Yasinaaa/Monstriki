@@ -3,11 +3,13 @@ package ru.android.monstrici.monstrici.ui.view.main_teacher;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -28,7 +31,7 @@ import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.ui.view.main_pupil.MainPupilActivity;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 import ru.android.monstrici.monstrici.utils.Message;
@@ -154,7 +157,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
 
         mIvMenuItem = (ImageView) findViewById(R.id.iv_menu_item);
         mFragmentManager = getSupportFragmentManager();
-        setFragment(JournalFragment.newInstance("1C", "Сегодня"));
+        setFragment(new JournalFragment());
         mIvMenuItem.setVisibility(View.VISIBLE);
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

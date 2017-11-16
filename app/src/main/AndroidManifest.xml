@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.android.monstrici.monstrici">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".ui.view.application.ApplicationCore"
@@ -16,15 +16,12 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name=".ui.view.authorisation.AuthorisationActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop">
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".ui.view.parameters.ParametersActivity"
-            android:screenOrientation="portrait" >
-
-        </activity>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.view.main_pupil.MainPupilActivity"
             android:screenOrientation="portrait">
