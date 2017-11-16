@@ -22,18 +22,21 @@ import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 
 public class DataFragment extends BaseFragment {
 
-    public static String DATE_TYPE = "date_type";
+    protected static String DATE_TYPE = "date_type";
+    protected static String VIEW_TYPE = "view_type";
     @BindView(R.id.cv_calendar)
     com.squareup.timessquare.CalendarPickerView mCvCalendar;
 
     private Calendar mSelectedCalendar;
     private SimpleDateFormat mDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    private boolean mIsPupilView = false;
 
     public DataFragment() {
     }
 
-    public static DataFragment newInstance(){
+    public static DataFragment newInstance(boolean isPupilView){
         Bundle args = new Bundle();
+        args.putBoolean(VIEW_TYPE, isPupilView);
         DataFragment newFragment = new DataFragment();
         newFragment.setArguments(args);
         return newFragment;
@@ -44,6 +47,7 @@ public class DataFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
            // mIsAloneDate = getArguments().getBoolean(DATE_TYPE);
+            mIsPupilView = getArguments().getBoolean(VIEW_TYPE);
         }
     }
 
@@ -53,7 +57,6 @@ public class DataFragment extends BaseFragment {
         createLayout(inflater, container, R.layout.fragment_data);
         return mView;
     }
-
 
     @Override
     public void init() {
@@ -76,6 +79,7 @@ public class DataFragment extends BaseFragment {
     fluentInitializer
                 .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
                 .withHighlightedDates(createWeekDates(Calendar.getInstance()));
+
         mCvCalendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(Date date) {
