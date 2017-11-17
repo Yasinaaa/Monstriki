@@ -24,32 +24,36 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class JournalFragment extends BaseFragment {
 
     protected static final String JOURNAL_DATE = "journal_date";
+    protected static final String JOURNAL_FORM = "journal_form";
+    @BindView(R.id.tv_form)
+    TextView mTvForm;
+    @BindView(R.id.tv_form_text)
+    TextView mTvFormText;
+
     @BindView(R.id.tv_journal)
     TextView mTvJournal;
     @BindView(R.id.tv_form_bracket)
     TextView mTvFormBracket;
-    @BindView(R.id.tv_data_bracket)
-    TextView mTvDataBracket;
     @BindView(R.id.tv_data_day)
     TextView mTvData;
     @BindView(R.id.tableLayout)
     TableLayout mTableLayout;
 
-    private String mDate;
+    private String mDate, mForm;
 
     public JournalFragment() {
     }
 
     public static JournalFragment newInstance(){
         Bundle args = new Bundle();
-        //args.putInt(Resources.MONSTER_IMAGE, monsterImageId);
         JournalFragment newFragment = new JournalFragment();
         newFragment.setArguments(args);
         return newFragment;
     }
 
-    public static JournalFragment newInstance(String date){
+    public static JournalFragment newInstance(String form, String date){
         Bundle args = new Bundle();
+        args.putString(JOURNAL_FORM, form);
         args.putString(JOURNAL_DATE, date);
         JournalFragment newFragment = new JournalFragment();
         newFragment.setArguments(args);
@@ -61,6 +65,7 @@ public class JournalFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
             mDate = getArguments().getString(JOURNAL_DATE);
+            mForm = getArguments().getString(JOURNAL_FORM);
         }
     }
 
@@ -77,10 +82,22 @@ public class JournalFragment extends BaseFragment {
         if (mDate != null){
             mTvData.setText(mDate);
         }
+
+        if (mForm != null){
+            mTvFormText.setText(mForm);
+        }
+
         for (int i=0; i<10; i++) {
             LayoutInflater inflater = (LayoutInflater)
                     getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.item_table_form, null);
+            final int ii = i;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openFragment(PupilFragment.newInstance(Resources.mTempPupils[ii]));
+                }
+            });
 
             final TextView day = (TextView) view.findViewById(R.id.tv_day_of_week);
             final TextView on = (TextView) view.findViewById(R.id.tv_date);
@@ -105,16 +122,19 @@ public class JournalFragment extends BaseFragment {
         TAG = "JournalFragment";
     }
 
-    @OnClick(R.id.tv_data_bracket)
+    /*@OnClick(R.id.tv_data_bracket)
     public void onDataClick(){
         openFragment(DataFragment.newInstance(true));
-    }
+    }*/
 
     @OnClick(R.id.tv_form_bracket)
-    public void onFormClick(){
-        openFragment(new FormParametersFragment());
+    public void onFormBracketClick(){
+        openFragment(FormParametersFragment.newInstance(false));
     }
 
-
+    @OnClick(R.id.tv_form)
+    public void onFormClick(){
+        openFragment(FormParametersFragment.newInstance(false));
+    }
 
 }

@@ -38,7 +38,7 @@ import ru.android.monstrici.monstrici.utils.Resources;
  * Created by yasina on 16.10.17.
  */
 
-public class MainMenu extends BaseActivity implements IMainMenu {
+public class MainPupilActivity extends BaseActivity implements IMainMenu {
     private static final String USER_ID = "user_id";
     private String mUserId;
     @BindView(R.id.bottom_navigation)
@@ -70,7 +70,7 @@ public class MainMenu extends BaseActivity implements IMainMenu {
     private FragmentManager mFragmentManager;
 
     public static Intent newIntent(Context packageContext, String id) {
-        Intent intent = new Intent(packageContext, MainMenu.class);
+        Intent intent = new Intent(packageContext, MainPupilActivity.class);
         intent.putExtra(USER_ID, id);
         return intent;
     }
@@ -94,6 +94,12 @@ public class MainMenu extends BaseActivity implements IMainMenu {
         mTvMonsterName = (TextView) findViewById(R.id.tv_name);
         mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
         mIvDonut = (ImageView) findViewById(R.id.iv_donut);
+        mIvDonut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setSweetsFragment();
+            }
+        });
         String monsterName = getIntent().getStringExtra(Resources.MONSTER_NAME);
         if (monsterName == null) {
             mTvMonsterName.setText("Брозябр");
@@ -145,9 +151,7 @@ public class MainMenu extends BaseActivity implements IMainMenu {
                         setToolbar(mUsualToolbar, prizesFragment);
                         break;
                     case 2:
-                        SweetsFragment sweetsFragment = new SweetsFragment();
-                        mFragmentManager.beginTransaction().replace(R.id.fl_main, sweetsFragment).commit();
-                        setToolbar(mUsualToolbar, sweetsFragment);
+                        setSweetsFragment();
                         break;
                     case 3:
                         SettingsFragment settingsFragment = new SettingsFragment();
@@ -166,6 +170,12 @@ public class MainMenu extends BaseActivity implements IMainMenu {
         });
     }
 
+    private void setSweetsFragment(){
+        SweetsFragment sweetsFragment = new SweetsFragment();
+        mFragmentManager.beginTransaction().replace(R.id.fl_main, sweetsFragment).commit();
+        setToolbar(mUsualToolbar, sweetsFragment);
+    }
+
     private void setMonsterFragment() {
         MonsterFragment monsterFragment = MonsterFragment.newInstance(getIntent().getIntExtra(Resources.MONSTER_IMAGE, 0));
         mFragmentManager.beginTransaction().replace(R.id.fl_main, monsterFragment).commit();
@@ -174,7 +184,7 @@ public class MainMenu extends BaseActivity implements IMainMenu {
 
     @Override
     public void setTag() {
-        TAG = MainMenu.class.getCanonicalName();
+        TAG = MainPupilActivity.class.getCanonicalName();
     }
 
     private void setToolbar(int id, BaseFragmentUsualToolbar baseFragmentWithToolbar) {

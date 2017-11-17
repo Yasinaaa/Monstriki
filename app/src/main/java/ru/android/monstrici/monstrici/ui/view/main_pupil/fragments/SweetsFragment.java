@@ -79,7 +79,7 @@ public class SweetsFragment extends BaseFragmentUsualToolbar implements DaysOfWe
         tempDonutValues[0] = 5;
         tempDonutValues[1] = 2;
         Calendar currentDate = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("d MMMM \nyyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM \nyyyy");
 
         for(int i=0; i<Resources.mStudyDaysOfWeek; i++){
             DayOfWeek dayOfWeek = new DayOfWeek(mDayTitles[i], format.format(currentDate.getTime()),

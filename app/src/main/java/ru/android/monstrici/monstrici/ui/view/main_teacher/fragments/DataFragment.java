@@ -22,20 +22,21 @@ import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 
 public class DataFragment extends BaseFragment {
 
-    public static String DATE_TYPE = "date_type";
+    protected static String DATE_TYPE = "date_type";
+    protected static String VIEW_TYPE = "view_type";
     @BindView(R.id.cv_calendar)
     com.squareup.timessquare.CalendarPickerView mCvCalendar;
 
     private Calendar mSelectedCalendar;
-    private boolean mIsAloneDate;
     private SimpleDateFormat mDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    private boolean mIsPupilView = false;
 
     public DataFragment() {
     }
 
-    public static DataFragment newInstance(boolean isAloneDate){
+    public static DataFragment newInstance(boolean isPupilView){
         Bundle args = new Bundle();
-        args.putBoolean(DATE_TYPE, isAloneDate);
+        args.putBoolean(VIEW_TYPE, isPupilView);
         DataFragment newFragment = new DataFragment();
         newFragment.setArguments(args);
         return newFragment;
@@ -45,7 +46,8 @@ public class DataFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
-            mIsAloneDate = getArguments().getBoolean(DATE_TYPE);
+           // mIsAloneDate = getArguments().getBoolean(DATE_TYPE);
+            mIsPupilView = getArguments().getBoolean(VIEW_TYPE);
         }
     }
 
@@ -55,7 +57,6 @@ public class DataFragment extends BaseFragment {
         createLayout(inflater, container, R.layout.fragment_data);
         return mView;
     }
-
 
     @Override
     public void init() {
@@ -71,31 +72,25 @@ public class DataFragment extends BaseFragment {
         CalendarPickerView.FluentInitializer fluentInitializer =
                 mCvCalendar.init(mSelectedCalendar.getTime(), finishDate.getTime());
 
-        if (mIsAloneDate){
-            initOneDayView(fluentInitializer);
-        }else {
-            initWeekView(fluentInitializer);
-        }
-
-
-
+        initWeekView(fluentInitializer);
     }
 
     private void initWeekView(CalendarPickerView.FluentInitializer fluentInitializer){
     fluentInitializer
                 .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
-                .withSelectedDates(createWeekDates(Calendar.getInstance()));
-    }
+                .withHighlightedDates(createWeekDates(Calendar.getInstance()));
 
-    private void initOneDayView(CalendarPickerView.FluentInitializer fluentInitializer){
-        fluentInitializer
-                .inMode(CalendarPickerView.SelectionMode.SINGLE)
-                .withSelectedDate(Calendar.getInstance().getTime());
         mCvCalendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(Date date) {
-
-                openFragment(JournalFragment.newInstance(mDateFormat.format(date)));
+                mCvCalendar.selectDate(date);
+                mCvCalendar.clearHighlightedDates();
+                ArrayList<Date> mDates = createWeekDates(date);
+                mCvCalendar.highlightDates(mDates);
+                openFragment(
+                        JournalFragment.newInstance("1C",
+                                mDateFormat.format(mDates.get(0)) + "-" +
+                                        mDateFormat.format(mDates.get(6))));
             }
 
             @Override
@@ -103,12 +98,11 @@ public class DataFragment extends BaseFragment {
 
             }
         });
+
     }
 
-    private ArrayList<Date> createWeekDates(Calendar today){
+    private ArrayList<Date> createWeekDates(Calendar today) {
         ArrayList<Date> dates = new ArrayList<Date>();
-        Date currentDate = today.getTime();
-        int dayOfWeek = today.get(Calendar.WEEK_OF_YEAR);
 
         for (int i=2; i<7; i++){
             today.set(Calendar.DAY_OF_WEEK, i);
@@ -121,15 +115,13 @@ public class DataFragment extends BaseFragment {
             Date date = today.getTime();
             dates.add(date);
         }
-
-        /*today.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
-        Date date = today.getTime();
-        dates.add(date);
-
-        today.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-        date = today.getTime();
-        dates.add(date);*/
         return dates;
+    }
+
+    private ArrayList<Date> createWeekDates(Date currentDate){
+        Calendar today = Calendar.getInstance();
+        today.setTime(currentDate);
+        return createWeekDates(today);
     }
 
     @Override

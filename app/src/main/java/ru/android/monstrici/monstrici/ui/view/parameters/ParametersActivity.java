@@ -86,6 +86,7 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
     private void setCreateNameMode(){
         mRvEyes.setVisibility(View.GONE);
         mTilMonsterName.setVisibility(View.VISIBLE);
+        mTvLargeText.setText(R.string.write_name);
 
         setLayoutBelow(mIvMonster, R.id.til_monster_name);
         isQuestionMode = false;

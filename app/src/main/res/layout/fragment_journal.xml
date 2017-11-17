@@ -41,29 +41,18 @@
         android:paddingBottom="@dimen/padding_very_small" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_data_bracket"
-        android:text=">"
-        android:layout_marginTop="@dimen/margin_small"
-        android:textSize="@dimen/textsize_xlarge"
-        android:textColor="@color/color_purple"
-        android:layout_below="@+id/view1"
-        android:layout_alignRight="@+id/tv_journal"
-        android:layout_alignEnd="@+id/tv_journal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_data_day"
-        android:text="Сегодня"
-        android:textSize="@dimen/textsize_small"
-        android:paddingTop="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_small"
-        android:textColor="@color/color_purple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_form_bracket"
+        android:layout_alignEnd="@+id/tv_form_bracket"
+        android:layout_alignRight="@+id/tv_form_bracket"
         android:paddingBottom="@dimen/padding_small"
-        android:layout_toLeftOf="@+id/tv_data_bracket"
-        android:layout_alignTop="@+id/tv_data_bracket" />
+        android:paddingRight="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_small"
+        android:text="Сегодня"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_small" />
 
     <View
         android:layout_width="match_parent"

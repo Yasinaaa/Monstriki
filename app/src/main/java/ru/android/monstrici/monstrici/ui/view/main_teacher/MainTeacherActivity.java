@@ -31,7 +31,7 @@ import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainPupilActivity;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 import ru.android.monstrici.monstrici.utils.Message;
@@ -47,7 +47,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
 
 
     public static Intent newIntent(Context packageContext, String id) {
-        Intent intent = new Intent(packageContext, MainTeacherActivity.class);
+        Intent intent = new Intent(packageContext, MainPupilActivity.class);
         intent.putExtra(USER_ID, id);
         return intent;
     }
@@ -93,13 +93,13 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         @OnClick(R.id.tv_fill_today)
         public void onFillTodayClick() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            setFragment(new JournalFragment());
+            setFragment(JournalFragment.newInstance());
         }
 
         @OnClick(R.id.tv_look_form)
         public void onLookForm() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            setFragment(new FormParametersFragment());
+            setFragment(FormParametersFragment.newInstance(true));
         }
 
         @OnClick(R.id.tv_settings)
@@ -111,9 +111,8 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         @OnClick(R.id.tv_exit)
         public void onExit() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(MainTeacherActivity.this, AuthorisationActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Intent intent = new Intent(MainTeacherActivity.this,
+                    AuthorisationActivity.class);
             startActivity(intent);
         }
     }
@@ -137,7 +136,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
-        mUserId = getIntent().getStringExtra(USER_ID);
+        mUserId=getIntent().getStringExtra(USER_ID);
         start();
     }
 
