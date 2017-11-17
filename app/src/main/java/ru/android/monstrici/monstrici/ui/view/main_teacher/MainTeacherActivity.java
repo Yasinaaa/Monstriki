@@ -31,7 +31,7 @@ import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainPupilActivity;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 import ru.android.monstrici.monstrici.utils.Message;

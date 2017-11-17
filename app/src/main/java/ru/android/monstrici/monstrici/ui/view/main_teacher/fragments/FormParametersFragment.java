@@ -95,7 +95,7 @@ public class FormParametersFragment extends BaseFragment {
     @OnClick(R.id.btn_ready)
     public void onBtnReadyClick(){
         if (mIsLookPage){
-            openFragment(DataFragment.newInstance());
+            openFragment(DataFragment.newInstance(false));
         }else {
             JournalFragment journalFragment = JournalFragment.newInstance(mChoosedFormNum + mChoosedLitera,
                     "Сегодня");
