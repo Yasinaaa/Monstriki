@@ -91,10 +91,6 @@ public class SettingsFragment extends BaseFragmentUsualToolbar implements View.O
     public void init() {
         mEtMonsterName.setText("Брозябр");
         MonsterPictureFunction.setMonsterPicture(this, mMonsterImageId, mIvMonster);
-        Glide.with(this).load(R.drawable.eye).into(mIvEyes);
-        Glide.with(this).load(R.drawable.mouth).into(mIvMouth);
-        Glide.with(this).load(R.drawable.hand).into(mIvHands);
-        Glide.with(this).load(R.drawable.m1).into(mIvMonster);
     }
 
     @Override

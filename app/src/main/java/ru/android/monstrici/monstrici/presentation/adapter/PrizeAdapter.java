@@ -50,6 +50,7 @@ public class PrizeAdapter extends RecyclerView.Adapter<PrizeAdapter.PrizeHolder>
 
         Prize prize = mList.get(position);
         Glide.with(mContext).load(prize.getPrizePicture()).into(holder.mIvPrize);
+
         holder.mTvPrizeTitle.setText(prize.getPrizeTitle());
         holder.mTvPrizeDate.setText(prize.getPrizeDate());
 

@@ -6,7 +6,7 @@
 
     <item
             android:gravity="center"
-            android:drawable="@drawable/ic_splash">
+            android:drawable="@drawable/splash">
     </item>
 
 </layer-list>

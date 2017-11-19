@@ -101,4 +101,8 @@
         <item>5</item>
     </string-array>
 
+    <!-- fragment_star -->
+    <string name="star">Доска почета</string>
+    <string name="rate">Рейтинг</string>
+    <string name="hall_of_fame">Холл славы</string>
 </resources>
