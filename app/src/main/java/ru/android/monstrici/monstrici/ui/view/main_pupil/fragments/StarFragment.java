@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -76,8 +77,7 @@ public class StarFragment extends BaseFragmentUsualToolbar {
 
     @Override
     public void init() {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        mTabsPagerAdapter = new TabsPagerAdapter(fragmentManager);
+        mTabsPagerAdapter = new TabsPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(mTabsPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -130,7 +130,7 @@ public class StarFragment extends BaseFragmentUsualToolbar {
         TAG = "MonsterFragment";
     }
 
-    public class TabsPagerAdapter extends FragmentPagerAdapter {
+    public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
         public RateFragment mRateFragment;
         public HallOfFameFragment mHallOfFameFragment;
