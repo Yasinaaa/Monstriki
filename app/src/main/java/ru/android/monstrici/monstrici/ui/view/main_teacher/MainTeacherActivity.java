@@ -74,7 +74,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         return presenter;
     }
 
-    public class NavigationViewsItems {
+    private class NavigationViewsItems {
         @BindView(R.id.tv_teacher_name)
         TextView mTvTeacherName;
         @BindView(R.id.tv_fill_today)
@@ -86,7 +86,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         @BindView(R.id.tv_exit)
         TextView mExit;
 
-        public NavigationViewsItems(View view) {
+        NavigationViewsItems(View view) {
             ButterKnife.bind(this, view);
         }
 
