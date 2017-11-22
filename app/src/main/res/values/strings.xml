@@ -30,7 +30,7 @@
     <string name="question">Какие глаза\n у твоего монстрика?</string>
     <string name="next">Дальше</string>
     <string name="need_your_name">Твоему монстру нужно имя</string>
-    <string name="write_name">Напиши сюда имя монстра</string>
+    <string name="write_name">А теперь напиши сюда имя монстра</string>
     <string name="empty_name">Имя не должно быть пустым</string>
 
     <!-- fragment_monster.xml -->
@@ -78,8 +78,23 @@
     <string name="journal">Журнал</string>
     <string name="data">Дата</string>
     <string name="pupil">Ученик</string>
-    <string name="for_answer">За \nответ\n</string>
-    <string name="for_cleaning">За \nуборку\n</string>
+    <string name="points">Баллы</string>
+    <string name="comment">Тэг</string>
+    <string name="choose_tag">Выберите тэг</string>
+    <string name="choose">Выбрать</string>
+    <string name="cancel">Выйти</string>
+    <string-array name="tags">
+        <item>уборка</item>
+        <item>учеба</item>
+        <item>спорт</item>
+        <item>помощь</item>
+        <item>активность</item>
+        <item>исполнительность</item>
+        <item>подготовленность</item>
+        <item>дисциплина</item>
+        <item>дежурство</item>
+        <item>пунктуальность</item>
+    </string-array>
 
     <!-- fragment_form_parameters.xml -->
     <string name="litera">Литера</string>
@@ -101,4 +116,8 @@
         <item>5</item>
     </string-array>
 
+    <!-- fragment_star -->
+    <string name="star">Доска почета</string>
+    <string name="rate">Рейтинг</string>
+    <string name="hall_of_fame">Холл славы</string>
 </resources>

@@ -16,6 +16,12 @@ public class Resources {
     public final static String MONSTER_NAME = "monster_name";
     public final static String MONSTER_IMAGE = "monster_image";
 
+    public static int[] mMainPupilDrawables = new int[]{
+            R.drawable.main_icon, R.drawable.cup_icon,
+            R.drawable.candy_icon, R.drawable.settings_icon,
+            R.drawable.star_icon
+    };
+
     public static int[] mEyesDrawables = new int[]{
         R.drawable.e1, R.drawable.e2, R.drawable.e3, R.drawable.e4, R.drawable.e5, R.drawable.e6
     };

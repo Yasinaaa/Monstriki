@@ -3,8 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="margin_xsmall">5dp</dimen>
+    <dimen name="margin_very_small">5dp</dimen>
     <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_xsmall">15dp</dimen>
     <dimen name="margin_normal">20dp</dimen>
     <dimen name="margin_large">30dp</dimen>
     <dimen name="margin_xlarge">40dp</dimen>
@@ -29,17 +30,21 @@
     <dimen name="height_logo">100dp</dimen>
 
     <!-- activity_main.xml -->
-    <dimen name="height_toolbar">70dp</dimen>
+    <dimen name="height_toolbar">60dp</dimen>
 
     <!-- activity_parameters.xml-->
-    <dimen name="textsize_question">28dp</dimen>
+    <dimen name="textsize_question">20sp</dimen>
     <dimen name="width_monster_without_eyes">200dp</dimen>
     <dimen name="height_monster_without_eyes">200dp</dimen>
+
+    <!-- view_toolbar.xml-->
+    <dimen name="width_menu_item">50dp</dimen>
+    <dimen name="height_menu_item">50dp</dimen>
 
     <!-- view_toolbar_monstriki.xml -->
     <dimen name="cardview_elevation">4dp</dimen>
     <dimen name="cardview_corner_radius">4dp</dimen>
-    <dimen name="textsize_monster_name">40sp</dimen>
+    <dimen name="textsize_monster_name">30sp</dimen>
 
     <!-- fragment_settings.xml -->
     <dimen name="width_monster_settings">130dp</dimen>
@@ -51,8 +56,8 @@
     <!-- fragment_monster.xml -->
     <dimen name="width_donuts_toolbar_view">130dp</dimen>
     <dimen name="height_donuts_toolbar_view">70dp</dimen>
-    <dimen name="width_donuts_view">50dp</dimen>
-    <dimen name="height_donuts_view">50dp</dimen>
+    <dimen name="width_donuts_view">40dp</dimen>
+    <dimen name="height_donuts_view">40dp</dimen>
     <dimen name="width_bubble_imageview">80dp</dimen>
     <dimen name="height_bubble_imageview">80dp</dimen>
 
@@ -61,11 +66,13 @@
     <dimen name="size_prize_imageview">60dp</dimen>
 
     <!-- fragment_sweets.xml -->
-    <dimen name="textsize_day_of_week">50sp</dimen>
-    <dimen name="textsize_date">20sp</dimen>
+    <dimen name="textsize_day_of_week">40sp</dimen>
+    <dimen name="textsize_date">15sp</dimen>
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="width_item_sweets">60dp</dimen>
+    <dimen name="height_item_sweets">60dp</dimen>
 
     <!-- activity_main_teacher.xml -->
     <dimen name="textsize_small">15sp</dimen>
@@ -78,6 +85,7 @@
     <integer name="weight_large_item_linear_layout">1</integer>
     <dimen name="text_size_schedule_table_item">17sp</dimen>
     <dimen name="text_size_small_schedule_table_item">13sp</dimen>
+
     <!-- view_mocnstriki_with_menu.xml -->
     <dimen name="textsize_logo_in_menu_toolbar">40sp</dimen>
     <dimen name="size_monster_in_menu_roolbar">70dp</dimen>
@@ -93,5 +101,12 @@
     <dimen name="width_login_monstriki_logo">300dp</dimen>
     <dimen name="margin_left_large">37dp</dimen>
     <dimen name="height_edit_text">30dp</dimen>
+
+    <!-- fragment_star.xml -->
+    <dimen name="width_monster_rate">70dp</dimen>
+    <dimen name="height_monster_rate">70dp</dimen>
+    <dimen name="margin_top_rate">2dp</dimen>
+    <dimen name="width_donut_rate">40dp</dimen>
+    <dimen name="height_donut_rate">40dp</dimen>
 
 </resources>

@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="@dimen/height_large_item_linear_layout"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_day_of_week"
+        android:id="@+id/tv_pupil_name"
         android:layout_weight="@integer/weight_large_item_linear_layout"
         android:textSize="@dimen/textsize_day_of_week"
         android:textAlignment="center"
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="@dimen/height_large_item_linear_layout"
         android:layout_height="match_parent"
-        android:id="@+id/tv_date"
+        android:id="@+id/tv_donuts_count"
         android:text="18.09.17"
         android:layout_weight="@integer/weight_large_item_linear_layout"
         android:gravity="center"

@@ -3,14 +3,23 @@ package ru.android.monstrici.monstrici.presentation.presenter.parameters;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.arellomobile.mvp.InjectViewState;
+
+import javax.inject.Inject;
+
+import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
-import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.presentation.view.parameters.IParametersView;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainPupilActivity;
 import ru.android.monstrici.monstrici.utils.Resources;
 /**
  * Created by yasina on 16.10.17.
  */
+@InjectViewState
+public class ParametersPresenter extends BasePresenter<IParametersView> {
 
-public class ParametersPresenter extends BasePresenter {
+    @Inject
+    UserRepositoryImpl mRepository;
 
     public ParametersPresenter(Activity activity) {
         super(activity);
@@ -18,7 +27,7 @@ public class ParametersPresenter extends BasePresenter {
 
     public void goNext(String monsterName, int monsterImage){
 
-        Intent intent = new Intent(mActivity, MainMenu.class);
+        Intent intent = new Intent(mActivity, MainPupilActivity.class);
         //TODO: change with Obserable to check this
         if (monsterName.equals("")){
             monsterName = "Брозябр";
