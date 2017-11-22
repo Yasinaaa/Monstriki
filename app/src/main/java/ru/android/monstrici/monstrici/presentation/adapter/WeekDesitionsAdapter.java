@@ -47,8 +47,8 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
         if (position == 0){
             holder.mTvDayOfWeek.setText("");
             holder.mTvDate.setText("");
-            holder.mForCleaning.setText(mResource.getString(R.string.for_cleaning));
-            holder.mForAnswer.setText(mResource.getString(R.string.for_answer));
+            holder.mForCleaning.setText(mResource.getString(R.string.comment));
+            holder.mForAnswer.setText(mResource.getString(R.string.points));
 
             setHeight(setWrapContentHeight(),holder.mTvDayOfWeek, holder.mTvDate,
                     holder.mForCleaning, holder.mForAnswer);
@@ -93,9 +93,9 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
 
     public class WeekDesitionsHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_day_of_week)
+        @BindView(R.id.tv_pupil_name)
         TextView mTvDayOfWeek;
-        @BindView(R.id.tv_date)
+        @BindView(R.id.tv_donuts_count)
         TextView mTvDate;
         @BindView(R.id.tv_for_answer)
         TextView mForAnswer;

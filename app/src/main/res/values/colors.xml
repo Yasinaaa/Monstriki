@@ -13,4 +13,7 @@
     <color name="color_gray">#bcb7b7</color>
     <color name="calendar_selected_day_bg">#f9a71a</color>
     <color name="calendar_highlighted_day_bg">#f9a71a</color>
+
+    <color name="container_background_color">@color/color_white</color>
+    <color name="tag_background">@color/color_gray</color>
 </resources>

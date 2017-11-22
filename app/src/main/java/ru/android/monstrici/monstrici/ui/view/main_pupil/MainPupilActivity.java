@@ -30,9 +30,11 @@ import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.PrizesFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SettingsFragment;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.StarFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SweetsFragment;
 import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by yasina on 16.10.17.
@@ -112,19 +114,12 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     @Override
     public void init() {
 
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("",
-                R.drawable.main_icon, R.color.color_selected_item);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("",
-                R.drawable.cup_icon, R.color.color_selected_item);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("",
-                R.drawable.candy_icon, R.color.color_selected_item);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem("",
-                R.drawable.settings_icon, R.color.color_selected_item);
+        for (int i=0; i<Resources.mMainPupilDrawables.length; i++){
+            AHBottomNavigationItem item = new AHBottomNavigationItem("",
+                    Resources.mMainPupilDrawables[i], R.color.color_selected_item);
+            mBottomNavigationView.addItem(item);
+        }
 
-        mBottomNavigationView.addItem(item1);
-        mBottomNavigationView.addItem(item2);
-        mBottomNavigationView.addItem(item3);
-        mBottomNavigationView.addItem(item4);
         mBottomNavigationView.setDefaultBackgroundColor(getApplicationContext().getResources().getColor(R.color.color_toolbar));
         mBottomNavigationView.setAccentColor(getApplicationContext().getResources().getColor(R.color.color_selected_item));
         mBottomNavigationView.setInactiveColor(getApplicationContext().getResources().getColor(R.color.color_unselected_item));
@@ -144,7 +139,6 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
                     case 0:
                         setMonsterFragment();
                         break;
-
                     case 1:
                         PrizesFragment prizesFragment = new PrizesFragment();
                         mFragmentManager.beginTransaction().replace(R.id.fl_main, prizesFragment).commit();
@@ -157,6 +151,12 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
                         SettingsFragment settingsFragment = new SettingsFragment();
                         mFragmentManager.beginTransaction().replace(R.id.fl_main, settingsFragment).commit();
                         setToolbar(mUsualToolbar, settingsFragment);
+                        break;
+                    case 4:
+                        StarFragment starFragment = new StarFragment();
+                        mFragmentManager.beginTransaction().replace(R.id.fl_main,
+                                starFragment).commit();
+                        setToolbar(mUsualToolbar, starFragment);
                         break;
                 }
                 return true;
@@ -206,7 +206,9 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
         if (id == mUsualToolbar && baseFragmentWithToolbar != null) {
             mIvFragmentLogo = (ImageView) findViewById(R.id.iv_fragment_logo);
             mTvFragmentTitle = (TextView) findViewById(R.id.tv_fragment_title);
-            Glide.with(this).load(baseFragmentWithToolbar.getToolbarImage()).into(mIvFragmentLogo);
+            /*Glide.with(this).load(baseFragmentWithToolbar.getToolbarImage()).
+                    into(mIvFragmentLogo);*/
+            mIvFragmentLogo.setImageResource(baseFragmentWithToolbar.getToolbarImage());
             mTvFragmentTitle.setText(getString(baseFragmentWithToolbar.getToolbarTitle()));
 
         }
@@ -234,6 +236,11 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     @Override
     public void showError(Message message) {
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
 

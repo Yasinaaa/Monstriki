@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,7 +30,8 @@
         android:layout_alignLeft="@+id/et_monster_name"
         android:layout_alignStart="@+id/et_monster_name"
         android:layout_below="@+id/et_monster_name"
-        android:layout_marginTop="@dimen/margin_normal"/>
+        android:layout_marginTop="@dimen/margin_small"
+        app:srcCompat="@drawable/eye"/>
 
     <TextView
         android:id="@+id/tv_eyes"
@@ -35,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_monster_name"
         android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small"
         android:layout_toRightOf="@+id/iv_eyes"
         android:text="@string/eyes"
         android:textColor="@color/color_purple"
@@ -48,7 +52,8 @@
         android:layout_alignLeft="@+id/et_monster_name"
         android:layout_alignStart="@+id/et_monster_name"
         android:layout_below="@+id/tv_eyes"
-        android:layout_marginTop="@dimen/margin_normal"/>
+        android:layout_marginTop="@dimen/margin_normal"
+        app:srcCompat="@drawable/mouth"/>
 
     <TextView
         android:id="@+id/tv_mouth"
@@ -69,7 +74,8 @@
         android:layout_alignLeft="@+id/et_monster_name"
         android:layout_alignStart="@+id/et_monster_name"
         android:layout_below="@+id/iv_mouth"
-        android:layout_marginTop="@dimen/margin_normal"/>
+        android:layout_marginTop="@dimen/margin_normal"
+        app:srcCompat="@drawable/hand"/>
 
     <TextView
         android:id="@+id/tv_hands"
@@ -77,11 +83,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_mouth"
         android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_large"
         android:layout_toRightOf="@+id/iv_eyes"
         android:text="@string/hands"
         android:textColor="@color/color_purple"
         android:textSize="@dimen/textsize_question"/>
+
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"
+        android:layout_below="@+id/tv_hands"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_toRightOf="@+id/iv_eyes"/>
 
     <ImageView
         android:id="@+id/iv_logout"
@@ -90,32 +108,21 @@
         android:layout_alignLeft="@+id/et_monster_name"
         android:layout_alignStart="@+id/et_monster_name"
         android:layout_below="@+id/iv_hands"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:src="@drawable/ic_exit_to_app"/>
-
-    <TextView
-        android:id="@+id/tv_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_hands"
-        android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_toRightOf="@+id/iv_logout"
-        android:text="@string/logout"
-        android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"/>
+        android:layout_marginTop="@dimen/margin_small"
+        app:srcCompat="@drawable/exit_to_app"/>
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="@dimen/width_btn_save"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_logout"
+        android:layout_below="@+id/iv_logout"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_margin="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_normal"
         android:background="@drawable/btn_corner_purple"
         android:padding="@dimen/padding_small"
         android:text="@string/save"
         android:textColor="@color/color_purple"/>
 
 </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

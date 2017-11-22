@@ -55,7 +55,8 @@ public class DaysOfWeekAdapter extends RecyclerView.Adapter<DaysOfWeekAdapter.Da
         if(day.getDonutsCount() <= 0){
             holder.mIvDonut.setVisibility(View.GONE);
         }else {
-            Glide.with(mContext).load(R.drawable.donut).into(holder.mIvDonut);
+            //Glide.with(mContext).load(R.drawable.donut).into(holder.mIvDonut);
+            holder.mIvDonut.setImageResource(R.drawable.donut);
             holder.mTvDonutNum.setText(String.valueOf(day.getDonutsCount()));
         }
 
