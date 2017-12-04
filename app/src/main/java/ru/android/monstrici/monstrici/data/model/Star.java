@@ -13,8 +13,6 @@ public class Star {
     private String mAnswer;
     private String mDate;
 
-
-
     public String getId() {
         return mId;
     }

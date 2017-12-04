@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.presentation.view.menu;
+package ru.android.monstrici.monstrici.presentation.view.journal;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
 /**
  * Created by elisium
  *
- * @Date 09/11/2017
+ * @Date 02/12/2017
  * @Author Andrei Gusev
  */
 
-public interface IPupilMainMenu extends IBaseView {
-    void onUsersGet(User user);
-    void onStarsGet(List<Star> stars);
+public interface IJournalView extends IBaseView {
+    void onUsersPrepare(List<User> userList);
+    void onStarsGet(User user, List<Star> stars);
 }

@@ -130,7 +130,7 @@ public class UserRepositoryImpl implements IUserRepository {
 
     @Override
     public void getUsers(@NonNull IDataCallback<User> callback) {
-        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
+        if (mCachedUserMap != null || mCachedUserMap.size() != 0) {
             mRemoteUserRepository.getUsers(callback);
         } else {
 

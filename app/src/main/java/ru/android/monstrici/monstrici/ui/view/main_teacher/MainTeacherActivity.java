@@ -24,9 +24,8 @@ import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
-import ru.android.monstrici.monstrici.presentation.presenter.main.pupil.MainPupilMenuPresenter;
-import ru.android.monstrici.monstrici.presentation.presenter.main.teacher.MainTeacherMenuPresenter;
-import ru.android.monstrici.monstrici.presentation.view.menu.IMainTeacherMenu;
+import ru.android.monstrici.monstrici.presentation.presenter.main.MainMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
@@ -35,14 +34,14 @@ import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFrag
 import ru.android.monstrici.monstrici.utils.Message;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainTeacherActivity extends BaseActivity implements IMainTeacherMenu {
+public class MainTeacherActivity extends BaseActivity implements IMainMenu {
 
     private static final String USER_ID = "user_id";
     private String mUserId;
     //@BindView(R.id.include_toolbar)
     //View mToolbar;
     @InjectPresenter
-    public MainTeacherMenuPresenter mPresenter;
+    public MainMenuPresenter mPresenter;
 
 
     public static Intent newIntent(Context packageContext, String id) {
@@ -62,11 +61,6 @@ public class MainTeacherActivity extends BaseActivity implements IMainTeacherMen
     }
 
     @Override
-    public void onFormGet(List<User> users) {
-
-    }
-
-    @Override
     public void showLoading(boolean flag) {
 
     }
@@ -77,8 +71,8 @@ public class MainTeacherActivity extends BaseActivity implements IMainTeacherMen
     }
 
     @ProvidePresenter
-    public MainTeacherMenuPresenter providePresenter() {
-        MainTeacherMenuPresenter presenter = new MainTeacherMenuPresenter();
+    public MainMenuPresenter providePresenter() {
+        MainMenuPresenter presenter = new MainMenuPresenter();
         getApplicationComponent().inject(presenter);
         return presenter;
     }

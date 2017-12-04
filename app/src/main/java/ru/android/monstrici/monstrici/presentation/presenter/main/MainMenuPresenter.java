@@ -11,17 +11,20 @@ import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
 import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
-import ru.android.monstrici.monstrici.presentation.view.menu.IMainPupilMenu;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
- * Created by yasina on 04.12.17.
+ * Created by elisium
+ *
+ * @Date 09/11/2017
+ * @Author Andrei Gusev
  */
-
 @InjectViewState
-public abstract class MainMenuPresenter extends BasePresenter<IMainMenu> {
+public class MainMenuPresenter extends BasePresenter<IMainMenu>{
+
     @Inject
     UserRepositoryImpl mRepository;
+
 
     public void getUser(String id) {
         getViewState().showLoading(true);
@@ -56,4 +59,5 @@ public abstract class MainMenuPresenter extends BasePresenter<IMainMenu> {
             }
         });
     }
+
 }
