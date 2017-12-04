@@ -12,19 +12,6 @@ import ru.android.monstrici.monstrici.presentation.BaseModule;
  * Created by yasina on 16.10.17.
  */
 
-public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<View>
-        implements BaseModule.BasePresenter {
+public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<View> {
 
-    public Activity mActivity;
-    public Context mContext;
-
-    @Deprecated
-    public BasePresenter(Activity activity) {
-        this.mActivity = activity;
-        this.mContext = mActivity.getApplicationContext();
-    }
-
-    public BasePresenter() {
-
-    }
 }

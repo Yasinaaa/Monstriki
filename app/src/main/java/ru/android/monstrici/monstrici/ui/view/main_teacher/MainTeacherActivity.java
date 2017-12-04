@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
@@ -47,13 +48,18 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
 
 
     public static Intent newIntent(Context packageContext, String id) {
-        Intent intent = new Intent(packageContext, MainPupilActivity.class);
+        Intent intent = new Intent(packageContext, MainTeacherActivity.class);
         intent.putExtra(USER_ID, id);
         return intent;
     }
 
     @Override
-    public void onUsersGet(List<User> users) {
+    public void onUsersGet(User user) {
+        mNavigationViewsItems.mTvTeacherName.setText(user.getName());
+    }
+
+    @Override
+    public void onStarsGet(List<Star> stars) {
 
     }
 
@@ -74,7 +80,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         return presenter;
     }
 
-    public class NavigationViewsItems {
+    class NavigationViewsItems {
         @BindView(R.id.tv_teacher_name)
         TextView mTvTeacherName;
         @BindView(R.id.tv_fill_today)
@@ -86,7 +92,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         @BindView(R.id.tv_exit)
         TextView mExit;
 
-        public NavigationViewsItems(View view) {
+        NavigationViewsItems(View view) {
             ButterKnife.bind(this, view);
         }
 
@@ -136,7 +142,8 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
-        mUserId=getIntent().getStringExtra(USER_ID);
+        mUserId = getIntent().getStringExtra(USER_ID);
+        mPresenter.getUser(mUserId);
         start();
     }
 
@@ -152,9 +159,6 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     @Override
     public void init() {
         mNavigationViewsItems = new NavigationViewsItems(mNavigationView.getHeaderView(0));
-        //TODO: change to real values
-        mNavigationViewsItems.mTvTeacherName.setText("Мария Ивановна");
-
         mIvMenuItem = (ImageView) findViewById(R.id.iv_menu_item);
         mFragmentManager = getSupportFragmentManager();
         setFragment(new JournalFragment());
