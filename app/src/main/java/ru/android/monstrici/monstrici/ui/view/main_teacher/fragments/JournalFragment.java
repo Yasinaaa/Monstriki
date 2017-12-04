@@ -12,8 +12,12 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,15 +25,21 @@ import butterknife.OnClick;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.User;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
+import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.teacher.TeacherPresenter;
+import ru.android.monstrici.monstrici.presentation.view.menu.ITeacherView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.utils.DialogUtils;
+import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 29.10.17.
  */
 
-public class JournalFragment extends BaseFragment {
+public class JournalFragment extends BaseFragment implements ITeacherView {
 
     protected static final String JOURNAL_DATE = "journal_date";
     protected static final String JOURNAL_FORM = "journal_form";
@@ -49,18 +59,28 @@ public class JournalFragment extends BaseFragment {
 
     private String mDate, mForm;
     private TableItems mTableItems;
+    @InjectPresenter
+    TeacherPresenter mPresenter;
 
     public JournalFragment() {
     }
 
-    public static JournalFragment newInstance(){
+    @ProvidePresenter
+    public TeacherPresenter providePresenter() {
+        TeacherPresenter presenter = new TeacherPresenter();
+        getComponent(AppComponent.class).inject(presenter);
+        return presenter;
+    }
+
+
+    public static JournalFragment newInstance() {
         Bundle args = new Bundle();
         JournalFragment newFragment = new JournalFragment();
         newFragment.setArguments(args);
         return newFragment;
     }
 
-    public static JournalFragment newInstance(String form, String date){
+    public static JournalFragment newInstance(String form, String date) {
         Bundle args = new Bundle();
         args.putString(JOURNAL_FORM, form);
         args.putString(JOURNAL_DATE, date);
@@ -72,10 +92,11 @@ public class JournalFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
+        if (getArguments() != null) {
             mDate = getArguments().getString(JOURNAL_DATE);
             mForm = getArguments().getString(JOURNAL_FORM);
         }
+        mPresenter.getUsers();
     }
 
     @Override
@@ -88,37 +109,49 @@ public class JournalFragment extends BaseFragment {
     @Override
     public void init() {
 
-        if (mDate != null){
+        if (mDate != null) {
             mTvData.setText(mDate);
         }
 
-        if (mForm != null){
+        if (mForm != null) {
             mTvFormText.setText(mForm);
         }
 
-        generateTableLayout();
     }
 
-    //TODO: set real data from db
-    public void generateTableLayout(){
-        for (int i=0; i<10; i++) {
+    public void generateTableLayout(List<User> users) {
+        mTableItems.setHeader();
+        for (int i = 0; i < users.size(); i++) {
+            User user = users.get(i);
+
             LayoutInflater inflater = (LayoutInflater)
                     getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.item_table_form, null);
 
             mTableItems = new TableItems(view, getActivity());
-            if (i == 0) {
-                mTableItems.setHeader();
-            } else {
-                mTableItems.setItem(Resources.mTempPupils[i], String.valueOf(0),
-                        String.valueOf(1));
-            }
+            mTableItems.setItem(user.getName(), user.getPointsNumber(),
+                    user.getTag());
 
             mTableLayout.addView(view, i);
         }
     }
 
-    public class TableItems{
+    @Override
+    public void onUsersPrepare(List<User> users) {
+        generateTableLayout(users);
+    }
+
+    @Override
+    public void showLoading(boolean flag) {
+
+    }
+
+    @Override
+    public void showError(Message message) {
+
+    }
+
+    public class TableItems {
 
         @BindView(R.id.tv_pupil_name)
         TextView mTvPupilName;
@@ -132,12 +165,13 @@ public class JournalFragment extends BaseFragment {
         TextView mTvTag;
 
         private Activity mActivity;
+
         public TableItems(View view, Activity activity) {
             ButterKnife.bind(this, view);
             mActivity = activity;
         }
 
-        public void setHeader(){
+        public void setHeader() {
             setTableItems(getResources().getString(R.string.pupil),
                     getResources().getString(R.string.points),
                     getResources().getString(R.string.comment));
@@ -146,9 +180,9 @@ public class JournalFragment extends BaseFragment {
         }
 
         public void setItem(String pupilName,
-                            String pupilPoints, String pointsTag){
+                            int pupilPoints, String pointsTag) {
 
-            setTableItems(pupilName, pupilPoints, pointsTag);
+            setTableItems(pupilName, pupilPoints + "", pointsTag);
             mTvTag.setBackgroundResource(R.drawable.cell_shape);
             setOnPupilNameClick(pupilName);
         }
@@ -199,18 +233,18 @@ public class JournalFragment extends BaseFragment {
                 }
             });
 
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(mActivity)
-                            .setView(view)
-                            .setTitle(getResources().getString(R.string.choose_tag))
-                            .setPositiveButton(mActivity.getString(R.string.choose),
+            AlertDialog.Builder dialog = new AlertDialog.Builder(mActivity)
+                    .setView(view)
+                    .setTitle(getResources().getString(R.string.choose_tag))
+                    .setPositiveButton(mActivity.getString(R.string.choose),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
 
                                 }
                             })
-                            .setNegativeButton(mActivity.getString(R.string.cancel),
-                                    new DialogInterface.OnClickListener() {
+                    .setNegativeButton(mActivity.getString(R.string.cancel),
+                            new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -219,21 +253,22 @@ public class JournalFragment extends BaseFragment {
             dialog.show();
         }
 
-        private void setDonutsCount(boolean isAddition){
+        private void setDonutsCount(boolean isAddition) {
             int currentValue = Integer.parseInt(mTvDonutsCount.getText().toString());
             if (isAddition) {
                 currentValue++;
-            }else {
+            } else {
                 currentValue--;
             }
             mTvDonutsCount.setText(String.valueOf(currentValue));
         }
 
-        private void setTableItems(String one, String two, String three){
+        private void setTableItems(String one, String two, String three) {
             mTableItems.mTvPupilName.setText(one);
             mTableItems.mTvDonutsCount.setText(two);
             mTableItems.mTvTag.setText(three);
         }
+
     }
 
     @Override
@@ -242,12 +277,12 @@ public class JournalFragment extends BaseFragment {
     }
 
     @OnClick(R.id.tv_form_bracket)
-    public void onFormBracketClick(){
+    public void onFormBracketClick() {
         openFragment(FormParametersFragment.newInstance(false));
     }
 
     @OnClick(R.id.tv_form)
-    public void onFormClick(){
+    public void onFormClick() {
         openFragment(FormParametersFragment.newInstance(false));
     }
 

@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.domain.core.dagger.component;
 
-import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SettingsFragment;
 
 /**
  * Created by elisiumGusev
@@ -10,5 +11,6 @@ import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivit
  */
 
 public interface CoreComponent {
-
+    void inject(SettingsFragment fragment);
+    void inject(MonsterFragment fragment);
 }

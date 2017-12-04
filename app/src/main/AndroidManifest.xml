@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.android.monstrici.monstrici">
+          package="ru.android.monstrici.monstrici">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:name=".ui.view.application.ApplicationCore"
@@ -16,11 +16,18 @@
         <activity
             android:name=".ui.view.authorisation.AuthorisationActivity"
             android:screenOrientation="portrait">
-
+        </activity>
+        <activity
+            android:name=".ui.view.authorisation.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.view.parameters.ParametersActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.view.main_pupil.MainPupilActivity"
             android:screenOrientation="portrait">
@@ -28,18 +35,14 @@
         </activity>
         <activity
             android:name=".ui.view.main_teacher.MainTeacherActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="e0f8001fa4d63a923a7494c7cc08d1d2595d1cf9" />
+            android:value="e0f8001fa4d63a923a7494c7cc08d1d2595d1cf9"/>
     </application>
 
 </manifest>

@@ -3,26 +3,22 @@ package ru.android.monstrici.monstrici.data.repository.remote;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.Callable;
 
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
+import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.IUserRepository;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -53,7 +49,7 @@ public class RemoteUserRepository implements IUserRepository {
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = parseUser((HashMap) dataSnapshot.getValue());
+                        User user = ResponseParser.parseUser((HashMap) dataSnapshot.getValue());
                         if (user == null) {
                             callback.onReceiveDataFailure(new Message("User " + userId + " is unexpectedly null"));
                         } else {
@@ -69,6 +65,72 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
+    public void getMonster(String id, @NonNull IDataCallback<Monster> callback) {
+        mDatabase.child("monster").child(id).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Monster monster = ResponseParser.parseMonster((HashMap) dataSnapshot.getValue());
+                        if (monster == null) {
+                            callback.onReceiveDataFailure(new Message("Monster " + id + " is unexpectedly null"));
+                        } else {
+                            callback.onReceiveDataSuccess(new Response<Monster>().setBody(monster));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        callback.onReceiveDataFailure(new Message(databaseError.toException().getMessage()));
+                    }
+                });
+    }
+
+    @Override
+    public void getMonsters(@NonNull IDataCallback<Monster> callback) {
+        mDatabase.child("monster").addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        ArrayList<Monster> monsters = new ArrayList<>();
+                        for (DataSnapshot dataSnapshotChild : dataSnapshot.getChildren()) {
+                            monsters.add(ResponseParser.parseMonster((HashMap) dataSnapshotChild.getValue()));
+                        }
+                        if (monsters.size() == 0) {
+                            callback.onReceiveDataFailure(new Message("Monsters is unexpectedly null"));
+                        } else {
+                            callback.onReceiveDataSuccess(new Response<Monster>().setBody(monsters));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        callback.onReceiveDataFailure(new Message(databaseError.toException().getMessage()));
+                    }
+                });
+    }
+
+    @Override
+    public void getStars(String id, @NonNull IDataCallback<Star> callback) {
+        mDatabase.child("stars").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Star> stars = ResponseParser.parseStar(id, (HashMap) dataSnapshot.getValue());
+
+                if (stars.size() == 0) {
+                    callback.onReceiveDataFailure(new Message("Stars " + " are unexpectedly null"));
+                } else {
+                    callback.onReceiveDataSuccess(new Response<Star>().setBody(stars));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callback.onReceiveDataFailure(new Message(databaseError.toException().getMessage()));
+            }
+        });
+    }
+
+    @Override
     public void getUsers(@NonNull IDataCallback<User> callback) {
         mDatabase.child("users").addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -78,7 +140,7 @@ public class RemoteUserRepository implements IUserRepository {
                         Iterator<DataSnapshot> dataSnapshotsChat = dataSnapshot.getChildren().iterator();
                         while (dataSnapshotsChat.hasNext()) {
                             DataSnapshot dataSnapshotChild = dataSnapshotsChat.next();
-                            users.add(parseUser((HashMap) dataSnapshotChild.getValue()));
+                            users.add(ResponseParser.parseUser((HashMap) dataSnapshotChild.getValue()));
                         }
                         if (users.size() == 0) {
                             callback.onReceiveDataFailure(new Message("Users " + " are unexpectedly null"));
@@ -109,6 +171,26 @@ public class RemoteUserRepository implements IUserRepository {
                     }
                 });
 
+    }
+
+    @Override
+    public void saveMonster(Monster monster) {
+        mDatabase.child("monster").child(monster.getId()).setValue(monster).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.i("MONSTER", "SAVED");
+            }
+        });
+    }
+
+    @Override
+    public void saveUser(User user) {
+        mDatabase.child("users").child(user.getId()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.i("USER", "SAVED");
+            }
+        });
     }
 
 
@@ -142,17 +224,4 @@ public class RemoteUserRepository implements IUserRepository {
                 });
     }
 
-    private User parseUser(HashMap hashMap) {
-        User user = new User();
-        user.setId((String) hashMap.get("id"));
-        user.setPassword((String) hashMap.get("password"));
-        user.setName((String) hashMap.get("name"));
-        user.setLogin((String) hashMap.get("login"));
-        user.setSurname((String) hashMap.get("surname"));
-        user.setPosition((String) hashMap.get("position"));
-        ArrayList<HashMap> starsList = (ArrayList<HashMap>) hashMap.get("stars");
-        if (starsList != null)
-            user.setStars(starsList.get(0));
-        return user;
-    }
 }

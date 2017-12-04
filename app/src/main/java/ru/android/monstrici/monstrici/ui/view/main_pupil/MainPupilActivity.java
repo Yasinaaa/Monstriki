@@ -16,12 +16,12 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
@@ -54,9 +54,9 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     @BindView(R.id.view_toolbar)
     View mViewToolbar;
 
-    //@BindView(R.id.tv_name)
-    TextView mTvMonsterName;
-    //@BindView(R.id.tv_donut_num)
+////    @BindView(R.id.tv_name)
+//    TextView mTvMonsterName;
+////    @BindView(R.id.tv_donut_num)
     TextView mTvDonutNum;
     //@BindView(R.id.iv_donut)
     ImageView mIvDonut;
@@ -88,33 +88,27 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mUserId=getIntent().getStringExtra(USER_ID);
+        mUserId = getIntent().getStringExtra(USER_ID);
+        mPresenter.getUser(mUserId);
         start();
     }
 
     private void getIntentValues() {
-        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
-        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
-        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
-        mIvDonut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setSweetsFragment();
-            }
-        });
-        String monsterName = getIntent().getStringExtra(Resources.MONSTER_NAME);
-        if (monsterName == null) {
-            mTvMonsterName.setText("Брозябр");
-        } else
-            mTvMonsterName.setText(monsterName);
-        //TODO: change to real data values
-        mTvDonutNum.setText("10");
+//        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
+//        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
+//        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
+//        mIvDonut.setOnClickListener(v -> setSweetsFragment());
+//        String monsterName = getIntent().getStringExtra(Resources.MONSTER_NAME);
+//        if (monsterName == null) {
+//            mTvMonsterName.setText("Брозябр");
+//        } else
+//            mTvMonsterName.setText(monsterName);
+
     }
 
     @Override
     public void init() {
-
-        for (int i=0; i<Resources.mMainPupilDrawables.length; i++){
+        for (int i = 0; i < Resources.mMainPupilDrawables.length; i++) {
             AHBottomNavigationItem item = new AHBottomNavigationItem("",
                     Resources.mMainPupilDrawables[i], R.color.color_selected_item);
             mBottomNavigationView.addItem(item);
@@ -129,48 +123,41 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
 
         mViewStub.setLayoutResource(R.layout.view_toolbar_main);
         mViewStub.inflate();
-        setMonsterFragment();
 
-        mBottomNavigationView.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
-            @Override
-            public boolean onTabSelected(int position, boolean wasSelected) {
+        mBottomNavigationView.setOnTabSelectedListener((position, wasSelected) -> {
 
-                switch (position) {
-                    case 0:
-                        setMonsterFragment();
-                        break;
-                    case 1:
-                        PrizesFragment prizesFragment = new PrizesFragment();
-                        mFragmentManager.beginTransaction().replace(R.id.fl_main, prizesFragment).commit();
-                        setToolbar(mUsualToolbar, prizesFragment);
-                        break;
-                    case 2:
-                        setSweetsFragment();
-                        break;
-                    case 3:
-                        SettingsFragment settingsFragment = new SettingsFragment();
-                        mFragmentManager.beginTransaction().replace(R.id.fl_main, settingsFragment).commit();
-                        setToolbar(mUsualToolbar, settingsFragment);
-                        break;
-                    case 4:
-                        StarFragment starFragment = new StarFragment();
-                        mFragmentManager.beginTransaction().replace(R.id.fl_main,
-                                starFragment).commit();
-                        setToolbar(mUsualToolbar, starFragment);
-                        break;
-                }
-                return true;
+            switch (position) {
+                case 0:
+                    setMonsterFragment();
+                    break;
+                case 1:
+                    PrizesFragment prizesFragment = new PrizesFragment();
+                    mFragmentManager.beginTransaction().replace(R.id.fl_main, prizesFragment).commit();
+                    setToolbar(mUsualToolbar, prizesFragment);
+                    break;
+                case 2:
+                    setSweetsFragment();
+                    break;
+                case 3:
+                    SettingsFragment settingsFragment = new SettingsFragment();
+                    mFragmentManager.beginTransaction().replace(R.id.fl_main, settingsFragment).commit();
+                    setToolbar(mUsualToolbar, settingsFragment);
+                    break;
+                case 4:
+                    StarFragment starFragment = new StarFragment();
+                    mFragmentManager.beginTransaction().replace(R.id.fl_main,
+                            starFragment).commit();
+                    setToolbar(mUsualToolbar, starFragment);
+                    break;
             }
+            return true;
         });
-        mBottomNavigationView.setOnNavigationPositionListener(new AHBottomNavigation.OnNavigationPositionListener() {
-            @Override
-            public void onPositionChange(int y) {
+        mBottomNavigationView.setOnNavigationPositionListener(y -> {
 
-            }
         });
     }
 
-    private void setSweetsFragment(){
+    private void setSweetsFragment() {
         SweetsFragment sweetsFragment = new SweetsFragment();
         mFragmentManager.beginTransaction().replace(R.id.fl_main, sweetsFragment).commit();
         setToolbar(mUsualToolbar, sweetsFragment);
@@ -224,8 +211,14 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
 
 
     @Override
-    public void onUsersGet(List<User> users) {
+    public void onUsersGet(User user) {
+       // mTvMonsterName.setText(user.getMonster().getName());
+        setMonsterFragment();
+    }
 
+    @Override
+    public void onStarsGet(List<Star> stars) {
+       // mTvDonutNum.setText(stars.size());
     }
 
     @Override

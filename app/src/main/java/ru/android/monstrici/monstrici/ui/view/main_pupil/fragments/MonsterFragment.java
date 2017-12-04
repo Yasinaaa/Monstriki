@@ -1,36 +1,56 @@
 package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
-import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MonsterPictureFunction;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
+import ru.android.monstrici.monstrici.presentation.presenter.monster.MonsterPresenter;
+import ru.android.monstrici.monstrici.presentation.view.monster.MonsterView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 17.10.17.
  */
 
-public class MonsterFragment extends BaseFragment {
+public class MonsterFragment extends BaseFragment implements MonsterView {
 
-    @BindView(R.id.iv_monster)
-    ImageView mIvMonster;
-    @BindView(R.id.iv_bubbles)
-    ImageView mIvBubbles;
+    ImageView mIvBodyPart;
+    ImageView mIvEyePart;
+    ImageView mIvMouthPart;
+    @InjectPresenter
+    MonsterPresenter mPresenter;
+//    @BindView(R.id.tv_name)
+//    TextView mTvMonsterName;
+//    @BindView(R.id.tv_donut_num)
+//    TextView mTvDonutNum;
 
-    private int mMonsterImageId = 0;
+    @ProvidePresenter
+    public MonsterPresenter providePresenter() {
+        MonsterPresenter presenter = new MonsterPresenter();
+        getComponent(AppComponent.class).inject(presenter);
+        return presenter;
+    }
 
     public MonsterFragment() {
     }
 
-    public static MonsterFragment newInstance(int monsterImageId){
+    public static MonsterFragment newInstance(int monsterImageId) {
         Bundle args = new Bundle();
         args.putInt(Resources.MONSTER_IMAGE, monsterImageId);
         MonsterFragment newFragment = new MonsterFragment();
@@ -41,22 +61,24 @@ public class MonsterFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
-            mMonsterImageId = getArguments().getInt(Resources.MONSTER_IMAGE);
-        }
+        getComponent(CoreComponent.class).inject(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        createLayout(inflater, container, R.layout.fragment_monster);
+        mView = inflater.inflate(R.layout.fragment_monster, container, false);
+        ButterKnife.bind(this, mView);
+        ConstraintLayout monsterLayout = mView.findViewById(R.id.la_monster);
+        mIvBodyPart = monsterLayout.findViewById(R.id.iv_body_part);
+        mIvEyePart = monsterLayout.findViewById(R.id.iv_eye_part);
+        mIvMouthPart = monsterLayout.findViewById(R.id.iv_mouth_part);
+        mPresenter.getMonster();
         return mView;
     }
 
     @Override
     public void init() {
-        MonsterPictureFunction.setMonsterPicture(this, mMonsterImageId, mIvMonster);
-        Glide.with(this).load(R.drawable.circle_idea).into(mIvBubbles);
     }
 
     @Override
@@ -64,4 +86,31 @@ public class MonsterFragment extends BaseFragment {
         TAG = "MonsterFragment";
     }
 
+    @Override
+    public void updateMonster(Drawable res, int bodyPart) {
+        switch (bodyPart) {
+            case 1: {
+                mIvBodyPart.setImageDrawable(res);
+                break;
+            }
+            case 2: {
+                mIvMouthPart.setImageDrawable(res);
+                break;
+            }
+            case 3: {
+                mIvEyePart.setImageDrawable(res);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void showLoading(boolean flag) {
+
+    }
+
+    @Override
+    public void showError(Message message) {
+
+    }
 }

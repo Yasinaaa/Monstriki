@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.data.repository;
 
 import android.support.annotation.NonNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -9,8 +10,13 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
+import ru.android.monstrici.monstrici.data.model.Monster;
+import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
+import ru.android.monstrici.monstrici.utils.Message;
 
 /**
  * Created by elisiumGusev
@@ -29,19 +35,97 @@ public class UserRepositoryImpl implements IUserRepository {
     IUserRepository mRemoteUserRepository;
 
     private Map<String, User> mCachedUserMap;
+    private String mCurrentUserId;
+    private boolean isFirstTime = true;
     private boolean mCacheIsDirty = false;
 
     @Inject
     public UserRepositoryImpl() {
+        mCachedUserMap = new HashMap<>();
     }
 
     @Override
     public void getUser(String id, @NonNull IDataCallback<User> callback) {
-        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
-            mRemoteUserRepository.getUser(id, callback);
+        if (isFirstTime) {
+            mCurrentUserId = id;
+            isFirstTime = false;
+        }
+
+        IDataCallback<User> repCallback = new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                callback.onReceiveDataSuccess(response);
+                mCachedUserMap.put(response.getBody().getId(), response.getBody());
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                callback.onReceiveDataFailure(message);
+            }
+        };
+
+        if (mCachedUserMap == null || mCachedUserMap.size() == 0 || !mCachedUserMap.containsKey(id)) {
+            mRemoteUserRepository.getUser(mCurrentUserId, repCallback);
         } else {
+            callback.onReceiveDataSuccess(new Response<User>().setBody(mCachedUserMap.get(id)));
+        }
+    }
+
+    @Override
+    public void getMonster(String id, @NonNull IDataCallback<Monster> callback) {
+        IDataCallback<Monster> monsterCallback = new IDataCallback<Monster>() {
+            @Override
+            public void onReceiveDataSuccess(Response<Monster> response) {
+                mCachedUserMap.get(mCurrentUserId).setMonster(response.getBody());
+                callback.onReceiveDataSuccess(response);
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+
+            }
+        };
+        if (mCachedUserMap != null && mCachedUserMap.size() != 0) {
+            if (mCachedUserMap.get(mCurrentUserId).getMonster().getBody() == null) {
+                mRemoteUserRepository.getMonster(mCachedUserMap.get(mCurrentUserId).getMonster().getId(), monsterCallback);
+            } else {
+                callback.onReceiveDataSuccess(new Response<Monster>()
+                        .setBody(mCachedUserMap.get(mCurrentUserId).getMonster()));
+            }
 
         }
+    }
+
+    @Override
+    public void getStars(String id, @NonNull IDataCallback<Star> callback) {
+        IDataCallback<Star> starsCallback = new IDataCallback<Star>() {
+            @Override
+            public void onReceiveDataSuccess(Response<Star> response) {
+                StarStorage starStorage = new StarStorage();
+                starStorage.setStars(response.getBodyList());
+                mCachedUserMap.get(mCurrentUserId).setStars(starStorage);
+                callback.onReceiveDataSuccess(response);
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                callback.onReceiveDataFailure(message);
+            }
+        };
+        if (mCachedUserMap != null && mCachedUserMap.size() != 0) {
+            if (mCachedUserMap.get(mCurrentUserId).getStars() == null) {
+                mRemoteUserRepository.getStars(id, starsCallback);
+            } else {
+                callback.onReceiveDataSuccess(new Response<Star>()
+                        .setBody(mCachedUserMap.get(mCurrentUserId).getStars().getStars()));
+            }
+
+        }
+    }
+
+    @Override
+    public void getMonsters(@NonNull IDataCallback<Monster> callback) {
+
     }
 
     @Override
@@ -55,10 +139,35 @@ public class UserRepositoryImpl implements IUserRepository {
 
     @Override
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
-        if (mCachedUserMap == null || mCachedUserMap.size() == 0) {
-            mRemoteUserRepository.checkLogin(login, password, callback);
-        } else {
-            mLocalUserRepository.checkLogin(login, password, callback);
+        mRemoteUserRepository.checkLogin(login, password, new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                callback.onReceiveDataSuccess(response);
+                mCachedUserMap.put(response.getBody().getId(), response.getBody());
+                mCurrentUserId = response.getBody().getId();
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                callback.onReceiveDataFailure(message);
+            }
+        });
+
+    }
+
+    @Override
+    public void saveMonster(Monster monster) {
+        if (!monster.equals(mCachedUserMap.get(mCurrentUserId).getMonster())) {
+            mCachedUserMap.get(mCurrentUserId).setMonster(monster);
+            //  mRemoteUserRepository.saveMonster(monster);
+        }
+    }
+
+    @Override
+    public void saveUser(User user) {
+        if (!user.equals(mCachedUserMap.get(user.getId()))) {
+            mCachedUserMap.put(user.getId(),user);
+            //  mRemoteUserRepository.saveUser(user);
         }
     }
 

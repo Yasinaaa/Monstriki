@@ -7,18 +7,16 @@
       "name": "Alex",
       "surname": "Bill",
       "position": "pupil",
+      "tag": "уборка",
+      "monster": "1",
       "class": [
         {
           "number": "1",
-          "letter": "B"
+          "letter": "B",
+          "id": "2"
         }
       ],
-      "stars": [
-        {
-          "answer": "3",
-          "cleaning": "2"
-        }
-      ]
+      "stars": "1"
     },
     "NTM8kSKRcFTPAHJRNDt9KUYsiKk1": {
       "id": "NTM8kSKRcFTPAHJRNDt9KUYsiKk1",
@@ -27,18 +25,16 @@
       "name": "Json",
       "surname": "Ja",
       "position": "pupil",
+      "tag": "уборка",
+      "monster": "2",
       "class": [
         {
           "number": "1",
-          "letter": "B"
+          "letter": "B",
+          "id": "2"
         }
       ],
-      "stars": [
-        {
-          "answer": "5",
-          "cleaning": "4"
-        }
-      ]
+      "stars": "2"
     },
     "kw1P1VKaamNYYZSoxCy2f9FdET03": {
       "id": "kw1P1VKaamNYYZSoxCy2f9FdET03",
@@ -47,18 +43,16 @@
       "name": "Kenn",
       "surname": "Kola",
       "position": "pupil",
+      "tag": "уборка",
+      "monster": "3",
       "class": [
         {
           "number": "1",
-          "letter": "A"
+          "letter": "A",
+          "id": "1"
         }
       ],
-      "stars": [
-        {
-          "answer": "0",
-          "cleaning": "1"
-        }
-      ]
+      "stars": "3"
     },
     "ertIBkbUl4W6SWdGbdfR5zojddF2": {
       "id": "ertIBkbUl4W6SWdGbdfR5zojddF2",
@@ -67,18 +61,16 @@
       "name": "Mara",
       "surname": "Squart",
       "position": "pupil",
+      "monster": "4",
+      "tag": "уборка",
       "class": [
         {
           "number": "1",
-          "letter": "A"
+          "letter": "A",
+          "id": "1"
         }
       ],
-      "stars": [
-        {
-          "answer": "1",
-          "cleaning": "1"
-        }
-      ]
+      "stars": "4"
     },
     "eDKiRgBRnFNhJ1VUDUmT6J7heR92": {
       "id": "eDKiRgBRnFNhJ1VUDUmT6J7heR92",
@@ -87,10 +79,14 @@
       "name": "Marta",
       "surname": "Urt",
       "position": "teacher",
+      "monster": "-1",
+      "tag": "-1",
+      "stars": "-1",
       "class": [
         {
           "number": "1",
-          "letter": "B"
+          "letter": "B",
+          "id": "2"
         }
       ]
     },
@@ -101,16 +97,21 @@
       "name": "Lisa",
       "surname": "Sir",
       "position": "teacher",
+      "monster": "-1",
+      "tag": "-1",
+      "stars": "-1",
       "class": [
         {
           "number": "1",
-          "letter": "A"
+          "letter": "A",
+          "id": "1"
         }
       ]
     }
   },
-  "class": [
-    {
+  "class": {
+    "1": {
+      "id": "1",
       "number": "1",
       "letter": "A",
       "pupils": [
@@ -122,7 +123,8 @@
         }
       ]
     },
-    {
+    "2": {
+      "id": "2",
       "number": "1",
       "letter": "B",
       "pupils": [
@@ -134,5 +136,77 @@
         }
       ]
     }
-  ]
+  },
+  "stars": {
+    "1": {
+      "id": "1",
+      "days": {
+        "1511887076401": {
+          "answer": "1",
+          "cleaning": "1"
+        },
+        "1512887076401": {
+          "answer": "3",
+          "cleaning": "0"
+        }
+      }
+    },
+    "2": {
+      "id": "2",
+      "days": {
+        "1511887076401": {
+          "answer": "1",
+          "cleaning": "1"
+        }
+      }
+    },
+    "3": {
+      "id": "3",
+      "days": {
+        "1511887076401": {
+          "answer": "1",
+          "cleaning": "1"
+        }
+      }
+    },
+    "4": {
+      "id": "4",
+      "days": {
+        "1511887076401": {
+          "answer": "1",
+          "cleaning": "1"
+        }
+      }
+    }
+  },
+  "monster": {
+    "1": {
+      "id": "1",
+      "name": "null",
+      "body": "1",
+      "mouth": "1",
+      "eyes": "1"
+    },
+    "2": {
+      "id": "2",
+      "name": "null",
+      "body": "1",
+      "mouth": "1",
+      "eyes": "1"
+    },
+    "3": {
+      "id": "3",
+      "name": "null",
+      "body": "1",
+      "mouth": "1",
+      "eyes": "1"
+    },
+    "4": {
+      "id": "4",
+      "name": "null",
+      "body": "1",
+      "mouth": "1",
+      "eyes": "1"
+    }
+  }
 }
