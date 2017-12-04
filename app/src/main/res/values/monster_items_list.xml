@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="monster_body_list">
+        <item>@drawable/ic_crystal_blue</item>
+        <item>@drawable/ic_crystal_green</item>
+        <item>@drawable/ic_crystal_red</item>
+        <item>@drawable/ic_crystal_purple</item>
+        <item>@drawable/ic_crystal_yellow</item>
+        <item>@drawable/ic_ball_blue</item>
+        <item>@drawable/ic_ball_green</item>
+        <item>@drawable/ic_ball_red</item>
+        <item>@drawable/ic_ball_purple</item>
+        <item>@drawable/ic_ball_yellow</item>
+        <item>@drawable/ic_hairy_blue</item>
+        <item>@drawable/ic_hairy_green</item>
+        <item>@drawable/ic_hairy_red</item>
+        <item>@drawable/ic_hairy_purple</item>
+        <item>@drawable/ic_hairy_yellow</item>
+        <item>@drawable/ic_handup_blue</item>
+        <item>@drawable/ic_handup_green</item>
+        <item>@drawable/ic_handup_red</item>
+        <item>@drawable/ic_handup_purple</item>
+        <item>@drawable/ic_handup_yellow</item>
+        <item>@drawable/ic_horned_blue</item>
+        <item>@drawable/ic_horned_green</item>
+        <item>@drawable/ic_horned_red</item>
+        <item>@drawable/ic_horned_purple</item>
+        <item>@drawable/ic_horned_yellow</item>
+    </array>
+
+    <array name="monster_mouth_list">
+        <item>@drawable/ic_mouth_tongue_joy</item>
+        <item>@drawable/ic_mouth_tongue_sad</item>
+        <item>@drawable/ic_mouth_2t_joy</item>
+        <item>@drawable/ic_mouth_2t_sad</item>
+        <item>@drawable/ic_mouth_2tbottom_joy</item>
+        <item>@drawable/ic_mouth_2tbottom_sad</item>
+        <item>@drawable/ic_mouth_5t_joy</item>
+        <item>@drawable/ic_mouth_5t_sad</item>
+    </array>
+
+    <array name="monster_eye_list">
+        <item>@drawable/ic_blue_eyes</item>
+        <item>@drawable/ic_blue_eye_02</item>
+        <item>@drawable/ic_green_eyes</item>
+        <item>@drawable/ic_orange_eye</item>
+        <item>@drawable/ic_pink_eye</item>
+        <item>@drawable/ic_pirat_eye</item>
+    </array>
+
+</resources>

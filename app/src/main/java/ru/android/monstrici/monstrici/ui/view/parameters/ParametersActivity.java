@@ -15,10 +15,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.adapter.EyesAdapter;
+import ru.android.monstrici.monstrici.presentation.model.MonsterContainer;
 import ru.android.monstrici.monstrici.presentation.presenter.parameters.ParametersPresenter;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.utils.Resources;
@@ -43,6 +46,8 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
     Button mBtnNext;
     @BindView(R.id.rl)
     RelativeLayout mRelativeLayout;
+    @Inject
+    MonsterContainer mMonsterContainer;
 
     private ParametersPresenter mParametersPresenter;
     private boolean isQuestionMode = true; // can be 2 modes: QUESTION and CREATE_NAME
@@ -59,7 +64,7 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
     @Override
     public void init() {
         Glide.with(this).load(R.drawable.m1).into(mIvMonster);
-        mParametersPresenter = new ParametersPresenter(this);
+
         mEyesAdapter = new EyesAdapter(Resources.mEyesDrawables, this);
         mRvEyes.setItemAnimator(new DefaultItemAnimator());
         mRvEyes.setHasFixedSize(true);
@@ -68,22 +73,22 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
     }
 
     @OnClick(R.id.btn_next)
-    public void setOnRegistrationBtnClickListener(){
-        if (isQuestionMode){
+    public void setOnRegistrationBtnClickListener() {
+        if (isQuestionMode) {
             setCreateNameMode();
-        }else {
+        } else {
             mParametersPresenter.goNext(mEtMonsterName.getText().toString(), mCurrentMonster);
         }
     }
 
     //TODO: use this on onBackButton <- method
-    private void setQuestionMode(){
+    private void setQuestionMode() {
         mTilMonsterName.setVisibility(View.GONE);
         setLayoutBelow(mIvMonster, R.id.rv_eyes);
         isQuestionMode = true;
     }
 
-    private void setCreateNameMode(){
+    private void setCreateNameMode() {
         mRvEyes.setVisibility(View.GONE);
         mTilMonsterName.setVisibility(View.VISIBLE);
         mTvLargeText.setText(R.string.write_name);
@@ -92,7 +97,7 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
         isQuestionMode = false;
     }
 
-    private void setLayoutBelow(View view, int parentId){
+    private void setLayoutBelow(View view, int parentId) {
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
         params.addRule(RelativeLayout.BELOW, parentId);
         view.setLayoutParams(params);

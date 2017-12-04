@@ -35,7 +35,7 @@
         android:background="@drawable/donut"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_small"
-        android:layout_toLeftOf="@+id/tv_donut_num"/>
+        android:layout_toLeftOf="@id/tv_donut_num"/>
 
 
 </RelativeLayout>

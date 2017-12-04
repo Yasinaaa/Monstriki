@@ -6,7 +6,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
+import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.IUserRepository;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -30,16 +32,41 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
+    public void getMonster(String id, @NonNull IDataCallback<Monster> callback) {
+
+    }
+
+    @Override
+    public void getMonsters(@NonNull IDataCallback<Monster> callback) {
+
+    }
+
+    @Override
+    public void getStars(String id, @NonNull IDataCallback<Star> callback) {
+
+    }
+
+    @Override
     public void getUsers(@NonNull IDataCallback<User> callback) {
     }
 
     @Override
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
-        Response<User> response = new Response<>();
-        User user = new User();
-        user.setId("1");
-        response.setBody(user);
+//        Response<User> response = new Response<>();
+//        User user = new User();
+//        user.setId("1");
+//        response.setBody(user);
+//
+//        callback.onReceiveDataSuccess(response);
+    }
 
-        callback.onReceiveDataSuccess(response);
+    @Override
+    public void saveMonster(Monster monster) {
+
+    }
+
+    @Override
+    public void saveUser(User user) {
+
     }
 }

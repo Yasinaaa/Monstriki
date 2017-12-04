@@ -21,21 +21,18 @@ public class ParametersPresenter extends BasePresenter<IParametersView> {
     @Inject
     UserRepositoryImpl mRepository;
 
-    public ParametersPresenter(Activity activity) {
-        super(activity);
-    }
 
     public void goNext(String monsterName, int monsterImage){
 
-        Intent intent = new Intent(mActivity, MainPupilActivity.class);
-        //TODO: change with Obserable to check this
-        if (monsterName.equals("")){
-            monsterName = "Брозябр";
-        }
-        intent.putExtra(Resources.MONSTER_NAME, monsterName);
-        intent.putExtra(Resources.MONSTER_IMAGE, monsterImage);
-        mActivity.startActivity(intent);
-        mActivity.finish();
+//        Intent intent = new Intent(mActivity, MainPupilActivity.class);
+//        //TODO: change with Obserable to check this
+//        if (monsterName.equals("")){
+//            monsterName = "Брозябр";
+//        }
+//        intent.putExtra(Resources.MONSTER_NAME, monsterName);
+//        intent.putExtra(Resources.MONSTER_IMAGE, monsterImage);
+//        mActivity.startActivity(intent);
+//        mActivity.finish();
     }
 
     /*public static Observable<String> getTextWatcherObservable(@NonNull final EditText editText) {
