@@ -2,16 +2,18 @@ package ru.android.monstrici.monstrici.presentation.view.menu;
 
 import java.util.List;
 
+import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
 
 /**
  * Created by elisium
  *
- * @Date 02/12/2017
+ * @Date 09/11/2017
  * @Author Andrei Gusev
  */
 
-public interface ITeacherView extends IBaseView {
-    void onUsersPrepare(List<User> userList);
+public interface IPupilMainMenu extends IBaseView {
+    void onUsersGet(User user);
+    void onStarsGet(List<Star> stars);
 }

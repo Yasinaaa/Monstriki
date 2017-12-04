@@ -24,7 +24,9 @@ import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.PupulMainMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
+import ru.android.monstrici.monstrici.presentation.view.menu.IPupilMainMenu;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
@@ -40,13 +42,13 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by yasina on 16.10.17.
  */
 
-public class MainPupilActivity extends BaseActivity implements IMainMenu {
+public class MainPupilActivity extends BaseActivity implements IPupilMainMenu {
     private static final String USER_ID = "user_id";
     private String mUserId;
     @BindView(R.id.bottom_navigation)
     AHBottomNavigation mBottomNavigationView;
     @InjectPresenter
-    public MainMenuPresenter mPresenter;
+    public PupulMainMenuPresenter mPresenter;
     @BindView(R.id.view_stub)
     ViewStub mViewStub;
     @BindView(R.id.ll)
@@ -78,8 +80,8 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     }
 
     @ProvidePresenter
-    public MainMenuPresenter providePresenter() {
-        MainMenuPresenter presenter = new MainMenuPresenter();
+    public PupulMainMenuPresenter providePresenter() {
+        PupulMainMenuPresenter presenter = new PupulMainMenuPresenter();
         getApplicationComponent().inject(presenter);
         return presenter;
     }
