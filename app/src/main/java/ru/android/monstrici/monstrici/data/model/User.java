@@ -135,8 +135,10 @@ public class User {
 
     public int getPointsNumber() {
         int sum = 0;
-        for (Star star : stars.getStars()) {
-            sum += Integer.parseInt(star.getAnswer()) + Integer.parseInt(star.getClean());
+        if (stars != null) {
+            for (Star star : stars.getStars()) {
+                sum += Integer.parseInt(star.getAnswer()) + Integer.parseInt(star.getClean());
+            }
         }
         return sum;
     }
