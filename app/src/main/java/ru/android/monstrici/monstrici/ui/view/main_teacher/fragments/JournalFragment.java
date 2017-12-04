@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,19 +26,16 @@ import co.lujun.androidtagview.TagView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
-import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.teacher.TeacherPresenter;
-import ru.android.monstrici.monstrici.presentation.view.menu.ITeacherView;
+import ru.android.monstrici.monstrici.presentation.view.menu.IJournalView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.utils.DialogUtils;
 import ru.android.monstrici.monstrici.utils.Message;
-import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 29.10.17.
  */
 
-public class JournalFragment extends BaseFragment implements ITeacherView {
+public class JournalFragment extends BaseFragment implements IJournalView {
 
     protected static final String JOURNAL_DATE = "journal_date";
     protected static final String JOURNAL_FORM = "journal_form";

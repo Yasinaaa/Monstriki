@@ -7,11 +7,11 @@ import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
 
 /**
- * Created by yasina on 04.12.17.
+ * Created by elisium
+ *
+ * @Date 09/11/2017
+ * @Author Andrei Gusev
  */
 
-public interface IMainMenu extends IBaseView {
-    void onUsersGet(User user);
-    void onStarsGet(List<Star> stars);
+public interface IMainPupilMenu extends IMainMenu {
 }
-

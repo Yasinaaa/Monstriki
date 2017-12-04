@@ -66,6 +66,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll3"
         android:layout_width="@dimen/height_large_item_linear_layout"
         android:layout_height="match_parent"
         android:orientation="horizontal"

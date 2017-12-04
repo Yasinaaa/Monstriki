@@ -9,7 +9,7 @@ import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
-import ru.android.monstrici.monstrici.presentation.view.menu.ITeacherView;
+import ru.android.monstrici.monstrici.presentation.view.menu.IJournalView;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
@@ -19,7 +19,7 @@ import ru.android.monstrici.monstrici.utils.Message;
  * @Author Andrei Gusev
  */
 @InjectViewState
-public class TeacherPresenter extends BasePresenter<ITeacherView> {
+public class TeacherPresenter extends BasePresenter<IJournalView> {
     @Inject
     UserRepositoryImpl mRepository;
     public void getUsers() {
