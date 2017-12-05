@@ -11,6 +11,7 @@ import ru.android.monstrici.monstrici.domain.core.dagger.module.NetModule;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.AuthorisationPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.main.MainMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.monster.MonsterPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.pupil.StarPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.settings.SettingsPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.teacher.JournalPresenter;
 import ru.android.monstrici.monstrici.ui.view.application.ApplicationCore;
@@ -56,6 +57,8 @@ public interface AppComponent extends
     void inject(SettingsPresenter presenter);
 
     void inject(MonsterPresenter presenter);
+
+    void inject(StarPresenter presenter);
 
     UserRepositoryImpl getUserRepository();
 }

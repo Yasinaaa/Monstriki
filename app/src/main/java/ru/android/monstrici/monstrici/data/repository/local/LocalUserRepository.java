@@ -52,6 +52,11 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
+    public void getUsersByClass(@NonNull IDataCallback<User> callback) {
+
+    }
+
+    @Override
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
 //        Response<User> response = new Response<>();
 //        User user = new User();
