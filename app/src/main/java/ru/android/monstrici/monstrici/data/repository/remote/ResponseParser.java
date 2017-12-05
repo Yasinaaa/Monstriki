@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import ru.android.monstrici.monstrici.data.model.Monster;
@@ -38,19 +37,19 @@ public class ResponseParser {
         return exception;
     }
 
-    static ArrayList<Star> parseStar(String id, HashMap<String, HashMap> hashMap) {
-        ArrayList<Star> stars = new ArrayList();
+    static HashMap<String, Star> parseStar(String id, HashMap<String, HashMap> hashMap) {
+        HashMap<String, Star> stars = new HashMap<>();
         Star star = new Star();
         star.setId(id);
-        HashMap<String,HashMap> days=hashMap.get("days");
+        HashMap<String, HashMap> days = hashMap.get("days");
         for (Map.Entry<String, HashMap> e : days.entrySet()) {
             Star st = new Star();
             st.setDate(e.getKey());
             HashMap<String, String> answer = e.getValue();
 
-            st.setAnswer(answer.get("answer"));
-            st.setClean(answer.get("cleaning"));
-            stars.add(st);
+            st.setGoals(answer.get("goals"));
+            st.setTag(answer.get("tag"));
+            stars.put(st.getId(), st);
         }
         return stars;
     }

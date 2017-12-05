@@ -175,8 +175,8 @@ public class JournalFragment extends BaseFragment implements IJournalView {
             }
         }
         if (usersStar != null){
-            mTableItems.setTableItems(mUser.getName(), usersStar.getAnswer(),
-                    usersStar.getClean());
+            mTableItems.setTableItems(mUser.getName(), usersStar.getGoals(),
+                    usersStar.getTag());
         }else {
             mTableItems.mTvDonutsCount.setText("");
             mTableItems.mTvTag.setText("");

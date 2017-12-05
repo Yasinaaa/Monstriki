@@ -4,17 +4,10 @@ import com.arellomobile.mvp.InjectViewState;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.reactivestreams.Subscriber;
-
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;

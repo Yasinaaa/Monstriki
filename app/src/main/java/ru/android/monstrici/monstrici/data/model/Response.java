@@ -1,6 +1,9 @@
 package ru.android.monstrici.monstrici.data.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ru.android.monstrici.monstrici.utils.Message;
 
@@ -16,6 +19,12 @@ public class Response<T> {
     private Status mStatus;
     private T body;
     private List<T> bodyList;
+    private Map<String, T> bodyMap;
+
+    public Response() {
+        bodyList = new ArrayList<>();
+        bodyMap = new HashMap<>();
+    }
 
     public Message getMessage() {
         return mMessage;
@@ -42,6 +51,10 @@ public class Response<T> {
         return bodyList;
     }
 
+    public Map<String, T> getBodyMap() {
+        return bodyMap;
+    }
+
     public Response<T> setBody(T body) {
         this.body = body;
         return this;
@@ -49,6 +62,11 @@ public class Response<T> {
 
     public Response<T> setBody(List<T> bodyList) {
         this.bodyList = bodyList;
+        return this;
+    }
+
+    public Response<T> setBody(Map<String, T> bodyMap) {
+        this.bodyMap = bodyMap;
         return this;
     }
 }

@@ -129,19 +129,10 @@ public class User {
                 '}';
     }
 
-    public StarStorage getStars() {
+    public StarStorage getStarStorage() {
         return stars;
     }
 
-    public int getPointsNumber() {
-        int sum = 0;
-        if (stars != null) {
-            for (Star star : stars.getStars()) {
-                sum += Integer.parseInt(star.getAnswer()) + Integer.parseInt(star.getClean());
-            }
-        }
-        return sum;
-    }
 
     public void setStars(StarStorage stars) {
         this.stars = stars;

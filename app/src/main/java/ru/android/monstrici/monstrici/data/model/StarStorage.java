@@ -1,7 +1,7 @@
 package ru.android.monstrici.monstrici.data.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by elisium
@@ -12,17 +12,21 @@ import java.util.List;
 
 public class StarStorage {
     private String mId;
-    private List<Star> mStars;
+    private Map<String, Star> mStars;
 
     public StarStorage() {
-        mStars = new ArrayList<>();
+        mStars = new HashMap<>();
     }
 
-    public List<Star> getStars() {
+    public Star getStar(String id) {
+        return mStars.get(id);
+    }
+
+    public Map<String, Star> getStars() {
         return mStars;
     }
 
-    public void setStars(List<Star> stars) {
+    public void setStars(Map<String, Star> stars) {
         mStars = stars;
     }
 
@@ -32,5 +36,9 @@ public class StarStorage {
 
     public void setId(String id) {
         mId = id;
+    }
+
+    public void updateStar(Star star) {
+        mStars.put(star.getId(), star);
     }
 }
