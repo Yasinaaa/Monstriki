@@ -66,6 +66,7 @@ public class JournalFragment extends BaseFragment implements IJournalView {
     private TableItems mTableItems;
     private int i;
     private View mTableView;
+    private List<TableItems> mTableItemsList;
 
     private SimpleDateFormat mDateFormat = new SimpleDateFormat("dd.MM.yyyy");
     @InjectPresenter
@@ -129,12 +130,15 @@ public class JournalFragment extends BaseFragment implements IJournalView {
             mTvFormText.setText(mForm);
         }
         mPresenter.getUsers();
+        mTableItemsList = new ArrayList<TableItems>();
 
     }
 
     @OnClick(R.id.fab_save)
     protected void onFabClick(){
-
+        /*for (TableItems tableItem : mTableItemsList){
+            tableItem.mTvTag.getText()
+        }*/
     }
 
     public void generateTableLayout(List<User> users) {
@@ -156,7 +160,7 @@ public class JournalFragment extends BaseFragment implements IJournalView {
 
             }
             mTableLayout.addView(mTableView, i);
-
+            mTableItemsList.add(mTableItems);
         }
     }
 

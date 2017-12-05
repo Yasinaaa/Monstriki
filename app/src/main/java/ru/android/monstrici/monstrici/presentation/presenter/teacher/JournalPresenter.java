@@ -53,4 +53,8 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
             }
         });
     }
+
+    public void saveStars(Star star, String userId) {
+        mRepository.saveStar(star, userId);
+    }
 }
