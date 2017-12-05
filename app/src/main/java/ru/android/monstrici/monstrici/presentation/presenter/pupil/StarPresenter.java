@@ -10,6 +10,7 @@ import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.IUserRepository;
+import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
 import ru.android.monstrici.monstrici.presentation.view.pupil.IStarDesc;
@@ -25,7 +26,7 @@ import ru.android.monstrici.monstrici.utils.Message;
 public class StarPresenter extends BasePresenter<IStarDesc> {
 
     @Inject
-    IUserRepository mRepository;
+    UserRepositoryImpl mRepository;
 
     public void getUsersMonsters() {
         mRepository.getUsersByClass(new IDataCallback<User>() {

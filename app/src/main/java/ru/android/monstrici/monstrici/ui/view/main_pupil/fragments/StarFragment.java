@@ -31,6 +31,7 @@ import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
 import ru.android.monstrici.monstrici.presentation.adapter.RateAdapter;
 import ru.android.monstrici.monstrici.presentation.model.Rate;
 import ru.android.monstrici.monstrici.presentation.presenter.monster.MonsterPresenter;
@@ -83,8 +84,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
-        }
+        getComponent(CoreComponent.class).inject(this);
     }
 
     @Override

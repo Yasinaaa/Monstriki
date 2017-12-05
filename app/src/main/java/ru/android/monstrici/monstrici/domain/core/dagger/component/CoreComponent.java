@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.domain.core.dagger.component;
 
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SettingsFragment;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.StarFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 
 /**
@@ -13,6 +14,10 @@ import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFrag
 
 public interface CoreComponent {
     void inject(SettingsFragment fragment);
+
     void inject(MonsterFragment fragment);
+
     void inject(JournalFragment fragment);
+
+    void inject(StarFragment fragment);
 }
