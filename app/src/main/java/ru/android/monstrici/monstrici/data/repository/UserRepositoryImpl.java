@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.data.repository;
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class UserRepositoryImpl implements IUserRepository {
 
     private Map<String, User> mCachedUserMap;
     private String mCurrentUserId;
+    private String mCurrentClassId;
     private boolean isFirstTime = true;
     private boolean mCacheIsDirty = false;
 
@@ -47,7 +49,6 @@ public class UserRepositoryImpl implements IUserRepository {
     public void getUser(String id, @NonNull IDataCallback<User> callback) {
         if (isFirstTime) {
             mCurrentUserId = id;
-            isFirstTime = false;
         }
 
         IDataCallback<User> repCallback = new IDataCallback<User>() {
@@ -55,6 +56,10 @@ public class UserRepositoryImpl implements IUserRepository {
             public void onReceiveDataSuccess(Response<User> response) {
                 callback.onReceiveDataSuccess(response);
                 mCachedUserMap.put(response.getBody().getId(), response.getBody());
+                if (isFirstTime) {
+                    mCurrentClassId = response.getBody().getSchoolClass().getId();
+                    isFirstTime = false;
+                }
             }
 
             @Override
@@ -137,6 +142,18 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
+    public void getUsersByClass(@NonNull IDataCallback<User> callback) {
+        ArrayList<User> users = new ArrayList<>();
+        for (Map.Entry<String, User> user : mCachedUserMap.entrySet()) {
+            if (user.getValue().getSchoolClass().getId().equals(mCurrentClassId)) {
+                users.add(user.getValue());
+            }
+        }
+        callback.onReceiveDataSuccess(new Response<User>().setBody(users));
+    }
+
+
+    @Override
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
         mRemoteUserRepository.checkLogin(login, password, new IDataCallback<User>() {
             @Override
@@ -158,7 +175,7 @@ public class UserRepositoryImpl implements IUserRepository {
     public void saveMonster(Monster monster) {
         if (!monster.equals(mCachedUserMap.get(mCurrentUserId).getMonster())) {
             mCachedUserMap.get(mCurrentUserId).setMonster(monster);
-            //  mRemoteUserRepository.saveMonster(monster);
+            mRemoteUserRepository.saveMonster(monster);
         }
     }
 
@@ -166,7 +183,7 @@ public class UserRepositoryImpl implements IUserRepository {
     public void saveUser(User user) {
         if (!user.equals(mCachedUserMap.get(user.getId()))) {
             mCachedUserMap.put(user.getId(), user);
-            //  mRemoteUserRepository.saveUser(user);
+            mRemoteUserRepository.saveUser(user);
         }
     }
 

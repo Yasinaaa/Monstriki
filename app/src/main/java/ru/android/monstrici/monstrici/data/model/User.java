@@ -80,10 +80,6 @@ public class User {
         this.key = key;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -102,10 +98,6 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {

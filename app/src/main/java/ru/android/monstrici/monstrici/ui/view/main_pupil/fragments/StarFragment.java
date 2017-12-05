@@ -19,24 +19,34 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Monster;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
 import ru.android.monstrici.monstrici.presentation.adapter.RateAdapter;
 import ru.android.monstrici.monstrici.presentation.model.Rate;
+import ru.android.monstrici.monstrici.presentation.presenter.monster.MonsterPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.pupil.StarPresenter;
+import ru.android.monstrici.monstrici.presentation.view.pupil.IStarDesc;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
+import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 19.11.17.
  */
 
-public class StarFragment extends BaseFragmentUsualToolbar {
+public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc {
 
     public static int TOOLBAR_IMAGE = R.drawable.star_icon_transparent;
     public static int TOOLBAR_TITLE = R.string.star;
@@ -47,8 +57,18 @@ public class StarFragment extends BaseFragmentUsualToolbar {
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
+    @InjectPresenter
+    StarPresenter mPresenter;
     private int mMonsterImageId = 0;
     private TabsPagerAdapter mTabsPagerAdapter;
+
+
+    @ProvidePresenter
+    public StarPresenter providePresenter() {
+        StarPresenter presenter = new StarPresenter();
+        getComponent(AppComponent.class).inject(presenter);
+        return presenter;
+    }
 
     public StarFragment() {
         super(TOOLBAR_IMAGE, TOOLBAR_TITLE);
@@ -64,8 +84,7 @@ public class StarFragment extends BaseFragmentUsualToolbar {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
-        }
+        getComponent(CoreComponent.class).inject(this);
     }
 
     @Override
@@ -128,6 +147,21 @@ public class StarFragment extends BaseFragmentUsualToolbar {
     @Override
     public void setTag() {
         TAG = "MonsterFragment";
+    }
+
+    @Override
+    public void showMonsters(List<Monster> monsters) {
+
+    }
+
+    @Override
+    public void showLoading(boolean flag) {
+
+    }
+
+    @Override
+    public void showError(Message message) {
+
     }
 
     public class TabsPagerAdapter extends FragmentStatePagerAdapter {

@@ -159,6 +159,11 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
+    public void getUsersByClass(@NonNull IDataCallback<User> callback) {
+
+    }
+
+    @Override
     public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
         mAuth.signInWithEmailAndPassword(login, password)
                 .addOnCompleteListener(task -> {
