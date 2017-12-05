@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import io.reactivex.Flowable;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.Star;
@@ -102,7 +101,7 @@ public class UserRepositoryImpl implements IUserRepository {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
                 StarStorage starStorage = new StarStorage();
-                starStorage.setStars(response.getBodyList());
+                starStorage.setStars(response.getBodyMap());
                 mCachedUserMap.get(mCurrentUserId).setStars(starStorage);
                 callback.onReceiveDataSuccess(response);
             }
@@ -113,11 +112,11 @@ public class UserRepositoryImpl implements IUserRepository {
             }
         };
         if (mCachedUserMap != null && mCachedUserMap.size() != 0) {
-            if (mCachedUserMap.get(mCurrentUserId).getStars() == null) {
+            if (mCachedUserMap.get(mCurrentUserId).getStarStorage() == null) {
                 mRemoteUserRepository.getStars(id, starsCallback);
             } else {
                 callback.onReceiveDataSuccess(new Response<Star>()
-                        .setBody(mCachedUserMap.get(mCurrentUserId).getStars().getStars()));
+                        .setBody(mCachedUserMap.get(mCurrentUserId).getStarStorage().getStars()));
             }
 
         }
@@ -166,8 +165,25 @@ public class UserRepositoryImpl implements IUserRepository {
     @Override
     public void saveUser(User user) {
         if (!user.equals(mCachedUserMap.get(user.getId()))) {
-            mCachedUserMap.put(user.getId(),user);
+            mCachedUserMap.put(user.getId(), user);
             //  mRemoteUserRepository.saveUser(user);
+        }
+    }
+
+    @Override
+    public void saveStar(Star star, String userId) {
+        Star cacheStar = mCachedUserMap.get(userId).getStarStorage().getStar(star.getId());
+        if (!star.equals(cacheStar)) {
+            mCachedUserMap.get(userId).getStarStorage().updateStar(star);
+            //  mRemoteUserRepository.saveStar(star);
+        }
+    }
+
+    @Override
+    public void addStar(Star star, String userId) {
+        if (!mCachedUserMap.get(userId).getStarStorage().getStars().containsKey(star)) {
+            mCachedUserMap.get(userId).getStarStorage().getStars().put(star.getId(), star);
+            mRemoteUserRepository.addStar(star, userId);
         }
     }
 

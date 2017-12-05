@@ -9,6 +9,7 @@ import java.util.List;
 import io.reactivex.Flowable;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 
@@ -37,4 +38,8 @@ public interface IUserRepository {
     void saveMonster(Monster monster);
 
     void saveUser(User user);
+
+    void saveStar(Star star, String userId);
+
+    void addStar(Star star, String userId);
 }

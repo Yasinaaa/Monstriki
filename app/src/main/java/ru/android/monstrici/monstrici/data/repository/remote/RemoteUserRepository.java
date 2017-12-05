@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +20,7 @@ import java.util.Iterator;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.IUserRepository;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -114,7 +116,7 @@ public class RemoteUserRepository implements IUserRepository {
         mDatabase.child("stars").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Star> stars = ResponseParser.parseStar(id, (HashMap) dataSnapshot.getValue());
+                HashMap<String, Star> stars = ResponseParser.parseStar(id, (HashMap) dataSnapshot.getValue());
 
                 if (stars.size() == 0) {
                     callback.onReceiveDataFailure(new Message("Stars " + " are unexpectedly null"));
@@ -191,6 +193,32 @@ public class RemoteUserRepository implements IUserRepository {
                 Log.i("USER", "SAVED");
             }
         });
+    }
+
+    @Override
+    public void saveStar(Star star, String userId) {
+        mDatabase.child("stars").child(star.getId()).setValue(star).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.i("USER", "SAVED");
+            }
+        });
+    }
+
+    @Override
+    public void addStar(Star star, String userId) {
+        mDatabase.child("stars")
+                .child(star.getId())
+                .child("days")
+                .child(star.getDate())
+                .setValue(star)
+                .addOnCompleteListener(task -> Log.i("STAR", "SAVED"))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("STAR", "FAILED");
+                    }
+                });
     }
 
 

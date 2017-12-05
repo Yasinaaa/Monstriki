@@ -9,6 +9,7 @@ import io.reactivex.Flowable;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.IUserRepository;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -67,6 +68,16 @@ public class LocalUserRepository implements IUserRepository {
 
     @Override
     public void saveUser(User user) {
+
+    }
+
+    @Override
+    public void saveStar(Star star, String userId) {
+
+    }
+
+    @Override
+    public void addStar(Star star, String userId) {
 
     }
 }
