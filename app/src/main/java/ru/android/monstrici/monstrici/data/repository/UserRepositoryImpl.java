@@ -145,7 +145,8 @@ public class UserRepositoryImpl implements IUserRepository {
     public void getUsersByClass(@NonNull IDataCallback<User> callback) {
         ArrayList<User> users = new ArrayList<>();
         for (Map.Entry<String, User> user : mCachedUserMap.entrySet()) {
-            if (user.getValue().getSchoolClass().getId().equals(mCurrentClassId)) {
+            if (user.getValue().getSchoolClass().getId().equals(mCurrentClassId) &&
+                    user.getValue().getPosition().equals("pupil")) {
                 users.add(user.getValue());
             }
         }
