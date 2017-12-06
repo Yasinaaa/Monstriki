@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -24,8 +25,8 @@ import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
-import ru.android.monstrici.monstrici.presentation.presenter.main.MainMenuPresenter;
-import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
+import ru.android.monstrici.monstrici.presentation.presenter.main.TeacherMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.view.menu.ITeacherMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
@@ -34,14 +35,14 @@ import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFrag
 import ru.android.monstrici.monstrici.utils.Message;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainTeacherActivity extends BaseActivity implements IMainMenu {
+public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
 
     private static final String USER_ID = "user_id";
     private String mUserId;
     //@BindView(R.id.include_toolbar)
     //View mToolbar;
     @InjectPresenter
-    public MainMenuPresenter mPresenter;
+    public TeacherMenuPresenter mPresenter;
 
 
     public static Intent newIntent(Context packageContext, String id) {
@@ -71,8 +72,8 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     }
 
     @ProvidePresenter
-    public MainMenuPresenter providePresenter() {
-        MainMenuPresenter presenter = new MainMenuPresenter();
+    public TeacherMenuPresenter providePresenter() {
+        TeacherMenuPresenter presenter = new TeacherMenuPresenter();
         getApplicationComponent().inject(presenter);
         return presenter;
     }
@@ -114,8 +115,10 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         @OnClick(R.id.tv_exit)
         public void onExit() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
+            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(MainTeacherActivity.this,
                     AuthorisationActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
     }

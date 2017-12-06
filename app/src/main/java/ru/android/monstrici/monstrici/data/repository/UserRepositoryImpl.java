@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import ru.android.monstrici.monstrici.data.model.ListCallbacks;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.Star;
@@ -40,7 +41,7 @@ public class UserRepositoryImpl implements IUserRepository {
     private boolean isFirstTime = true;
     private boolean isFirstTimeClass = true;
     private boolean mCacheIsDirty = false;
-    private final Map<String, IDataCallback> requests = new HashMap<>();
+    private final Map<String, ListCallbacks> requests = new HashMap<>();
 
     @Inject
     public UserRepositoryImpl() {
@@ -66,7 +67,8 @@ public class UserRepositoryImpl implements IUserRepository {
                     getStar(response.getBody().getStarId(), response.getBody().getId(), new IDataCallback<Star>() {
                         @Override
                         public void onReceiveDataSuccess(Response<Star> starResponse) {
-                            requests.get("getUser").onReceiveDataSuccess(response);
+                            for (IDataCallback reqCall : requests.get("getUser").getIDataCallbacks())
+                                reqCall.onReceiveDataSuccess(response);
                             requests.remove("getUser");
                         }
 
@@ -76,7 +78,8 @@ public class UserRepositoryImpl implements IUserRepository {
                         }
                     });
                 } else {
-                    requests.get("getUser").onReceiveDataSuccess(response);
+                    for (IDataCallback reqCall : requests.get("getUser").getIDataCallbacks())
+                        reqCall.onReceiveDataSuccess(response);
                     requests.remove("getUser");
                 }
             }
@@ -89,9 +92,10 @@ public class UserRepositoryImpl implements IUserRepository {
 
         if (!mCachedUserMap.containsKey(mCurrentUserId)) {
             if (!requests.containsKey("getUser")) {
+                requests.put("getUser", new ListCallbacks());
                 mRemoteUserRepository.getUser(mCurrentUserId, repCallback);
             }
-            requests.put("getUser", callback);
+            requests.put("getUser", requests.get("getUser").add(callback));
         } else {
             callback.onReceiveDataSuccess(new Response<User>().setBody(mCachedUserMap.get(mCurrentUserId)));
         }
@@ -102,9 +106,10 @@ public class UserRepositoryImpl implements IUserRepository {
         IDataCallback<Monster> monsterCallback = new IDataCallback<Monster>() {
             @Override
             public void onReceiveDataSuccess(Response<Monster> response) {
-                requests.remove("getMonster");
                 mCachedUserMap.get(mCurrentUserId).setMonster(response.getBody());
-                callback.onReceiveDataSuccess(response);
+                for (IDataCallback reqCall : requests.get("getMonster").getIDataCallbacks())
+                    reqCall.onReceiveDataSuccess(response);
+                requests.remove("getMonster");
             }
 
             @Override
@@ -114,9 +119,10 @@ public class UserRepositoryImpl implements IUserRepository {
         };
         if (mCachedUserMap.get(mCurrentUserId).getMonster().getBody() == null) {
             if (!requests.containsKey("getMonster")) {
+                requests.put("getMonster", new ListCallbacks());
                 mRemoteUserRepository.getMonster(mCachedUserMap.get(mCurrentUserId).getMonster().getId(), monsterCallback);
             }
-            requests.put("getMonster", callback);
+            requests.put("getMonster", requests.get("getMonster").add(callback));
         } else {
             callback.onReceiveDataSuccess(new Response<Monster>()
                     .setBody(mCachedUserMap.get(mCurrentUserId).getMonster()));
@@ -128,11 +134,13 @@ public class UserRepositoryImpl implements IUserRepository {
         IDataCallback<Star> starsCallback = new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
-                requests.remove("getStar");
+
                 StarStorage starStorage = new StarStorage();
                 starStorage.setStars(response.getBodyMap());
                 mCachedUserMap.get(userId).setStars(starStorage);
-                callback.onReceiveDataSuccess(response);
+                for (IDataCallback reqCall : requests.get("getStar").getIDataCallbacks())
+                    reqCall.onReceiveDataSuccess(response);
+                requests.remove("getStar");
             }
 
             @Override
@@ -142,9 +150,10 @@ public class UserRepositoryImpl implements IUserRepository {
         };
         if (mCachedUserMap.get(userId).getStarStorage().getStars().size() == 0) {
             if (!requests.containsKey("getStar")) {
+                requests.put("getStar", new ListCallbacks());
                 mRemoteUserRepository.getStar(starId, userId, starsCallback);
             }
-            requests.put("getStar", callback);
+            requests.put("getStar", requests.get("getStar").add(callback));
 
         } else {
             callback.onReceiveDataSuccess(new Response<Star>()
@@ -165,7 +174,8 @@ public class UserRepositoryImpl implements IUserRepository {
                 for (User user : response.getBodyList()) {
                     mCachedUserMap.put(user.getId(), user);
                 }
-                requests.get("getUsers").onReceiveDataSuccess(response);
+                for (IDataCallback reqCall : requests.get("getUsers").getIDataCallbacks())
+                    reqCall.onReceiveDataSuccess(response);
                 requests.remove("getUsers");
             }
 
@@ -175,9 +185,10 @@ public class UserRepositoryImpl implements IUserRepository {
             }
         };
         if (!requests.containsKey("getUsers")) {
+            requests.put("getUsers", new ListCallbacks());
             mRemoteUserRepository.getUsers(repCallback);
         }
-        requests.put("getUsers", callback);
+        requests.put("getUsers", requests.get("getUsers").add(callback));
     }
 
     @Override
