@@ -29,7 +29,7 @@ public interface IUserRepository {
 
     void getMonsters(@NonNull IDataCallback<Monster> callback);
 
-    void getStars(String id, @NonNull IDataCallback<Star> callback);
+    void getStar(String starId, String userId, @NonNull IDataCallback<Star> callback);
 
     void getUsers(@NonNull IDataCallback<User> callback);
 
@@ -41,7 +41,7 @@ public interface IUserRepository {
 
     void saveUser(User user);
 
-    void saveStar(Star star, String userId);
+    void updateStar(Star star, String userId);
 
     void addStar(Star star, String userId);
 }

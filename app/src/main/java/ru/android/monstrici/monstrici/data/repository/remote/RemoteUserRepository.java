@@ -112,11 +112,11 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getStars(String id, @NonNull IDataCallback<Star> callback) {
-        mDatabase.child("stars").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+    public void getStar(String starId, String userId, @NonNull IDataCallback<Star> callback) {
+        mDatabase.child("stars").child(starId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                HashMap<String, Star> stars = ResponseParser.parseStar(id, (HashMap) dataSnapshot.getValue());
+                HashMap<String, Star> stars = ResponseParser.parseStar(starId, (HashMap) dataSnapshot.getValue());
 
                 if (stars.size() == 0) {
                     callback.onReceiveDataFailure(new Message("Stars " + " are unexpectedly null"));
@@ -201,7 +201,7 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
-    public void saveStar(Star star, String userId) {
+    public void updateStar(Star star, String userId) {
         mDatabase.child("stars").child(star.getId()).setValue(star).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

@@ -43,9 +43,10 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getStars(String id, @NonNull IDataCallback<Star> callback) {
+    public void getStar(String starId, String userId, @NonNull IDataCallback<Star> callback) {
 
     }
+
 
     @Override
     public void getUsers(@NonNull IDataCallback<User> callback) {
@@ -77,7 +78,7 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
-    public void saveStar(Star star, String userId) {
+    public void updateStar(Star star, String userId) {
 
     }
 

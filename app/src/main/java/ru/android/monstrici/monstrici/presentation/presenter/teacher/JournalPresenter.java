@@ -25,10 +25,38 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
     @Inject
     UserRepositoryImpl mRepository;
 
+    public void getCurrentUser(){
+        mRepository.getUser("", new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                getViewState().onTeacherPrepare(response.getBody());
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+
+            }
+        });
+    }
     public void getUsers() {
 
         getViewState().showLoading(true);
         mRepository.getUsers(new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                getUsersByClass();
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                getViewState().showError(message);
+                getViewState().showLoading(false);
+            }
+        });
+    }
+
+    private void getUsersByClass() {
+        mRepository.getUsersByClass(new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
                 getViewState().onUsersPrepare(response.getBodyList());
@@ -43,23 +71,8 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
         });
     }
 
-    private void getUsersByClass(){
-        mRepository.getUsersByClass(new IDataCallback<User>() {
-            @Override
-            public void onReceiveDataSuccess(Response<User> response) {
-
-            }
-
-            @Override
-            public void onReceiveDataFailure(Message message) {
-                getViewState().showError(message);
-                getViewState().showLoading(false);
-            }
-        });
-    }
-
     public void getStars(User user) {
-        mRepository.getStars(user.getStarId(), new IDataCallback<Star>() {
+        mRepository.getStar(user.getStarId(), user.getId(), new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
                 getViewState().onStarsGet(user, response.getBodyList());
@@ -74,6 +87,6 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
     }
 
     public void saveStars(Star star, String userId) {
-        mRepository.saveStar(star, userId);
+        mRepository.addStar(star, userId);
     }
 }
