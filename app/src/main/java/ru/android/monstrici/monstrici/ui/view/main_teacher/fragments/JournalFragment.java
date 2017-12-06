@@ -66,6 +66,9 @@ public class JournalFragment extends BaseFragment implements IJournalView {
     private TableItems mTableItems;
     private int i;
     private View mTableView;
+    private List<TableItems> mTableItemsList;
+    private List<User> mUsersList;
+    private List<Star> mStarsList;
 
     private SimpleDateFormat mDateFormat = new SimpleDateFormat("dd.MM.yyyy");
     @InjectPresenter
@@ -118,6 +121,7 @@ public class JournalFragment extends BaseFragment implements IJournalView {
     @Override
     public void init() {
 
+        mStarsList = new ArrayList<Star>();
         if (mDate == null) {
             mDateLong = Calendar.getInstance().getTime().getTime();
             mDate = mDateFormat.
@@ -129,16 +133,27 @@ public class JournalFragment extends BaseFragment implements IJournalView {
             mTvFormText.setText(mForm);
         }
         mPresenter.getUsers();
+        mTableItemsList = new ArrayList<TableItems>();
 
     }
 
     @OnClick(R.id.fab_save)
     protected void onFabClick(){
-
+        for (int j=0; j< mTableItemsList.size(); j++){
+            TableItems tableItem = mTableItemsList.get(j);
+            Star star = mStarsList.get(j);
+            User user = mUsersList.get(j);
+            star.setGoals(tableItem.mTvDonutsCount.getText().
+                    toString());
+            star.setTag(tableItem.mTvTag.getText().toString());
+            star.setId(user.getStarId());
+            mPresenter.saveStars(star, user.getId());
+        }
     }
 
     public void generateTableLayout(List<User> users) {
 
+        int position = 0;
         for (i = 0; i < users.size(); i++) {
 
             LayoutInflater inflater = (LayoutInflater)
@@ -148,38 +163,51 @@ public class JournalFragment extends BaseFragment implements IJournalView {
             mTableItems = new TableItems(mTableView, getActivity());
             if (i==0){
                 mTableItems.setHeader();
+                mTableLayout.addView(mTableView, position);
+                position++;
             }else {
                 User mUser = users.get(i-1);
-                mTableItems.setItem(mUser.getName(), null, null);
-                if (Integer.parseInt(mUser.getStarId()) != -1)
+
+                if (Integer.parseInt(mUser.getStarId()) != -1) {
+                    mTableItems.setItem(mUser.getName(), null, null);
+                    mTableLayout.addView(mTableView, position);
+                    position++;
+                    mUsersList.add(mUser);
+                    mTableItemsList.add(mTableItems);
                     mPresenter.getStars(mUser);
+                }
 
             }
-            mTableLayout.addView(mTableView, i);
 
         }
     }
 
     @Override
     public void onUsersPrepare(List<User> users) {
-
+        mUsersList = new ArrayList<User>();
         generateTableLayout(users);
     }
 
     @Override
     public void onStarsGet(User mUser, List<Star> stars) {
         Star usersStar = null;
+
         for (Star star: stars){
             if (Long.parseLong(star.getDate()) == mDateLong){
                 usersStar = star;
+
             }
         }
         if (usersStar != null){
             mTableItems.setTableItems(mUser.getName(), usersStar.getGoals(),
                     usersStar.getTag());
+            mStarsList.add(usersStar);
         }else {
             mTableItems.mTvDonutsCount.setText("");
             mTableItems.mTvTag.setText("");
+            Star star = new Star();
+            star.setDate(String.valueOf(mDateLong));
+            mStarsList.add(star);
         }
         //mTableItems.setItem(mUser.getName(), null, null);
 
@@ -306,7 +334,12 @@ public class JournalFragment extends BaseFragment implements IJournalView {
         }
 
         private void setDonutsCount(boolean isAddition) {
-            int currentValue = Integer.parseInt(mTvDonutsCount.getText().toString());
+            String text = mTvDonutsCount.getText().toString();
+            int currentValue = 0;
+
+            if (!text.equals("")) {
+                currentValue = Integer.parseInt(text);
+            }
             if (isAddition) {
                 currentValue++;
             } else {

@@ -21,10 +21,13 @@ import ru.android.monstrici.monstrici.utils.Message;
  */
 @InjectViewState
 public class JournalPresenter extends BasePresenter<IJournalView> {
+
     @Inject
     UserRepositoryImpl mRepository;
+
     public void getUsers() {
-        //getViewState().showLoading(true);
+
+        getViewState().showLoading(true);
         mRepository.getUsers(new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
@@ -39,6 +42,22 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
             }
         });
     }
+
+    private void getUsersByClass(){
+        mRepository.getUsersByClass(new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                getViewState().showError(message);
+                getViewState().showLoading(false);
+            }
+        });
+    }
+
     public void getStars(User user) {
         mRepository.getStars(user.getStarId(), new IDataCallback<Star>() {
             @Override
@@ -52,5 +71,9 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
                 getViewState().showError(message);
             }
         });
+    }
+
+    public void saveStars(Star star, String userId) {
+        mRepository.saveStar(star, userId);
     }
 }
