@@ -41,4 +41,15 @@ public class StarStorage {
     public void updateStar(Star star) {
         mStars.put(star.getId(), star);
     }
+
+    public int getStarsCount(){
+        int count = 0;
+        for (Map.Entry<String, Star> entry : mStars.entrySet())
+        {
+            String goals = entry.getValue().getGoals();
+            if (!goals.equals(""))
+                count += Integer.parseInt(goals);
+        }
+        return count;
+    }
 }

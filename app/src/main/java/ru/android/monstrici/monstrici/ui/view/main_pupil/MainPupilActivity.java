@@ -54,9 +54,9 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     @BindView(R.id.view_toolbar)
     View mViewToolbar;
 
-////    @BindView(R.id.tv_name)
-//    TextView mTvMonsterName;
-////    @BindView(R.id.tv_donut_num)
+    //@BindView(R.id.tv_name)
+    TextView mTvMonsterName;
+    //@BindView(R.id.tv_donut_num)
     TextView mTvDonutNum;
     //@BindView(R.id.iv_donut)
     ImageView mIvDonut;
@@ -89,15 +89,16 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mUserId = getIntent().getStringExtra(USER_ID);
-        mPresenter.getUser(mUserId);
+        //mPresenter.getUser(mUserId);
         start();
     }
 
     private void getIntentValues() {
-//        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
-//        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
-//        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
-//        mIvDonut.setOnClickListener(v -> setSweetsFragment());
+        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
+        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
+        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
+        mIvDonut.setOnClickListener(v -> setSweetsFragment());
+        mPresenter.getUser(mUserId);
 //        String monsterName = getIntent().getStringExtra(Resources.MONSTER_NAME);
 //        if (monsterName == null) {
 //            mTvMonsterName.setText("Брозябр");
@@ -123,6 +124,7 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
 
         mViewStub.setLayoutResource(R.layout.view_toolbar_main);
         mViewStub.inflate();
+        setMonsterFragment();
 
         mBottomNavigationView.setOnTabSelectedListener((position, wasSelected) -> {
 
@@ -209,11 +211,10 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
 
     }
 
-
     @Override
     public void onUsersGet(User user) {
-       // mTvMonsterName.setText(user.getMonster().getName());
-        setMonsterFragment();
+        mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
+        mTvMonsterName.setText(user.getMonster().getName());
     }
 
     @Override
