@@ -79,7 +79,7 @@ public class ResponseParser {
         Monster monster = new Monster();
         monster.setId((String) hashMap.get("id"));
         monster.setBody((String) hashMap.get("body"));
-        monster.setEye((String) hashMap.get("eyes"));
+        monster.setEyes((String) hashMap.get("eyes"));
         monster.setMouth((String) hashMap.get("mouth"));
         monster.setName((String) hashMap.get("name"));
         return monster;

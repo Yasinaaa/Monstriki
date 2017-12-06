@@ -1,12 +1,16 @@
 package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,7 +63,7 @@ public class SettingsFragment extends BaseFragmentUsualToolbar implements View.O
     TextView mTvLogout;
     @BindView(R.id.et_monster_name)
     EditText mEtMonsterName;
-//    @BindView(R.id.btn_save)
+    //    @BindView(R.id.btn_save)
 //    Button mBtnSave;
     @BindView(R.id.tv_settings_name)
     TextView mTvName;
@@ -120,9 +124,20 @@ public class SettingsFragment extends BaseFragmentUsualToolbar implements View.O
         mTvHands.setOnClickListener(this);
         mTvLogout.setOnClickListener(this);
         mIvLogout.setOnClickListener(this);
-       // mBtnSave.setOnClickListener(this);
-        mEtMonsterName.setOnFocusChangeListener((v, hasFocus)
-                -> mPresenter.updateMonsterName(mEtMonsterName.toString()));
+        // mBtnSave.setOnClickListener(this);
+        mEtMonsterName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    // do something, e.g. set your TextView here via .setText()
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            }
+        });
         return mView;
     }
 
@@ -211,6 +226,9 @@ public class SettingsFragment extends BaseFragmentUsualToolbar implements View.O
     @Override
     public void onPause() {
         super.onPause();
+        if (!mEtMonsterName.getText().toString().equals("")) {
+            mPresenter.updateMonsterName(mEtMonsterName.getText().toString());
+        }
         mPresenter.saveMonster();
     }
 }
