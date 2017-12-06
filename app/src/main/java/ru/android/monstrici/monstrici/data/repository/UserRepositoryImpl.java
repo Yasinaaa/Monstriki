@@ -54,8 +54,8 @@ public class UserRepositoryImpl implements IUserRepository {
         IDataCallback<User> repCallback = new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
-                callback.onReceiveDataSuccess(response);
                 mCachedUserMap.put(response.getBody().getId(), response.getBody());
+                callback.onReceiveDataSuccess(response);
                 if (isFirstTime) {
                     mCurrentClassId = response.getBody().getSchoolClass().getId();
                     isFirstTime = false;
@@ -68,7 +68,7 @@ public class UserRepositoryImpl implements IUserRepository {
             }
         };
 
-        if (mCachedUserMap == null || mCachedUserMap.size() == 0 || !mCachedUserMap.containsKey(id)) {
+        if (!mCachedUserMap.containsKey(id)) {
             mRemoteUserRepository.getUser(mCurrentUserId, repCallback);
         } else {
             callback.onReceiveDataSuccess(new Response<User>().setBody(mCachedUserMap.get(id)));

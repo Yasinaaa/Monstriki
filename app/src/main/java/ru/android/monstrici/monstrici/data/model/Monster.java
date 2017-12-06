@@ -8,65 +8,65 @@ package ru.android.monstrici.monstrici.data.model;
  */
 
 public class Monster implements Cloneable {
-    private String mId;
-    private String mName;
-    private String mBody;
-    private String mEye;
-    private String mMouth;
+    private String id;
+    private String name;
+    private String body;
+    private String eyes;
+    private String mouth;
 
     public Monster() {
     }
 
     public Monster(String id) {
-        mId = id;
+        this.id = id;
     }
 
     public Monster(String id, String name, String body, String eye, String mouth) {
-        mId = id;
-        mName = name;
-        mBody = body;
-        mEye = eye;
-        mMouth = mouth;
+        this.id = id;
+        this.name = name;
+        this.body = body;
+        eyes = eye;
+        this.mouth = mouth;
     }
 
     public String getId() {
-        return mId;
+        return id;
     }
 
     public void setId(String id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getBody() {
-        return mBody;
+        return body;
     }
 
     public void setBody(String body) {
-        mBody = body;
+        this.body = body;
     }
 
-    public String getEye() {
-        return mEye;
+    public String getEyes() {
+        return eyes;
     }
 
-    public void setEye(String eye) {
-        mEye = eye;
+    public void setEyes(String eyes) {
+        this.eyes = eyes;
     }
 
     public String getMouth() {
-        return mMouth;
+        return mouth;
     }
 
     public void setMouth(String mouth) {
-        mMouth = mouth;
+        this.mouth = mouth;
     }
 
     @Override
@@ -76,20 +76,20 @@ public class Monster implements Cloneable {
 
         Monster monster = (Monster) o;
 
-        if (mId != null ? !mId.equals(monster.mId) : monster.mId != null) return false;
-        if (mName != null ? !mName.equals(monster.mName) : monster.mName != null) return false;
-        if (mBody != null ? !mBody.equals(monster.mBody) : monster.mBody != null) return false;
-        if (mEye != null ? !mEye.equals(monster.mEye) : monster.mEye != null) return false;
-        return mMouth != null ? mMouth.equals(monster.mMouth) : monster.mMouth == null;
+        if (id != null ? !id.equals(monster.id) : monster.id != null) return false;
+        if (name != null ? !name.equals(monster.name) : monster.name != null) return false;
+        if (body != null ? !body.equals(monster.body) : monster.body != null) return false;
+        if (eyes != null ? !eyes.equals(monster.eyes) : monster.eyes != null) return false;
+        return mouth != null ? mouth.equals(monster.mouth) : monster.mouth == null;
     }
 
     @Override
     public int hashCode() {
-        int result = mId != null ? mId.hashCode() : 0;
-        result = 31 * result + (mName != null ? mName.hashCode() : 0);
-        result = 31 * result + (mBody != null ? mBody.hashCode() : 0);
-        result = 31 * result + (mEye != null ? mEye.hashCode() : 0);
-        result = 31 * result + (mMouth != null ? mMouth.hashCode() : 0);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (body != null ? body.hashCode() : 0);
+        result = 31 * result + (eyes != null ? eyes.hashCode() : 0);
+        result = 31 * result + (mouth != null ? mouth.hashCode() : 0);
         return result;
     }
 

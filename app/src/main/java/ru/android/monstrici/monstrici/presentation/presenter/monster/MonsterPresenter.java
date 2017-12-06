@@ -35,7 +35,7 @@ public class MonsterPresenter extends BasePresenter<MonsterView> {
                         mMonsterContainer
                                 .getEyesList()
                                 .getDrawable(Integer.parseInt(response.getBody()
-                                        .getEye())), 3);
+                                        .getEyes())), 3);
                 getViewState().updateMonster(
                         mMonsterContainer
                                 .getMouthList()

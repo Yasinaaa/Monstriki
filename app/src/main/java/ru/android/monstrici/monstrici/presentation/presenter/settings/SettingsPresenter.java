@@ -34,7 +34,7 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
             mNumEye = 0;
         }
         getViewState().updateMonster(mMonsterContainer.getEyesList().getDrawable(mNumEye), 3);
-        mMonsterContainer.getMonster().setEye(String.valueOf(mNumEye));
+        mMonsterContainer.getMonster().setEyes(String.valueOf(mNumEye));
         mNumEye++;
     }
 
@@ -65,7 +65,7 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
                         mMonsterContainer
                                 .getEyesList()
                                 .getDrawable(Integer.parseInt(response.getBody()
-                                        .getEye())), 3);
+                                        .getEyes())), 3);
                 getViewState().updateMonster(
                         mMonsterContainer
                                 .getMouthList()
@@ -109,6 +109,7 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
     }
 
     public void updateMonsterName(String name) {
-        mMonsterContainer.getMonster().setName(name);
+        if (!mMonsterContainer.getMonster().getName().equals(name))
+            mMonsterContainer.getMonster().setName(name);
     }
 }
