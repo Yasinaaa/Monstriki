@@ -25,7 +25,7 @@ public class User {
 
 
     public User() {
-
+        stars = new StarStorage();
     }
 
     public String getTag() {

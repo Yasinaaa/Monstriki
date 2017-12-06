@@ -108,6 +108,7 @@ public class JournalFragment extends BaseFragment implements IJournalView {
             mForm = getArguments().getString(JOURNAL_FORM);
         }
         getComponent(CoreComponent.class).inject(this);
+        mPresenter.getCurrentUser();
     }
 
     @Override
@@ -138,8 +139,8 @@ public class JournalFragment extends BaseFragment implements IJournalView {
     }
 
     @OnClick(R.id.fab_save)
-    protected void onFabClick(){
-        for (int j=0; j< mTableItemsList.size(); j++){
+    protected void onFabClick() {
+        for (int j = 0; j < mTableItemsList.size(); j++) {
             TableItems tableItem = mTableItemsList.get(j);
             Star star = mStarsList.get(j);
             User user = mUsersList.get(j);
@@ -161,12 +162,12 @@ public class JournalFragment extends BaseFragment implements IJournalView {
             mTableView = inflater.inflate(R.layout.item_table_form, null);
 
             mTableItems = new TableItems(mTableView, getActivity());
-            if (i==0){
+            if (i == 0) {
                 mTableItems.setHeader();
                 mTableLayout.addView(mTableView, position);
                 position++;
-            }else {
-                User mUser = users.get(i-1);
+            } else {
+                User mUser = users.get(i - 1);
 
                 if (Integer.parseInt(mUser.getStarId()) != -1) {
                     mTableItems.setItem(mUser.getName(), null, null);
@@ -183,6 +184,11 @@ public class JournalFragment extends BaseFragment implements IJournalView {
     }
 
     @Override
+    public void onTeacherPrepare(User user) {
+        mTvFormText.setText(user.getSchoolClass().getName());
+    }
+
+    @Override
     public void onUsersPrepare(List<User> users) {
         mUsersList = new ArrayList<User>();
         generateTableLayout(users);
@@ -192,17 +198,17 @@ public class JournalFragment extends BaseFragment implements IJournalView {
     public void onStarsGet(User mUser, List<Star> stars) {
         Star usersStar = null;
 
-        for (Star star: stars){
-            if (Long.parseLong(star.getDate()) == mDateLong){
+        for (Star star : stars) {
+            if (Long.parseLong(star.getDate()) == mDateLong) {
                 usersStar = star;
 
             }
         }
-        if (usersStar != null){
+        if (usersStar != null) {
             mTableItems.setTableItems(mUser.getName(), usersStar.getGoals(),
                     usersStar.getTag());
             mStarsList.add(usersStar);
-        }else {
+        } else {
             mTableItems.mTvDonutsCount.setText("");
             mTableItems.mTvTag.setText("");
             Star star = new Star();
@@ -294,7 +300,7 @@ public class JournalFragment extends BaseFragment implements IJournalView {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mActivity)
                     .setView(view)
                     .setTitle(getResources().getString(R.string.choose_tag));
-                    dialogBuilder
+            dialogBuilder
                     .setPositiveButton(mActivity.getString(R.string.choose),
                             new DialogInterface.OnClickListener() {
                                 @Override

@@ -32,8 +32,8 @@ public class MainMenuPresenter extends BasePresenter<IMainMenu>{
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
                 getViewState().onUsersGet(response.getBody());
-                if (!response.getBody().getPosition().equals("teacher"))
-                    getStars(response.getBody().getStarId());
+//                if (!response.getBody().getPosition().equals("teacher"))
+//                   // getStars(response.getBody().getStarId());
                 getViewState().showLoading(false);
             }
 
@@ -46,18 +46,18 @@ public class MainMenuPresenter extends BasePresenter<IMainMenu>{
     }
 
 
-    private void getStars(String id) {
-        mRepository.getStars(id, new IDataCallback<Star>() {
-            @Override
-            public void onReceiveDataSuccess(Response<Star> response) {
-                getViewState().onStarsGet(response.getBodyList());
-            }
-
-            @Override
-            public void onReceiveDataFailure(Message message) {
-                getViewState().showError(message);
-            }
-        });
-    }
+//    private void getStars(String id) {
+//        mRepository.getStar(id, new IDataCallback<Star>() {
+//            @Override
+//            public void onReceiveDataSuccess(Response<Star> response) {
+//                getViewState().onStarsGet(response.getBodyList());
+//            }
+//
+//            @Override
+//            public void onReceiveDataFailure(Message message) {
+//                getViewState().showError(message);
+//            }
+//        });
+//    }
 
 }

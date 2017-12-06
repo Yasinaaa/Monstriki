@@ -14,6 +14,9 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
  */
 
 public interface IJournalView extends IBaseView {
+    void onTeacherPrepare(User user);
+
     void onUsersPrepare(List<User> userList);
+
     void onStarsGet(User user, List<Star> stars);
 }

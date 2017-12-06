@@ -34,11 +34,13 @@ public class UserRepositoryImpl implements IUserRepository {
     @Named("Remote")
     IUserRepository mRemoteUserRepository;
 
-    private Map<String, User> mCachedUserMap;
+    private final Map<String, User> mCachedUserMap;
     private String mCurrentUserId;
     private String mCurrentClassId;
     private boolean isFirstTime = true;
+    private boolean isFirstTimeClass = true;
     private boolean mCacheIsDirty = false;
+    private final Map<String, IDataCallback> requests = new HashMap<>();
 
     @Inject
     public UserRepositoryImpl() {
@@ -49,16 +51,33 @@ public class UserRepositoryImpl implements IUserRepository {
     public void getUser(String id, @NonNull IDataCallback<User> callback) {
         if (isFirstTime) {
             mCurrentUserId = id;
+            isFirstTime = false;
         }
 
         IDataCallback<User> repCallback = new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
                 mCachedUserMap.put(response.getBody().getId(), response.getBody());
-                callback.onReceiveDataSuccess(response);
-                if (isFirstTime) {
+                if (isFirstTimeClass) {
                     mCurrentClassId = response.getBody().getSchoolClass().getId();
-                    isFirstTime = false;
+                    isFirstTimeClass = false;
+                }
+                if (response.getBody().getPosition().equals("pupil")) {
+                    getStar(response.getBody().getStarId(), response.getBody().getId(), new IDataCallback<Star>() {
+                        @Override
+                        public void onReceiveDataSuccess(Response<Star> starResponse) {
+                            requests.get("getUser").onReceiveDataSuccess(response);
+                            requests.remove("getUser");
+                        }
+
+                        @Override
+                        public void onReceiveDataFailure(Message message) {
+                            callback.onReceiveDataFailure(message);
+                        }
+                    });
+                } else {
+                    requests.get("getUser").onReceiveDataSuccess(response);
+                    requests.remove("getUser");
                 }
             }
 
@@ -68,10 +87,13 @@ public class UserRepositoryImpl implements IUserRepository {
             }
         };
 
-        if (!mCachedUserMap.containsKey(id)) {
-            mRemoteUserRepository.getUser(mCurrentUserId, repCallback);
+        if (!mCachedUserMap.containsKey(mCurrentUserId)) {
+            if (!requests.containsKey("getUser")) {
+                mRemoteUserRepository.getUser(mCurrentUserId, repCallback);
+            }
+            requests.put("getUser", callback);
         } else {
-            callback.onReceiveDataSuccess(new Response<User>().setBody(mCachedUserMap.get(id)));
+            callback.onReceiveDataSuccess(new Response<User>().setBody(mCachedUserMap.get(mCurrentUserId)));
         }
     }
 
@@ -80,6 +102,7 @@ public class UserRepositoryImpl implements IUserRepository {
         IDataCallback<Monster> monsterCallback = new IDataCallback<Monster>() {
             @Override
             public void onReceiveDataSuccess(Response<Monster> response) {
+                requests.remove("getMonster");
                 mCachedUserMap.get(mCurrentUserId).setMonster(response.getBody());
                 callback.onReceiveDataSuccess(response);
             }
@@ -89,25 +112,26 @@ public class UserRepositoryImpl implements IUserRepository {
 
             }
         };
-        if (mCachedUserMap != null && mCachedUserMap.size() != 0) {
-            if (mCachedUserMap.get(mCurrentUserId).getMonster().getBody() == null) {
+        if (mCachedUserMap.get(mCurrentUserId).getMonster().getBody() == null) {
+            if (!requests.containsKey("getMonster")) {
                 mRemoteUserRepository.getMonster(mCachedUserMap.get(mCurrentUserId).getMonster().getId(), monsterCallback);
-            } else {
-                callback.onReceiveDataSuccess(new Response<Monster>()
-                        .setBody(mCachedUserMap.get(mCurrentUserId).getMonster()));
             }
-
+            requests.put("getMonster", callback);
+        } else {
+            callback.onReceiveDataSuccess(new Response<Monster>()
+                    .setBody(mCachedUserMap.get(mCurrentUserId).getMonster()));
         }
     }
 
     @Override
-    public void getStars(String id, @NonNull IDataCallback<Star> callback) {
+    public void getStar(String starId, String userId, @NonNull IDataCallback<Star> callback) {
         IDataCallback<Star> starsCallback = new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
+                requests.remove("getStar");
                 StarStorage starStorage = new StarStorage();
                 starStorage.setStars(response.getBodyMap());
-                mCachedUserMap.get(mCurrentUserId).setStars(starStorage);
+                mCachedUserMap.get(userId).setStars(starStorage);
                 callback.onReceiveDataSuccess(response);
             }
 
@@ -116,14 +140,15 @@ public class UserRepositoryImpl implements IUserRepository {
                 callback.onReceiveDataFailure(message);
             }
         };
-        if (mCachedUserMap != null && mCachedUserMap.size() != 0) {
-            if (mCachedUserMap.get(mCurrentUserId).getStarStorage() == null) {
-                mRemoteUserRepository.getStars(id, starsCallback);
-            } else {
-                callback.onReceiveDataSuccess(new Response<Star>()
-                        .setBody(mCachedUserMap.get(mCurrentUserId).getStarStorage().getStars()));
+        if (mCachedUserMap.get(userId).getStarStorage().getStars().size() == 0) {
+            if (!requests.containsKey("getStar")) {
+                mRemoteUserRepository.getStar(starId, userId, starsCallback);
             }
+            requests.put("getStar", callback);
 
+        } else {
+            callback.onReceiveDataSuccess(new Response<Star>()
+                    .setBody(mCachedUserMap.get(userId).getStarStorage().getStars()));
         }
     }
 
@@ -140,7 +165,8 @@ public class UserRepositoryImpl implements IUserRepository {
                 for (User user : response.getBodyList()) {
                     mCachedUserMap.put(user.getId(), user);
                 }
-                callback.onReceiveDataSuccess(response);
+                requests.get("getUsers").onReceiveDataSuccess(response);
+                requests.remove("getUsers");
             }
 
             @Override
@@ -148,7 +174,10 @@ public class UserRepositoryImpl implements IUserRepository {
                 callback.onReceiveDataFailure(message);
             }
         };
-        mRemoteUserRepository.getUsers(repCallback);
+        if (!requests.containsKey("getUsers")) {
+            mRemoteUserRepository.getUsers(repCallback);
+        }
+        requests.put("getUsers", callback);
     }
 
     @Override
@@ -199,11 +228,11 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
-    public void saveStar(Star star, String userId) {
+    public void updateStar(Star star, String userId) {
         Star cacheStar = mCachedUserMap.get(userId).getStarStorage().getStar(star.getId());
         if (!star.equals(cacheStar)) {
             mCachedUserMap.get(userId).getStarStorage().updateStar(star);
-            mRemoteUserRepository.saveStar(star, userId);
+            mRemoteUserRepository.updateStar(star, userId);
         }
     }
 
