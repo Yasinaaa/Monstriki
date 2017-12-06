@@ -134,11 +134,21 @@ public class UserRepositoryImpl implements IUserRepository {
 
     @Override
     public void getUsers(@NonNull IDataCallback<User> callback) {
-        if (mCachedUserMap != null || mCachedUserMap.size() != 0) {
-            mRemoteUserRepository.getUsers(callback);
-        } else {
+        IDataCallback<User> repCallback = new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                for (User user : response.getBodyList()) {
+                    mCachedUserMap.put(user.getId(), user);
+                }
+                callback.onReceiveDataSuccess(response);
+            }
 
-        }
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                callback.onReceiveDataFailure(message);
+            }
+        };
+        mRemoteUserRepository.getUsers(repCallback);
     }
 
     @Override
@@ -193,7 +203,7 @@ public class UserRepositoryImpl implements IUserRepository {
         Star cacheStar = mCachedUserMap.get(userId).getStarStorage().getStar(star.getId());
         if (!star.equals(cacheStar)) {
             mCachedUserMap.get(userId).getStarStorage().updateStar(star);
-            //  mRemoteUserRepository.saveStar(star);
+            mRemoteUserRepository.saveStar(star, userId);
         }
     }
 
