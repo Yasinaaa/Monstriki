@@ -2,7 +2,6 @@ package ru.android.monstrici.monstrici.presentation.presenter.pupil;
 
 import com.arellomobile.mvp.InjectViewState;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -11,9 +10,7 @@ import javax.inject.Inject;
 
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
-import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
-import ru.android.monstrici.monstrici.data.repository.IUserRepository;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
@@ -32,11 +29,25 @@ public class StarPresenter extends BasePresenter<IStarDesc> {
     @Inject
     UserRepositoryImpl mRepository;
 
+    public void getAllUserInformation(User user) {
+        mRepository.getMonster(user.getMonster().getId(), user.getId(), new IDataCallback<Monster>() {
+            @Override
+            public void onReceiveDataSuccess(Response<Monster> response) {
+                getViewState().getChoosedUser(user, response.getBody());
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+
+            }
+        });
+    }
+
     private void getUsers() {
         mRepository.getUsersByClass(new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
-                getViewState().showMonsters(sortUsersByStarsCount(response.getBodyList()));
+                getViewState().getUsersRateList(sortUsersByStarsCount(response.getBodyList()));
             }
 
             @Override

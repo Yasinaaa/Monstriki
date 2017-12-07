@@ -14,5 +14,8 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
  */
 
 public interface IStarDesc extends IBaseView {
-    void showMonsters(List<User> users);
+
+    void getUsersRateList(List<User> users);
+
+    void getChoosedUser(User user, Monster monster);
 }

@@ -62,7 +62,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
     StarPresenter mPresenter;
     private int mMonsterImageId = 0;
     private TabsPagerAdapter mTabsPagerAdapter;
-    private static List<User> mUsersList;
+    private static ArrayList<Rate> mRateList;
 
     @ProvidePresenter
     public StarPresenter providePresenter() {
@@ -126,8 +126,11 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
     }
 
     @Override
-    public void showMonsters(List<User> users) {
-        mUsersList = users;
+    public void getUsersRateList(List<User> users) {
+
+        for (User user: users){
+            mPresenter.getAllUserInformation(user);
+        }
 
         mTabsPagerAdapter = new TabsPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(mTabsPagerAdapter);
@@ -155,6 +158,12 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
         });
         mViewPager.setCurrentItem(0);
         setUnderline(mTvRate, mTvHallOfFame);
+    }
+
+    @Override
+    public void getChoosedUser(User user, Monster monster) {
+        mRateList.add(new Rate(monster.getName(),
+                R.drawable.m1, user.getStarStorage().getStarsCount()));
     }
 
     @Override
@@ -202,7 +211,6 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
         @BindView(R.id.rv_rate)
         RecyclerView mRvRate;
         private RateAdapter mRateAdapter;
-        private ArrayList<Rate> mRateList;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -218,15 +226,6 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
 
         @Override
         public void init() {
-            mRateList = new ArrayList<Rate>();
-
-            for (int i=0; i<mUsersList.size(); i++){
-                User user = mUsersList.get(i);
-                Monster monster = user.getMonster();
-                mRateList.add(new Rate(monster.getName(),
-                        R.drawable.m1, user.getStarStorage().getStarsCount()));
-            }
-
             mRateAdapter = new RateAdapter(mRateList);
             mRvRate.setHasFixedSize(true);
             mRvRate.setLayoutManager(new LinearLayoutManager(getContext()));
