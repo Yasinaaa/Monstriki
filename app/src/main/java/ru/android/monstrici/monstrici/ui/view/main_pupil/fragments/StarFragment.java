@@ -30,6 +30,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Monster;
+import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
 import ru.android.monstrici.monstrici.presentation.adapter.RateAdapter;
@@ -61,7 +62,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
     StarPresenter mPresenter;
     private int mMonsterImageId = 0;
     private TabsPagerAdapter mTabsPagerAdapter;
-
+    private static List<User> mUsersList;
 
     @ProvidePresenter
     public StarPresenter providePresenter() {
@@ -96,32 +97,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
 
     @Override
     public void init() {
-        mTabsPagerAdapter = new TabsPagerAdapter(getChildFragmentManager());
-        mViewPager.setAdapter(mTabsPagerAdapter);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int state) {
-                if (state == 0){
-                    mViewPager.setCurrentItem(0);
-                    setUnderline(mTvRate, mTvHallOfFame);
-                }else if (state == 1){
-                    mViewPager.setCurrentItem(1);
-                    setUnderline(mTvHallOfFame, mTvRate);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        mViewPager.setCurrentItem(0);
-        setUnderline(mTvRate, mTvHallOfFame);
+        mPresenter.getAllUsers();
     }
 
     @OnClick(R.id.tv_hall_of_fame)
@@ -150,8 +126,35 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
     }
 
     @Override
-    public void showMonsters(List<Monster> monsters) {
+    public void showMonsters(List<User> users) {
+        mUsersList = users;
 
+        mTabsPagerAdapter = new TabsPagerAdapter(getChildFragmentManager());
+        mViewPager.setAdapter(mTabsPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int state) {
+                if (state == 0){
+                    mViewPager.setCurrentItem(0);
+                    setUnderline(mTvRate, mTvHallOfFame);
+                }else if (state == 1){
+                    mViewPager.setCurrentItem(1);
+                    setUnderline(mTvHallOfFame, mTvRate);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        mViewPager.setCurrentItem(0);
+        setUnderline(mTvRate, mTvHallOfFame);
     }
 
     @Override
@@ -217,10 +220,11 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
         public void init() {
             mRateList = new ArrayList<Rate>();
 
-            //TODO: remove temp values
-            for (int i=0; i<10; i++){
-                mRateList.add(new Rate("Брозябр" + i,
-                        R.drawable.m1, 10));
+            for (int i=0; i<mUsersList.size(); i++){
+                User user = mUsersList.get(i);
+                Monster monster = user.getMonster();
+                mRateList.add(new Rate(monster.getName(),
+                        R.drawable.m1, user.getStarStorage().getStarsCount()));
             }
 
             mRateAdapter = new RateAdapter(mRateList);

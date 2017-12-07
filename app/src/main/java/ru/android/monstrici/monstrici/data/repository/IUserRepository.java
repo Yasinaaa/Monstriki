@@ -22,7 +22,6 @@ import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 
 public interface IUserRepository {
 
-
     void getUser(String id, @NonNull IDataCallback<User> callback);
 
     void getMonster(String id, @NonNull IDataCallback<Monster> callback);

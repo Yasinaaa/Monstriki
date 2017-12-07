@@ -22,6 +22,5 @@ public interface SettingsView extends IBaseView {
 
     void updateUser(User user);
 
-
     void setMonsterName(String name);
 }

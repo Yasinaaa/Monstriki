@@ -26,7 +26,6 @@ public class LocalUserRepository implements IUserRepository {
     public LocalUserRepository() {
     }
 
-
     @Override
     public void getUser(String id, @NonNull IDataCallback<User> callback) {
 
@@ -46,7 +45,6 @@ public class LocalUserRepository implements IUserRepository {
     public void getStar(String starId, String userId, @NonNull IDataCallback<Star> callback) {
 
     }
-
 
     @Override
     public void getUsers(@NonNull IDataCallback<User> callback) {

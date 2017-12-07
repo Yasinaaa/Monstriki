@@ -35,13 +35,11 @@ public class MonsterFragment extends BaseFragment implements MonsterView {
     ImageView mIvBodyPart;
     ImageView mIvEyePart;
     ImageView mIvMouthPart;
-    private IActivityCallback mCallback;
+
     @InjectPresenter
     MonsterPresenter mPresenter;
-//    @BindView(R.id.tv_name)
-//    TextView mTvMonsterName;
-//    @BindView(R.id.tv_donut_num)
-//    TextView mTvDonutNum;
+
+    private IActivityCallback mCallback;
 
     @ProvidePresenter
     public MonsterPresenter providePresenter() {
@@ -87,18 +85,17 @@ public class MonsterFragment extends BaseFragment implements MonsterView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_monster, container, false);
-        ButterKnife.bind(this, mView);
-        ConstraintLayout monsterLayout = mView.findViewById(R.id.la_monster);
-        mIvBodyPart = monsterLayout.findViewById(R.id.iv_body_part);
-        mIvEyePart = monsterLayout.findViewById(R.id.iv_eye_part);
-        mIvMouthPart = monsterLayout.findViewById(R.id.iv_mouth_part);
-        mPresenter.getMonster();
+        createLayout(inflater, container, R.layout.fragment_monster);
         return mView;
     }
 
     @Override
     public void init() {
+        ConstraintLayout monsterLayout = mView.findViewById(R.id.la_monster);
+        mIvBodyPart = monsterLayout.findViewById(R.id.iv_body_part);
+        mIvEyePart = monsterLayout.findViewById(R.id.iv_eye_part);
+        mIvMouthPart = monsterLayout.findViewById(R.id.iv_mouth_part);
+        mPresenter.getMonster();
     }
 
     @Override

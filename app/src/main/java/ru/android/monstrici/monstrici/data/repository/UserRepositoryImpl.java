@@ -27,6 +27,7 @@ import ru.android.monstrici.monstrici.utils.Message;
  */
 @Singleton
 public class UserRepositoryImpl implements IUserRepository {
+
     @Inject
     @Named("Local")
     IUserRepository mLocalUserRepository;
@@ -159,6 +160,13 @@ public class UserRepositoryImpl implements IUserRepository {
             callback.onReceiveDataSuccess(new Response<Star>()
                     .setBody(mCachedUserMap.get(userId).getStarStorage().getStars()));
         }
+    }
+
+    public User getCashedUser(){
+        for (Map.Entry<String, User> entry : mCachedUserMap.entrySet()) {
+            return entry.getValue();
+        }
+        return null;
     }
 
     @Override

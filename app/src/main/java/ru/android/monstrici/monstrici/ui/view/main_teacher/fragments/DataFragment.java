@@ -15,6 +15,7 @@ import java.util.Date;
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.utils.DateFunctions;
 
 /**
  * Created by yasina on 29.10.17.
@@ -78,14 +79,14 @@ public class DataFragment extends BaseFragment {
     private void initWeekView(CalendarPickerView.FluentInitializer fluentInitializer){
     fluentInitializer
                 .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
-                .withHighlightedDates(createWeekDates(Calendar.getInstance()));
+                .withHighlightedDates(DateFunctions.createWeekDates(Calendar.getInstance()));
 
         mCvCalendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(Date date) {
                 mCvCalendar.selectDate(date);
                 mCvCalendar.clearHighlightedDates();
-                ArrayList<Date> mDates = createWeekDates(date);
+                ArrayList<Date> mDates = DateFunctions.createWeekDates(date);
                 mCvCalendar.highlightDates(mDates);
                 openFragment(
                         JournalFragment.newInstance("1C",
@@ -101,28 +102,7 @@ public class DataFragment extends BaseFragment {
 
     }
 
-    private ArrayList<Date> createWeekDates(Calendar today) {
-        ArrayList<Date> dates = new ArrayList<Date>();
 
-        for (int i=2; i<7; i++){
-            today.set(Calendar.DAY_OF_WEEK, i);
-            Date date = today.getTime();
-            dates.add(date);
-        }
-
-        for (int i=1; i>-1; i--){
-            today.set(Calendar.DAY_OF_WEEK, i);
-            Date date = today.getTime();
-            dates.add(date);
-        }
-        return dates;
-    }
-
-    private ArrayList<Date> createWeekDates(Date currentDate){
-        Calendar today = Calendar.getInstance();
-        today.setTime(currentDate);
-        return createWeekDates(today);
-    }
 
     @Override
     public void setTag() {
