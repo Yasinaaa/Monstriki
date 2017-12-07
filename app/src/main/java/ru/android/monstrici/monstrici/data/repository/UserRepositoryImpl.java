@@ -103,6 +103,11 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
+    public User getCurrentUser() {
+        return mCachedUserMap.get(mCurrentUserId);
+    }
+
+    @Override
     public void getMonster(String monsterId, String userId, @NonNull IDataCallback<Monster> callback) {
         IDataCallback<Monster> monsterCallback = new IDataCallback<Monster>() {
             @Override
@@ -163,7 +168,7 @@ public class UserRepositoryImpl implements IUserRepository {
         }
     }
 
-    public User getCashedUser(){
+    public User getCashedUser() {
         for (Map.Entry<String, User> entry : mCachedUserMap.entrySet()) {
             return entry.getValue();
         }
