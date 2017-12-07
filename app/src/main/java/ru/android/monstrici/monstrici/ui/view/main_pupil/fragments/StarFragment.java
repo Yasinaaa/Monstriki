@@ -63,6 +63,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
     private int mMonsterImageId = 0;
     private TabsPagerAdapter mTabsPagerAdapter;
     private static ArrayList<Rate> mRateList;
+    private boolean isFinishLoadingMonsters = false;
 
     @ProvidePresenter
     public StarPresenter providePresenter() {
@@ -98,6 +99,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
     @Override
     public void init() {
         mPresenter.getAllUsers();
+        mRateList = new ArrayList<Rate>();
     }
 
     @OnClick(R.id.tv_hall_of_fame)
@@ -125,13 +127,25 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
         TAG = "MonsterFragment";
     }
 
+    private String mLastUserId;
     @Override
     public void getUsersRateList(List<User> users) {
-
+        mLastUserId = users.get(users.size()-1).getId();
         for (User user: users){
             mPresenter.getAllUserInformation(user);
         }
+    }
 
+    @Override
+    public void getChoosedUser(User user, Monster monster) {
+        mRateList.add(new Rate(monster.getName(),
+                R.drawable.m1, user.getStarStorage().getStarsCount()));
+        if (user.getId().equals(mLastUserId)){
+            initViewPager();
+        }
+    }
+
+    private void initViewPager(){
         mTabsPagerAdapter = new TabsPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(mTabsPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -158,12 +172,6 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc 
         });
         mViewPager.setCurrentItem(0);
         setUnderline(mTvRate, mTvHallOfFame);
-    }
-
-    @Override
-    public void getChoosedUser(User user, Monster monster) {
-        mRateList.add(new Rate(monster.getName(),
-                R.drawable.m1, user.getStarStorage().getStarsCount()));
     }
 
     @Override
