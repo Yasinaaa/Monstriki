@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -55,18 +57,13 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
     ViewStub mViewStub;
     @BindView(R.id.ll)
     LinearLayout mLinearLayout;
-    @BindView(R.id.view_toolbar)
-    View mViewToolbar;
+    @BindView(R.id.toolbar)
+    Toolbar mViewToolbar;
 
-    //@BindView(R.id.tv_name)
     TextView mTvMonsterName;
-    //@BindView(R.id.tv_donut_num)
     TextView mTvDonutNum;
-    //@BindView(R.id.iv_donut)
     ImageView mIvDonut;
-    //@BindView(R.id.iv_fragment_logo)
     ImageView mIvFragmentLogo;
-    //@BindView(R.id.tv_fragment_title)
     TextView mTvFragmentTitle;
 
     private int mMainToolbar = R.layout.view_toolbar_main;
@@ -148,10 +145,6 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         mBottomNavigationView.setOnNavigationPositionListener(y -> {
 
         });
-        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
-        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
-        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
-        mIvDonut.setOnClickListener(v -> setSweetsFragment());
     }
 
     private void setSweetsFragment() {
@@ -190,8 +183,7 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         if (id == mUsualToolbar && baseFragmentWithToolbar != null) {
             mIvFragmentLogo = (ImageView) findViewById(R.id.iv_fragment_logo);
             mTvFragmentTitle = (TextView) findViewById(R.id.tv_fragment_title);
-            /*Glide.with(this).load(baseFragmentWithToolbar.getToolbarImage()).
-                    into(mIvFragmentLogo);*/
+
             mIvFragmentLogo.setImageResource(baseFragmentWithToolbar.getToolbarImage());
             mTvFragmentTitle.setText(getString(baseFragmentWithToolbar.getToolbarTitle()));
 
@@ -205,8 +197,10 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
 
     @Override
     public void onUsersGet(User user) {
+        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
+        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
+        mIvDonut.setOnClickListener(v -> setSweetsFragment());
         mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
-
     }
 
     @Override
@@ -226,7 +220,9 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
 
     @Override
     public void monsterNameUpdate(String name) {
+        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
         mTvMonsterName.setText(name);
+        mPresenter.getUser(mUserId);
     }
 }
 
