@@ -10,7 +10,7 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
  * Created by yasina on 04.12.17.
  */
 
-public interface IMainMenu extends IBaseView {
+public interface ITeacherMenu extends IBaseView {
     void onUsersGet(User user);
     void onStarsGet(List<Star> stars);
 }

@@ -20,11 +20,15 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
-import ru.android.monstrici.monstrici.presentation.presenter.main.MainMenuPresenter;
-import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
+import ru.android.monstrici.monstrici.presentation.presenter.main.PupilMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.main.TeacherMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.view.menu.IPupilMenu;
+import ru.android.monstrici.monstrici.presentation.view.menu.ITeacherMenu;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
@@ -40,13 +44,13 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by yasina on 16.10.17.
  */
 
-public class MainPupilActivity extends BaseActivity implements IMainMenu {
+public class MainPupilActivity extends BaseActivity implements IPupilMenu, MonsterFragment.IActivityCallback {
     private static final String USER_ID = "user_id";
     private String mUserId;
     @BindView(R.id.bottom_navigation)
     AHBottomNavigation mBottomNavigationView;
     @InjectPresenter
-    public MainMenuPresenter mPresenter;
+    public PupilMenuPresenter mPresenter;
     @BindView(R.id.view_stub)
     ViewStub mViewStub;
     @BindView(R.id.ll)
@@ -78,8 +82,8 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     }
 
     @ProvidePresenter
-    public MainMenuPresenter providePresenter() {
-        MainMenuPresenter presenter = new MainMenuPresenter();
+    public PupilMenuPresenter providePresenter() {
+        PupilMenuPresenter presenter = new PupilMenuPresenter();
         getApplicationComponent().inject(presenter);
         return presenter;
     }
@@ -89,23 +93,10 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mUserId = getIntent().getStringExtra(USER_ID);
-        //mPresenter.getUser(mUserId);
+        mPresenter.getUser(mUserId);
         start();
     }
 
-    private void getIntentValues() {
-        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
-        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
-        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
-        mIvDonut.setOnClickListener(v -> setSweetsFragment());
-        mPresenter.getUser(mUserId);
-//        String monsterName = getIntent().getStringExtra(Resources.MONSTER_NAME);
-//        if (monsterName == null) {
-//            mTvMonsterName.setText("Брозябр");
-//        } else
-//            mTvMonsterName.setText(monsterName);
-
-    }
 
     @Override
     public void init() {
@@ -157,6 +148,10 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
         mBottomNavigationView.setOnNavigationPositionListener(y -> {
 
         });
+        mTvMonsterName = (TextView) findViewById(R.id.tv_name);
+        mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
+        mIvDonut = (ImageView) findViewById(R.id.iv_donut);
+        mIvDonut.setOnClickListener(v -> setSweetsFragment());
     }
 
     private void setSweetsFragment() {
@@ -204,9 +199,6 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
 
         if (id == mMainToolbar) {
             mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
-
-            //TODO: change to real data values
-            getIntentValues();
         }
 
     }
@@ -214,12 +206,7 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     @Override
     public void onUsersGet(User user) {
         mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
-        mTvMonsterName.setText(user.getMonster().getName());
-    }
 
-    @Override
-    public void onStarsGet(List<Star> stars) {
-       // mTvDonutNum.setText(stars.size());
     }
 
     @Override
@@ -235,6 +222,11 @@ public class MainPupilActivity extends BaseActivity implements IMainMenu {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public void monsterNameUpdate(String name) {
+        mTvMonsterName.setText(name);
     }
 }
 

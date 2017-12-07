@@ -30,6 +30,7 @@ public class MonsterPresenter extends BasePresenter<MonsterView> {
         mRepository.getMonster("", new IDataCallback<Monster>() {
             @Override
             public void onReceiveDataSuccess(Response<Monster> response) {
+                getViewState().onMonsterGet(response.getBody());
                 mMonsterContainer.setMonster(response.getBody().clone());
                 getViewState().updateMonster(
                         mMonsterContainer
