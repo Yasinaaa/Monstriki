@@ -155,7 +155,7 @@ public class JournalFragment extends BaseFragment implements IJournalView {
     public void generateTableLayout(List<User> users) {
 
         int position = 0;
-        for (i = 0; i < users.size(); i++) {
+        for (i = 0; i < users.size()+1; i++) {
 
             LayoutInflater inflater = (LayoutInflater)
                     getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -209,13 +209,14 @@ public class JournalFragment extends BaseFragment implements IJournalView {
                     usersStar.getTag());
             mStarsList.add(usersStar);
         } else {
+            mTableItems.setItem(mUser.getName(), null, null);
             mTableItems.mTvDonutsCount.setText("");
             mTableItems.mTvTag.setText("");
             Star star = new Star();
             star.setDate(String.valueOf(mDateLong));
             mStarsList.add(star);
         }
-        //mTableItems.setItem(mUser.getName(), null, null);
+        //
 
     }
 
