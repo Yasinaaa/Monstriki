@@ -3,6 +3,7 @@ package ru.android.monstrici.monstrici.presentation.view.pupil;
 import java.util.List;
 
 import ru.android.monstrici.monstrici.data.model.Monster;
+import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
 
 /**
@@ -13,5 +14,8 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
  */
 
 public interface IStarDesc extends IBaseView {
-    void showMonsters(List<Monster> monsters);
+
+    void getUsersRateList(List<User> users);
+
+    void getChoosedUser(User user, Monster monster);
 }

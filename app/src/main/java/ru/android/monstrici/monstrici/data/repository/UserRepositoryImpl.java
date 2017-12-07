@@ -27,6 +27,7 @@ import ru.android.monstrici.monstrici.utils.Message;
  */
 @Singleton
 public class UserRepositoryImpl implements IUserRepository {
+
     @Inject
     @Named("Local")
     IUserRepository mLocalUserRepository;
@@ -108,9 +109,9 @@ public class UserRepositoryImpl implements IUserRepository {
             public void onReceiveDataSuccess(Response<Monster> response) {
                 if (mCachedUserMap.containsKey(userId))
                     mCachedUserMap.get(userId).setMonster(response.getBody());
-                for (IDataCallback reqCall : requests.get("getMonster").getIDataCallbacks())
+                for (IDataCallback reqCall : requests.get("getAllUserInformation").getIDataCallbacks())
                     reqCall.onReceiveDataSuccess(response);
-                requests.remove("getMonster");
+                requests.remove("getAllUserInformation");
             }
 
             @Override
@@ -119,11 +120,11 @@ public class UserRepositoryImpl implements IUserRepository {
             }
         };
         if (mCachedUserMap.get(mCurrentUserId).getMonster().getBody() == null) {
-            if (!requests.containsKey("getMonster")) {
-                requests.put("getMonster", new ListCallbacks());
+            if (!requests.containsKey("getAllUserInformation")) {
+                requests.put("getAllUserInformation", new ListCallbacks());
                 mRemoteUserRepository.getMonster(monsterId, userId, monsterCallback);
             }
-            requests.put("getMonster", requests.get("getMonster").add(callback));
+            requests.put("getAllUserInformation", requests.get("getAllUserInformation").add(callback));
         } else {
             callback.onReceiveDataSuccess(new Response<Monster>()
                     .setBody(mCachedUserMap.get(mCurrentUserId).getMonster()));
@@ -160,6 +161,13 @@ public class UserRepositoryImpl implements IUserRepository {
             callback.onReceiveDataSuccess(new Response<Star>()
                     .setBody(mCachedUserMap.get(userId).getStarStorage().getStars()));
         }
+    }
+
+    public User getCashedUser(){
+        for (Map.Entry<String, User> entry : mCachedUserMap.entrySet()) {
+            return entry.getValue();
+        }
+        return null;
     }
 
     @Override

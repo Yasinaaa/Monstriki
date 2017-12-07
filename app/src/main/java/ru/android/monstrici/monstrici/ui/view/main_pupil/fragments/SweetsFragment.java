@@ -3,27 +3,40 @@ package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+
+import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
 import ru.android.monstrici.monstrici.presentation.model.DayOfWeek;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.adapter.DaysOfWeekAdapter;
+import ru.android.monstrici.monstrici.presentation.presenter.sweets.SweetsPresenter;
+import ru.android.monstrici.monstrici.presentation.view.sweets.ISweetsView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
+import ru.android.monstrici.monstrici.utils.DateFunctions;
+import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 17.10.17.
  */
 
-public class SweetsFragment extends BaseFragmentUsualToolbar implements DaysOfWeekAdapter.OnItemClicked{
+public class SweetsFragment extends BaseFragmentUsualToolbar
+        implements ISweetsView, DaysOfWeekAdapter.OnItemClicked{
 
     public static int TOOLBAR_IMAGE = R.drawable.candy_icon_transparent;
     public static int TOOLBAR_TITLE = R.string.sweets;
@@ -33,7 +46,9 @@ public class SweetsFragment extends BaseFragmentUsualToolbar implements DaysOfWe
 
     private DaysOfWeekAdapter mDaysOfWeekAdapter;
     private ArrayList<DayOfWeek> mDaysList;
-    private String[] mDayTitles;
+
+    @InjectPresenter
+    SweetsPresenter mPresenter;
 
     public SweetsFragment() {
         super(TOOLBAR_IMAGE, TOOLBAR_TITLE);
@@ -42,8 +57,14 @@ public class SweetsFragment extends BaseFragmentUsualToolbar implements DaysOfWe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
-        }
+        getComponent(CoreComponent.class).inject(this);
+    }
+
+    @ProvidePresenter
+    public SweetsPresenter providePresenter() {
+        SweetsPresenter presenter = new SweetsPresenter();
+        getComponent(AppComponent.class).inject(presenter);
+        return presenter;
     }
 
     @Override
@@ -61,36 +82,32 @@ public class SweetsFragment extends BaseFragmentUsualToolbar implements DaysOfWe
     @Override
     public void init() {
         mDaysList = new ArrayList<DayOfWeek>();
-        mDayTitles = getResources().getStringArray(R.array.days_of_week);
+        mPresenter.getStars();
+    }
 
-        //TODO: temporary method, remove when will be a real values
-        setTempValue();
+    @Override
+    public void onItemClick(int image) {
+
+    }
+
+    @Override
+    public void setDonutsCount(ArrayList<Star> starsList) {
+        mDaysList = mPresenter.getDonutsCount(starsList, getActivity());
 
         mDaysOfWeekAdapter = new DaysOfWeekAdapter(mDaysList, this);
         mRvDaysOfWeek.setHasFixedSize(true);
         mRvDaysOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvDaysOfWeek.setAdapter(mDaysOfWeekAdapter);
-    }
 
-
-    public void setTempValue(){
-        //todo: temp values, remove this
-        int[] tempDonutValues = new int[Resources.mStudyDaysOfWeek];
-        tempDonutValues[0] = 5;
-        tempDonutValues[1] = 2;
-        Calendar currentDate = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM \nyyyy");
-
-        for(int i=0; i<Resources.mStudyDaysOfWeek; i++){
-            DayOfWeek dayOfWeek = new DayOfWeek(mDayTitles[i], format.format(currentDate.getTime()),
-                    tempDonutValues[i]);
-            mDaysList.add(dayOfWeek);
-            currentDate.add(Calendar.DAY_OF_WEEK, 1);
-        }
     }
 
     @Override
-    public void onItemClick(int image) {
+    public void showLoading(boolean flag) {
+
+    }
+
+    @Override
+    public void showError(Message message) {
 
     }
 }

@@ -36,9 +36,9 @@ import static android.content.ContentValues.TAG;
  */
 
 public class RemoteUserRepository implements IUserRepository {
+
     private final FirebaseAuth mAuth;
     private final DatabaseReference mDatabase;
-
 
     public RemoteUserRepository(FirebaseAuth auth, DatabaseReference database) {
         mAuth = auth;
