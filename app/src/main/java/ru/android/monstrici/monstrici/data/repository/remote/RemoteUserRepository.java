@@ -67,14 +67,14 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getMonster(String id, @NonNull IDataCallback<Monster> callback) {
-        mDatabase.child("monster").child(id).addListenerForSingleValueEvent(
+    public void getMonster(String monsterId,String userId, @NonNull IDataCallback<Monster> callback) {
+        mDatabase.child("monster").child(monsterId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Monster monster = ResponseParser.parseMonster((HashMap) dataSnapshot.getValue());
                         if (monster == null) {
-                            callback.onReceiveDataFailure(new Message("Monster " + id + " is unexpectedly null"));
+                            callback.onReceiveDataFailure(new Message("Monster " + monsterId + " is unexpectedly null"));
                         } else {
                             callback.onReceiveDataSuccess(new Response<Monster>().setBody(monster));
                         }

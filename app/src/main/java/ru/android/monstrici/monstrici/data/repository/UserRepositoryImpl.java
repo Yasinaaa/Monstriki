@@ -103,11 +103,12 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
-    public void getMonster(String id, @NonNull IDataCallback<Monster> callback) {
+    public void getMonster(String monsterId, String userId, @NonNull IDataCallback<Monster> callback) {
         IDataCallback<Monster> monsterCallback = new IDataCallback<Monster>() {
             @Override
             public void onReceiveDataSuccess(Response<Monster> response) {
-                mCachedUserMap.get(mCurrentUserId).setMonster(response.getBody());
+                if (mCachedUserMap.containsKey(userId))
+                    mCachedUserMap.get(userId).setMonster(response.getBody());
                 for (IDataCallback reqCall : requests.get("getMonster").getIDataCallbacks())
                     reqCall.onReceiveDataSuccess(response);
                 requests.remove("getMonster");
@@ -121,7 +122,7 @@ public class UserRepositoryImpl implements IUserRepository {
         if (mCachedUserMap.get(mCurrentUserId).getMonster().getBody() == null) {
             if (!requests.containsKey("getMonster")) {
                 requests.put("getMonster", new ListCallbacks());
-                mRemoteUserRepository.getMonster(mCachedUserMap.get(mCurrentUserId).getMonster().getId(), monsterCallback);
+                mRemoteUserRepository.getMonster(monsterId, userId, monsterCallback);
             }
             requests.put("getMonster", requests.get("getMonster").add(callback));
         } else {

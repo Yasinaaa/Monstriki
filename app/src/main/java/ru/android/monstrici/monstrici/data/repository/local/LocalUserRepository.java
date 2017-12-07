@@ -32,7 +32,7 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getMonster(String id, @NonNull IDataCallback<Monster> callback) {
+    public void getMonster(String monsterId,String userId, @NonNull IDataCallback<Monster> callback) {
 
     }
 
