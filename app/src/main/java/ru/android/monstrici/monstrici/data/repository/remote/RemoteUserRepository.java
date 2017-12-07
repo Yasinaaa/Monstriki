@@ -67,6 +67,11 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
+    public User getCurrentUser() {
+        return null;
+    }
+
+    @Override
     public void getMonster(String monsterId,String userId, @NonNull IDataCallback<Monster> callback) {
         mDatabase.child("monster").child(monsterId).addListenerForSingleValueEvent(
                 new ValueEventListener() {

@@ -24,6 +24,8 @@ public interface IUserRepository {
 
     void getUser(String id, @NonNull IDataCallback<User> callback);
 
+    User getCurrentUser();
+
     void getMonster(String monsterId, String userId, @NonNull IDataCallback<Monster> callback);
 
     void getMonsters(@NonNull IDataCallback<Monster> callback);

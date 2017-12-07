@@ -57,7 +57,7 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
     }
 
     public void getMonster(Monster monster) {
-        mRepository.getMonster(monster.getId(), new IDataCallback<Monster>() {
+        mRepository.getMonster(monster.getId(), mRepository.getCurrentUser().getId(), new IDataCallback<Monster>() {
             @Override
             public void onReceiveDataSuccess(Response<Monster> response) {
                 mMonsterContainer.setMonster(response.getBody().clone());

@@ -32,6 +32,11 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
+    public User getCurrentUser() {
+        return null;
+    }
+
+    @Override
     public void getMonster(String monsterId,String userId, @NonNull IDataCallback<Monster> callback) {
 
     }

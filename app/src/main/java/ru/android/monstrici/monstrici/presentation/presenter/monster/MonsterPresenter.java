@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.model.MonsterContainer;
@@ -27,7 +28,8 @@ public class MonsterPresenter extends BasePresenter<MonsterView> {
     MonsterContainer mMonsterContainer;
 
     public void getMonster() {
-        mRepository.getMonster("", new IDataCallback<Monster>() {
+        User currentUser = mRepository.getCurrentUser();
+        mRepository.getMonster(currentUser.getMonster().getId(), currentUser.getId(), new IDataCallback<Monster>() {
             @Override
             public void onReceiveDataSuccess(Response<Monster> response) {
                 getViewState().onMonsterGet(response.getBody());
