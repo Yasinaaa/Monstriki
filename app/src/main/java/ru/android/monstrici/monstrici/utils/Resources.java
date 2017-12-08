@@ -32,12 +32,6 @@ public class Resources {
 
     public static int mStudyDaysOfWeek = 6;
 
-    //TODO: remove this items, after creating real values
-    public static String[] mTempPupils = new String[]{
-            "Антонов И.", "Гараева С.","Денисов Л.","Железная Я.","Закиров М.",
-            "Иванова А.","Каримова З.","Липатов П.","Носов Р.", "Петрова Н."
-    };
-
     public static DayDesition[] mDesitionsOfWeek = new DayDesition[]{
             new DayDesition(R.string.monday),
             new DayDesition(R.string.tuesday),

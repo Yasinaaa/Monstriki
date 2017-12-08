@@ -1,27 +1,20 @@
 package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +28,17 @@ import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
 import ru.android.monstrici.monstrici.presentation.adapter.RateAdapter;
 import ru.android.monstrici.monstrici.presentation.model.Rate;
-import ru.android.monstrici.monstrici.presentation.presenter.monster.MonsterPresenter;
-import ru.android.monstrici.monstrici.presentation.presenter.pupil.StarPresenter;
-import ru.android.monstrici.monstrici.presentation.view.pupil.IStarDesc;
+import ru.android.monstrici.monstrici.presentation.presenter.star.StarPresenter;
+import ru.android.monstrici.monstrici.presentation.view.star.IStarView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.utils.Message;
-import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 19.11.17.
  */
 
-public class StarFragment extends BaseFragmentUsualToolbar implements IStarDesc {
+public class StarFragment extends BaseFragmentUsualToolbar implements IStarView {
 
     public static int TOOLBAR_IMAGE = R.drawable.star_icon_transparent;
     public static int TOOLBAR_TITLE = R.string.star;

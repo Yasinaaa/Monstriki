@@ -12,7 +12,9 @@ import ru.android.monstrici.monstrici.presentation.presenter.authorisation.Autho
 import ru.android.monstrici.monstrici.presentation.presenter.main.PupilMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.main.TeacherMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.monster.MonsterPresenter;
-import ru.android.monstrici.monstrici.presentation.presenter.pupil.StarPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.prize.PrizePresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.pupil.PupilPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.star.StarPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.settings.SettingsPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.sweets.SweetsPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.teacher.JournalPresenter;
@@ -52,21 +54,27 @@ public interface AppComponent extends
 
     void inject(AuthorisationPresenter presenter);
 
+    //MAIN PUPIL'S PRESENTERS
+    void inject(PupilMenuPresenter presenter);
+
+    void inject(MonsterPresenter presenter);
+
+    void inject(PrizePresenter presenter);
+
+    void inject(SettingsPresenter presenter);
+
+    void inject(StarPresenter presenter);
+
+    void inject(SweetsPresenter presenter);
+    //MAIN PUPIL'S PRESENTERS
+
+    //MAIN TEACHER'S PRESENTERS
     void inject(TeacherMenuPresenter presenter);
 
     void inject(JournalPresenter presenter);
 
-    void inject(SettingsPresenter presenter);
-
-    void inject(MonsterPresenter presenter);
-
-    void inject(StarPresenter presenter);
-
-    void inject(PupilMenuPresenter presenter);
-
-    //MAIN PUPIL'S PRESENTERS
-    void inject(SweetsPresenter presenter);
-    //MAIN PUPIL'S PRESENTERS
+    void inject(PupilPresenter presenter);
+    //MAIN TEACHER'S PRESENTERS
 
     UserRepositoryImpl getUserRepository();
 }

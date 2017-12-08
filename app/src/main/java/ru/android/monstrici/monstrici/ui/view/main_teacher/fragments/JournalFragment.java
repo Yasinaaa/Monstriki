@@ -321,7 +321,7 @@ public class JournalFragment extends BaseFragment implements IJournalView {
                     (TagContainerLayout) view.findViewById(R.id.tags);
             mTagContainerLayout.setTags(new ArrayList<String>(
                     Arrays.asList(
-                            mActivity.getResources().getStringArray(R.array.tags))));
+                            mActivity.getResources().getStringArray(R.array.tags_array))));
             mTagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
                 @Override
                 public void onTagClick(int position, String text) {
