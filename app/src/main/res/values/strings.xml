@@ -83,7 +83,7 @@
     <string name="choose_tag">Выберите тэг</string>
     <string name="choose">Выбрать</string>
     <string name="cancel">Выйти</string>
-    <string-array name="tags">
+    <string-array name="tags_array">
         <item>уборка</item>
         <item>учеба</item>
         <item>спорт</item>
@@ -94,6 +94,19 @@
         <item>дисциплина</item>
         <item>дежурство</item>
         <item>пунктуальность</item>
+    </string-array>
+
+    <string-array name="achievements_array">
+        <item>Чистюля</item>
+        <item>Самый увлеченный учебой</item>
+        <item>Самый спортивный</item>
+        <item>Самый лучший помощник</item>
+        <item>Самый активный</item>
+        <item>Самый исполнительный</item>
+        <item>Самый подготовленный</item>
+        <item>Самый дисциплинированный</item>
+        <item>Самый лучший дежурный</item>
+        <item>Самый пунктуальный</item>
     </string-array>
 
     <!-- fragment_form_parameters.xml -->

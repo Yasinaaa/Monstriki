@@ -1,4 +1,4 @@
-package ru.android.monstrici.monstrici.presentation.view.pupil;
+package ru.android.monstrici.monstrici.presentation.view.star;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
  * @Author Andrei Gusev
  */
 
-public interface IStarDesc extends IBaseView {
+public interface IStarView extends IBaseView {
 
     void getUsersRateList(List<User> users);
 

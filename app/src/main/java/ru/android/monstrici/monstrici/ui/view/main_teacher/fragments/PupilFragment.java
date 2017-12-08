@@ -8,21 +8,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
 import ru.android.monstrici.monstrici.presentation.adapter.WeekDesitionsAdapter;
 import ru.android.monstrici.monstrici.presentation.model.DayDesition;
+import ru.android.monstrici.monstrici.presentation.presenter.pupil.PupilPresenter;
+import ru.android.monstrici.monstrici.presentation.view.pupil.IPupilView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 29.10.17.
  */
 
-public class PupilFragment extends BaseFragment {
+public class PupilFragment extends BaseFragment implements IPupilView{
 
     public static final String PUPIL = "pupil";
     @BindView(R.id.tv_pupil)
@@ -38,6 +46,16 @@ public class PupilFragment extends BaseFragment {
     private Calendar mCurrentWeekCalendar;
     private DayDesition[] mDayDesitions = Resources.mDesitionsOfWeek;
     private WeekDesitionsAdapter mWeekDesitionsAdapter;
+
+    @InjectPresenter
+    PupilPresenter mPresenter;
+
+    @ProvidePresenter
+    public PupilPresenter providePresenter() {
+        PupilPresenter presenter = new PupilPresenter();
+        getComponent(AppComponent.class).inject(presenter);
+        return presenter;
+    }
 
     public PupilFragment() {
     }
@@ -56,6 +74,7 @@ public class PupilFragment extends BaseFragment {
         if(getArguments() != null){
             mPupil = getArguments().getString(PUPIL);
         }
+        getComponent(CoreComponent.class).inject(this);
     }
 
     @Override
@@ -99,4 +118,13 @@ public class PupilFragment extends BaseFragment {
         TAG = "PupilFragment";
     }
 
+    @Override
+    public void showLoading(boolean flag) {
+
+    }
+
+    @Override
+    public void showError(Message message) {
+
+    }
 }
