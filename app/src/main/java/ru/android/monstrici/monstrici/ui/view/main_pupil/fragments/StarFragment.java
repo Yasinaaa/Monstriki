@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.ui.view.main_pupil.fragments;
 
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -19,14 +20,19 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.User;
+import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
+import ru.android.monstrici.monstrici.presentation.adapter.MonsterCallback;
 import ru.android.monstrici.monstrici.presentation.adapter.RateAdapter;
+import ru.android.monstrici.monstrici.presentation.model.MonsterContainer;
 import ru.android.monstrici.monstrici.presentation.model.Rate;
 import ru.android.monstrici.monstrici.presentation.presenter.star.StarPresenter;
 import ru.android.monstrici.monstrici.presentation.view.star.IStarView;
@@ -49,6 +55,9 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
+    @Inject
+    MonsterContainer mMonsterContainer;
+
     @InjectPresenter
     StarPresenter mPresenter;
     private int mMonsterImageId = 0;
@@ -67,7 +76,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
         super(TOOLBAR_IMAGE, TOOLBAR_TITLE);
     }
 
-    public static StarFragment newInstance(){
+    public static StarFragment newInstance() {
         Bundle args = new Bundle();
         StarFragment newFragment = new StarFragment();
         newFragment.setArguments(args);
@@ -94,19 +103,19 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
     }
 
     @OnClick(R.id.tv_hall_of_fame)
-    protected void onHallOfFameClickListener(){
+    protected void onHallOfFameClickListener() {
         mViewPager.setCurrentItem(1);
         setUnderline(mTvHallOfFame, mTvRate);
     }
 
     @OnClick(R.id.tv_rate)
-    protected void onRateClickListener(){
+    protected void onRateClickListener() {
         mViewPager.setCurrentItem(0);
         setUnderline(mTvRate, mTvHallOfFame);
     }
 
-    private void setUnderline(TextView underlineTextView, TextView normalTextView){
-        underlineTextView.setPaintFlags(underlineTextView.getPaintFlags()|
+    private void setUnderline(TextView underlineTextView, TextView normalTextView) {
+        underlineTextView.setPaintFlags(underlineTextView.getPaintFlags() |
                 Paint.UNDERLINE_TEXT_FLAG);
         underlineTextView.setText(underlineTextView.getText());
         normalTextView.setPaintFlags(0);
@@ -119,10 +128,11 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
     }
 
     private String mLastUserId;
+
     @Override
     public void getUsersRateList(List<User> users) {
-        mLastUserId = users.get(users.size()-1).getId();
-        for (User user: users){
+        mLastUserId = users.get(users.size() - 1).getId();
+        for (User user : users) {
             mPresenter.getAllUserInformation(user);
         }
     }
@@ -131,12 +141,12 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
     public void getChoosedUser(User user, Monster monster) {
         mRateList.add(new Rate(monster.getName(),
                 R.drawable.m1, user.getStarStorage().getStarsCount()));
-        if (user.getId().equals(mLastUserId)){
+        if (user.getId().equals(mLastUserId)) {
             initViewPager();
         }
     }
 
-    private void initViewPager(){
+    private void initViewPager() {
         mTabsPagerAdapter = new TabsPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(mTabsPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -147,10 +157,10 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
 
             @Override
             public void onPageSelected(int state) {
-                if (state == 0){
+                if (state == 0) {
                     mViewPager.setCurrentItem(0);
                     setUnderline(mTvRate, mTvHallOfFame);
-                }else if (state == 1){
+                } else if (state == 1) {
                     mViewPager.setCurrentItem(1);
                     setUnderline(mTvHallOfFame, mTvRate);
                 }
@@ -182,7 +192,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
 
         public TabsPagerAdapter(FragmentManager fm) {
             super(fm);
-            mRateFragment = new RateFragment();
+            mRateFragment = RateFragment.newInstance(mMonsterContainer, mPresenter);
             mHallOfFameFragment = new HallOfFameFragment();
         }
 
@@ -195,21 +205,41 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
         public Fragment getItem(int index) {
             if (index == 0) {
                 return mRateFragment;
-            }
-            else if (index == 1){
+            } else if (index == 1) {
                 return mHallOfFameFragment;
-            }
-            else {
+            } else {
                 return null;
             }
         }
     }
 
-    public static class RateFragment extends BaseFragment{
+    public static class RateFragment extends BaseFragment implements MonsterCallback {
 
         @BindView(R.id.rv_rate)
         RecyclerView mRvRate;
         private RateAdapter mRateAdapter;
+        private MonsterContainer mMonsterContainer;
+        private StarPresenter mPresenter;
+        private static final String PRESENTER_TAG = "presenter";
+        private static final String CONTAINER_TAG = "container";
+
+        public static RateFragment newInstance(MonsterContainer container, StarPresenter presenter) {
+
+            Bundle args = new Bundle();
+            args.putSerializable(PRESENTER_TAG, presenter);
+            args.putSerializable(CONTAINER_TAG, container);
+            RateFragment fragment = new RateFragment();
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            Bundle arg = getArguments();
+            mPresenter = (StarPresenter) arg.getSerializable(PRESENTER_TAG);
+            mMonsterContainer = (MonsterContainer) arg.getSerializable(CONTAINER_TAG);
+            super.onCreate(savedInstanceState);
+        }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -225,14 +255,19 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
 
         @Override
         public void init() {
-            mRateAdapter = new RateAdapter(mRateList);
+            mRateAdapter = new RateAdapter(mRateList, this, mMonsterContainer);
             mRvRate.setHasFixedSize(true);
             mRvRate.setLayoutManager(new LinearLayoutManager(getContext()));
             mRvRate.setAdapter(mRateAdapter);
         }
+
+        @Override
+        public void setCallback(IDataCallback<Monster> callback) {
+            mPresenter.getAllMonsters(callback);
+        }
     }
 
-    public static class HallOfFameFragment extends BaseFragment{
+    public static class HallOfFameFragment extends BaseFragment {
 
         //@BindView(R.id.rv_rate)
         //RecyclerView mRvRate;

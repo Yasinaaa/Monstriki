@@ -25,8 +25,8 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
     @Inject
     UserRepositoryImpl mRepository;
 
-    public void getCurrentUser(){
-        mRepository.getUser("", new IDataCallback<User>() {
+    public void getCurrentUser() {
+        mRepository.getUser(mRepository.getCurrentUser().getId(), new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
                 getViewState().onTeacherPrepare(response.getBody());
@@ -38,6 +38,7 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
             }
         });
     }
+
     public void getUsers() {
 
         getViewState().showLoading(true);

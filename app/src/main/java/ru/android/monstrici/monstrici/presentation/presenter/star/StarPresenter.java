@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.presentation.presenter.star;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -24,10 +25,11 @@ import ru.android.monstrici.monstrici.utils.Message;
  * @Author Andrei Gusev
  */
 @InjectViewState
-public class StarPresenter extends BasePresenter<IStarView> {
+public class StarPresenter extends BasePresenter<IStarView> implements Serializable {
 
     @Inject
     UserRepositoryImpl mRepository;
+    private int reqId;
 
     public void getAllUserInformation(User user) {
         mRepository.getMonster(user.getMonster().getId(), user.getId(), new IDataCallback<Monster>() {
@@ -71,7 +73,12 @@ public class StarPresenter extends BasePresenter<IStarView> {
         });
     }
 
-    private List<User> sortUsersByStarsCount(List<User> users){
+    public void getAllMonsters(IDataCallback<Monster> callback) {
+        mRepository.getMonsters(reqId + "", callback);
+        reqId++;
+    }
+
+    private List<User> sortUsersByStarsCount(List<User> users) {
 
         Collections.sort(users, new Comparator<User>() {
             @Override

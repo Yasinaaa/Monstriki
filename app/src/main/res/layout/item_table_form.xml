@@ -18,6 +18,7 @@
 
     <LinearLayout
         android:layout_width="@dimen/height_large_item_linear_layout"
+        android:id="@+id/center__donut_layout"
         android:layout_height="match_parent"
         android:layout_weight="@integer/weight_large_item_linear_layout"
         android:orientation="horizontal"

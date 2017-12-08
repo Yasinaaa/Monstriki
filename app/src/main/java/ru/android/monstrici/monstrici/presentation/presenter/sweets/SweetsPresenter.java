@@ -1,27 +1,20 @@
 package ru.android.monstrici.monstrici.presentation.presenter.sweets;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import ru.android.monstrici.monstrici.R;
-import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.Star;
-import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
-import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.model.DayOfWeek;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
 import ru.android.monstrici.monstrici.presentation.view.sweets.ISweetsView;
@@ -41,7 +34,7 @@ public class SweetsPresenter extends BasePresenter<ISweetsView> {
     private String[] mDayTitles;
 
     public void getStars() {
-        Map<String, Star> starMap = mRepository.getCashedUser().
+        Map<String, Star> starMap = mRepository.getCachedUser().
                 getStarStorage().getStars();
 
         if(starMap != null)

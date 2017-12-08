@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.presentation.model;
 
 import android.content.res.TypedArray;
 
+import java.io.Serializable;
 import java.util.List;
 
 import ru.android.monstrici.monstrici.data.model.Monster;
@@ -12,7 +13,7 @@ import ru.android.monstrici.monstrici.data.model.Monster;
  * @author Andrei Gusev 22/11/2017
  */
 
-public class MonsterContainer {
+public class MonsterContainer implements Serializable {
     private Monster mMonster;
     private final TypedArray mBodyList;
     private final TypedArray mEyesList;

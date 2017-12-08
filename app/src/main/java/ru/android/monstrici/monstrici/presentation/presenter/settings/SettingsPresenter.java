@@ -87,7 +87,7 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
     }
 
     public void getUser() {
-        mRepository.getUser("", new IDataCallback<User>() {
+        mRepository.getUser(mRepository.getCurrentUser().getId(), new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
                 getMonster(response.getBody().getMonster());

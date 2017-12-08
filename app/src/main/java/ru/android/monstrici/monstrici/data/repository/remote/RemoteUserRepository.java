@@ -72,7 +72,7 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getMonster(String monsterId,String userId, @NonNull IDataCallback<Monster> callback) {
+    public void getMonster(String monsterId, String userId, @NonNull IDataCallback<Monster> callback) {
         mDatabase.child("monster").child(monsterId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -93,7 +93,7 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getMonsters(@NonNull IDataCallback<Monster> callback) {
+    public void getMonsters(String requestId, @NonNull IDataCallback<Monster> callback) {
         mDatabase.child("monster").addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -105,7 +105,9 @@ public class RemoteUserRepository implements IUserRepository {
                         if (monsters.size() == 0) {
                             callback.onReceiveDataFailure(new Message("Monsters is unexpectedly null"));
                         } else {
-                            callback.onReceiveDataSuccess(new Response<Monster>().setBody(monsters));
+                            callback.onReceiveDataSuccess(new Response<Monster>()
+                                    .setBody(monsters)
+                                    .setRequestId(requestId));
                         }
                     }
 
