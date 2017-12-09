@@ -17,6 +17,7 @@ import ru.android.monstrici.monstrici.utils.Message;
 public class Response<T> {
     private Message mMessage;
     private Status mStatus;
+    private String requestId;
     private T body;
     private List<T> bodyList;
     private Map<String, T> bodyMap;
@@ -67,6 +68,15 @@ public class Response<T> {
 
     public Response<T> setBody(Map<String, T> bodyMap) {
         this.bodyMap = bodyMap;
+        return this;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public Response<T> setRequestId(String requestId) {
+        this.requestId = requestId;
         return this;
     }
 }

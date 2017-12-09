@@ -34,9 +34,9 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
 
     @BindView(R.id.tv_large_text)
     TextView mTvLargeText;
-    @BindView(R.id.rv_eyes)
-    RecyclerView mRvEyes;
-    @BindView(R.id.til_monster_name)
+//    @BindView(R.id.rv_eyes)
+//    RecyclerView mRvEyes;
+//    @BindView(R.id.til_monster_name)
     TextInputLayout mTilMonsterName;
     @BindView(R.id.et_monster_name)
     EditText mEtMonsterName;
@@ -57,7 +57,7 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parameters);
+        setContentView(R.layout.activity_monster_create);
         start();
     }
 
@@ -66,10 +66,10 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
         Glide.with(this).load(R.drawable.m1).into(mIvMonster);
 
         mEyesAdapter = new EyesAdapter(Resources.mEyesDrawables, this);
-        mRvEyes.setItemAnimator(new DefaultItemAnimator());
-        mRvEyes.setHasFixedSize(true);
-        mRvEyes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mRvEyes.setAdapter(mEyesAdapter);
+//        mRvEyes.setItemAnimator(new DefaultItemAnimator());
+//        mRvEyes.setHasFixedSize(true);
+//        mRvEyes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//        mRvEyes.setAdapter(mEyesAdapter);
     }
 
     @OnClick(R.id.btn_next)
@@ -84,16 +84,16 @@ public class ParametersActivity extends BaseActivity implements EyesAdapter.OnIt
     //TODO: use this on onBackButton <- method
     private void setQuestionMode() {
         mTilMonsterName.setVisibility(View.GONE);
-        setLayoutBelow(mIvMonster, R.id.rv_eyes);
+      //  setLayoutBelow(mIvMonster, R.id.rv_eyes);
         isQuestionMode = true;
     }
 
     private void setCreateNameMode() {
-        mRvEyes.setVisibility(View.GONE);
+     //  mRvEyes.setVisibility(View.GONE);
         mTilMonsterName.setVisibility(View.VISIBLE);
         mTvLargeText.setText(R.string.write_name);
 
-        setLayoutBelow(mIvMonster, R.id.til_monster_name);
+    //    setLayoutBelow(mIvMonster, R.id.til_monster_name);
         isQuestionMode = false;
     }
 

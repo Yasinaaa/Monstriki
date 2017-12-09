@@ -1,6 +1,6 @@
 package ru.android.monstrici.monstrici.data.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 
@@ -12,18 +12,18 @@ import ru.android.monstrici.monstrici.domain.base.IDataCallback;
  */
 
 public class ListCallbacks {
-    private ArrayList<IDataCallback> mIDataCallbacks;
+    private HashMap<String, IDataCallback> mIDataCallbacks;
 
     public ListCallbacks() {
-        mIDataCallbacks = new ArrayList<>();
+        mIDataCallbacks = new HashMap<>();
     }
 
-    public ListCallbacks add(IDataCallback callback) {
-        mIDataCallbacks.add(callback);
+    public ListCallbacks add(String id, IDataCallback callback) {
+        mIDataCallbacks.put(id, callback);
         return this;
     }
 
-    public ArrayList<IDataCallback> getIDataCallbacks() {
+    public HashMap<String, IDataCallback> getIDataCallbacks() {
         return mIDataCallbacks;
     }
 }

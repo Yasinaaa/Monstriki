@@ -124,6 +124,13 @@ public class SettingsFragment extends BaseFragmentUsualToolbar implements View.O
         mTvHands.setOnClickListener(this);
         mTvLogout.setOnClickListener(this);
         mIvLogout.setOnClickListener(this);
+
+        mIvMouthPart.getLayoutParams().height = 70;
+        mIvMouthPart.getLayoutParams().width = 70;
+
+        mIvEyePart.getLayoutParams().height = 100;
+        mIvEyePart.getLayoutParams().width = 100;
+
         // mBtnSave.setOnClickListener(this);
         mEtMonsterName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 

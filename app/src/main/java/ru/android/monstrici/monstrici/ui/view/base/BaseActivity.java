@@ -45,7 +45,9 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements BaseM
     protected AppComponent getApplicationComponent() {
         return (AppComponent) ((IHasComponent<ApplicationCore>) getApplication()).getComponent();
     }
-    public abstract void init();
-    public abstract void setTag();
+
+    public void init(){};
+
+    public void setTag(){};
 
 }

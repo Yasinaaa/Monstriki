@@ -59,9 +59,9 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
     }
 
 
-    public abstract void setTag();
+    public  void setTag(){}
 
-    public abstract void init();
+    public  void init(){}
 
 
 }
