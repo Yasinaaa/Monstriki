@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.presentation.presenter.prize;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 
@@ -32,7 +33,37 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
     private int[] maxTagsGoalsArray;
     private User[] maxTagsUserArray;
 
-    public void getUser(String id) {
+    public void getUsers(Activity activity) {
+
+        getViewState().showLoading(true);
+        mRepository.getUsers(new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                getUsersByClass(activity);
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                getViewState().showError(message);
+                getViewState().showLoading(false);
+            }
+        });
+    }
+
+    private void getUsersByClass(Activity activity) {
+        mRepository.getUsersByClass(new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                setPrizes(response.getBodyList(), activity);
+                getViewState().showLoading(false);
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                getViewState().showError(message);
+                getViewState().showLoading(false);
+            }
+        });
     }
 
     public void setPrizes(List<User> userList, Activity activity){
@@ -60,6 +91,12 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
                 }
 
             }
+
+            for (int i=0; i<maxTagsGoalsArray.length;i++){
+                Log.d("ff", maxTagsGoalsArray[i] + " "
+                + maxTagsUserArray[i].getName());
+            }
+
         }
 
     }

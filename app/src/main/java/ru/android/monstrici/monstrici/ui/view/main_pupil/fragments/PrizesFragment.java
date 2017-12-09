@@ -79,6 +79,7 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
         mRvPrizes.setHasFixedSize(true);
         mRvPrizes.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvPrizes.setAdapter(mPrizeAdapter);
+        mPresenter.getUsers(getActivity());
     }
 
     @Override
