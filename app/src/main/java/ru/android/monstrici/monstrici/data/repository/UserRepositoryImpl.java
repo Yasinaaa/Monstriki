@@ -157,6 +157,7 @@ public class UserRepositoryImpl implements IUserRepository {
             public void onReceiveDataSuccess(Response<Star> response) {
 
                 StarStorage starStorage = new StarStorage();
+                starStorage.setId(starId);
                 starStorage.setStars(response.getBodyMap());
                 mCachedUserMap.get(userId).setStars(starStorage);
                 requests.get("getStar")
@@ -184,6 +185,28 @@ public class UserRepositoryImpl implements IUserRepository {
             callback.onReceiveDataSuccess(new Response<Star>()
                     .setBody(mCachedUserMap.get(userId).getStarStorage().getStars()));
         }
+    }
+
+    @Override
+    public void getStars(@NonNull IDataCallback<Star> callback) {
+        IDataCallback<Star> starsCallback = new IDataCallback<Star>() {
+            @Override
+            public void onReceiveDataSuccess(Response<Star> response) {
+                callback.onReceiveDataSuccess(response);
+                removeRequest("getStars", "getStars");
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                callback.onReceiveDataFailure(message);
+            }
+        };
+        if (!requests.containsKey("getStars")) {
+            if (!requests.containsKey("getStars"))
+                requests.put("getStars", new ListCallbacks());
+            mRemoteUserRepository.getStars(starsCallback);
+        }
+        requests.put("getStars", requests.get("getStars").add("getStars", callback));
     }
 
     public User getCachedUser() {

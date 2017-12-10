@@ -123,12 +123,34 @@ public class RemoteUserRepository implements IUserRepository {
         mDatabase.child("stars").child(starId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                HashMap<String, Star> stars = ResponseParser.parseStar(starId, (HashMap) dataSnapshot.getValue());
+                StarStorage starStorage = ResponseParser.parseStar(starId, (HashMap) dataSnapshot.getValue());
 
-                if (stars.size() == 0) {
+                if (starStorage.getStars().size() == 0) {
                     callback.onReceiveDataFailure(new Message("Stars " + " are unexpectedly null"));
                 } else {
-                    callback.onReceiveDataSuccess(new Response<Star>().setBody(stars));
+                    callback.onReceiveDataSuccess(new Response<Star>().setBody(starStorage));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callback.onReceiveDataFailure(new Message(databaseError.toException().getMessage()));
+            }
+        });
+    }
+
+    @Override
+    public void getStars(@NonNull IDataCallback<Star> callback) {
+        mDatabase.child("stars").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               // ArrayList<HashMap<String, HashMap>> dataSnapshot.getValue();
+                StarStorage starStorage = ResponseParser.parseStar("", (HashMap) dataSnapshot.getValue());
+
+                if (starStorage.getStars().size() == 0) {
+                    callback.onReceiveDataFailure(new Message("Stars " + " are unexpectedly null"));
+                } else {
+                    callback.onReceiveDataSuccess(new Response<Star>().setBody(starStorage));
                 }
             }
 
