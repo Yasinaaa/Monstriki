@@ -34,6 +34,7 @@ import ru.android.monstrici.monstrici.presentation.adapter.MonsterCallback;
 import ru.android.monstrici.monstrici.presentation.adapter.RateAdapter;
 import ru.android.monstrici.monstrici.presentation.model.MonsterContainer;
 import ru.android.monstrici.monstrici.presentation.model.Rate;
+import ru.android.monstrici.monstrici.presentation.presenter.prize.PrizePresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.star.StarPresenter;
 import ru.android.monstrici.monstrici.presentation.view.star.IStarView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
@@ -188,12 +189,14 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
     public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
         public RateFragment mRateFragment;
-        public HallOfFameFragment mHallOfFameFragment;
+        //public HallOfFameFragment mHallOfFameFragment;
+        public PrizesFragment mPrizeFragment;
 
         public TabsPagerAdapter(FragmentManager fm) {
             super(fm);
             mRateFragment = RateFragment.newInstance(mMonsterContainer, mPresenter);
-            mHallOfFameFragment = new HallOfFameFragment();
+            //mHallOfFameFragment = new HallOfFameFragment();
+            mPrizeFragment = PrizesFragment.newInstance(false);
         }
 
         @Override
@@ -206,7 +209,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
             if (index == 0) {
                 return mRateFragment;
             } else if (index == 1) {
-                return mHallOfFameFragment;
+                return mPrizeFragment;
             } else {
                 return null;
             }
@@ -267,27 +270,5 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
         }
     }
 
-    public static class HallOfFameFragment extends BaseFragment {
-
-        //@BindView(R.id.rv_rate)
-        //RecyclerView mRvRate;
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            createLayout(inflater, container, R.layout.fragment_hall_of_fame);
-            return mView;
-        }
-
-        @Override
-        public void setTag() {
-
-        }
-
-        @Override
-        public void init() {
-        }
-    }
 }
 

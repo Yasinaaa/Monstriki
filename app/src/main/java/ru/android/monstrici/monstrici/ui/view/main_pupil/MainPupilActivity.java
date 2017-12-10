@@ -121,7 +121,7 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
                     setMonsterFragment();
                     break;
                 case 1:
-                    PrizesFragment prizesFragment = new PrizesFragment();
+                    PrizesFragment prizesFragment = PrizesFragment.newInstance(true);
                     mFragmentManager.beginTransaction().replace(R.id.fl_main, prizesFragment).commit();
                     setToolbar(mUsualToolbar, prizesFragment);
                     break;

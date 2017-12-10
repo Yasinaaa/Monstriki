@@ -21,6 +21,7 @@ import ru.android.monstrici.monstrici.presentation.presenter.prize.PrizePresente
 import ru.android.monstrici.monstrici.presentation.view.prize.IPrizeView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.utils.Message;
+import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 17.10.17.
@@ -29,6 +30,7 @@ import ru.android.monstrici.monstrici.utils.Message;
 public class PrizesFragment extends BaseFragmentUsualToolbar
         implements PrizeAdapter.OnItemClicked, IPrizeView{
 
+    private final static String VIEW_TYPE = "view_type";
     public static int TOOLBAR_IMAGE = R.drawable.cup_icon_transparent;
     public static int TOOLBAR_TITLE = R.string.prize;
 
@@ -37,6 +39,8 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
 
     private PrizeAdapter mPrizeAdapter;
     private ArrayList<Prize> mPrizesList;
+    private boolean mIsSinglePageView;
+
     @InjectPresenter
     PrizePresenter mPresenter;
 
@@ -47,6 +51,14 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
         return presenter;
     }
 
+    public static PrizesFragment newInstance(boolean isSinglePageView) {
+        Bundle args = new Bundle();
+        args.putBoolean(VIEW_TYPE, isSinglePageView);
+        PrizesFragment newFragment = new PrizesFragment();
+        newFragment.setArguments(args);
+        return newFragment;
+    }
+
     public PrizesFragment() {
         super(TOOLBAR_IMAGE, TOOLBAR_TITLE);
     }
@@ -54,6 +66,9 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mIsSinglePageView = getArguments().getBoolean(VIEW_TYPE);
+        }
         getComponent(CoreComponent.class).inject(this);
     }
 
@@ -71,15 +86,9 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
 
     @Override
     public void init() {
-        //TODO: this is temp prizes list, change it
         mPrizesList = new ArrayList<Prize>();
-        mPrizesList.add(new Prize(R.drawable.brain, getString(R.string.the_smartest), "30.10.2017"));
-
-        mPrizeAdapter = new PrizeAdapter(mPrizesList, this);
-        mRvPrizes.setHasFixedSize(true);
-        mRvPrizes.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvPrizes.setAdapter(mPrizeAdapter);
         mPresenter.getUsers(getActivity());
+
     }
 
     @Override
@@ -95,5 +104,29 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
     @Override
     public void showError(Message message) {
 
+    }
+
+    @Override
+    public void setReward(String rewardTitle, int rewardPicture, String monsterName) {
+        mPrizesList.add(new Prize(rewardPicture,
+                rewardTitle, monsterName));
+    }
+
+    @Override
+    public void initRecyclerView(){
+        mPrizeAdapter = new PrizeAdapter(mPrizesList, this);
+        mRvPrizes.setHasFixedSize(true);
+        mRvPrizes.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvPrizes.setAdapter(mPrizeAdapter);
+
+    }
+
+    @Override
+    public void onPrizesGetListFinish() {
+        if (mIsSinglePageView){
+            mPresenter.getCurrentUserAchievements();
+        }else {
+            mPresenter.getAllUsersAchievements();
+        }
     }
 }

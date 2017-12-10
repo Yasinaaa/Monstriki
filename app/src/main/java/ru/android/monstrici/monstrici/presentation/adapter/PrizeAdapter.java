@@ -49,7 +49,7 @@ public class PrizeAdapter extends RecyclerView.Adapter<PrizeAdapter.PrizeHolder>
     public void onBindViewHolder(final PrizeHolder holder, final int position) {
 
         Prize prize = mList.get(position);
-        Glide.with(mContext).load(prize.getPrizePicture()).into(holder.mIvPrize);
+        holder.mIvPrize.setImageResource(prize.getPrizePicture());
 
         holder.mTvPrizeTitle.setText(prize.getPrizeTitle());
         holder.mTvPrizeDate.setText(prize.getPrizeDate());
