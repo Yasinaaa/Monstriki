@@ -8,6 +8,7 @@
     <ImageView
         android:layout_width="@dimen/size_prize_imageview"
         android:layout_height="@dimen/size_prize_imageview"
+        android:layout_centerVertical="true"
         android:id="@+id/iv_prize"/>
 
     <TextView
@@ -16,6 +17,7 @@
         android:id="@+id/tv_prize_title"
         android:text="@string/the_smartest"
         android:textSize="@dimen/textsize_prize_title"
+        android:layout_toRightOf="@+id/iv_prize"
         android:textAlignment="center"
         android:layout_marginTop="@dimen/margin_small"
         android:textColor="@color/color_purple"
@@ -28,6 +30,7 @@
         android:text="30.10.2017"
         android:textAlignment="center"
         android:textColor="@color/color_purple"
+        android:layout_toRightOf="@+id/iv_prize"
         android:layout_below="@+id/tv_prize_title"
         />
 

@@ -1,8 +1,5 @@
 package ru.android.monstrici.monstrici.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.model.DayDesition;
 
@@ -40,5 +37,14 @@ public class Resources {
             new DayDesition(R.string.friday),
             new DayDesition(R.string.saturday)
     };
+
+    public static int[] mRewardDrawables = new int[]{
+            R.drawable.cleaning, R.drawable.study,
+            R.drawable.sport, R.drawable.helper,
+            R.drawable.active, R.drawable.duty,
+            R.drawable.preparedness,R.drawable.discipline,
+            R.drawable.watch,R.drawable.punctuality
+    };
+
 
 }

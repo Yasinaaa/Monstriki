@@ -98,7 +98,7 @@
 
     <string-array name="achievements_array">
         <item>Чистюля</item>
-        <item>Самый увлеченный учебой</item>
+        <item>Самый увлеченный\nучебой</item>
         <item>Самый спортивный</item>
         <item>Самый лучший помощник</item>
         <item>Самый активный</item>

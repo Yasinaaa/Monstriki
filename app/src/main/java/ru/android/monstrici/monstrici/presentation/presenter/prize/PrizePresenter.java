@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.presentation.presenter.prize;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 
@@ -10,14 +11,17 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.presenter.base.BasePresenter;
 import ru.android.monstrici.monstrici.presentation.view.prize.IPrizeView;
 import ru.android.monstrici.monstrici.utils.Message;
+import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 07.12.17.
@@ -32,7 +36,37 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
     private int[] maxTagsGoalsArray;
     private User[] maxTagsUserArray;
 
-    public void getUser(String id) {
+    public void getUsers(Activity activity) {
+
+        getViewState().showLoading(true);
+        mRepository.getUsers(new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                getUsersByClass(activity);
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                getViewState().showError(message);
+                getViewState().showLoading(false);
+            }
+        });
+    }
+
+    private void getUsersByClass(Activity activity) {
+        mRepository.getUsersByClass(new IDataCallback<User>() {
+            @Override
+            public void onReceiveDataSuccess(Response<User> response) {
+                setPrizes(response.getBodyList(), activity);
+                getViewState().showLoading(false);
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+                getViewState().showError(message);
+                getViewState().showLoading(false);
+            }
+        });
     }
 
     public void setPrizes(List<User> userList, Activity activity){
@@ -41,6 +75,24 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
                 getStringArray(R.array.achievements_array);
         tagsArray = activity.getResources().
                 getStringArray(R.array.tags_array);
+
+        //temp
+        StarStorage starStorage = new StarStorage();
+        Star star2 = new Star();
+        star2.setTag(tagsArray[0]);
+        star2.setGoals("4");
+        star2.setDate("10.12.2017");
+        starStorage.getStars().put(tagsArray[0], star2);
+        userList.get(0).setStars(starStorage);
+
+        StarStorage starStorage2 = new StarStorage();
+        star2 = new Star();
+        star2.setTag(tagsArray[1]);
+        star2.setGoals("3");
+        star2.setDate("10.12.2017");
+        starStorage2.getStars().put(tagsArray[1], star2);
+        userList.get(1).setStars(starStorage2);
+        //temp
 
         if (achievementsArray.length == tagsArray.length){
             maxTagsGoalsArray = new int[tagsArray.length];
@@ -58,26 +110,56 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
                         }
                     }
                 }
-
             }
         }
-
+        getViewState().onPrizesGetListFinish();
     }
 
-    private void getCurrentUserAchievements(User currentUser){
+    public void getAllUsersAchievements(){
+        for (int i=0; i<maxTagsGoalsArray.length;i++){
+            checkReward(i);
+        }
+    }
+
+    public void getCurrentUserAchievements(){
+        User currentUser = mRepository.getCurrentUser();
         for (int i=0; i<maxTagsUserArray.length;i++){
             if (currentUser.equals(maxTagsUserArray[i])){
-
+                checkReward(i);
             }
+        }
+    }
+
+    private void checkReward(int i){
+        if (maxTagsUserArray[i] != null && maxTagsGoalsArray[i] != 0){
+            getMonsterSetToUser(maxTagsUserArray[i], achievementsArray[i],
+                    Resources.mRewardDrawables[i]);
         }
     }
 
     private void setMaxTagsGoal(int i, Star star, User user){
         int goals = Integer.parseInt(star.getGoals());
-        if(star.getTag().equals(tagsArray[0]) &&
-                maxTagsGoalsArray[0] < goals){
-            maxTagsGoalsArray[0] = goals;
-            maxTagsUserArray[0] = user;
+        if(star.getTag().equals(tagsArray[i]) &&
+                maxTagsGoalsArray[i] < goals){
+            maxTagsGoalsArray[i] = goals;
+            maxTagsUserArray[i] = user;
         }
+    }
+
+    private void getMonsterSetToUser(User user, String achievement, int pic){
+        mRepository.getMonster(user.getMonster().getId(), user.getId(),
+                new IDataCallback<Monster>(){
+                    @Override
+                    public void onReceiveDataSuccess(Response<Monster> response) {
+                        getViewState().setReward(achievement,
+                                pic, response.getBody().getName());
+
+                    }
+
+                    @Override
+                    public void onReceiveDataFailure(Message message) {
+
+                    }
+                });
     }
 }
