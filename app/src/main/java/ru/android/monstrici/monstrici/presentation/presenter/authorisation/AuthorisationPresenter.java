@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -64,6 +65,17 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
                                     .getPosition()
                                     .equals("teacher")
                             , response.getBody().getId());
+                    mRepository.getStars(new IDataCallback<Star>() {
+                        @Override
+                        public void onReceiveDataSuccess(Response<Star> response) {
+
+                        }
+
+                        @Override
+                        public void onReceiveDataFailure(Message message) {
+
+                        }
+                    });
                 }
 
                 @Override

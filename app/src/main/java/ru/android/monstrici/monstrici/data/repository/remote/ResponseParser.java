@@ -10,6 +10,7 @@ import java.util.Map;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.SchoolClass;
 import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
 
 /**
@@ -37,7 +38,7 @@ public class ResponseParser {
         return exception;
     }
 
-    static HashMap<String, Star> parseStar(String id, HashMap<String, HashMap> hashMap) {
+    static StarStorage parseStar(String id, HashMap<String, HashMap> hashMap) {
         HashMap<String, Star> stars = new HashMap<>();
         Star star = new Star();
         star.setId(id);
@@ -45,13 +46,17 @@ public class ResponseParser {
         for (Map.Entry<String, HashMap> e : days.entrySet()) {
             Star st = new Star();
             st.setDate(e.getKey());
+            st.setId(e.getKey());
             HashMap<String, String> answer = e.getValue();
 
             st.setGoals(answer.get("goals"));
             st.setTag(answer.get("tag"));
             stars.put(st.getId(), st);
         }
-        return stars;
+        StarStorage starStorage=new StarStorage();
+        starStorage.setId(id);
+        starStorage.setStars(stars);
+        return starStorage;
     }
 
     static User parseUser(HashMap hashMap) {

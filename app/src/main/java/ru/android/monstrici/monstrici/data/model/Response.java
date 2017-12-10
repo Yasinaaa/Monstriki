@@ -20,6 +20,7 @@ public class Response<T> {
     private String requestId;
     private T body;
     private List<T> bodyList;
+    private StarStorage mStarStorage;
     private Map<String, T> bodyMap;
 
     public Response() {
@@ -61,6 +62,11 @@ public class Response<T> {
         return this;
     }
 
+    public Response<T> setBody(StarStorage body) {
+        mStarStorage = body;
+        return this;
+    }
+
     public Response<T> setBody(List<T> bodyList) {
         this.bodyList = bodyList;
         return this;
@@ -78,5 +84,8 @@ public class Response<T> {
     public Response<T> setRequestId(String requestId) {
         this.requestId = requestId;
         return this;
+    }
+    public StarStorage getStarStorage(){
+        return mStarStorage;
     }
 }
