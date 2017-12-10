@@ -76,38 +76,31 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
         tagsArray = activity.getResources().
                 getStringArray(R.array.tags_array);
 
-        //temp
-        StarStorage starStorage = new StarStorage();
-        Star star2 = new Star();
-        star2.setTag(tagsArray[0]);
-        star2.setGoals("4");
-        star2.setDate("10.12.2017");
-        starStorage.getStars().put(tagsArray[0], star2);
-        userList.get(0).setStars(starStorage);
-
-        StarStorage starStorage2 = new StarStorage();
-        star2 = new Star();
-        star2.setTag(tagsArray[1]);
-        star2.setGoals("3");
-        star2.setDate("10.12.2017");
-        starStorage2.getStars().put(tagsArray[1], star2);
-        userList.get(1).setStars(starStorage2);
-        //temp
-
         if (achievementsArray.length == tagsArray.length){
             maxTagsGoalsArray = new int[tagsArray.length];
             maxTagsUserArray = new User[tagsArray.length];
 
             for (int i=0; i<userList.size();i++){
                 User user = userList.get(i);
-                Map<String, Star> stars = user.getStarStorage().getStars();
-                for (Map.Entry<String, Star> entry : stars.entrySet())
-                {
-                    Star star = entry.getValue();
-                    if (star.getGoals() != null){
-                        for (int k = 0; k<10; k++){
-                            setMaxTagsGoal(k, star, user);
-                        }
+                if (i == userList.size() - 1)
+                    getStars(userList, i, true);
+                else
+                    getStars(userList, i, false);
+            }
+        }
+
+    }
+
+    private void countStars(List<User> userList){
+
+        for (int i=0; i<userList.size();i++) {
+            User user = userList.get(i);
+            Map<String, Star> stars = user.getStarStorage().getStars();
+            for (Map.Entry<String, Star> entry : stars.entrySet()) {
+                Star star = entry.getValue();
+                if (star.getGoals() != null) {
+                    for (int k = 0; k < 10; k++) {
+                        setMaxTagsGoal(k, star, user);
                     }
                 }
             }
@@ -161,5 +154,25 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
 
                     }
                 });
+    }
+
+    private void getStars(List<User> userList, int i, boolean finish){
+        mRepository.getStar(userList.get(i).getStarId(), userList.get(i).getId(), new IDataCallback<Star>() {
+            @Override
+            public void onReceiveDataSuccess(Response<Star> response) {
+                StarStorage starStorage = new StarStorage();
+                starStorage.setStars(response.getBodyMap());
+                userList.get(i).setStars(starStorage);
+
+                if (finish){
+                    countStars(userList);
+                }
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+
+            }
+        });
     }
 }
