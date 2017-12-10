@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.StarStorage;
@@ -118,7 +119,6 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
         for (int i=0; i<maxTagsGoalsArray.length;i++){
             checkReward(i);
         }
-        getViewState().initRecyclerView();
     }
 
     public void getCurrentUserAchievements(){
@@ -128,17 +128,12 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
                 checkReward(i);
             }
         }
-        getViewState().initRecyclerView();
     }
 
     private void checkReward(int i){
         if (maxTagsUserArray[i] != null && maxTagsGoalsArray[i] != 0){
-            String monsterName = "";
-            if (maxTagsUserArray[i].getMonster() != null){
-                monsterName = maxTagsUserArray[i].getMonster().getName();
-                getViewState().setReward(achievementsArray[i],
-                        Resources.mRewardDrawables[i], monsterName);
-            }
+            getMonsterSetToUser(maxTagsUserArray[i], achievementsArray[i],
+                    Resources.mRewardDrawables[i]);
         }
     }
 
@@ -149,5 +144,22 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
             maxTagsGoalsArray[i] = goals;
             maxTagsUserArray[i] = user;
         }
+    }
+
+    private void getMonsterSetToUser(User user, String achievement, int pic){
+        mRepository.getMonster(user.getMonster().getId(), user.getId(),
+                new IDataCallback<Monster>(){
+                    @Override
+                    public void onReceiveDataSuccess(Response<Monster> response) {
+                        getViewState().setReward(achievement,
+                                pic, response.getBody().getName());
+
+                    }
+
+                    @Override
+                    public void onReceiveDataFailure(Message message) {
+
+                    }
+                });
     }
 }

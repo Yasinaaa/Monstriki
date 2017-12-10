@@ -37,6 +37,12 @@ public class PrizeAdapter extends RecyclerView.Adapter<PrizeAdapter.PrizeHolder>
         this.mOnClick = onClick;
     }
 
+    public void add(Prize prize){
+        mList.add(prize);
+        notifyItemInserted(mList.size() - 1);
+        notifyDataSetChanged();
+    }
+
     @Override
     public PrizeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();

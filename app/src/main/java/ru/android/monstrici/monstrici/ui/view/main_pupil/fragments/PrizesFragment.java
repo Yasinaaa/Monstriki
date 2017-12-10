@@ -87,8 +87,10 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
     @Override
     public void init() {
         mPrizesList = new ArrayList<Prize>();
+        mPrizeAdapter = new PrizeAdapter(mPrizesList, this);
+        mRvPrizes.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvPrizes.setAdapter(mPrizeAdapter);
         mPresenter.getUsers(getActivity());
-
     }
 
     @Override
@@ -108,17 +110,8 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
 
     @Override
     public void setReward(String rewardTitle, int rewardPicture, String monsterName) {
-        mPrizesList.add(new Prize(rewardPicture,
-                rewardTitle, monsterName));
-    }
-
-    @Override
-    public void initRecyclerView(){
-        mPrizeAdapter = new PrizeAdapter(mPrizesList, this);
-        mRvPrizes.setHasFixedSize(true);
-        mRvPrizes.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvPrizes.setAdapter(mPrizeAdapter);
-
+       mPrizeAdapter.add(new Prize(rewardPicture,
+               rewardTitle, monsterName));
     }
 
     @Override
