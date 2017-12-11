@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -49,7 +50,35 @@ public class StarPresenter extends BasePresenter<IStarView> implements Serializa
         mRepository.getUsersByClass(new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
-                getViewState().getUsersRateList(sortUsersByStarsCount(response.getBodyList()));
+
+                List<User> userList = response.getBodyList();
+                for (int i=0; i<userList.size();i++){
+                    User user = userList.get(i);
+                    if (i == userList.size() - 1)
+                        getStars(userList, i, true);
+                    else
+                        getStars(userList, i, false);
+                }
+
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+
+            }
+        });
+    }
+
+    private void getStars(List<User> userList, int i, boolean finish){
+        mRepository.getStar(userList.get(i).getStarId(),userList.get(i).getId(), new IDataCallback<Star>() {
+            @Override
+            public void onReceiveDataSuccess(Response<Star> response) {
+                userList.get(i).setStars(response.getStarStorage());
+
+                if (finish){
+                    getViewState().getUsersRateList(
+                            sortUsersByStarsCount(userList));
+                }
             }
 
             @Override
@@ -88,9 +117,9 @@ public class StarPresenter extends BasePresenter<IStarView> implements Serializa
                 userTwoStars = two.getStarStorage().getStarsCount();
 
                 if (userOneStars > userTwoStars)
-                    return 1;
-                if (userOneStars < userTwoStars)
                     return -1;
+                if (userOneStars < userTwoStars)
+                    return 1;
                 return 0;
             }
         });

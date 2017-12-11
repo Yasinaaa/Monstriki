@@ -22,6 +22,17 @@ public class StarStorage {
         return mStars.get(id);
     }
 
+    public Star getExistStar(String id){
+        for (Map.Entry<String, Star> entry : mStars.entrySet())
+        {
+            Star star = entry.getValue();
+            if (star.getId().equals(id)){
+                return star;
+            }
+        }
+        return null;
+    }
+
     public Map<String, Star> getStars() {
         return mStars;
     }
@@ -36,6 +47,10 @@ public class StarStorage {
 
     public void setId(String id) {
         mId = id;
+    }
+
+    public void addStar(Star star) {
+        updateStar(star);
     }
 
     public void updateStar(Star star) {

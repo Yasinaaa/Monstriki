@@ -92,7 +92,6 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
     }
 
     private void countStars(List<User> userList){
-
         for (int i=0; i<userList.size();i++) {
             User user = userList.get(i);
             Map<String, Star> stars = user.getStarStorage().getStars();
@@ -131,11 +130,16 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
     }
 
     private void setMaxTagsGoal(int i, Star star, User user){
-        int goals = Integer.parseInt(star.getGoals());
-        if(star.getTag().equals(tagsArray[i]) &&
-                maxTagsGoalsArray[i] < goals){
-            maxTagsGoalsArray[i] = goals;
-            maxTagsUserArray[i] = user;
+        int goals = 0;
+        try {
+            goals = Integer.parseInt(star.getGoals());
+            if(star.getTag().equals(tagsArray[i]) &&
+                    maxTagsGoalsArray[i] < goals){
+                maxTagsGoalsArray[i] = goals;
+                maxTagsUserArray[i] = user;
+            }
+        }catch (NumberFormatException e){
+
         }
     }
 
@@ -157,12 +161,10 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
     }
 
     private void getStars(List<User> userList, int i, boolean finish){
-        mRepository.getStar(userList.get(i).getStarId(), userList.get(i).getId(), new IDataCallback<Star>() {
+        mRepository.getStar(userList.get(i).getStarId(),userList.get(i).getId(), new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
-                StarStorage starStorage = new StarStorage();
-                starStorage.setStars(response.getBodyMap());
-                userList.get(i).setStars(starStorage);
+                userList.get(i).setStars(response.getStarStorage());
 
                 if (finish){
                     countStars(userList);

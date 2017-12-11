@@ -161,7 +161,7 @@ public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
         mNavigationViewsItems = new NavigationViewsItems(mNavigationView.getHeaderView(0));
         mIvMenuItem = (ImageView) findViewById(R.id.iv_menu_item);
         mFragmentManager = getSupportFragmentManager();
-        setFragment(new JournalFragment());
+        setFragment(JournalFragment.newInstance());
         mIvMenuItem.setVisibility(View.VISIBLE);
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

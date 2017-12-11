@@ -1,6 +1,8 @@
-package ru.android.monstrici.monstrici.presentation.presenter.teacher;
+package ru.android.monstrici.monstrici.presentation.presenter.journal;
 
 import com.arellomobile.mvp.InjectViewState;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,7 +27,7 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
     @Inject
     UserRepositoryImpl mRepository;
 
-    public void getCurrentUser() {
+   /* public void getCurrentUser() {
         mRepository.getUser(mRepository.getCurrentUser().getId(), new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
@@ -37,7 +39,7 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
 
             }
         });
-    }
+    }*/
 
     public void getUsers() {
 
@@ -60,8 +62,17 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
         mRepository.getUsersByClass(new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
-                getViewState().onUsersPrepare(response.getBodyList());
-                getViewState().showLoading(false);
+                /*getViewState().onUsersPrepare(response.getBodyList());
+                getViewState().showLoading(false);*/
+
+                List<User> userList = response.getBodyList();
+                for (int i=0; i<userList.size();i++){
+                    User user = userList.get(i);
+                    if (i == userList.size() - 1)
+                        getStars(userList, i, true);
+                    else
+                        getStars(userList, i, false);
+                }
             }
 
             @Override
@@ -72,11 +83,15 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
         });
     }
 
-    public void getStars(User user) {
-        mRepository.getStar(user.getStarId(), user.getId(), new IDataCallback<Star>() {
+   private void getStars(List<User> userList, int i, boolean finish) {
+        mRepository.getStar(userList.get(i).getStarId(),userList.get(i).getId(), new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
-                getViewState().onStarsGet(user, response.getBodyList());
+                userList.get(i).setStars(response.getStarStorage());
+
+                if (finish){
+                    getViewState().onUsersPrepare(userList);
+                }
             }
 
             @Override

@@ -109,17 +109,12 @@
         android:layout_below="@+id/tv_form"
         android:background="@android:color/darker_gray" />
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/view3">
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:stretchColumns="*"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </TableLayout>
-    </android.support.v4.widget.NestedScrollView>
+        android:layout_below="@+id/view3"
+        android:id="@+id/rv_journal">
+    </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_save"
