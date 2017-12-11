@@ -1,10 +1,10 @@
-package ru.android.monstrici.monstrici.ui.view.main_teacher.adapter.factory;
+package ru.android.monstrici.monstrici.presentation.adapter.journal.factory.model;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import ru.android.monstrici.monstrici.ui.view.main_teacher.adapter.IRecyclerViewItemListener;
+import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IGoalItemListener;
 
 /**
  * Created by elisium
@@ -13,8 +13,8 @@ import ru.android.monstrici.monstrici.ui.view.main_teacher.adapter.IRecyclerView
  * @Author Andrei Gusev
  */
 
-public interface IViewHolderFactory {
+public interface IViewGoalHolderFactory {
     RecyclerView.ViewHolder createViewHolder(ViewGroup parent,
                                              LayoutInflater inflater,
-                                             IRecyclerViewItemListener listener);
+                                             IGoalItemListener listener);
 }

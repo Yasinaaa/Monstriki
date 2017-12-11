@@ -16,6 +16,7 @@ import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.utils.DateFunctions;
+import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by yasina on 29.10.17.
@@ -29,7 +30,6 @@ public class DataFragment extends BaseFragment {
     com.squareup.timessquare.CalendarPickerView mCvCalendar;
 
     private Calendar mSelectedCalendar;
-    private SimpleDateFormat mDateFormat = new SimpleDateFormat("dd.MM.yyyy");
     private boolean mIsPupilView = false;
 
     public DataFragment() {
@@ -47,7 +47,6 @@ public class DataFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
-           // mIsAloneDate = getArguments().getBoolean(DATE_TYPE);
             mIsPupilView = getArguments().getBoolean(VIEW_TYPE);
         }
     }
@@ -89,9 +88,9 @@ public class DataFragment extends BaseFragment {
                 ArrayList<Date> mDates = DateFunctions.createWeekDates(date);
                 mCvCalendar.highlightDates(mDates);
                 openFragment(
-                        JournalFragment.newInstance("1C",
-                                mDateFormat.format(mDates.get(0)) + "-" +
-                                        mDateFormat.format(mDates.get(6))));
+                        NewJournalFragment.newInstance("1C",
+                                Resources.DATE_FORMAT.format(mDates.get(0)) + "-" +
+                                        Resources.DATE_FORMAT.format(mDates.get(6))));
             }
 
             @Override

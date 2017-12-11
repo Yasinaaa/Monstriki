@@ -92,23 +92,6 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
     }
 
     private void countStars(List<User> userList){
-        //temp
-        /*StarStorage starStorage = new StarStorage();
-        Star star2 = new Star();
-        star2.setTag(tagsArray[0]);
-        star2.setGoals("4");
-        star2.setDate("10.12.2017");
-        starStorage.getStars().put(tagsArray[0], star2);
-        userList.get(0).setStars(starStorage);
-
-        StarStorage starStorage2 = new StarStorage();
-        star2 = new Star();
-        star2.setTag(tagsArray[1]);
-        star2.setGoals("3");
-        star2.setDate("10.12.2017");
-        starStorage2.getStars().put(tagsArray[1], star2);
-        userList.get(1).setStars(starStorage2);*/
-        //temp
         for (int i=0; i<userList.size();i++) {
             User user = userList.get(i);
             Map<String, Star> stars = user.getStarStorage().getStars();
@@ -147,11 +130,16 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
     }
 
     private void setMaxTagsGoal(int i, Star star, User user){
-        int goals = Integer.parseInt(star.getGoals());
-        if(star.getTag().equals(tagsArray[i]) &&
-                maxTagsGoalsArray[i] < goals){
-            maxTagsGoalsArray[i] = goals;
-            maxTagsUserArray[i] = user;
+        int goals = 0;
+        try {
+            goals = Integer.parseInt(star.getGoals());
+            if(star.getTag().equals(tagsArray[i]) &&
+                    maxTagsGoalsArray[i] < goals){
+                maxTagsGoalsArray[i] = goals;
+                maxTagsUserArray[i] = user;
+            }
+        }catch (NumberFormatException e){
+
         }
     }
 
@@ -176,7 +164,7 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
         mRepository.getStar(userList.get(i).getStarId(),userList.get(i).getId(), new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
-                userList.get(i).setStars( response.getStarStorage());
+                userList.get(i).setStars(response.getStarStorage());
 
                 if (finish){
                     countStars(userList);

@@ -17,7 +17,7 @@ import ru.android.monstrici.monstrici.presentation.presenter.pupil.PupilPresente
 import ru.android.monstrici.monstrici.presentation.presenter.star.StarPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.settings.SettingsPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.sweets.SweetsPresenter;
-import ru.android.monstrici.monstrici.presentation.presenter.teacher.JournalPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.journal.JournalPresenter;
 import ru.android.monstrici.monstrici.ui.view.application.ApplicationCore;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.authorisation.SplashActivity;

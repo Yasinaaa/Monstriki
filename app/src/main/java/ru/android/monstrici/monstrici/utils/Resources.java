@@ -1,5 +1,7 @@
 package ru.android.monstrici.monstrici.utils;
 
+import java.text.SimpleDateFormat;
+
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.model.DayDesition;
 
@@ -9,6 +11,7 @@ import ru.android.monstrici.monstrici.presentation.model.DayDesition;
 
 public class Resources {
 
+    public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
     public final static String TAG_FRAGMENT = "tag_fragment";
     public final static String MONSTER_NAME = "monster_name";
     public final static String MONSTER_IMAGE = "monster_image";

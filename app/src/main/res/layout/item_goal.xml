@@ -2,19 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@drawable/line">
-
-    <TextView
-        android:layout_width="@dimen/height_large_item_linear_layout"
-        android:layout_height="match_parent"
-        android:id="@+id/tv_pupil_name"
-        android:layout_weight="@integer/weight_large_item_linear_layout"
-        android:textSize="@dimen/text_size_schedule_table_item"
-        android:textAlignment="center"
-        android:textColor="@color/color_purple"
-        android:padding="@dimen/padding_small"
-        android:gravity="center"/>
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="@dimen/height_large_item_linear_layout"

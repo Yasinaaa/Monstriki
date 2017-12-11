@@ -7,4 +7,5 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
  */
 
 public interface IPupilView extends IBaseView {
+
 }

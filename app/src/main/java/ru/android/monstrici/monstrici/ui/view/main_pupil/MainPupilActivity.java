@@ -47,6 +47,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 
 public class MainPupilActivity extends BaseActivity implements IPupilMenu, MonsterFragment.IActivityCallback {
+
     private static final String USER_ID = "user_id";
     private String mUserId;
     @BindView(R.id.bottom_navigation)
@@ -200,6 +201,13 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
         mIvDonut = (ImageView) findViewById(R.id.iv_donut);
         mIvDonut.setOnClickListener(v -> setSweetsFragment());
+        mPresenter.getStars(user);
+        mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
+
+    }
+
+    @Override
+    public void setStars(User user) {
         mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
     }
 

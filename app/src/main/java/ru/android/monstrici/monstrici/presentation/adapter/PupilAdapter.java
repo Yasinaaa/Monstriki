@@ -22,7 +22,7 @@ import ru.android.monstrici.monstrici.R;
 public class PupilAdapter extends RecyclerView.Adapter
         <PupilAdapter.PupilHolder> {
 
-    private final String TAG = "PupilAdapter";
+    private final String TAG = "JournalAdapter";
     private String[] mList;
     private Context mContext;
     private PupilAdapter.OnItemClicked mOnClick;

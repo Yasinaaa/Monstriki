@@ -97,7 +97,7 @@ public class FormParametersFragment extends BaseFragment {
         if (mIsLookPage){
             openFragment(DataFragment.newInstance(false));
         }else {
-            JournalFragment journalFragment = JournalFragment.newInstance(mChoosedFormNum + mChoosedLitera,
+            NewJournalFragment journalFragment = NewJournalFragment.newInstance(mChoosedFormNum + mChoosedLitera,
                     "Сегодня");
             openFragment(journalFragment);
         }
