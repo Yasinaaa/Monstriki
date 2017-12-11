@@ -100,8 +100,8 @@ public class RateAdapter extends RecyclerView.Adapter<RateAdapter.RateHolder> {
             mIvMouthPart = monsterLayout.findViewById(R.id.iv_mouth_part);
 
 
-            mIvMouthPart.getLayoutParams().height = 40;
-            mIvMouthPart.getLayoutParams().width = 40;
+            mIvMouthPart.getLayoutParams().height = 30;
+            mIvMouthPart.getLayoutParams().width = 30;
 
             mIvEyePart.getLayoutParams().height = 50;
             mIvEyePart.getLayoutParams().width = 50;

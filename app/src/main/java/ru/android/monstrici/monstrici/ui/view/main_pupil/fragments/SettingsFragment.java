@@ -125,8 +125,8 @@ public class SettingsFragment extends BaseFragmentUsualToolbar implements View.O
         mTvLogout.setOnClickListener(this);
         mIvLogout.setOnClickListener(this);
 
-        mIvMouthPart.getLayoutParams().height = 70;
-        mIvMouthPart.getLayoutParams().width = 70;
+        mIvMouthPart.getLayoutParams().height = 50;
+        mIvMouthPart.getLayoutParams().width = 50;
 
         mIvEyePart.getLayoutParams().height = 100;
         mIvEyePart.getLayoutParams().width = 100;

@@ -65,17 +65,6 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
                                     .getPosition()
                                     .equals("teacher")
                             , response.getBody().getId());
-                    mRepository.getStars(new IDataCallback<Star>() {
-                        @Override
-                        public void onReceiveDataSuccess(Response<Star> response) {
-
-                        }
-
-                        @Override
-                        public void onReceiveDataFailure(Message message) {
-
-                        }
-                    });
                 }
 
                 @Override

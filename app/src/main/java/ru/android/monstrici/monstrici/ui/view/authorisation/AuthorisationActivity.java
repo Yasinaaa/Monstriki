@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.ui.view.authorisation;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -15,6 +16,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import butterknife.BindView;
+import ru.android.monstrici.monstrici.BuildConfig;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.AuthorisationPresenter;
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
@@ -61,6 +63,11 @@ public class AuthorisationActivity extends BaseActivity
     public void init() {
         getApplicationComponent().inject(this);
         mBtnLogin.setOnClickListener(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mEtEmail.setBackground(this.getResources().getDrawable(R.drawable.et1));
+            mEtPassword.setBackground(this.getResources().getDrawable(R.drawable.et2));
+            mBtnLogin.setBackground(this.getResources().getDrawable(R.drawable.btn_corner_purple));
+        }
     }
 
     @Override
