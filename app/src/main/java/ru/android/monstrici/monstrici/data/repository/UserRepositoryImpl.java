@@ -63,10 +63,10 @@ public class UserRepositoryImpl implements IUserRepository {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
                 mCachedUserMap.put(response.getBody().getId(), response.getBody());
-//                if (isFirstTimeClass) {
-//                    mCurrentClassId = response.getBody().getSchoolClass().getId();
-//                    isFirstTimeClass = false;
-//                }
+                if (isFirstTimeClass) {
+                    mCurrentClassId = response.getBody().getSchoolClass().getId();
+                    isFirstTimeClass = false;
+                }
                 if (response.getBody().getPosition().equals("pupil")) {
                     getStar(response.getBody().getStarId(), response.getBody().getId(), new IDataCallback<Star>() {
                         @Override
