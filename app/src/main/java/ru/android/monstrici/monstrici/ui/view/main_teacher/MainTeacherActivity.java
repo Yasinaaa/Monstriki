@@ -31,7 +31,7 @@ import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivit
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
-import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.NewJournalFragment;
+import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 import ru.android.monstrici.monstrici.utils.Message;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -97,7 +97,7 @@ public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
         @OnClick(R.id.tv_fill_today)
         public void onFillTodayClick() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            setFragment(NewJournalFragment.newInstance());
+            setFragment(JournalFragment.newInstance());
         }
 
         @OnClick(R.id.tv_look_form)
@@ -161,7 +161,7 @@ public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
         mNavigationViewsItems = new NavigationViewsItems(mNavigationView.getHeaderView(0));
         mIvMenuItem = (ImageView) findViewById(R.id.iv_menu_item);
         mFragmentManager = getSupportFragmentManager();
-        setFragment(NewJournalFragment.newInstance());
+        setFragment(JournalFragment.newInstance());
         mIvMenuItem.setVisibility(View.VISIBLE);
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

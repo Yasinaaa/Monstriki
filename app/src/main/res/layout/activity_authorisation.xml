@@ -47,7 +47,6 @@
         android:layout_above="@+id/tv_password_title"
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_small"
-
         android:inputType="text"
         android:maxLines="@integer/max_lines_edit_text"
         android:nextFocusForward="@+id/et_password"
@@ -72,7 +71,6 @@
         android:layout_below="@+id/tv_password_title"
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_small"
-
         android:inputType="textPassword"
         android:maxLines="@integer/max_lines_edit_text"
         android:paddingLeft="@dimen/margin_left_large"/>

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import com.squareup.timessquare.CalendarPickerView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -88,7 +87,7 @@ public class DataFragment extends BaseFragment {
                 ArrayList<Date> mDates = DateFunctions.createWeekDates(date);
                 mCvCalendar.highlightDates(mDates);
                 openFragment(
-                        NewJournalFragment.newInstance("1C",
+                        JournalFragment.newInstance("1C",
                                 Resources.DATE_FORMAT.format(mDates.get(0)) + "-" +
                                         Resources.DATE_FORMAT.format(mDates.get(6))));
             }

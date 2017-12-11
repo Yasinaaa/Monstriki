@@ -15,7 +15,9 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,12 +26,12 @@ import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
+import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.JournalViewHolder;
+import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IJournalItemListener;
 import ru.android.monstrici.monstrici.presentation.presenter.journal.JournalPresenter;
 import ru.android.monstrici.monstrici.presentation.view.journal.IJournalView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IGoalItemListener;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.adapter.JournalAdapter;
-import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.JournalViewHolder;
 import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
 
@@ -40,8 +42,8 @@ import ru.android.monstrici.monstrici.utils.Resources;
  * @Author Andrei Gusev
  */
 
-public class NewJournalFragment extends BaseFragment
-        implements IJournalView {
+public class JournalFragment extends BaseFragment
+        implements IJournalView, IJournalItemListener {
 
     protected static final String JOURNAL_DATE = "journal_date";
     protected static final String JOURNAL_FORM = "journal_form";
@@ -76,18 +78,18 @@ public class NewJournalFragment extends BaseFragment
         return presenter;
     }
 
-    public static NewJournalFragment newInstance() {
+    public static JournalFragment newInstance() {
         Bundle args = new Bundle();
-        NewJournalFragment newFragment = new NewJournalFragment();
+        JournalFragment newFragment = new JournalFragment();
         newFragment.setArguments(args);
         return newFragment;
     }
 
-    public static NewJournalFragment newInstance(String form, String date) {
+    public static JournalFragment newInstance(String form, String date) {
         Bundle args = new Bundle();
         args.putString(JOURNAL_FORM, form);
         args.putString(JOURNAL_DATE, date);
-        NewJournalFragment newFragment = new NewJournalFragment();
+        JournalFragment newFragment = new JournalFragment();
         newFragment.setArguments(args);
         return newFragment;
     }
@@ -100,7 +102,6 @@ public class NewJournalFragment extends BaseFragment
             mForm = getArguments().getString(JOURNAL_FORM);
         }
         getComponent(CoreComponent.class).inject(this);
-        //mPresenter.getCurrentUser();
     }
 
     @Override
@@ -132,12 +133,13 @@ public class NewJournalFragment extends BaseFragment
     @Override
     public void onUsersPrepare(List<User> userList) {
         if (!mDate.contains("-")) {
-            mJournalAdapter = new JournalAdapter(userList);
+            mJournalAdapter = new JournalAdapter(userList, this, getActivity());
         }else {
             String[] dates = mDate.split("-");
             Date startDate = makeDate(dates[0]);
             Date finishDate = makeDate(dates[1]);
-            mJournalAdapter = new JournalAdapter(userList, startDate, finishDate);
+            mJournalAdapter = new JournalAdapter(userList, startDate,
+                    finishDate, this, getActivity());
         }
 
         mRvJournal.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -181,5 +183,30 @@ public class NewJournalFragment extends BaseFragment
             star.setId(user.getStarId());
             mPresenter.saveStars(star, user.getId());
         }*/
+        Map<String, Star> usersMap = mJournalAdapter.getResultList();
+        for (Map.Entry<String, Star> entry : usersMap.entrySet()) {
+            Star star = entry.getValue();
+            if (star.getGoals().equals("0")) {
+                //TODO: remove
+            }else {
+                mPresenter.saveStars(star, entry.getKey());
+            }
+
+        }
+    }
+
+    @Override
+    public void onItemClick(String userid) {
+        openFragment(PupilFragment.newInstance(userid));
+    }
+
+    @OnClick(R.id.tv_form_bracket)
+    public void onFormBracketClick() {
+        openFragment(FormParametersFragment.newInstance(false));
+    }
+
+    @OnClick(R.id.tv_form)
+    public void onFormClick() {
+        openFragment(FormParametersFragment.newInstance(false));
     }
 }

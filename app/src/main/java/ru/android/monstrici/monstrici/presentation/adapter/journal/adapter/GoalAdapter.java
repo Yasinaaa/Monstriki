@@ -24,16 +24,19 @@ public class GoalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<Star> mList;
     private IGoalItemListener mListener;
+    private Activity mActivity;
 
-    public GoalAdapter(ArrayList<Star> list, IGoalItemListener listener) {
+    public GoalAdapter(ArrayList<Star> list, IGoalItemListener listener, Activity activity) {
         mList = list;
         mListener = listener;
+        mActivity = activity;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new GoalViewHolderFactory().createViewHolder(parent, inflater, mListener);
+        return new GoalViewHolderFactory().createViewHolder(parent, inflater, mListener,
+                mActivity);
     }
 
     @Override

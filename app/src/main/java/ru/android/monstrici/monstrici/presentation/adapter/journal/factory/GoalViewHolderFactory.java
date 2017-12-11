@@ -1,5 +1,6 @@
 package ru.android.monstrici.monstrici.presentation.adapter.journal.factory;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +20,10 @@ public class GoalViewHolderFactory implements IViewGoalHolderFactory {
     @Override
     public RecyclerView.ViewHolder createViewHolder(ViewGroup parent,
                                                     LayoutInflater inflater,
-                                                    IGoalItemListener listener) {
+                                                    IGoalItemListener listener,
+                                                    Activity activity) {
         View view = inflater.inflate(R.layout.item_goal, parent,
                 false);
-        return new GoalViewHolder(view, listener);
+        return new GoalViewHolder(view, listener, activity);
     }
 }
