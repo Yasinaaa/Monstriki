@@ -157,16 +157,16 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
     }
 
     private void getStars(List<User> userList, int i, boolean finish){
-        mRepository.getStar(userList.get(i).getStarId(), userList.get(i).getId(), new IDataCallback<Star>() {
+        mRepository.getStars(new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
                 StarStorage starStorage = new StarStorage();
                 starStorage.setStars(response.getBodyMap());
-                userList.get(i).setStars(starStorage);
+                /*userList.get(i).setStars(starStorage);
 
                 if (finish){
                     countStars(userList);
-                }
+                }*/
             }
 
             @Override
