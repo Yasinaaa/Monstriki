@@ -12,17 +12,26 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
+import ru.android.monstrici.monstrici.presentation.adapter.DaysOfWeekAdapter;
 import ru.android.monstrici.monstrici.presentation.adapter.WeekDesitionsAdapter;
 import ru.android.monstrici.monstrici.presentation.model.DayDesition;
+import ru.android.monstrici.monstrici.presentation.model.DayOfWeek;
 import ru.android.monstrici.monstrici.presentation.presenter.pupil.PupilPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.sweets.SweetsPresenter;
 import ru.android.monstrici.monstrici.presentation.view.pupil.IPupilView;
+import ru.android.monstrici.monstrici.presentation.view.sweets.ISweetsView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.utils.DateFunctions;
 import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
 
@@ -43,8 +52,7 @@ public class PupilFragment extends BaseFragment implements IPupilView{
     RecyclerView mRvDesitionsOfWeek;
 
     private String mPupil;
-    private Calendar mCurrentWeekCalendar;
-    private DayDesition[] mDayDesitions = Resources.mDesitionsOfWeek;
+    private DayDesition[] mDayDesitions;
     private WeekDesitionsAdapter mWeekDesitionsAdapter;
 
     @InjectPresenter
@@ -86,12 +94,8 @@ public class PupilFragment extends BaseFragment implements IPupilView{
 
     @Override
     public void init() {
-        mCurrentWeekCalendar = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("d.MM.yy");
-        String[] tempDates = new String[]{
-          "18.09.2017", "19.09.2017", "20.09.2017", "21.09.2017",
-                "22.09.2017", "23.09.2017", "24.09.2017"
-        };
+        mPresenter.getUser(mPupil);
+        /*ArrayList<Date> weekDates = DateFunctions.createWeekDates(mCurrentWeekCalendar);
 
         mTvDataBracket.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +106,7 @@ public class PupilFragment extends BaseFragment implements IPupilView{
 
         //todo: temp values, remove this
         for (int i=0; i<mDayDesitions.length; i++){
-            mDayDesitions[i].setDate(format.format(mCurrentWeekCalendar.getTime()));
+            mDayDesitions[i].setDate(weekDates.get(i).);
             mDayDesitions[i].setForAnswer(i);
             mDayDesitions[i].setForCleaning(i-1);
         }
@@ -110,7 +114,7 @@ public class PupilFragment extends BaseFragment implements IPupilView{
 
         mRvDesitionsOfWeek.setHasFixedSize(true);
         mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);
+        mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);*/
     }
 
     @Override
@@ -126,5 +130,23 @@ public class PupilFragment extends BaseFragment implements IPupilView{
     @Override
     public void showError(Message message) {
 
+    }
+
+    @Override
+    public void setDonutsCount(ArrayList<Star> starsList) {
+        mDayDesitions = mPresenter.getDonutsCount(starsList, getActivity());
+
+        mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);
+        mRvDesitionsOfWeek.setHasFixedSize(true);
+        mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);
+    }
+
+    @Override
+    public void setUser(User user) {
+        mPresenter.getStars(user);
+        mTvPupil.setText(user.getName() + " " + user.getSchoolClass().getNumber() +
+        user.getSchoolClass().getLetter());
+        mTvDataDay.setText(mPresenter.getWeek());
     }
 }

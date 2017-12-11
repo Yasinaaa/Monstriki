@@ -94,7 +94,8 @@ public class SweetsFragment extends BaseFragmentUsualToolbar
     public void setDonutsCount(ArrayList<Star> starsList) {
         mDaysList = mPresenter.getDonutsCount(starsList, getActivity());
 
-        mDaysOfWeekAdapter = new DaysOfWeekAdapter(mDaysList, this);
+        //mDaysOfWeekAdapter = new DaysOfWeekAdapter(mDaysList, this);
+        mDaysOfWeekAdapter = new DaysOfWeekAdapter(mDaysList);
         mRvDaysOfWeek.setHasFixedSize(true);
         mRvDaysOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvDaysOfWeek.setAdapter(mDaysOfWeekAdapter);

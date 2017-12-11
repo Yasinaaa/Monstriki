@@ -77,7 +77,7 @@ public class DataFragment extends BaseFragment {
     private void initWeekView(CalendarPickerView.FluentInitializer fluentInitializer){
     fluentInitializer
                 .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
-                .withHighlightedDates(DateFunctions.createWeekDates(Calendar.getInstance()));
+                .withHighlightedDates(DateFunctions.createWeekDates2(Calendar.getInstance()));
 
         mCvCalendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override

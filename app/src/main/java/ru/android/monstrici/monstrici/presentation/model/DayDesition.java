@@ -7,27 +7,28 @@ package ru.android.monstrici.monstrici.presentation.model;
 public class DayDesition {
 
     private String mDate;
-    private int mDayOfWeek,mForAnswer, mForCleaning;
+    private int mDayOfWeek, mGoals;
+    private String mTag;
 
-    public DayDesition(int mDayOfWeek, String mDate, int mForAnswer, int mForCleaning) {
-        this.mDayOfWeek = mDayOfWeek;
-        this.mDate = mDate;
-        this.mForAnswer = mForAnswer;
-        this.mForCleaning = mForCleaning;
+    public DayDesition(int dayOfWeek, String date, int goals, String tag) {
+        this.mDayOfWeek = dayOfWeek;
+        this.mDate = date;
+        this.mGoals = goals;
+        this.mTag = tag;
     }
 
     public DayDesition(int mDayOfWeek, String mDate) {
         this.mDayOfWeek = mDayOfWeek;
         this.mDate = mDate;
-        this.mForAnswer = 0;
-        this.mForCleaning = 0;
+        this.mGoals = 0;
+        this.mTag = "";
     }
 
     public DayDesition(int mDayOfWeek) {
         this.mDayOfWeek = mDayOfWeek;
         this.mDate = "";
-        this.mForAnswer = 0;
-        this.mForCleaning = 0;
+        this.mGoals = 0;
+        this.mTag = "";
     }
 
     public int getDayOfWeek() {
@@ -46,19 +47,19 @@ public class DayDesition {
         this.mDate = mDate;
     }
 
-    public int getForAnswer() {
-        return mForAnswer;
+    public int getGoals() {
+        return mGoals;
     }
 
-    public void setForAnswer(int mForAnswer) {
-        this.mForAnswer = mForAnswer;
+    public void setGoals(int mGoals) {
+        this.mGoals = mGoals;
     }
 
-    public int getForCleaning() {
-        return mForCleaning;
+    public String getTag() {
+        return mTag;
     }
 
-    public void setForCleaning(int mForCleaning) {
-        this.mForCleaning = mForCleaning;
+    public void setTag(String mTag) {
+        this.mTag = mTag;
     }
 }
