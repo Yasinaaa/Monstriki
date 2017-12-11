@@ -37,7 +37,7 @@ public class SweetsPresenter extends BasePresenter<ISweetsView> {
     UserRepositoryImpl mRepository;
 
     private String[] mDayTitles;
-    private SimpleDateFormat format = new SimpleDateFormat("dd MMMM \nyyyy");
+    private ArrayList<String> mWeekDates;
 
     public void getStars(){
 
@@ -56,26 +56,26 @@ public class SweetsPresenter extends BasePresenter<ISweetsView> {
         });
     }
 
+
     public ArrayList<DayOfWeek> getDonutsCount(ArrayList<Star> starsList, Activity activity)
     {
         mDayTitles = activity.getResources().getStringArray(R.array.days_of_week);
         ArrayList<DayOfWeek> mDaysList = new ArrayList<DayOfWeek>();
         Calendar currentDate = Calendar.getInstance();
 
-        ArrayList<Date> weekDates = DateFunctions.createWeekDates(currentDate);
+        mWeekDates = DateFunctions.createWeekDates(currentDate);
 
         for(int i = 0; i< Resources.mStudyDaysOfWeek; i++){
 
-            Star star = findStarByDate(starsList,
-                    String.valueOf(weekDates.get(i).getTime()));
+            Star star = findStarByDate(starsList, mWeekDates.get(i));
             DayOfWeek dayOfWeek;
             if (star != null){
                 dayOfWeek = new DayOfWeek(mDayTitles[i],
-                        format.format(weekDates.get(i).getTime()),
+                        mWeekDates.get(i),
                         Integer.parseInt(star.getGoals()));
             }else {
                 dayOfWeek = new DayOfWeek(mDayTitles[i],
-                        format.format(weekDates.get(i).getTime()),
+                        mWeekDates.get(i),
                         0);
             }
             mDaysList.add(dayOfWeek);
@@ -86,13 +86,12 @@ public class SweetsPresenter extends BasePresenter<ISweetsView> {
 
     private Star findStarByDate(ArrayList<Star> starsList, String date){
 
-        Date d = new Date(Long.parseLong(date));
         Star searchedStar = null;
         int count = 0;
 
         for (Star star: starsList){
             Date d2 = new Date(Long.parseLong(star.getDate()));
-            if (format.format(d).equals(format.format(d2))){
+            if (date.equals(Resources.DATE_FORMAT.format(d2))){
                 searchedStar = star;
                 count += Integer.parseInt(star.getGoals());
                 searchedStar.setGoals(String.valueOf(count));
@@ -100,5 +99,9 @@ public class SweetsPresenter extends BasePresenter<ISweetsView> {
 
         }
         return searchedStar;
+    }
+
+    public String getWeek(){
+        return mWeekDates.get(0) + "-" + mWeekDates.get(mWeekDates.size() - 1);
     }
 }

@@ -20,8 +20,8 @@
         android:layout_width="@dimen/height_large_item_linear_layout"
         android:layout_height="match_parent"
         android:id="@+id/tv_donuts_count"
-        android:text="18.09.17"
-        android:layout_weight="@integer/weight_large_item_linear_layout"
+        android:text="18.09.2017"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:textSize="@dimen/text_size_small_schedule_table_item"
         android:padding="@dimen/padding_small"
@@ -36,17 +36,6 @@
         android:textSize="@dimen/text_size_small_schedule_table_item"
         android:padding="@dimen/padding_small"
         android:textColor="@color/color_purple"
-        android:text="2"/>
-
-    <TextView
-        android:layout_width="@dimen/height_large_item_linear_layout"
-        android:layout_height="match_parent"
-        android:id="@+id/tv_for_cleaning"
-        android:layout_weight="@integer/weight_large_item_linear_layout"
-        android:gravity="center"
-        android:textSize="@dimen/text_size_small_schedule_table_item"
-        android:padding="@dimen/padding_small"
-        android:textColor="@color/color_purple"
-        android:text="1" />
+        android:text="20"/>
 
 </LinearLayout>
