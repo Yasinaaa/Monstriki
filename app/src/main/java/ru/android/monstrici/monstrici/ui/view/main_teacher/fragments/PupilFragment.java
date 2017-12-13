@@ -1,5 +1,6 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
@@ -42,6 +44,9 @@ import ru.android.monstrici.monstrici.utils.Resources;
 public class PupilFragment extends BaseFragment implements IPupilView{
 
     public static final String PUPIL = "pupil";
+    public static final String DATE_BEGIN = "pupil_begin_date";
+    public static final String DATE_FINISH = "pupil_finish_date";
+
     @BindView(R.id.tv_pupil)
     TextView mTvPupil;
     @BindView(R.id.tv_data_bracket)
@@ -51,7 +56,10 @@ public class PupilFragment extends BaseFragment implements IPupilView{
     @BindView(R.id.rv_desitions_of_week)
     RecyclerView mRvDesitionsOfWeek;
 
+    private Date mStartDate, mFinishDate;
     private String mPupil;
+    private String mDate;
+    private ArrayList<Star> mStarsList;
     private DayDesition[] mDayDesitions;
     private WeekDesitionsAdapter mWeekDesitionsAdapter;
 
@@ -69,6 +77,14 @@ public class PupilFragment extends BaseFragment implements IPupilView{
     }
 
     public static PupilFragment newInstance(String value){
+        Bundle args = new Bundle();
+        args.putString(PUPIL, value);
+        PupilFragment newFragment = new PupilFragment();
+        newFragment.setArguments(args);
+        return newFragment;
+    }
+
+    public static PupilFragment newInstance(String value, String date){
         Bundle args = new Bundle();
         args.putString(PUPIL, value);
         PupilFragment newFragment = new PupilFragment();
@@ -95,26 +111,11 @@ public class PupilFragment extends BaseFragment implements IPupilView{
     @Override
     public void init() {
         mPresenter.getUser(mPupil);
-        /*ArrayList<Date> weekDates = DateFunctions.createWeekDates(mCurrentWeekCalendar);
+    }
 
-        mTvDataBracket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFragment(DataFragment.newInstance(false));
-            }
-        });
-
-        //todo: temp values, remove this
-        for (int i=0; i<mDayDesitions.length; i++){
-            mDayDesitions[i].setDate(weekDates.get(i).);
-            mDayDesitions[i].setForAnswer(i);
-            mDayDesitions[i].setForCleaning(i-1);
-        }
-        mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);
-
-        mRvDesitionsOfWeek.setHasFixedSize(true);
-        mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);*/
+    @OnClick(R.id.tv_data_bracket)
+    public void onDataBracketClick(){
+        addFragment(DataFragment.newInstance(true), PupilFragment.this);
     }
 
     @Override
@@ -135,12 +136,23 @@ public class PupilFragment extends BaseFragment implements IPupilView{
     @Override
     public void setDonutsCount(ArrayList<Star> starsList) {
         mDayDesitions = mPresenter.getDonutsCount(starsList, getActivity());
+        mStarsList = starsList;
+
+        mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);
+        mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);
+    }
+
+
+    /*public void setDonutsCount(DayDesition[] dayDesitions, ArrayList<Star> starsList) {
+        mDayDesitions = mPresenter.getDonutsCount(starsList, getActivity());
+        mStarsList = starsList;
 
         mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);
         mRvDesitionsOfWeek.setHasFixedSize(true);
         mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);
-    }
+    }*/
 
     @Override
     public void setUser(User user) {
@@ -149,4 +161,21 @@ public class PupilFragment extends BaseFragment implements IPupilView{
         user.getSchoolClass().getLetter());
         mTvDataDay.setText(mPresenter.getWeek());
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mStartDate = new Date(data.getLongExtra(DATE_BEGIN, 0));
+        mFinishDate = new Date(data.getLongExtra(DATE_FINISH, 0));
+        mDate = Resources.DATE_FORMAT.format(mStartDate) + "-" +
+                Resources.DATE_FORMAT.format(mFinishDate);
+        mTvDataDay.setText(mDate);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(mStartDate);
+        mDayDesitions = mPresenter.getDonutsCount(calendar, mStarsList, getActivity());
+
+        mWeekDesitionsAdapter.setNewItems(mDayDesitions);
+    }
+
+
 }

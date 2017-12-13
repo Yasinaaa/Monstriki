@@ -53,24 +53,13 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
 
     public void bindView(Star star) {
         mCurrentStar = star;
-        if (mCurrentStar == null){
-            mCurrentStar = new Star();
+        if (mCurrentStar.getGoals().equals("0")){
             mCurrentStar.setDate(String.valueOf(Calendar.getInstance().getTime().
                     getTime()));
-            mTvDonutsCount.setText("0");
-        }else if (star.getGoals().equals("")){
-            mTvDonutsCount.setText("0");
         }
-        else
-        {
-            mTvDonutsCount.setText(star.getGoals());
-            mTvTag.setText(star.getTag());
-        }
+        mTvDonutsCount.setText(star.getGoals());
+        mTvTag.setText(star.getTag());
         mTvTag.setBackgroundResource(R.drawable.textview_border);
-    }
-
-    public void updateTag(String tag) {
-        mTvTag.setText(tag);
     }
 
     @Override
@@ -103,7 +92,7 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        mTvTag.setText(tagText[0]);
+                                        setText(tagText[0]);
                                     }
                                 })
                         .setNegativeButton(mActivity.getString(R.string.cancel),
@@ -141,6 +130,15 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
 
     private void setText(int answer){
         mTvDonutsCount.setText(String.valueOf(answer));
+        setStarElements();
+    }
+
+    private void setText(String answer){
+        mTvTag.setText(String.valueOf(answer));
+        setStarElements();
+    }
+
+    private void setStarElements(){
         int position = getAdapterPosition();
         mCurrentStar.setTag(mTvTag.getText().toString());
         mCurrentStar.setGoals(mTvDonutsCount.getText().toString());

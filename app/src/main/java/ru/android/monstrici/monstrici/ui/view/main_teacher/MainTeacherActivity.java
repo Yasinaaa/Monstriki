@@ -85,8 +85,6 @@ public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
         TextView mTvFillToday;
         @BindView(R.id.tv_look_form)
         TextView mTvLookForm;
-        @BindView(R.id.tv_settings)
-        TextView mSettings;
         @BindView(R.id.tv_exit)
         TextView mExit;
 
@@ -104,12 +102,6 @@ public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
         public void onLookForm() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
             setFragment(FormParametersFragment.newInstance(true));
-        }
-
-        @OnClick(R.id.tv_settings)
-        public void onSettings() {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-
         }
 
         @OnClick(R.id.tv_exit)

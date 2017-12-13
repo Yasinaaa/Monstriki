@@ -9,6 +9,7 @@ import ru.android.monstrici.monstrici.domain.core.dagger.module.AppModule;
 import ru.android.monstrici.monstrici.domain.core.dagger.module.CoreModule;
 import ru.android.monstrici.monstrici.domain.core.dagger.module.NetModule;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.AuthorisationPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.form_parameters.FormParametersPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.main.PupilMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.main.TeacherMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.monster.MonsterPresenter;
@@ -73,6 +74,9 @@ public interface AppComponent extends
     //MAIN PUPIL'S PRESENTERS
 
     //MAIN TEACHER'S PRESENTERS
+
+    void inject(FormParametersPresenter presenter);
+
     void inject(TeacherMenuPresenter presenter);
 
     void inject(JournalPresenter presenter);

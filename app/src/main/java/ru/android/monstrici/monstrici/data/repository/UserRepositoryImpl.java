@@ -358,9 +358,11 @@ public class UserRepositoryImpl implements IUserRepository {
     @Override
     public void updateStar(Star star, String userId) {
         Star cacheStar = mCachedUserMap.get(userId).getStarStorage().getStar(star.getId());
-        if (!star.equals(cacheStar)) {
+        if (star.equals(cacheStar)) {
             mCachedUserMap.get(userId).getStarStorage().updateStar(star);
             mRemoteUserRepository.updateStar(star, userId);
+        }else {
+            addStar(star, userId);
         }
     }
 

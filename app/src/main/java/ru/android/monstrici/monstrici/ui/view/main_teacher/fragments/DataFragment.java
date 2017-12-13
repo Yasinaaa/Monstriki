@@ -1,6 +1,10 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +27,25 @@ import ru.android.monstrici.monstrici.utils.Resources;
 
 public class DataFragment extends BaseFragment {
 
-    protected static String DATE_TYPE = "date_type";
+    protected static String FORM_TYPE = "date_type";
     protected static String VIEW_TYPE = "view_type";
     @BindView(R.id.cv_calendar)
     com.squareup.timessquare.CalendarPickerView mCvCalendar;
 
     private Calendar mSelectedCalendar;
     private boolean mIsPupilView = false;
+    private String mForm = "";
 
     public DataFragment() {
+    }
+
+    public static DataFragment newInstance(boolean isPupilView, String form){
+        Bundle args = new Bundle();
+        args.putBoolean(VIEW_TYPE, isPupilView);
+        args.putString(FORM_TYPE, form);
+        DataFragment newFragment = new DataFragment();
+        newFragment.setArguments(args);
+        return newFragment;
     }
 
     public static DataFragment newInstance(boolean isPupilView){
@@ -47,6 +61,8 @@ public class DataFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if(getArguments() != null){
             mIsPupilView = getArguments().getBoolean(VIEW_TYPE);
+            if (getArguments().getString(FORM_TYPE) != null)
+                mForm = getArguments().getString(FORM_TYPE);
         }
     }
 
@@ -71,25 +87,50 @@ public class DataFragment extends BaseFragment {
         CalendarPickerView.FluentInitializer fluentInitializer =
                 mCvCalendar.init(mSelectedCalendar.getTime(), finishDate.getTime());
 
+
         initWeekView(fluentInitializer);
     }
 
     private void initWeekView(CalendarPickerView.FluentInitializer fluentInitializer){
     fluentInitializer
                 .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
-                .withHighlightedDates(DateFunctions.createWeekDates2(Calendar.getInstance()));
-
+                .withHighlightedDates(DateFunctions.createWeekDates2(
+                        Calendar.getInstance()));
+        mCvCalendar.scrollToDate(Calendar.getInstance().getTime());
         mCvCalendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(Date date) {
-                mCvCalendar.selectDate(date);
+
                 mCvCalendar.clearHighlightedDates();
                 ArrayList<Date> mDates = DateFunctions.createWeekDates(date);
                 mCvCalendar.highlightDates(mDates);
-                openFragment(
-                        JournalFragment.newInstance("1C",
-                                Resources.DATE_FORMAT.format(mDates.get(0)) + "-" +
-                                        Resources.DATE_FORMAT.format(mDates.get(6))));
+                mCvCalendar.selectDate(date);
+
+                /*try {
+                    Thread.sleep(500);
+                }
+                catch (InterruptedException ex) {
+                    Log.d(TAG, ex.toString());
+                }*/
+
+                if (mIsPupilView){
+                    Intent intent = new Intent();
+                    intent.putExtra(PupilFragment.DATE_BEGIN, mDates.get(0).getTime());
+                    intent.putExtra(PupilFragment.DATE_FINISH, mDates.get(6).getTime());
+
+                    getTargetFragment().onActivityResult(
+                            getTargetRequestCode(),
+                            Activity.RESULT_OK,
+                            intent
+                    );
+                    removeFragment(DataFragment.this);
+
+                }else {
+                    openFragment(
+                            JournalFragment.newInstance(mForm,
+                                    Resources.DATE_FORMAT.format(mDates.get(0)) + "-" +
+                                            Resources.DATE_FORMAT.format(mDates.get(6))));
+                }
             }
 
             @Override
@@ -99,8 +140,6 @@ public class DataFragment extends BaseFragment {
         });
 
     }
-
-
 
     @Override
     public void setTag() {

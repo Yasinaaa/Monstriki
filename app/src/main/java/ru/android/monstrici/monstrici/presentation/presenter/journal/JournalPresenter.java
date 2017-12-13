@@ -27,20 +27,6 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
     @Inject
     UserRepositoryImpl mRepository;
 
-   /* public void getCurrentUser() {
-        mRepository.getUser(mRepository.getCurrentUser().getId(), new IDataCallback<User>() {
-            @Override
-            public void onReceiveDataSuccess(Response<User> response) {
-                getViewState().onTeacherPrepare(response.getBody());
-            }
-
-            @Override
-            public void onReceiveDataFailure(Message message) {
-
-            }
-        });
-    }*/
-
     public void getUsers() {
 
         getViewState().showLoading(true);
@@ -62,9 +48,6 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
         mRepository.getUsersByClass(new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
-                /*getViewState().onUsersPrepare(response.getBodyList());
-                getViewState().showLoading(false);*/
-
                 List<User> userList = response.getBodyList();
                 for (int i=0; i<userList.size();i++){
                     User user = userList.get(i);
@@ -96,13 +79,16 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
 
             @Override
             public void onReceiveDataFailure(Message message) {
-
                 getViewState().showError(message);
             }
         });
     }
 
     public void saveStars(Star star, String userId) {
-        mRepository.addStar(star, userId);
+        mRepository.updateStar(star, userId);
+    }
+
+    public void removeStars(Star star, String userId) {
+        mRepository.removeStar(star, userId);
     }
 }

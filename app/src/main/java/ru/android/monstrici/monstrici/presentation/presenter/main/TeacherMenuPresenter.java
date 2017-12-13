@@ -30,7 +30,6 @@ public class TeacherMenuPresenter extends BasePresenter<ITeacherMenu>{
         mRepository.getUser(id, new IDataCallback<User>() {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
-
                 getViewState().onUsersGet(response.getBody());
                 getViewState().showLoading(false);
             }
