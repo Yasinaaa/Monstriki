@@ -12,6 +12,7 @@ import ru.android.monstrici.monstrici.presentation.presenter.authorisation.Autho
 import ru.android.monstrici.monstrici.presentation.presenter.main.PupilMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.main.TeacherMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.monster.MonsterPresenter;
+import ru.android.monstrici.monstrici.presentation.presenter.parameters.CreateMonsterPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.prize.PrizePresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.pupil.PupilPresenter;
 import ru.android.monstrici.monstrici.presentation.presenter.star.StarPresenter;
@@ -23,6 +24,7 @@ import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivit
 import ru.android.monstrici.monstrici.ui.view.authorisation.SplashActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.ui.view.parameters.CreateMonsterActivity;
 
 /**
  * Created by elisiumGusev
@@ -64,6 +66,8 @@ public interface AppComponent extends
     void inject(SettingsPresenter presenter);
 
     void inject(StarPresenter presenter);
+
+    void inject(CreateMonsterPresenter presenter);
 
     void inject(SweetsPresenter presenter);
     //MAIN PUPIL'S PRESENTERS

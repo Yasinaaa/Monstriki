@@ -53,7 +53,7 @@ public class ResponseParser {
             st.setTag(answer.get("tag"));
             stars.put(st.getId(), st);
         }
-        StarStorage starStorage=new StarStorage();
+        StarStorage starStorage = new StarStorage();
         starStorage.setId(id);
         starStorage.setStars(stars);
         return starStorage;
@@ -88,5 +88,21 @@ public class ResponseParser {
         monster.setMouth((String) hashMap.get("mouth"));
         monster.setName((String) hashMap.get("name"));
         return monster;
+    }
+
+    public static SchoolClass parseClass(HashMap value) {
+        SchoolClass schoolClass = new SchoolClass();
+        schoolClass.setId((String) value.get("id"));
+        schoolClass.setNumber((String) value.get("number"));
+        schoolClass.setLetter((String) value.get("letter"));
+        ArrayList<String> pupils = new ArrayList<>();
+        ArrayList<HashMap<String, String>> classList = (ArrayList<HashMap<String, String>>) value.get("pupils");
+        if (classList != null) {
+            for (HashMap<String, String> map : classList) {
+                pupils.add(map.get("id"));
+            }
+        }
+        schoolClass.setPupils(pupils);
+        return schoolClass;
     }
 }

@@ -14,6 +14,7 @@ import javax.inject.Singleton;
 import ru.android.monstrici.monstrici.data.model.ListCallbacks;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.SchoolClass;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
@@ -39,6 +40,7 @@ public class UserRepositoryImpl implements IUserRepository {
 
     private final Map<String, User> mCachedUserMap;
     private List<Monster> mCachedMonsterList;
+    private List<SchoolClass> mCachedClassList;
     private String mCurrentUserId;
     private String mCurrentClassId;
     private boolean isFirstTime = true;
@@ -50,6 +52,7 @@ public class UserRepositoryImpl implements IUserRepository {
     public UserRepositoryImpl() {
         mCachedUserMap = new HashMap<>();
         mCachedMonsterList = new ArrayList<>();
+        mCachedClassList = new ArrayList<>();
     }
 
     @Override
@@ -314,6 +317,37 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
+    public void addMonster(Monster monster) {
+        if (!mCachedMonsterList.contains(monster)) {
+            mCachedMonsterList.add(monster);
+            getCurrentUser().setMonster(monster);
+            mRemoteUserRepository.addMonster(monster);
+        }
+    }
+
+    @Override
+    public void getClassList(@NonNull IDataCallback<SchoolClass> callback) {
+        IDataCallback<SchoolClass> classIDataCallback = new IDataCallback<SchoolClass>() {
+            @Override
+            public void onReceiveDataSuccess(Response<SchoolClass> response) {
+                mCachedClassList = response.getBodyList();
+                callback.onReceiveDataSuccess(response);
+            }
+
+            @Override
+            public void onReceiveDataFailure(Message message) {
+
+            }
+        };
+        if (mCachedMonsterList.size() == 0) {
+            mRemoteUserRepository.getClassList(classIDataCallback);
+        } else {
+            callback.onReceiveDataSuccess(new Response<SchoolClass>().setBody(mCachedClassList));
+        }
+
+    }
+
+    @Override
     public void saveUser(User user) {
         if (!user.equals(mCachedUserMap.get(user.getId()))) {
             mCachedUserMap.put(user.getId(), user);
@@ -336,6 +370,14 @@ public class UserRepositoryImpl implements IUserRepository {
             mCachedUserMap.get(userId).getStarStorage().getStars().put(star.getId(), star);
             mRemoteUserRepository.addStar(star, userId);
         }
+    }
+
+    @Override
+    public void removeStar(Star star, String userId) {
+        if (mCachedUserMap.get(userId).getStarStorage().getStars().containsKey(star)) {
+            mCachedUserMap.get(userId).getStarStorage().getStars().remove(star.getId());
+        }
+        mRemoteUserRepository.removeStar(star, userId);
     }
 
     private void removeRequest(String requestId, String itemId) {

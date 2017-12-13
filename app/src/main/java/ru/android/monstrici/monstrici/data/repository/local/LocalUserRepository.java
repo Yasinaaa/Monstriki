@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 import io.reactivex.Flowable;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.SchoolClass;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
@@ -92,6 +93,21 @@ public class LocalUserRepository implements IUserRepository {
 
     @Override
     public void addStar(Star star, String userId) {
+
+    }
+
+    @Override
+    public void removeStar(Star star, String userId) {
+
+    }
+
+    @Override
+    public void addMonster(Monster monster) {
+
+    }
+
+    @Override
+    public void getClassList(@NonNull IDataCallback<SchoolClass> callback) {
 
     }
 }

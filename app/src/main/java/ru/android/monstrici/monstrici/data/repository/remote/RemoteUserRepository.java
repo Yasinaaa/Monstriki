@@ -19,6 +19,7 @@ import java.util.Iterator;
 
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.SchoolClass;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
@@ -144,7 +145,7 @@ public class RemoteUserRepository implements IUserRepository {
         mDatabase.child("stars").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-               // ArrayList<HashMap<String, HashMap>> dataSnapshot.getValue();
+                // ArrayList<HashMap<String, HashMap>> dataSnapshot.getValue();
                 StarStorage starStorage = ResponseParser.parseStar("", (HashMap) dataSnapshot.getValue());
 
                 if (starStorage.getStars().size() == 0) {
@@ -255,6 +256,60 @@ public class RemoteUserRepository implements IUserRepository {
                 });
     }
 
+    @Override
+    public void removeStar(Star star, String userId) {
+        mDatabase.child("stars")
+                .child(star.getId())
+                .child("days")
+                .child(star.getDate())
+                .removeValue()
+                .addOnCompleteListener(task -> Log.i("STAR", "REMOVED"))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("STAR", "REMOVED FAILED");
+                    }
+                });
+    }
+
+    @Override
+    public void addMonster(Monster monster) {
+        mDatabase.child("monster")
+                .child(monster.getId())
+                .setValue(monster)
+                .addOnCompleteListener(task -> Log.i("MONSTER", "SAVED"))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("MONSTER", "FAILED");
+                    }
+                });
+    }
+
+    @Override
+    public void getClassList(@NonNull IDataCallback<SchoolClass> callback) {
+        mDatabase.child("class").addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        ArrayList<SchoolClass> classes = new ArrayList<>();
+                        for (DataSnapshot dataSnapshotChild : dataSnapshot.getChildren()) {
+                            classes.add(ResponseParser.parseClass((HashMap) dataSnapshotChild.getValue()));
+                        }
+                        if (classes.size() == 0) {
+                            callback.onReceiveDataFailure(new Message("Classes is unexpectedly null"));
+                        } else {
+                            callback.onReceiveDataSuccess(new Response<SchoolClass>()
+                                    .setBody(classes));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        callback.onReceiveDataFailure(new Message(databaseError.toException().getMessage()));
+                    }
+                });
+    }
 
     public void createAccount(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)

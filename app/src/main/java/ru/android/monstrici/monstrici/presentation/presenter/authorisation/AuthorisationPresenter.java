@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 
 import ru.android.monstrici.monstrici.data.model.Response;
-import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.UserRepositoryImpl;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -35,11 +34,16 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
                 @Override
                 public void onReceiveDataSuccess(Response<User> response) {
                     getViewState().showLoading(false);
-                    getViewState().onLoginSuccess(response
-                                    .getBody()
-                                    .getPosition()
-                                    .equals("teacher")
-                            , response.getBody().getId());
+                    if (response.getBody().getPosition().equals("pupil") &&
+                            response.getBody().getMonster().getId().equals("null")) {
+                        getViewState().onLoginSuccessCreateMonster(response.getBody().getId());
+                    } else {
+                        getViewState().onLoginSuccess(response
+                                        .getBody()
+                                        .getPosition()
+                                        .equals("teacher")
+                                , response.getBody().getId());
+                    }
                 }
 
                 @Override
@@ -60,11 +64,15 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
             mRepository.getUser(user.getUid(), new IDataCallback<User>() {
                 @Override
                 public void onReceiveDataSuccess(Response<User> response) {
-                    getViewState().onLoginSuccess(response
-                                    .getBody()
-                                    .getPosition()
-                                    .equals("teacher")
-                            , response.getBody().getId());
+                    if (response.getBody().getPosition().equals("pupil") &&
+                            response.getBody().getMonster().getId().equals("null")) {
+                        getViewState().onLoginSuccessCreateMonster(response.getBody().getId());
+                    } else
+                        getViewState().onLoginSuccess(response
+                                        .getBody()
+                                        .getPosition()
+                                        .equals("teacher")
+                                , response.getBody().getId());
                 }
 
                 @Override
