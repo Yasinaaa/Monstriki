@@ -17,7 +17,7 @@ public interface IJournalView extends IBaseView {
 
     void onTeacherPrepare(User user);
 
-    void onUsersPrepare(List<User> userList);
+    void onUsersPrepare(User user);
 
     void onStarsGet(User user, List<Star> stars);
 }

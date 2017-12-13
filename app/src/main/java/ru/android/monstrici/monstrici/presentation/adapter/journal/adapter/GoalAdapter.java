@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import ru.android.monstrici.monstrici.data.model.Star;
@@ -25,18 +26,32 @@ public class GoalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<Star> mList;
     private IGoalItemListener mListener;
     private Activity mActivity;
+    private JournalViewHolder mJournalViewHolder;
 
-    public GoalAdapter(ArrayList<Star> list, IGoalItemListener listener, Activity activity) {
+    public GoalAdapter(ArrayList<Star> list, IGoalItemListener listener,
+                       Activity activity, JournalViewHolder journalViewHolder) {
         mList = list;
         mListener = listener;
         mActivity = activity;
+        mJournalViewHolder = journalViewHolder;
+    }
+
+    public void add(String starid) {
+        Star star = new Star();
+        star.setId(starid);
+        star.setGoals("0");
+        star.setDate(String.valueOf(Calendar.getInstance().getTime().
+                    getTime()));
+        this.mList.add(star);
+        notifyItemInserted(mList.size() - 1);
+        //notifyDataSetChanged();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new GoalViewHolderFactory().createViewHolder(parent, inflater, mListener,
-                mActivity);
+        return new GoalViewHolderFactory().createViewHolder(parent, inflater,
+                mListener, mActivity, mJournalViewHolder);
     }
 
     @Override

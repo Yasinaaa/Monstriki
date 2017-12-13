@@ -77,8 +77,6 @@ public class RateAdapter extends RecyclerView.Adapter<RateAdapter.RateHolder> {
 
     public class RateHolder extends RecyclerView.ViewHolder implements IDataCallback<Monster> {
 
-        //        @BindView(R.id.iv_monster)
-//        ImageView mIvMonster;
         @BindView(R.id.tv_monster_name)
         TextView mTvMonsterName;
         @BindView(R.id.tv_monster_donuts)

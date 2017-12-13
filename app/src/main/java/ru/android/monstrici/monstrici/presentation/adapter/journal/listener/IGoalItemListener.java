@@ -12,5 +12,6 @@ import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.Journa
  */
 
 public interface IGoalItemListener {
+    void onItemClick(JournalViewHolder journalViewHolder);
     void onItemClick(int adapterPosition, Star star);
 }

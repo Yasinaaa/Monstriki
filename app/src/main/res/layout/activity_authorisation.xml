@@ -61,8 +61,7 @@
         android:layout_marginTop="@dimen/margin_small"
         android:text="@string/password"
         android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_small"
-        />
+        android:textSize="@dimen/textsize_small" />
 
     <EditText
         android:id="@+id/et_password"

@@ -15,7 +15,6 @@ import java.util.Map;
 
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
-import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.GoalViewHolder;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IGoalItemListener;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.factory.PupilViewHolderFactory;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.JournalViewHolder;
@@ -40,22 +39,21 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private IJournalItemListener mListener;
     private Activity mActivity;
 
-    public JournalAdapter(List<User> list, Date startDate, Date finishDate,
+    public JournalAdapter(Date startDate, Date finishDate,
                           IJournalItemListener listener, Activity activity) {
-        mList = list;
         mActivity = activity;
-        mResultList = new HashMap<String, Star>();
         mStartDate = startDate;
         mFinishDate = finishDate;
         mListener = listener;
+        mList = new ArrayList<User>();
+        mResultList = new HashMap<String, Star>();
     }
 
-    public JournalAdapter(List<User> list,
-                          IJournalItemListener listener, Activity activity) {
-        mList = list;
+    public JournalAdapter(IJournalItemListener listener, Activity activity) {
         mActivity = activity;
-        mResultList = new HashMap<String, Star>();
         mListener = listener;
+        mList = new ArrayList<User>();
+        mResultList = new HashMap<String, Star>();
     }
 
     @Override
@@ -68,18 +66,33 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        JournalViewHolder viewHolder = (JournalViewHolder) holder;
+        JournalViewHolder journalViewHolder = (JournalViewHolder) holder;
         if (mStartDate == null && mFinishDate == null) {
             mStarsList = getTodaysGoals(new ArrayList(
                     mList.get(position).getStarStorage().getStars().values()));
-            viewHolder.bindView(mList.get(position), mStarsList, mContext, this);
+            journalViewHolder.bindView(mList.get(position), mStarsList, mContext, this);
         }
         else{
             mStarsList = getWeekssGoals(new ArrayList(
                             mList.get(position).getStarStorage().getStars().values()),
                     mStartDate, mFinishDate);
-            viewHolder.bindView(mList.get(position), mStarsList, mContext, this);
+            journalViewHolder.bindView(mList.get(position), mStarsList, mContext, this);
         }
+    }
+
+    public void add(User user) {
+        this.mList.add(user);
+        notifyItemInserted(mList.size() - 1);
+        notifyDataSetChanged();
+    }
+
+    public void removeItem(int adapterPosition, Star star){
+        mList.remove(star);
+        notifyItemRemoved(adapterPosition);
+    }
+
+    public void removeFromResultList(Star star){
+        mResultList.remove(star);
     }
 
     @Override
@@ -118,8 +131,18 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onItemClick(int adapterPosition, Star star) {
+
+        if (star.getGoals().equals("0")){
+            removeItem(adapterPosition, star);
+        }
+
         mList.get(adapterPosition).getStarStorage().updateStar(star);
         mResultList.put(mList.get(adapterPosition).getId(), star);
+    }
+
+    @Override
+    public void onItemClick(JournalViewHolder journalViewHolder) {
+        journalViewHolder.addEmptyStar();
     }
 
     public Map<String, Star> getResultList(){

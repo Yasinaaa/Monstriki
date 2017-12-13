@@ -367,7 +367,7 @@ public class UserRepositoryImpl implements IUserRepository {
         if (star.equals(cacheStar)) {
             mCachedUserMap.get(userId).getStarStorage().updateStar(star);
             mRemoteUserRepository.updateStar(star, userId);
-        } else {
+        }else {
             addStar(star, userId);
         }
     }
