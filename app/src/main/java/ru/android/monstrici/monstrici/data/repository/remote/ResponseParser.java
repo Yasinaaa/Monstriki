@@ -40,18 +40,16 @@ public class ResponseParser {
 
     static StarStorage parseStar(String id, HashMap<String, HashMap> hashMap) {
         HashMap<String, Star> stars = new HashMap<>();
-        Star star = new Star();
-        star.setId(id);
         HashMap<String, HashMap> days = hashMap.get("days");
         for (Map.Entry<String, HashMap> e : days.entrySet()) {
             Star st = new Star();
             st.setDate(e.getKey());
-            st.setId(e.getKey());
+            st.setId(id);
             HashMap<String, String> answer = e.getValue();
 
             st.setGoals(answer.get("goals"));
             st.setTag(answer.get("tag"));
-            stars.put(st.getId(), st);
+            stars.put(st.getDate(), st);
         }
         StarStorage starStorage = new StarStorage();
         starStorage.setId(id);

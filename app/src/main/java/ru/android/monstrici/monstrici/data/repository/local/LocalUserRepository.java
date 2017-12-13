@@ -53,7 +53,7 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getStars(@NonNull IDataCallback<Star> callback) {
+    public void getStars(String userId, @NonNull IDataCallback<Star> callback) {
 
     }
 
