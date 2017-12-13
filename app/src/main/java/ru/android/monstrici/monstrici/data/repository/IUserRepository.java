@@ -33,7 +33,7 @@ public interface IUserRepository {
 
     void getStar(String starId, String userId, @NonNull IDataCallback<Star> callback);
 
-    void getStars(@NonNull IDataCallback<Star> callback);
+    void getStars(String userId, @NonNull IDataCallback<Star> callback);
 
     void getUsers(@NonNull IDataCallback<User> callback);
 

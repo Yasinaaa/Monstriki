@@ -191,12 +191,17 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
-    public void getStars(@NonNull IDataCallback<Star> callback) {
+    public void getStars(String userId, @NonNull IDataCallback<Star> callback) {
         IDataCallback<Star> starsCallback = new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
                 callback.onReceiveDataSuccess(response);
-                removeRequest("getStars", "getStars");
+                for (Map.Entry<String, IDataCallback> reqCall :
+                        requests.get("getStars").getIDataCallbacks().entrySet()) {
+                    reqCall.getValue().onReceiveDataSuccess(response);
+                    removeRequest("getStars", userId);
+                }
+
             }
 
             @Override
@@ -206,10 +211,11 @@ public class UserRepositoryImpl implements IUserRepository {
         };
         if (!requests.containsKey("getStars")) {
             if (!requests.containsKey("getStars"))
-                requests.put("getStars", new ListCallbacks());
-            mRemoteUserRepository.getStars(starsCallback);
+                if (!requests.get("getStars").getIDataCallbacks().containsKey(userId))
+                    requests.put("getStars", new ListCallbacks());
+            mRemoteUserRepository.getStars(userId, starsCallback);
         }
-        requests.put("getStars", requests.get("getStars").add("getStars", callback));
+        requests.put("getStars", requests.get("getStars").add(userId, callback));
     }
 
     public User getCachedUser() {
@@ -361,7 +367,7 @@ public class UserRepositoryImpl implements IUserRepository {
         if (star.equals(cacheStar)) {
             mCachedUserMap.get(userId).getStarStorage().updateStar(star);
             mRemoteUserRepository.updateStar(star, userId);
-        }else {
+        } else {
             addStar(star, userId);
         }
     }

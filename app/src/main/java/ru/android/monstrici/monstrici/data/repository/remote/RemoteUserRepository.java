@@ -141,11 +141,16 @@ public class RemoteUserRepository implements IUserRepository {
     }
 
     @Override
-    public void getStars(@NonNull IDataCallback<Star> callback) {
-        mDatabase.child("stars").addListenerForSingleValueEvent(new ValueEventListener() {
+    public void getStars(String userId, @NonNull IDataCallback<Star> callback) {
+        mDatabase.child("stars").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // ArrayList<HashMap<String, HashMap>> dataSnapshot.getValue();
+                ArrayList<User> users = new ArrayList<>();
+                Iterator<DataSnapshot> dataSnapshotsChat = dataSnapshot.getChildren().iterator();
+                while (dataSnapshotsChat.hasNext()) {
+                    DataSnapshot dataSnapshotChild = dataSnapshotsChat.next();
+                    users.add(ResponseParser.parseUser((HashMap) dataSnapshotChild.getValue()));
+                }
                 StarStorage starStorage = ResponseParser.parseStar("", (HashMap) dataSnapshot.getValue());
 
                 if (starStorage.getStars().size() == 0) {
