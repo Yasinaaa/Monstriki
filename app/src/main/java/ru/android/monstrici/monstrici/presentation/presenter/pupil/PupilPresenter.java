@@ -79,10 +79,12 @@ public class PupilPresenter extends BasePresenter<IPupilView> {
         for (int i=0; i<mDayDesitions.length; i++){
             Star star = findStarByDate(starsList, mWeekDates.get(i));
             mDayDesitions[i].setDate(mWeekDates.get(i));
-            mDayDesitions[i].setTag("");
+
 
             if (star != null){
                 mDayDesitions[i].setGoals(Integer.parseInt(star.getGoals()));
+                mDayDesitions[i].setTag(star.getTag().
+                        substring(0, star.getTag().length() - 2));
             }else {
                 mDayDesitions[i].setGoals(0);
             }
@@ -95,12 +97,15 @@ public class PupilPresenter extends BasePresenter<IPupilView> {
 
         Star searchedStar = null;
         int count = 0;
+        String tag = "";
 
         for (Star star: starsList){
             Date d2 = new Date(Long.parseLong(star.getDate()));
             if (date.equals(Resources.DATE_FORMAT.format(d2))){
                 searchedStar = star;
                 count += Integer.parseInt(star.getGoals());
+                tag += star.getTag() + ",";
+                searchedStar.setTag(tag);
                 searchedStar.setGoals(String.valueOf(count));
             }
 

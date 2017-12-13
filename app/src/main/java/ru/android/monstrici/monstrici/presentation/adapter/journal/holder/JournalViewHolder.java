@@ -50,6 +50,9 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
         mUser = user;
         mTvPupilName.setText(user.getName());
         mTvPupilName.setOnClickListener(this);
+        if (stars.size() == 0){
+            stars.add(null);
+        }
         mGoalAdapter = new GoalAdapter(stars, listener, mActivity);
         mRvStars.setLayoutManager(new LinearLayoutManager(context));
         mRvStars.setAdapter(mGoalAdapter);
