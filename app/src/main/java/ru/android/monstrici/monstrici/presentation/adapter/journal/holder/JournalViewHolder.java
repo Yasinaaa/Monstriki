@@ -50,9 +50,7 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
         mUser = user;
         mTvPupilName.setText(user.getName());
         mTvPupilName.setOnClickListener(this);
-        if (stars.size() == 0){
-            stars.add(null);
-        }
+        stars.add(addEmptyItem(user.getStarId()));
         mGoalAdapter = new GoalAdapter(stars, listener, mActivity);
         mRvStars.setLayoutManager(new LinearLayoutManager(context));
         mRvStars.setAdapter(mGoalAdapter);
@@ -61,5 +59,12 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
     @Override
     public void onClick(View v) {
         mListener.onItemClick(mUser.getId());
+    }
+
+    private Star addEmptyItem(String id){
+        Star star = new Star();
+        star.setGoals("0");
+        star.setId(id);
+        return star;
     }
 }

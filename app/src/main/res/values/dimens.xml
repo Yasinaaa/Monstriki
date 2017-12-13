@@ -91,7 +91,7 @@
     <dimen name="size_monster_in_menu_roolbar">70dp</dimen>
 
     <!-- activity_main_teacher_drawer.xml -->
-    <dimen name="textsize_xxlarge">40sp</dimen>
+    <dimen name="textsize_xxlarge">60sp</dimen>
 
     <!-- item_form_parameter.xml -->
     <dimen name="size_circle_background">10dp</dimen>

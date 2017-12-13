@@ -173,21 +173,11 @@ public class JournalFragment extends BaseFragment
 
     @OnClick(R.id.fab_save)
     protected void onFabClick() {
-        /*for (int j = 0; j < mTableItemsList.size(); j++) {
-            JournalFragment.TableItems tableItem = mTableItemsList.get(j);
-            Star star = mStarsList.get(j);
-            User user = mUsersList.get(j);
-            star.setGoals(tableItem.mTvDonutsCount.getText().
-                    toString());
-            star.setTag(tableItem.mTvTag.getText().toString());
-            star.setId(user.getStarId());
-            mPresenter.saveStars(star, user.getId());
-        }*/
         Map<String, Star> usersMap = mJournalAdapter.getResultList();
         for (Map.Entry<String, Star> entry : usersMap.entrySet()) {
             Star star = entry.getValue();
             if (star.getGoals().equals("0")) {
-                //TODO: remove
+                mPresenter.removeStars(star, entry.getKey());
             }else {
                 mPresenter.saveStars(star, entry.getKey());
             }

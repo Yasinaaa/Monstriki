@@ -85,6 +85,10 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
     }
 
     public void saveStars(Star star, String userId) {
-        mRepository.addStar(star, userId);
+        mRepository.updateStar(star, userId);
+    }
+
+    public void removeStars(Star star, String userId) {
+        mRepository.removeStar(star, userId);
     }
 }

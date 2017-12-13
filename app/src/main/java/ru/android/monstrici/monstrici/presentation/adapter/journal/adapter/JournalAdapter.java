@@ -118,13 +118,7 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onItemClick(int adapterPosition, Star star) {
-
-        if (star.getGoals().equals("0") || (star.getGoals().equals(""))){
-            //TODO: remove star
-
-        }else {
-            mList.get(adapterPosition).getStarStorage().updateStar(star);
-        }
+        mList.get(adapterPosition).getStarStorage().updateStar(star);
         mResultList.put(mList.get(adapterPosition).getId(), star);
     }
 

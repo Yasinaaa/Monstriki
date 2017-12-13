@@ -146,4 +146,6 @@
     <string name="create_done">Готово</string>
     <string name="create_save">Сохранить</string>
     <string name="create_monster_name">Введите имя монстра</string>
+
+    <string name="not_your_class_error">У вас нет такого класса</string>
 </resources>

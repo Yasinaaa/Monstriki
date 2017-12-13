@@ -40,6 +40,11 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
         return new WeekDesitionsAdapter.WeekDesitionsHolder(itemView);
     }
 
+    public void setNewItems(DayDesition[] list) {
+        this.mList = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(final WeekDesitionsAdapter.WeekDesitionsHolder holder,
                                  final int position) {
@@ -48,7 +53,7 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
             holder.mTvDayOfWeek.setText("");
             holder.mTvDate.setText("");
             holder.mTvGoals.setText(mResource.getString(R.string.points));
-            holder.mTag.setText(mResource.getString(R.string.points));
+            holder.mTag.setText(mResource.getString(R.string.comment));
 
             setHeight(setWrapContentHeight(),holder.mTvDayOfWeek, holder.mTvDate,
                     holder.mTvGoals, holder.mTag);
@@ -89,6 +94,11 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
     @Override
     public int getItemCount() {
         return mList.length;
+    }
+
+    public void clear() {
+        mList = null;
+        this.notifyItemRangeRemoved(0, getItemCount());
     }
 
     public class WeekDesitionsHolder extends RecyclerView.ViewHolder {

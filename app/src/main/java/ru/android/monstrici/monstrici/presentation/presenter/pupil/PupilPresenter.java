@@ -36,7 +36,6 @@ public class PupilPresenter extends BasePresenter<IPupilView> {
     @Inject
     UserRepositoryImpl mRepository;
 
-    private DayDesition[] mDayDesitions;
     private ArrayList<String> mWeekDates;
 
     public void getUser(String userId){
@@ -72,14 +71,28 @@ public class PupilPresenter extends BasePresenter<IPupilView> {
 
     public DayDesition[] getDonutsCount(ArrayList<Star> starsList, Activity activity)
     {
-        mDayDesitions = Resources.mDesitionsOfWeek;
         Calendar currentDate = Calendar.getInstance();
+        return getDonutsCount(currentDate, starsList, activity);
+    }
 
-        mWeekDates = DateFunctions.createWeekDates(currentDate);
+    public DayDesition[] getDonutsCount(Calendar calendar, ArrayList<Star> starsList, Activity activity)
+    {
+        //DayDesition[] mDayDesitions = Resources.mDesitionsOfWeek;
+
+        DayDesition[] mDayDesitions = new DayDesition[]{
+                new DayDesition(R.string.monday),
+                new DayDesition(R.string.tuesday),
+                new DayDesition(R.string.wednesday),
+                new DayDesition(R.string.thursday),
+                new DayDesition(R.string.friday),
+                new DayDesition(R.string.saturday)
+        };
+
+
+        mWeekDates = DateFunctions.createWeekDates(calendar);
         for (int i=0; i<mDayDesitions.length; i++){
             Star star = findStarByDate(starsList, mWeekDates.get(i));
             mDayDesitions[i].setDate(mWeekDates.get(i));
-
 
             if (star != null){
                 mDayDesitions[i].setGoals(Integer.parseInt(star.getGoals()));

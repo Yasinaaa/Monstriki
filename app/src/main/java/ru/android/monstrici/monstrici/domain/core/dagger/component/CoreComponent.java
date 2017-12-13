@@ -5,6 +5,7 @@ import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.PrizesFragmen
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SettingsFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.StarFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.SweetsFragment;
+import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.PupilFragment;
 
@@ -21,6 +22,8 @@ public interface CoreComponent {
     void inject(JournalFragment fragment);
 
     void inject(PupilFragment fragment);
+
+    void inject(FormParametersFragment fragment);
     //MAIN TEACHER'S FRAGMENTS
 
     //MAIN PUPIL'S FRAGMENTS
