@@ -122,6 +122,20 @@ public class JournalFragment extends BaseFragment
         if (mForm != null) {
             mTvFormText.setText(mForm);
         }
+
+        if (!mDate.contains("-")) {
+            mJournalAdapter = new JournalAdapter(this, getActivity());
+        }else {
+            String[] dates = mDate.split("-");
+            Date startDate = makeDate(dates[0]);
+            Date finishDate = makeDate(dates[1]);
+            mJournalAdapter = new JournalAdapter(startDate,
+                    finishDate, this, getActivity());
+        }
+
+        mRvJournal.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvJournal.setAdapter(mJournalAdapter);
+
         mPresenter.getUsers();
     }
 
@@ -131,19 +145,8 @@ public class JournalFragment extends BaseFragment
     }
 
     @Override
-    public void onUsersPrepare(List<User> userList) {
-        if (!mDate.contains("-")) {
-            mJournalAdapter = new JournalAdapter(userList, this, getActivity());
-        }else {
-            String[] dates = mDate.split("-");
-            Date startDate = makeDate(dates[0]);
-            Date finishDate = makeDate(dates[1]);
-            mJournalAdapter = new JournalAdapter(userList, startDate,
-                    finishDate, this, getActivity());
-        }
-
-        mRvJournal.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvJournal.setAdapter(mJournalAdapter);
+    public void onUsersPrepare(User user) {
+        mJournalAdapter.add(user);
     }
 
     private Date makeDate(String d){
@@ -181,7 +184,7 @@ public class JournalFragment extends BaseFragment
             }else {
                 mPresenter.saveStars(star, entry.getKey());
             }
-
+            mJournalAdapter.removeFromResultList(star);
         }
     }
 

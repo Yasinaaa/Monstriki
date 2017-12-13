@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.JournalViewHolder;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IGoalItemListener;
 
 /**
@@ -18,5 +19,6 @@ public interface IViewGoalHolderFactory {
     RecyclerView.ViewHolder createViewHolder(ViewGroup parent,
                                              LayoutInflater inflater,
                                              IGoalItemListener listener,
-                                             Activity activity);
+                                             Activity activity,
+                                             JournalViewHolder journalViewHolder);
 }

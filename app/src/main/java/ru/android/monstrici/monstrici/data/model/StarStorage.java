@@ -62,8 +62,11 @@ public class StarStorage {
         for (Map.Entry<String, Star> entry : mStars.entrySet())
         {
             String goals = entry.getValue().getGoals();
-            if (!goals.equals(""))
-                count += Integer.parseInt(goals);
+            if (goals != null){
+                if (!goals.equals(""))
+                    count += Integer.parseInt(goals);
+            }
+
         }
         return count;
     }

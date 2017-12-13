@@ -208,6 +208,7 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
 
     @Override
     public void setStars(User user) {
+
         mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
     }
 

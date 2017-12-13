@@ -35,13 +35,15 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
     private TextView mTvPlus;
     private TextView mTvMinus;
     private TextView mTvTag;
+    private JournalViewHolder mJournalViewHolder;
 
-    public GoalViewHolder(View itemView, IGoalItemListener listener, Activity activity) {
+    public GoalViewHolder(View itemView, IGoalItemListener listener,
+                          Activity activity, JournalViewHolder journalViewHolder) {
         super(itemView);
         itemView.setOnClickListener(this);
         mListener = listener;
         mActivity = activity;
-        //LinearLayout center = itemView.findViewById(R.id.center__donut_layout);
+        mJournalViewHolder = journalViewHolder;
         mTvDonutsCount = itemView.findViewById(R.id.tv_donuts_count);
         mTvPlus = itemView.findViewById(R.id.tv_add_donuts);
         mTvMinus = itemView.findViewById(R.id.tv_remove_donuts);
@@ -53,13 +55,19 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
 
     public void bindView(Star star) {
         mCurrentStar = star;
-        if (mCurrentStar.getGoals().equals("0")){
-            mCurrentStar.setDate(String.valueOf(Calendar.getInstance().getTime().
-                    getTime()));
+
+        if (mCurrentStar == null){
+            mTvTag.setText("+");
+            mTvTag.setBackgroundResource(R.drawable.textview_border);
+            mTvPlus.setVisibility(View.INVISIBLE);
+            mTvMinus.setVisibility(View.INVISIBLE);
+            mTvDonutsCount.setVisibility(View.INVISIBLE);
+
+        }else {
+            mTvDonutsCount.setText(star.getGoals());
+            mTvTag.setText(star.getTag());
+            mTvTag.setBackgroundResource(R.drawable.textview_border);
         }
-        mTvDonutsCount.setText(star.getGoals());
-        mTvTag.setText(star.getTag());
-        mTvTag.setBackgroundResource(R.drawable.textview_border);
     }
 
     @Override
@@ -80,50 +88,13 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
                 break;
             }
             case R.id.tv_tag:{
-                final String[] tagText = {""};
-                LayoutInflater inflater = mActivity.getLayoutInflater();
-                View view = inflater.inflate(R.layout.dialog_tags, null);
 
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mActivity)
-                        .setView(view)
-                        .setTitle(mActivity.getResources().getString(R.string.choose_tag));
-                dialogBuilder
-                        .setPositiveButton(mActivity.getString(R.string.choose),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        setText(tagText[0]);
-                                    }
-                                })
-                        .setNegativeButton(mActivity.getString(R.string.cancel),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
+                if (mTvTag.getText().toString().equals("+")){
+                    mListener.onItemClick(mJournalViewHolder);
+                }else {
+                    setUsualOnTagClick();
+                }
 
-                                    }
-                                }).show();
-
-                TagContainerLayout mTagContainerLayout =
-                        (TagContainerLayout) view.findViewById(R.id.tags);
-                mTagContainerLayout.setTags(new ArrayList<String>(
-                        Arrays.asList(
-                                mActivity.getResources().getStringArray(R.array.tags_array))));
-                mTagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
-                    @Override
-                    public void onTagClick(int position, String text) {
-                        tagText[0] = text;
-                    }
-
-                    @Override
-                    public void onTagLongClick(final int position, String text) {
-                        // ...
-                    }
-
-                    @Override
-                    public void onTagCrossClick(int position) {
-                        // ...
-                    }
-                });
             }
         }
     }
@@ -139,10 +110,55 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
     }
 
     private void setStarElements(){
-        int position = getAdapterPosition();
+        int position = mJournalViewHolder.getAdapterPosition();
         mCurrentStar.setTag(mTvTag.getText().toString());
         mCurrentStar.setGoals(mTvDonutsCount.getText().toString());
         mListener.onItemClick(position, mCurrentStar);
+    }
+
+    private void setUsualOnTagClick(){
+        final String[] tagText = {""};
+        LayoutInflater inflater = mActivity.getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_tags, null);
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mActivity)
+                .setView(view)
+                .setTitle(mActivity.getResources().getString(R.string.choose_tag));
+        dialogBuilder
+                .setPositiveButton(mActivity.getString(R.string.choose),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                setText(tagText[0]);
+                            }
+                        })
+                .setNegativeButton(mActivity.getString(R.string.cancel),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).show();
+
+        TagContainerLayout mTagContainerLayout =
+                (TagContainerLayout) view.findViewById(R.id.tags);
+        mTagContainerLayout.setTags(new ArrayList<String>(
+                Arrays.asList(
+                        mActivity.getResources().getStringArray(R.array.tags_array))));
+        mTagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
+            @Override
+            public void onTagClick(int position, String text) {
+                tagText[0] = text;
+            }
+
+            @Override
+            public void onTagLongClick(final int position, String text) {
+            }
+
+            @Override
+            public void onTagCrossClick(int position) {
+            }
+        });
     }
 }
 

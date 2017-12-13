@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.factory.model.IViewGoalHolderFactory;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.GoalViewHolder;
+import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.JournalViewHolder;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IGoalItemListener;
 
 /**
@@ -21,9 +22,10 @@ public class GoalViewHolderFactory implements IViewGoalHolderFactory {
     public RecyclerView.ViewHolder createViewHolder(ViewGroup parent,
                                                     LayoutInflater inflater,
                                                     IGoalItemListener listener,
-                                                    Activity activity) {
+                                                    Activity activity,
+                                                    JournalViewHolder journalViewHolder) {
         View view = inflater.inflate(R.layout.item_goal, parent,
                 false);
-        return new GoalViewHolder(view, listener, activity);
+        return new GoalViewHolder(view, listener, activity, journalViewHolder);
     }
 }

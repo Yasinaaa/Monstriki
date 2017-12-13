@@ -50,14 +50,9 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
             public void onReceiveDataSuccess(Response<User> response) {
                 List<User> userList = response.getBodyList();
                 for (int i=0; i<userList.size();i++){
-                    User user = userList.get(i);
-                    if (i == userList.size() - 1)
-                        getStars(userList, i, true);
-                    else
-                        getStars(userList, i, false);
+                    getStars(userList.get(i));
                 }
             }
-
             @Override
             public void onReceiveDataFailure(Message message) {
                 getViewState().showError(message);
@@ -66,17 +61,13 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
         });
     }
 
-   private void getStars(List<User> userList, int i, boolean finish) {
-        mRepository.getStar(userList.get(i).getStarId(),userList.get(i).getId(), new IDataCallback<Star>() {
+   private void getStars(User user) {
+        mRepository.getStar(user.getStarId(), user.getId(), new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
-                userList.get(i).setStars(response.getStarStorage());
-
-                if (finish){
-                    getViewState().onUsersPrepare(userList);
-                }
+                user.setStars(response.getStarStorage());
+                getViewState().onUsersPrepare(user);
             }
-
             @Override
             public void onReceiveDataFailure(Message message) {
                 getViewState().showError(message);
