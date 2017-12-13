@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.view.parameters.ParametersActivity"
+            android:name=".ui.view.parameters.CreateMonsterActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.view.main_pupil.MainPupilActivity"

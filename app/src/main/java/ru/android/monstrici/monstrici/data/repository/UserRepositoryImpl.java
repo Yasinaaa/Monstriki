@@ -314,6 +314,15 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
+    public void addMonster(Monster monster) {
+        if (!mCachedMonsterList.contains(monster)) {
+            mCachedMonsterList.add(monster);
+            getCurrentUser().setMonster(monster);
+            mRemoteUserRepository.addMonster(monster);
+        }
+    }
+
+    @Override
     public void saveUser(User user) {
         if (!user.equals(mCachedUserMap.get(user.getId()))) {
             mCachedUserMap.put(user.getId(), user);
@@ -336,6 +345,14 @@ public class UserRepositoryImpl implements IUserRepository {
             mCachedUserMap.get(userId).getStarStorage().getStars().put(star.getId(), star);
             mRemoteUserRepository.addStar(star, userId);
         }
+    }
+
+    @Override
+    public void removeStar(Star star, String userId) {
+        if (mCachedUserMap.get(userId).getStarStorage().getStars().containsKey(star)) {
+            mCachedUserMap.get(userId).getStarStorage().getStars().remove(star.getId());
+        }
+        mRemoteUserRepository.removeStar(star, userId);
     }
 
     private void removeRequest(String requestId, String itemId) {

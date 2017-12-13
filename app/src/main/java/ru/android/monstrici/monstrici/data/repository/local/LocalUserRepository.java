@@ -94,4 +94,14 @@ public class LocalUserRepository implements IUserRepository {
     public void addStar(Star star, String userId) {
 
     }
+
+    @Override
+    public void removeStar(Star star, String userId) {
+
+    }
+
+    @Override
+    public void addMonster(Monster monster) {
+
+    }
 }

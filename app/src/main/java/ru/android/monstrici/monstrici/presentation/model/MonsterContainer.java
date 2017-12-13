@@ -1,6 +1,7 @@
 package ru.android.monstrici.monstrici.presentation.model;
 
 import android.content.res.TypedArray;
+import android.support.annotation.IntRange;
 
 import java.io.Serializable;
 import java.util.List;
@@ -69,5 +70,29 @@ public class MonsterContainer implements Serializable {
 
     public void setMouthIndex(int mouthIndex) {
         mMouthIndex = mouthIndex;
+    }
+
+    /**
+     * @param mIndex 1 -body ,2 -mouth, 3- eye
+     */
+    public TypedArray getNextArray(@IntRange(from = 1, to = 3) int mIndex) {
+        switch (mIndex) {
+            case 1:
+                return mBodyList;
+            case 2:
+                return mMouthList;
+            case 3:
+                return mEyesList;
+        }
+        return null;
+    }
+
+    public void createMonster(String name, String id) {
+        mMonster = new Monster();
+        mMonster.setMouth(String.valueOf(mMouthIndex));
+        mMonster.setEyes(String.valueOf(mEyeIndex));
+        mMonster.setBody(String.valueOf(mBodyIndex));
+        mMonster.setName(name);
+        mMonster.setId(id);
     }
 }

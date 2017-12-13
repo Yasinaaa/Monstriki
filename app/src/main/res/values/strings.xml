@@ -27,8 +27,11 @@
     <string name="required">Обязательное поле.</string>
 
     <!-- activity_parameters.xml -->
-    <string name="question">Какие глаза\n у твоего монстрика?</string>
+    <string name="question_body">Какое тело\n у твоего монстрика?</string>
+    <string name="question_eyes">Какие глаза\n у твоего монстрика?</string>
+    <string name="question_mouth">Какой рот\n у твоего монстрика?</string>
     <string name="next">Дальше</string>
+    <string name="back">Назад</string>
     <string name="need_your_name">Твоему монстру нужно имя</string>
     <string name="write_name">А теперь напиши сюда имя монстра</string>
     <string name="empty_name">Имя не должно быть пустым</string>
@@ -140,4 +143,7 @@
     <string name="settings_class">Класс: %d</string>
     <string name="settings_teacher">Учитель: %d</string>
     <string name="tv_monster_name">Имя монстрика</string>
+    <string name="create_done">Готово</string>
+    <string name="create_save">Сохранить</string>
+    <string name="create_monster_name">Введите имя монстра</string>
 </resources>

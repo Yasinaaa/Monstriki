@@ -18,14 +18,34 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_large_text"
+            android:id="@+id/tv_monster_create"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_logo"
-            android:text="@string/question"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/question_body"
             android:textAlignment="center"
             android:textColor="@color/color_purple"
-            android:textSize="@dimen/textsize_question"/>
+            android:textSize="@dimen/textsize_question"
+            cardview:layout_constraintBottom_toTopOf="@+id/rv_monster_items"
+            cardview:layout_constraintEnd_toEndOf="parent"
+            cardview:layout_constraintHorizontal_bias="0.0"
+            cardview:layout_constraintStart_toStartOf="parent"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_monster_items"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="28dp"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            cardview:layout_constraintBottom_toTopOf="@+id/la_monster"
+            cardview:layout_constraintEnd_toEndOf="parent"
+            cardview:layout_constraintHorizontal_bias="0.0"
+            cardview:layout_constraintStart_toStartOf="parent"/>
 
         <include
             android:id="@+id/la_monster"
@@ -39,60 +59,37 @@
             cardview:layout_constraintBottom_toBottomOf="parent"
             cardview:layout_constraintEnd_toEndOf="parent"
             cardview:layout_constraintStart_toStartOf="parent"
-            cardview:layout_constraintTop_toTopOf="parent"/>
+            cardview:layout_constraintTop_toTopOf="parent"
+            cardview:layout_constraintVertical_bias="0.709"/>
 
         <Button
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="92dp"
+            android:layout_marginRight="92dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/btn_corner"
             android:text="@string/next"
             android:textColor="@color/color_register"
             cardview:layout_constraintBottom_toBottomOf="parent"
             cardview:layout_constraintEnd_toEndOf="parent"
+            cardview:layout_constraintTop_toBottomOf="@+id/la_monster"/>
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="92dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_corner"
+            android:text="@string/back"
+            android:textColor="@color/color_register"
+            cardview:layout_constraintBottom_toBottomOf="parent"
             cardview:layout_constraintStart_toStartOf="parent"
             cardview:layout_constraintTop_toBottomOf="@+id/la_monster"/>
     </android.support.constraint.ConstraintLayout>
-
-
-
-
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/rv_eyes"-->
-    <!--android:layout_below="@+id/tv_large_text"-->
-    <!--android:layout_margin="@dimen/margin_small">-->
-    <!--</android.support.v7.widget.RecyclerView>-->
-
-    <!--<android.support.design.widget.TextInputLayout-->
-    <!--android:id="@+id/til_monster_name"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:hint="@string/name"-->
-    <!--android:layout_below="@+id/tv_large_text"-->
-    <!--android:layout_marginTop="@dimen/margin_large"-->
-    <!--android:layout_marginLeft="@dimen/margin_large"-->
-    <!--android:layout_marginRight="@dimen/margin_small"-->
-    <!--android:padding="@dimen/padding_normal"-->
-    <!--android:visibility="gone">-->
-
-    <!--<EditText-->
-    <!--android:id="@+id/et_monster_name"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:imeOptions="actionUnspecified"-->
-    <!--android:inputType="text"-->
-    <!--android:nextFocusForward="@+id/btn_next"-->
-    <!--android:maxLines="@integer/max_lines_edit_text"/>-->
-
-    <!--</android.support.design.widget.TextInputLayout>-->
-    <!---->
-
-
-
 </RelativeLayout>

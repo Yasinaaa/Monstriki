@@ -16,5 +16,7 @@ import ru.android.monstrici.monstrici.utils.Message;
 public interface IAuthorisationView extends IBaseView {
     void onLoginSuccess(boolean isTeacher, String id);
 
+    void onLoginSuccessCreateMonster(String id);
+
     void onLoginFailed(Message message);
 }

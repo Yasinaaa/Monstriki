@@ -47,4 +47,8 @@ public interface IUserRepository {
     void updateStar(Star star, String userId);
 
     void addStar(Star star, String userId);
+
+    void removeStar(Star star, String userId);
+
+    void addMonster(Monster monster);
 }
