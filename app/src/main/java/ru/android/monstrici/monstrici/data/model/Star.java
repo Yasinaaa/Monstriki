@@ -56,6 +56,7 @@ public class Star {
         Date newDate = new Date(Long.parseLong(date));
         return dateFormat.format(newDate);
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

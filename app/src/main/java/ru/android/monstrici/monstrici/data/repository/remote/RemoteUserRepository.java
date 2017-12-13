@@ -232,12 +232,23 @@ public class RemoteUserRepository implements IUserRepository {
 
     @Override
     public void updateStar(Star star, String userId) {
-        mDatabase.child("stars").child(star.getId()).setValue(star).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.i("USER", "SAVED");
-            }
-        });
+        mDatabase.child("stars")
+                .child(star.getId())
+                .child("days")
+                .child(star.getDate())
+                .setValue(star)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.i("STAR", "UPDATED");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("STAR UPDATE", "FAILED");
+                    }
+                });
     }
 
     @Override
