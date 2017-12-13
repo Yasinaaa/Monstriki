@@ -19,6 +19,7 @@ import java.util.Iterator;
 
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.SchoolClass;
 import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
@@ -281,6 +282,31 @@ public class RemoteUserRepository implements IUserRepository {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.i("MONSTER", "FAILED");
+                    }
+                });
+    }
+
+    @Override
+    public void getClassList(@NonNull IDataCallback<SchoolClass> callback) {
+        mDatabase.child("class").addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        ArrayList<SchoolClass> classes = new ArrayList<>();
+                        for (DataSnapshot dataSnapshotChild : dataSnapshot.getChildren()) {
+                            classes.add(ResponseParser.parseClass((HashMap) dataSnapshotChild.getValue()));
+                        }
+                        if (classes.size() == 0) {
+                            callback.onReceiveDataFailure(new Message("Classes is unexpectedly null"));
+                        } else {
+                            callback.onReceiveDataSuccess(new Response<SchoolClass>()
+                                    .setBody(classes));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        callback.onReceiveDataFailure(new Message(databaseError.toException().getMessage()));
                     }
                 });
     }
