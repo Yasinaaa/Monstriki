@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,18 +17,11 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
-import java.util.List;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
-import ru.android.monstrici.monstrici.data.model.Monster;
-import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.presenter.main.PupilMenuPresenter;
-import ru.android.monstrici.monstrici.presentation.presenter.main.TeacherMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.view.menu.IPupilMenu;
-import ru.android.monstrici.monstrici.presentation.view.menu.ITeacherMenu;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
@@ -155,9 +146,7 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
     }
 
     private void setMonsterFragment() {
-        MonsterFragment monsterFragment = MonsterFragment.newInstance(getIntent().getIntExtra(Resources.MONSTER_IMAGE, 0));
-        mFragmentManager.beginTransaction().replace(R.id.fl_main, monsterFragment).commit();
-        setToolbar(mMainToolbar, null, monsterFragment);
+        mPresenter.getStars();
     }
 
     @Override
@@ -201,15 +190,21 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
         mIvDonut = (ImageView) findViewById(R.id.iv_donut);
         mIvDonut.setOnClickListener(v -> setSweetsFragment());
-        mPresenter.getStars(user);
-        mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
+        //mPresenter.getStars();
+        //mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
 
     }
 
     @Override
     public void setStars(User user) {
-
         mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
+    }
+
+    @Override
+    public void setLastDonutsReceiveDate(long date) {
+        MonsterFragment monsterFragment = MonsterFragment.newInstance(date);
+        mFragmentManager.beginTransaction().replace(R.id.fl_main, monsterFragment).commit();
+        setToolbar(mMainToolbar, null, monsterFragment);
     }
 
     @Override
