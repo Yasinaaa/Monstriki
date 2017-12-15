@@ -33,10 +33,12 @@ public class StarPresenter extends BasePresenter<IStarView> implements Serializa
     private int reqId;
 
     public void getAllUserInformation(User user) {
+        getViewState().showLoading(true);
         mRepository.getMonster(user.getMonster().getId(), user.getId(), new IDataCallback<Monster>() {
             @Override
             public void onReceiveDataSuccess(Response<Monster> response) {
                 getViewState().getChoosedUser(user, response.getBody());
+                getViewState().showLoading(false);
             }
 
             @Override
@@ -70,12 +72,15 @@ public class StarPresenter extends BasePresenter<IStarView> implements Serializa
     }
 
     private void getStars(List<User> userList, int i, boolean finish){
+        getViewState().showLoading(true);
         mRepository.getStar(userList.get(i).getStarId(),userList.get(i).getId(), new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
+                getViewState().showLoading(false);
                 userList.get(i).setStars(response.getStarStorage());
 
                 if (finish){
+
                     getViewState().getUsersRateList(
                             sortUsersByStarsCount(userList));
                 }

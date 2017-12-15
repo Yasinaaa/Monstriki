@@ -18,8 +18,9 @@ public class Resources {
 
     public static int[] mMainPupilDrawables = new int[]{
             R.drawable.main_icon, R.drawable.cup_icon,
-            R.drawable.candy_icon, R.drawable.settings_icon,
-            R.drawable.star_icon
+            R.drawable.candy_icon,
+            R.drawable.star_icon,
+            R.drawable.settings_icon
     };
 
     public static int[] mEyesDrawables = new int[]{

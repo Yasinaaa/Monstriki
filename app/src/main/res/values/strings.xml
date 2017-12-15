@@ -49,7 +49,7 @@
 
     <!-- fragment_prizes.xml -->
     <string name="prize">Призы</string>
-    <string name="the_smartest">Самый умный</string>
+    <string name="no_prize">У тебя нет наград</string>
 
     <!-- fragment_sweets.xml -->
     <string name="sweets">Сладости</string>

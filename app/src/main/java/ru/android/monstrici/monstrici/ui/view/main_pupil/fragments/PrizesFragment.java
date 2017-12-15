@@ -6,13 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
 import ru.android.monstrici.monstrici.presentation.adapter.PrizeAdapter;
@@ -36,6 +40,8 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
 
     @BindView(R.id.rv_prizes)
     RecyclerView mRvPrizes;
+    @BindView(R.id.tv_no_prizes)
+    TextView mTvNoPrizes;
 
     private PrizeAdapter mPrizeAdapter;
     private ArrayList<Prize> mPrizesList;
@@ -121,5 +127,10 @@ public class PrizesFragment extends BaseFragmentUsualToolbar
         }else {
             mPresenter.getAllUsersAchievements();
         }
+    }
+
+    @Override
+    public void setNoPrizes() {
+        mTvNoPrizes.setVisibility(View.VISIBLE);
     }
 }

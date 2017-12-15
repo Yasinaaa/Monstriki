@@ -56,14 +56,13 @@ public class DaysOfWeekAdapter extends RecyclerView.Adapter<DaysOfWeekAdapter.Da
         holder.mTvDayTitle.setText(day.getDayTitle());
         holder.mTvDate.setText(day.getDate());
 
-        if(day.getDonutsCount() <= 0){
+        /*if(day.getDonutsCount() <= 0){
             holder.mIvDonut.setVisibility(View.GONE);
         }else {
-            //Glide.with(mContext).load(R.drawable.donut).into(holder.mIvDonut);
             holder.mIvDonut.setImageResource(R.drawable.donut);
-            holder.mTvDonutNum.setText(String.valueOf(day.getDonutsCount()));
-        }
-
+        }*/
+        holder.mIvDonut.setImageResource(R.drawable.donut);
+        holder.mTvDonutNum.setText(String.valueOf(day.getDonutsCount()));
         /*holder.itemView.getRootView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

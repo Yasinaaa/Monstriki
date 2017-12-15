@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -55,6 +56,8 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
     TextView mTvHallOfFame;
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
+    @BindView(R.id.pb_login)
+    ProgressBar mProgressBar;
 
     @Inject
     MonsterContainer mMonsterContainer;
@@ -101,6 +104,7 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
     public void init() {
         mPresenter.getAllUsers();
         mRateList = new ArrayList<Rate>();
+        //initViewPager();
     }
 
     @OnClick(R.id.tv_hall_of_fame)
@@ -140,6 +144,9 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
 
     @Override
     public void getChoosedUser(User user, Monster monster) {
+        /*mTabsPagerAdapter.mRateFragment.getRateAdapter().add(user,
+                monster);*/
+
         mRateList.add(new Rate(monster.getName(),
                 R.drawable.m1, user.getStarStorage().getStarsCount()));
         if (user.getId().equals(mLastUserId)) {
@@ -178,24 +185,25 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
 
     @Override
     public void showLoading(boolean flag) {
-
+        if (flag)
+            mProgressBar.setVisibility(View.VISIBLE);
+        else
+            mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void showError(Message message) {
-
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
         public RateFragment mRateFragment;
-        //public HallOfFameFragment mHallOfFameFragment;
         public PrizesFragment mPrizeFragment;
 
         public TabsPagerAdapter(FragmentManager fm) {
             super(fm);
             mRateFragment = RateFragment.newInstance(mMonsterContainer, mPresenter);
-            //mHallOfFameFragment = new HallOfFameFragment();
             mPrizeFragment = PrizesFragment.newInstance(false);
         }
 
@@ -259,7 +267,6 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
         @Override
         public void init() {
             mRateAdapter = new RateAdapter(mRateList, this, mMonsterContainer);
-            mRvRate.setHasFixedSize(true);
             mRvRate.setLayoutManager(new LinearLayoutManager(getContext()));
             mRvRate.setAdapter(mRateAdapter);
         }
@@ -267,6 +274,10 @@ public class StarFragment extends BaseFragmentUsualToolbar implements IStarView 
         @Override
         public void setCallback(IDataCallback<Monster> callback) {
             mPresenter.getAllMonsters(callback);
+        }
+
+        public RateAdapter getRateAdapter() {
+            return mRateAdapter;
         }
     }
 

@@ -86,7 +86,6 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         start();
     }
 
-
     @Override
     public void init() {
         for (int i = 0; i < Resources.mMainPupilDrawables.length; i++) {
@@ -121,15 +120,15 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
                     setSweetsFragment();
                     break;
                 case 3:
-                    SettingsFragment settingsFragment = new SettingsFragment();
-                    mFragmentManager.beginTransaction().replace(R.id.fl_main, settingsFragment).commit();
-                    setToolbar(mUsualToolbar, settingsFragment);
-                    break;
-                case 4:
                     StarFragment starFragment = new StarFragment();
                     mFragmentManager.beginTransaction().replace(R.id.fl_main,
                             starFragment).commit();
                     setToolbar(mUsualToolbar, starFragment);
+                    break;
+                case 4:
+                    SettingsFragment settingsFragment = new SettingsFragment();
+                    mFragmentManager.beginTransaction().replace(R.id.fl_main, settingsFragment).commit();
+                    setToolbar(mUsualToolbar, settingsFragment);
                     break;
             }
             return true;

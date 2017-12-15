@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +80,6 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
         if (achievementsArray.length == tagsArray.length){
             maxTagsGoalsArray = new int[tagsArray.length];
             maxTagsUserArray = new User[tagsArray.length];
-
             for (int i=0; i<userList.size();i++){
                 User user = userList.get(i);
                 if (i == userList.size() - 1)
@@ -115,10 +115,15 @@ public class PrizePresenter extends BasePresenter<IPrizeView> {
 
     public void getCurrentUserAchievements(){
         User currentUser = mRepository.getCurrentUser();
+        boolean isEmpty = false;
         for (int i=0; i<maxTagsUserArray.length;i++){
             if (currentUser.equals(maxTagsUserArray[i])){
                 checkReward(i);
+                isEmpty = true;
             }
+        }
+        if (!isEmpty){
+            getViewState().setNoPrizes();
         }
     }
 
