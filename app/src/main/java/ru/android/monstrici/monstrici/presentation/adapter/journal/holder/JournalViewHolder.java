@@ -30,7 +30,7 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener {
 
     private IJournalItemListener mListener;
-    private TextView mTvPupilName;
+    private TextView mTvPupilName, mTvPlus;
     private RecyclerView mRvStars;
     private GoalAdapter mGoalAdapter;
     private User mUser;
@@ -41,6 +41,7 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
         super(itemView);
         mListener = listener;
         mActivity = activity;
+        mTvPlus =  itemView.findViewById(R.id.tv_plus);
         mTvPupilName = itemView.findViewById(R.id.tv_pupil_name);
         mRvStars = itemView.findViewById(R.id.rv_goals);
     }
@@ -51,15 +52,24 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
         mTvPupilName.setText(user.getName());
         mTvPupilName.setOnClickListener(this);
         //stars.add(addEmptyItem(user.getStarId()));
-        stars.add(null);
+        //stars.add(null);
         mGoalAdapter = new GoalAdapter(stars, listener, mActivity, this);
         mRvStars.setLayoutManager(new LinearLayoutManager(context));
         mRvStars.setAdapter(mGoalAdapter);
+
+        mTvPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGoalAdapter.add(mUser.getStarId());
+            }
+        });
     }
+
 
     public void addEmptyStar(){
         mGoalAdapter.add(mUser.getStarId());
     }
+
 
     @Override
     public void onClick(View v) {
@@ -67,10 +77,4 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
     }
 
 
-    /*private Star addEmptyItem(String id){
-        Star star = new Star();
-        star.setGoals("0");
-        star.setId(id);
-        return star;
-    }*/
 }

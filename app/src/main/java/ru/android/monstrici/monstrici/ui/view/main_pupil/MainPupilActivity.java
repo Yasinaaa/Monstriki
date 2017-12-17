@@ -190,7 +190,7 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         mIvDonut = (ImageView) findViewById(R.id.iv_donut);
         mIvDonut.setOnClickListener(v -> setSweetsFragment());
         //mPresenter.getStars();
-        //mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
+        mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
 
     }
 

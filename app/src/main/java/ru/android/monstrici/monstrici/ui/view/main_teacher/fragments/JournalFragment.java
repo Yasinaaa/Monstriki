@@ -140,8 +140,8 @@ public class JournalFragment extends BaseFragment
     }
 
     @Override
-    public void onTeacherPrepare(User user) {
-
+    public void onFormPrepare(String form) {
+        mTvFormText.setText(form);
     }
 
     @Override
@@ -180,6 +180,7 @@ public class JournalFragment extends BaseFragment
         for (Map.Entry<String, Star> entry : usersMap.entrySet()) {
             Star star = entry.getValue();
             if (star.getGoals().equals("0")) {
+                mJournalAdapter.removeItem(star);
                 mPresenter.removeStars(star, entry.getKey());
             }else {
                 mPresenter.saveStars(star, entry.getKey());

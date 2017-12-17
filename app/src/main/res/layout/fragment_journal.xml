@@ -124,6 +124,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         app:backgroundTint="@color/color_purple"
+        app:srcCompat="@drawable/save_white"
         android:layout_margin="@dimen/margin_normal"/>
 
 </RelativeLayout>

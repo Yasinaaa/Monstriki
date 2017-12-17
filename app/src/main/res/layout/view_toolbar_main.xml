@@ -22,7 +22,6 @@
         android:layout_alignTop="@+id/iv_donut"
         android:layout_marginEnd="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_small"
-        android:text="10"
         android:textAlignment="center"
         android:textColor="@color/color_purple"
         android:textSize="@dimen/textsize_question"
