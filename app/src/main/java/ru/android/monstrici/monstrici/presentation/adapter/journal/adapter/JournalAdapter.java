@@ -86,9 +86,9 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         notifyDataSetChanged();
     }
 
-    public void removeItem(int adapterPosition, Star star){
+    public void removeItem(Star star){
         mList.remove(star);
-        notifyItemRemoved(adapterPosition);
+        notifyItemRemoved(mList.indexOf(star));
     }
 
     public void removeFromResultList(Star star){
@@ -132,9 +132,9 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onItemClick(int adapterPosition, Star star) {
 
-        if (star.getGoals().equals("0")){
+        /*if (star.getGoals().equals("0")){
             removeItem(adapterPosition, star);
-        }
+        }*/
 
         mList.get(adapterPosition).getStarStorage().updateStar(star);
         mResultList.put(mList.get(adapterPosition).getId(), star);

@@ -113,6 +113,7 @@ public class FormParametersFragment extends BaseFragment
 
     @OnClick(R.id.btn_ready)
     public void onBtnReadyClick(){
+        changeLetter();
         String choosedClass = mChoosedFormNum + mChoosedLitera;
         if (mClass.equals(choosedClass)) {
             if (mIsLookPage) {
@@ -123,6 +124,14 @@ public class FormParametersFragment extends BaseFragment
         }else {
             Snackbar.make(mView, getString(R.string.not_your_class_error),
                     Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private void changeLetter(){
+        if (mChoosedLitera.equals("А")){
+            mChoosedLitera = "A";
+        }else if (mChoosedLitera.equals("В")){
+            mChoosedLitera = "B";
         }
     }
 

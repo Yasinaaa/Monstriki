@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
 import ru.android.monstrici.monstrici.presentation.model.MonsterContainer;
 import ru.android.monstrici.monstrici.presentation.model.Rate;
@@ -42,6 +43,12 @@ public class RateAdapter extends RecyclerView.Adapter<RateAdapter.RateHolder> {
         this.mList = list;
         mCallback = callback;
         mMonsterContainer = container;
+    }
+
+    public void add(User user, Monster monster){
+        mList.add(new Rate(monster.getName(),
+                R.drawable.m1, user.getStarStorage().getStarsCount()));
+        notifyItemChanged(mList.size()-1);
     }
 
     @Override

@@ -14,12 +14,13 @@ public class Resources {
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
     public final static String TAG_FRAGMENT = "tag_fragment";
     public final static String MONSTER_NAME = "monster_name";
-    public final static String MONSTER_IMAGE = "monster_image";
+    public final static String LAST_DONUT = "monster_image";
 
     public static int[] mMainPupilDrawables = new int[]{
             R.drawable.main_icon, R.drawable.cup_icon,
-            R.drawable.candy_icon, R.drawable.settings_icon,
-            R.drawable.star_icon
+            R.drawable.candy_icon,
+            R.drawable.star_icon,
+            R.drawable.settings_icon
     };
 
     public static int[] mEyesDrawables = new int[]{

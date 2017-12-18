@@ -20,4 +20,13 @@ public interface MonsterView extends IBaseView {
     void updateMonster(Drawable res, int bodyPart);
 
     void onMonsterGet(Monster monster);
+
+    void setMonsterSatisfiedCard();
+
+    void setWishCard1();
+
+    void setWishCard2();
+
+    void setWishCard3();
+
 }

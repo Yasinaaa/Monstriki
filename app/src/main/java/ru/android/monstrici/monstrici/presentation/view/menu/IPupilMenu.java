@@ -14,6 +14,9 @@ import ru.android.monstrici.monstrici.presentation.view.base.IBaseView;
  */
 
 public interface IPupilMenu extends IBaseView {
+
     void onUsersGet(User user);
     void setStars(User user);
+    void setLastDonutsReceiveDate(long date);
+
 }

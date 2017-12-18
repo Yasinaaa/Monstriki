@@ -3,8 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginLeft="@dimen/margin_normal"
-    android:layout_marginRight="@dimen/margin_normal"
     android:layout_marginTop="@dimen/margin_small">
 
     <TextView
@@ -55,14 +53,13 @@
 
     <TextView
         android:id="@+id/tv_tag"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_large"
-        android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/color_purple"
+        android:paddingLeft="@dimen/margin_small"
+        android:paddingRight="@dimen/margin_small"
         android:textSize="15sp" />
 
 </LinearLayout>

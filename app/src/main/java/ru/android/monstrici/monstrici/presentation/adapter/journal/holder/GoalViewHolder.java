@@ -57,7 +57,7 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
         mCurrentStar = star;
 
         if (mCurrentStar == null){
-            mTvTag.setText("+");
+            mTvTag.setText(" + ");
             mTvTag.setBackgroundResource(R.drawable.textview_border);
             mTvPlus.setVisibility(View.INVISIBLE);
             mTvMinus.setVisibility(View.INVISIBLE);
@@ -65,7 +65,11 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
 
         }else {
             mTvDonutsCount.setText(star.getGoals());
-            mTvTag.setText(star.getTag());
+            if (star.getTag() == null){
+                mTvTag.setText("учеба");
+            }else
+                mTvTag.setText(star.getTag());
+            mTvTag.setVisibility(View.VISIBLE);
             mTvTag.setBackgroundResource(R.drawable.textview_border);
         }
     }
@@ -89,7 +93,7 @@ public class GoalViewHolder extends RecyclerView.ViewHolder
             }
             case R.id.tv_tag:{
 
-                if (mTvTag.getText().toString().equals("+")){
+                if (mTvTag.getText().toString().equals(" + ")){
                     mListener.onItemClick(mJournalViewHolder);
                 }else {
                     setUsualOnTagClick();

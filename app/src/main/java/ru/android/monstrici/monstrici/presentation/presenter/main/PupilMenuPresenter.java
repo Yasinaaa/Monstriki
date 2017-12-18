@@ -1,8 +1,14 @@
 package ru.android.monstrici.monstrici.presentation.presenter.main;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -45,12 +51,20 @@ public class PupilMenuPresenter extends BasePresenter<IPupilMenu> {
         });
     }
 
-    public void getStars(User user){
+    public void getStars(){
+        User user = mRepository.getCurrentUser();
         mRepository.getStar(user.getStarId(), user.getId(), new IDataCallback<Star>() {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
                 user.setStars(response.getStarStorage());
                 getViewState().setStars(user);
+
+                List<Star> starList =
+                        sortUsersByStarsCount(new ArrayList(
+                                response.getStarStorage().getStars().values()));
+                getViewState().setLastDonutsReceiveDate(
+                        Long.parseLong(starList.get(0).getDate()));
+
             }
 
             @Override
@@ -58,6 +72,25 @@ public class PupilMenuPresenter extends BasePresenter<IPupilMenu> {
 
             }
         });
+    }
+
+    private List<Star> sortUsersByStarsCount(List<Star> stars) {
+
+        Collections.sort(stars, new Comparator<Star>() {
+            @Override
+            public int compare(Star one, Star two) {
+                long userOneStars, userTwoStars;
+                userOneStars = Long.parseLong(one.getDate());
+                userTwoStars = Long.parseLong(two.getDate());
+
+                if (userOneStars > userTwoStars)
+                    return -1;
+                if (userOneStars < userTwoStars)
+                    return 1;
+                return 0;
+            }
+        });
+        return stars;
     }
 
 }

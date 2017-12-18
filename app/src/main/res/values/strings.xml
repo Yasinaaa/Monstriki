@@ -49,7 +49,7 @@
 
     <!-- fragment_prizes.xml -->
     <string name="prize">Призы</string>
-    <string name="the_smartest">Самый умный</string>
+    <string name="no_prize">У тебя нет наград</string>
 
     <!-- fragment_sweets.xml -->
     <string name="sweets">Сладости</string>
@@ -148,4 +148,26 @@
     <string name="create_monster_name">Введите имя монстра</string>
 
     <string name="not_your_class_error">У вас нет такого класса</string>
+
+    <string-array name="wish_card1">
+        <item>Покорми меня</item>
+        <item>Я кушать хочу</item>
+        <item>А пончик вкусный? Дай попробовать</item>
+    </string-array>
+
+    <string-array name="wish_card2">
+        <item>Я добавки хочу</item>
+        <item>Вчера пончик клубничный был. А сегодня какой?</item>
+    </string-array>
+
+    <string-array name="wish_card3">
+        <item>Это было вкусно</item>
+        <item>Спасибо, что приносишь мне вкусняшки</item>
+    </string-array>
+
+    <string-array name="happy_card">
+        <item>Я счастлив</item>
+        <item>Я сыт</item>
+    </string-array>
+
 </resources>

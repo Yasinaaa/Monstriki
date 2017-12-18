@@ -49,8 +49,14 @@ public class JournalPresenter extends BasePresenter<IJournalView> {
             @Override
             public void onReceiveDataSuccess(Response<User> response) {
                 List<User> userList = response.getBodyList();
+
                 for (int i=0; i<userList.size();i++){
-                    getStars(userList.get(i));
+                    User user = userList.get(i);
+                    if(i==0){
+                        getViewState().onFormPrepare(user.getSchoolClass().getNumber()
+                                + user.getSchoolClass().getLetter());
+                    }
+                    getStars(user);
                 }
             }
             @Override

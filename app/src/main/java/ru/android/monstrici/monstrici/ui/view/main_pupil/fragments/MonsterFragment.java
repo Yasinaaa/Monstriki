@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,10 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.bumptech.glide.Glide;
+
+import java.util.Random;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
@@ -32,6 +33,9 @@ import ru.android.monstrici.monstrici.utils.Resources;
 
 public class MonsterFragment extends BaseFragment implements MonsterView {
 
+    @BindView(R.id.cv_monster_talk)
+    CardView mCvMonsterTalk;
+    TextView mTvMonsterTalk;
     ImageView mIvBodyPart;
     ImageView mIvEyePart;
     ImageView mIvMouthPart;
@@ -40,6 +44,9 @@ public class MonsterFragment extends BaseFragment implements MonsterView {
     MonsterPresenter mPresenter;
 
     private IActivityCallback mCallback;
+    private long mLastDonutDate;
+    private String[] mWishCard1, mWishCard2, mWishCard3, mSatisfiedMonster;
+    private Random mRandom;
 
     @ProvidePresenter
     public MonsterPresenter providePresenter() {
@@ -68,9 +75,9 @@ public class MonsterFragment extends BaseFragment implements MonsterView {
     public MonsterFragment() {
     }
 
-    public static MonsterFragment newInstance(int monsterImageId) {
+    public static MonsterFragment newInstance(long date) {
         Bundle args = new Bundle();
-        args.putInt(Resources.MONSTER_IMAGE, monsterImageId);
+        args.putLong(Resources.LAST_DONUT, date);
         MonsterFragment newFragment = new MonsterFragment();
         newFragment.setArguments(args);
         return newFragment;
@@ -79,6 +86,9 @@ public class MonsterFragment extends BaseFragment implements MonsterView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null){
+            mLastDonutDate = getArguments().getLong(Resources.LAST_DONUT);
+        }
         getComponent(CoreComponent.class).inject(this);
     }
 
@@ -95,7 +105,17 @@ public class MonsterFragment extends BaseFragment implements MonsterView {
         mIvBodyPart = monsterLayout.findViewById(R.id.iv_body_part);
         mIvEyePart = monsterLayout.findViewById(R.id.iv_eye_part);
         mIvMouthPart = monsterLayout.findViewById(R.id.iv_mouth_part);
+        mTvMonsterTalk = mCvMonsterTalk.findViewById(R.id.tv_monster_talk);
         mPresenter.getMonster();
+        mPresenter.getLastDonutDay(mLastDonutDate);
+
+        mSatisfiedMonster = getResources().getStringArray(R.array.happy_card);
+        mWishCard1 = getResources().getStringArray(R.array.wish_card1);
+        mWishCard2 = getResources().getStringArray(R.array.wish_card2);
+        mWishCard3 = getResources().getStringArray(R.array.wish_card3);
+
+        mRandom = new Random();
+
     }
 
     @Override
@@ -124,6 +144,31 @@ public class MonsterFragment extends BaseFragment implements MonsterView {
     @Override
     public void onMonsterGet(Monster monster) {
         mCallback.monsterNameUpdate(monster.getName());
+    }
+
+    private void setTextToTvMonsterTalk(int bound, String[] array){
+        int num = mRandom.nextInt(bound);
+        mTvMonsterTalk.setText(array[num]);
+    }
+
+    @Override
+    public void setMonsterSatisfiedCard() {
+        setTextToTvMonsterTalk(2, mSatisfiedMonster);
+    }
+
+    @Override
+    public void setWishCard1() {
+        setTextToTvMonsterTalk(3, mWishCard1);
+    }
+
+    @Override
+    public void setWishCard2() {
+        setTextToTvMonsterTalk(2, mWishCard2);
+    }
+
+    @Override
+    public void setWishCard3() {
+        setTextToTvMonsterTalk(2, mWishCard3);
     }
 
     @Override

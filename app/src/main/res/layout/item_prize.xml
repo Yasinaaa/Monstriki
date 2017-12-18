@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_prize_title"
-        android:text="@string/the_smartest"
         android:textSize="@dimen/textsize_prize_title"
         android:layout_toRightOf="@+id/iv_prize"
         android:textAlignment="center"
