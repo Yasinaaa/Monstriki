@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +42,8 @@ import ru.android.monstrici.monstrici.utils.Resources;
  * Created by yasina on 29.10.17.
  */
 
-public class PupilFragment extends BaseFragment implements IPupilView{
+public class PupilFragment extends BaseFragment
+        implements IPupilView, SwipeRefreshLayout.OnRefreshListener{
 
     public static final String PUPIL = "pupil";
     public static final String DATE_BEGIN = "pupil_begin_date";
@@ -55,6 +57,8 @@ public class PupilFragment extends BaseFragment implements IPupilView{
     TextView mTvDataDay;
     @BindView(R.id.rv_desitions_of_week)
     RecyclerView mRvDesitionsOfWeek;
+    @BindView(R.id.swiperefresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private Date mStartDate, mFinishDate;
     private String mPupil;
@@ -84,13 +88,13 @@ public class PupilFragment extends BaseFragment implements IPupilView{
         return newFragment;
     }
 
-    public static PupilFragment newInstance(String value, String date){
+   /* public static PupilFragment newInstance(String value, String date){
         Bundle args = new Bundle();
         args.putString(PUPIL, value);
         PupilFragment newFragment = new PupilFragment();
         newFragment.setArguments(args);
         return newFragment;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -110,6 +114,7 @@ public class PupilFragment extends BaseFragment implements IPupilView{
 
     @Override
     public void init() {
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         mPresenter.getUser(mPupil);
     }
 
@@ -138,21 +143,15 @@ public class PupilFragment extends BaseFragment implements IPupilView{
         mDayDesitions = mPresenter.getDonutsCount(starsList, getActivity());
         mStarsList = starsList;
 
-        mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);
-        mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);
+        if (mWeekDesitionsAdapter == null) {
+            mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);
+            mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
+            mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);
+        }
+        else {
+            mWeekDesitionsAdapter.updateAdapter(mDayDesitions);
+        }
     }
-
-
-    /*public void setDonutsCount(DayDesition[] dayDesitions, ArrayList<Star> starsList) {
-        mDayDesitions = mPresenter.getDonutsCount(starsList, getActivity());
-        mStarsList = starsList;
-
-        mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);
-        mRvDesitionsOfWeek.setHasFixedSize(true);
-        mRvDesitionsOfWeek.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRvDesitionsOfWeek.setAdapter(mWeekDesitionsAdapter);
-    }*/
 
     @Override
     public void setUser(User user) {
@@ -177,5 +176,9 @@ public class PupilFragment extends BaseFragment implements IPupilView{
         mWeekDesitionsAdapter.setNewItems(mDayDesitions);
     }
 
-
+    @Override
+    public void onRefresh() {
+        mPresenter.getUser(mPupil);
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
 }

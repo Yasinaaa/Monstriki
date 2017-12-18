@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/tv_pupil_name"
+        android:id="@+id/tv_week_title"
         android:textSize="@dimen/text_size_schedule_table_item"
         android:layout_margin="@dimen/margin_small"
         android:textAlignment="center"

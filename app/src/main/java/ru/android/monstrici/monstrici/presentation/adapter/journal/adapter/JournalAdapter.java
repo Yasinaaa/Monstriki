@@ -56,6 +56,18 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mResultList = new HashMap<String, Star>();
     }
 
+    public void updateAdapter(Date startDate, Date finishDate){
+        mStartDate = startDate;
+        mFinishDate = finishDate;
+        updateAdapter();
+    }
+
+    public void updateAdapter(){
+        mList = new ArrayList<User>();
+        mResultList = new HashMap<String, Star>();
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());

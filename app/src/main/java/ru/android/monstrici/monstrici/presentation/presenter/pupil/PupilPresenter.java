@@ -59,7 +59,7 @@ public class PupilPresenter extends BasePresenter<IPupilView> {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
                 getViewState().setDonutsCount(new ArrayList(
-                        response.getBodyMap().values()));
+                        response.getStarStorage().getStars().values()));
             }
 
             @Override

@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.data.model.Star;
@@ -17,7 +15,6 @@ import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.adapter.GoalAdapter;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IGoalItemListener;
 import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IJournalItemListener;
-import ru.android.monstrici.monstrici.utils.Resources;
 
 /**
  * Created by elisium
@@ -42,7 +39,7 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
         mListener = listener;
         mActivity = activity;
         mTvPlus =  itemView.findViewById(R.id.tv_plus);
-        mTvPupilName = itemView.findViewById(R.id.tv_pupil_name);
+        mTvPupilName = itemView.findViewById(R.id.tv_week_title);
         mRvStars = itemView.findViewById(R.id.rv_goals);
     }
 

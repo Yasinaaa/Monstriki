@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.ViewStub;
@@ -23,6 +24,7 @@ import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.presentation.presenter.main.PupilMenuPresenter;
 import ru.android.monstrici.monstrici.presentation.view.menu.IPupilMenu;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
+import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragmentUsualToolbar;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.MonsterFragment;
 import ru.android.monstrici.monstrici.ui.view.main_pupil.fragments.PrizesFragment;
@@ -37,9 +39,12 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by yasina on 16.10.17.
  */
 
-public class MainPupilActivity extends BaseActivity implements IPupilMenu, MonsterFragment.IActivityCallback {
+public class MainPupilActivity extends BaseActivity
+        implements IPupilMenu, MonsterFragment.IActivityCallback,
+        SwipeRefreshLayout.OnRefreshListener {
 
     private static final String USER_ID = "user_id";
+    private static final String USER_POSITION = "user_position";
     private String mUserId;
     @BindView(R.id.bottom_navigation)
     AHBottomNavigation mBottomNavigationView;
@@ -51,6 +56,8 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
     LinearLayout mLinearLayout;
     @BindView(R.id.toolbar)
     Toolbar mViewToolbar;
+    @BindView(R.id.swiperefresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     TextView mTvMonsterName;
     TextView mTvDonutNum;
@@ -61,12 +68,20 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
     private int mMainToolbar = R.layout.view_toolbar_main;
     private int mUsualToolbar = R.layout.view_toolbar;
     private int mCurrentToolbar = mMainToolbar;
+    private int mCurrentPosition = 0;
+    private BaseFragmentUsualToolbar mCurrentFragment = null;
 
     private FragmentManager mFragmentManager;
 
     public static Intent newIntent(Context packageContext, String id) {
         Intent intent = new Intent(packageContext, MainPupilActivity.class);
         intent.putExtra(USER_ID, id);
+        return intent;
+    }
+
+    public static Intent newIntent(Context packageContext, String id, int pos) {
+        Intent intent = newIntent(packageContext, id);
+        intent.putExtra(USER_POSITION, pos);
         return intent;
     }
 
@@ -82,6 +97,7 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mUserId = getIntent().getStringExtra(USER_ID);
+        mCurrentPosition = getIntent().getIntExtra(USER_POSITION, 0);
         mPresenter.getUser(mUserId);
         start();
     }
@@ -99,38 +115,16 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         mBottomNavigationView.setInactiveColor(getApplicationContext().getResources().getColor(R.color.color_unselected_item));
         mBottomNavigationView.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
 
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         mFragmentManager = getSupportFragmentManager();
 
         mViewStub.setLayoutResource(R.layout.view_toolbar_main);
         mViewStub.inflate();
-        setMonsterFragment();
+
+        setFragmentByPosition(mCurrentPosition);
 
         mBottomNavigationView.setOnTabSelectedListener((position, wasSelected) -> {
-
-            switch (position) {
-                case 0:
-                    setMonsterFragment();
-                    break;
-                case 1:
-                    PrizesFragment prizesFragment = PrizesFragment.newInstance(true);
-                    mFragmentManager.beginTransaction().replace(R.id.fl_main, prizesFragment).commit();
-                    setToolbar(mUsualToolbar, prizesFragment);
-                    break;
-                case 2:
-                    setSweetsFragment();
-                    break;
-                case 3:
-                    StarFragment starFragment = new StarFragment();
-                    mFragmentManager.beginTransaction().replace(R.id.fl_main,
-                            starFragment).commit();
-                    setToolbar(mUsualToolbar, starFragment);
-                    break;
-                case 4:
-                    SettingsFragment settingsFragment = new SettingsFragment();
-                    mFragmentManager.beginTransaction().replace(R.id.fl_main, settingsFragment).commit();
-                    setToolbar(mUsualToolbar, settingsFragment);
-                    break;
-            }
+            setFragmentByPosition(position);
             return true;
         });
         mBottomNavigationView.setOnNavigationPositionListener(y -> {
@@ -138,10 +132,37 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         });
     }
 
-    private void setSweetsFragment() {
-        SweetsFragment sweetsFragment = new SweetsFragment();
-        mFragmentManager.beginTransaction().replace(R.id.fl_main, sweetsFragment).commit();
-        setToolbar(mUsualToolbar, sweetsFragment);
+    private void setFragmentByPosition(int position){
+
+        mCurrentPosition = position;
+        switch (position) {
+            case 0:
+                setMonsterFragment();
+                break;
+            case 1:
+                mCurrentFragment = PrizesFragment.newInstance(true);
+                break;
+            case 2:
+                mCurrentFragment = new SweetsFragment();
+                break;
+            case 3:
+                mCurrentFragment = new StarFragment();
+                break;
+            case 4:
+                mCurrentFragment = new SettingsFragment();
+                break;
+        }
+        if (mCurrentFragment != null){
+            mFragmentManager.beginTransaction().replace(R.id.fl_main,
+                    mCurrentFragment).commit();
+            setToolbar(mUsualToolbar, mCurrentFragment);
+        }
+    }
+
+    private void setFragment(BaseFragmentUsualToolbar mCurrentFragment) {
+        mFragmentManager.beginTransaction().
+                replace(R.id.fl_main, mCurrentFragment).commit();
+        setToolbar(mUsualToolbar, mCurrentFragment);
     }
 
     private void setMonsterFragment() {
@@ -188,7 +209,8 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
     public void onUsersGet(User user) {
         mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
         mIvDonut = (ImageView) findViewById(R.id.iv_donut);
-        mIvDonut.setOnClickListener(v -> setSweetsFragment());
+        mCurrentFragment = new SweetsFragment();
+        mIvDonut.setOnClickListener(v -> setFragment(mCurrentFragment));
         //mPresenter.getStars();
         mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
 
@@ -226,6 +248,12 @@ public class MainPupilActivity extends BaseActivity implements IPupilMenu, Monst
         mTvMonsterName = (TextView) findViewById(R.id.tv_name);
         mTvMonsterName.setText(name);
         mPresenter.getUser(mUserId);
+    }
+
+    @Override
+    public void onRefresh() {
+        setFragmentByPosition(mCurrentPosition);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }
 
