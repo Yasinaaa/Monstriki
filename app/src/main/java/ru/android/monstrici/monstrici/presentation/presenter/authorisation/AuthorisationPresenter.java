@@ -34,8 +34,7 @@ public class AuthorisationPresenter extends BasePresenter<IAuthorisationView> {
                 @Override
                 public void onReceiveDataSuccess(Response<User> response) {
                     getViewState().showLoading(false);
-                    if (response.getBody().getPosition().equals("pupil") &&
-                            response.getBody().getMonster().getId().equals("null")) {
+                    if (response.getBody().getPosition().equals("pupil")) {
                         getViewState().onLoginSuccessCreateMonster(response.getBody().getId());
                     } else {
                         getViewState().onLoginSuccess(response
