@@ -1,5 +1,6 @@
 package ru.android.monstrici.monstrici.ui.view.base;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -53,15 +54,31 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
                 .addToBackStack(null)
                 .commit();
     }
+
+    public void addFragment(BaseFragment fragment, BaseFragment currentFragment) {
+        fragment.setTargetFragment(currentFragment, Activity.RESULT_OK);
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .add(R.id.fl_main, fragment)
+                .commit();
+    }
+
+    public void removeFragment(BaseFragment fragment) {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .remove(fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+
     protected <C> C getComponent(Class<C> componentType) {
         Preconditions.checkNotNull(getActivity());
         return ComponentUtils.getComponent(getActivity(), componentType);
     }
 
 
-    public abstract void setTag();
+    public  void setTag(){}
 
-    public abstract void init();
+    public  void init(){}
 
 
 }

@@ -1,74 +1,67 @@
 package ru.android.monstrici.monstrici.data.model;
 
-import com.google.firebase.database.IgnoreExtraProperties;
-
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Index;
-import org.greenrobot.greendao.annotation.Transient;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.greenrobot.greendao.annotation.Generated;
-
 /**
  * Created by elisiumGusev
  *
  * @Date 14/10/2017
  * @Author Andrei Gusev
  */
-@IgnoreExtraProperties
-@Entity
 public class User {
-    @Id
     String id;
 
-    @Transient
-    Map<String, String> stars;
+    StarStorage stars;
+    String starId;
     String login;
+    String tag;
     String name;
     String surname;
     String password;
     String position;
+    Monster monster;
+    SchoolClass mSchoolClass;
 
 
-    @Index(unique = true)
     String key;
 
 
     public User() {
+        stars = new StarStorage();
+    }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getStarId() {
+        return starId;
+    }
+
+    public void setStarId(String starId) {
+        this.starId = starId;
     }
 
     public User(String id) {
         this.id = id;
     }
 
-    @Generated(hash = 686597411)
-    public User(String id, String login, String name, String surname, String password,
-                String position, String key) {
-        this.id = id;
-        this.login = login;
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
-        this.position = position;
-        this.key = key;
+    public Monster getMonster() {
+        return monster;
     }
 
-    public User(String id, HashMap<String, String> stars, String login, String name, String surname,
-                String password, String position, String key) {
-        this.id = id;
-        this.login = login;
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
-        this.position = position;
-        this.key = key;
-        this.stars = stars;
+    public void setMonster(Monster monster) {
+        this.monster = monster;
+    }
+
+    public SchoolClass getSchoolClass() {
+        return mSchoolClass;
+    }
+
+    public void setSchoolClass(SchoolClass schoolClass) {
+        mSchoolClass = schoolClass;
     }
 
     public String getId() {
@@ -85,10 +78,6 @@ public class User {
 
     public void setKey(String key) {
         this.key = key;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public void setLogin(String login) {
@@ -109,10 +98,6 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
@@ -136,11 +121,12 @@ public class User {
                 '}';
     }
 
-    public Map<String, String> getStars() {
+    public StarStorage getStarStorage() {
         return stars;
     }
 
-    public void setStars(Map<String, String> stars) {
+
+    public void setStars(StarStorage stars) {
         this.stars = stars;
     }
 }

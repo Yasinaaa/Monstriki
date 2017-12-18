@@ -11,8 +11,9 @@ import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
 import ru.android.monstrici.monstrici.presentation.presenter.authorisation.AuthorisationPresenter;
 import ru.android.monstrici.monstrici.presentation.view.authorisation.IAuthorisationView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
-import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
+import ru.android.monstrici.monstrici.ui.view.main_pupil.MainPupilActivity;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.MainTeacherActivity;
+import ru.android.monstrici.monstrici.ui.view.parameters.CreateMonsterActivity;
 import ru.android.monstrici.monstrici.utils.Message;
 
 /**
@@ -66,8 +67,15 @@ public class SplashActivity extends BaseActivity implements IAuthorisationView {
         if (isTeacher)
             menu = MainTeacherActivity.newIntent(this, id);
         else
-            menu = MainMenu.newIntent(this, id);
+            menu = MainPupilActivity.newIntent(this, id);
         startActivity(menu);
+        finish();
+    }
+
+    @Override
+    public void onLoginSuccessCreateMonster(String id) {
+        Intent intent = CreateMonsterActivity.newIntent(this);
+        startActivity(intent);
         finish();
     }
 

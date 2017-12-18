@@ -3,9 +3,10 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         //GreenDAO
         classpath "org.greenrobot:greendao-gradle-plugin:${project.GREENDAO_VERSION}"
         //Firebase
@@ -20,8 +21,9 @@ allprojects {
         jcenter()
         mavenCentral()
         maven {
-            url "https://maven.google.com"
-        }
+            url 'https://maven.google.com'
+            }
+        google()
     }
 }
 

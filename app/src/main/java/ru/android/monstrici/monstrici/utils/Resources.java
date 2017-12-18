@@ -1,7 +1,6 @@
 package ru.android.monstrici.monstrici.utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
 
 import ru.android.monstrici.monstrici.R;
 import ru.android.monstrici.monstrici.presentation.model.DayDesition;
@@ -12,9 +11,17 @@ import ru.android.monstrici.monstrici.presentation.model.DayDesition;
 
 public class Resources {
 
+    public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
     public final static String TAG_FRAGMENT = "tag_fragment";
     public final static String MONSTER_NAME = "monster_name";
-    public final static String MONSTER_IMAGE = "monster_image";
+    public final static String LAST_DONUT = "monster_image";
+
+    public static int[] mMainPupilDrawables = new int[]{
+            R.drawable.main_icon, R.drawable.cup_icon,
+            R.drawable.candy_icon,
+            R.drawable.star_icon,
+            R.drawable.settings_icon
+    };
 
     public static int[] mEyesDrawables = new int[]{
         R.drawable.e1, R.drawable.e2, R.drawable.e3, R.drawable.e4, R.drawable.e5, R.drawable.e6
@@ -26,12 +33,6 @@ public class Resources {
 
     public static int mStudyDaysOfWeek = 6;
 
-    //TODO: remove this items, after creating real values
-    public static String[] mTempPupils = new String[]{
-            "Антонов И.", "Гараева С.","Денисов Л.","Железная Я.","Закиров М.",
-            "Иванова А.","Каримова З.","Липатов П.","Носов Р.", "Петрова Н."
-    };
-
     public static DayDesition[] mDesitionsOfWeek = new DayDesition[]{
             new DayDesition(R.string.monday),
             new DayDesition(R.string.tuesday),
@@ -40,5 +41,14 @@ public class Resources {
             new DayDesition(R.string.friday),
             new DayDesition(R.string.saturday)
     };
+
+    public static int[] mRewardDrawables = new int[]{
+            R.drawable.cleaning, R.drawable.study,
+            R.drawable.sport, R.drawable.helper,
+            R.drawable.active, R.drawable.duty,
+            R.drawable.preparedness,R.drawable.discipline,
+            R.drawable.watch,R.drawable.punctuality
+    };
+
 
 }

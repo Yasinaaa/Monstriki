@@ -3,13 +3,11 @@ package ru.android.monstrici.monstrici.ui.view.main_teacher;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,25 +23,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Star;
 import ru.android.monstrici.monstrici.data.model.User;
-import ru.android.monstrici.monstrici.presentation.presenter.main_pupil.MainMenuPresenter;
-import ru.android.monstrici.monstrici.presentation.view.menu.IMainMenu;
+import ru.android.monstrici.monstrici.presentation.presenter.main.TeacherMenuPresenter;
+import ru.android.monstrici.monstrici.presentation.view.menu.ITeacherMenu;
 import ru.android.monstrici.monstrici.ui.view.authorisation.AuthorisationActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseActivity;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
-import ru.android.monstrici.monstrici.ui.view.main_pupil.MainMenu;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.FormParametersFragment;
 import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFragment;
 import ru.android.monstrici.monstrici.utils.Message;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainTeacherActivity extends BaseActivity implements IMainMenu {
+public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
+
     private static final String USER_ID = "user_id";
     private String mUserId;
     //@BindView(R.id.include_toolbar)
     //View mToolbar;
     @InjectPresenter
-    public MainMenuPresenter mPresenter;
+    public TeacherMenuPresenter mPresenter;
 
 
     public static Intent newIntent(Context packageContext, String id) {
@@ -53,7 +52,12 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     }
 
     @Override
-    public void onUsersGet(List<User> users) {
+    public void onUsersGet(User user) {
+        mNavigationViewsItems.mTvTeacherName.setText(user.getName());
+    }
+
+    @Override
+    public void onStarsGet(List<Star> stars) {
 
     }
 
@@ -68,51 +72,44 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     }
 
     @ProvidePresenter
-    public MainMenuPresenter providePresenter() {
-        MainMenuPresenter presenter = new MainMenuPresenter();
+    public TeacherMenuPresenter providePresenter() {
+        TeacherMenuPresenter presenter = new TeacherMenuPresenter();
         getApplicationComponent().inject(presenter);
         return presenter;
     }
 
-    public class NavigationViewsItems {
+    class NavigationViewsItems {
         @BindView(R.id.tv_teacher_name)
         TextView mTvTeacherName;
         @BindView(R.id.tv_fill_today)
         TextView mTvFillToday;
         @BindView(R.id.tv_look_form)
         TextView mTvLookForm;
-        @BindView(R.id.tv_settings)
-        TextView mSettings;
         @BindView(R.id.tv_exit)
         TextView mExit;
 
-        public NavigationViewsItems(View view) {
+        NavigationViewsItems(View view) {
             ButterKnife.bind(this, view);
         }
 
         @OnClick(R.id.tv_fill_today)
         public void onFillTodayClick() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            setFragment(new JournalFragment());
+            setFragment(JournalFragment.newInstance());
         }
 
         @OnClick(R.id.tv_look_form)
         public void onLookForm() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            setFragment(new FormParametersFragment());
-        }
-
-        @OnClick(R.id.tv_settings)
-        public void onSettings() {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-
+            setFragment(FormParametersFragment.newInstance(true));
         }
 
         @OnClick(R.id.tv_exit)
         public void onExit() {
             mDrawerLayout.closeDrawer(GravityCompat.START);
             FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(MainTeacherActivity.this, AuthorisationActivity.class);
+            Intent intent = new Intent(MainTeacherActivity.this,
+                    AuthorisationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
@@ -138,6 +135,7 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
         mUserId = getIntent().getStringExtra(USER_ID);
+        mPresenter.getUser(mUserId);
         start();
     }
 
@@ -153,12 +151,9 @@ public class MainTeacherActivity extends BaseActivity implements IMainMenu {
     @Override
     public void init() {
         mNavigationViewsItems = new NavigationViewsItems(mNavigationView.getHeaderView(0));
-        //TODO: change to real values
-        mNavigationViewsItems.mTvTeacherName.setText("Мария Ивановна");
-
         mIvMenuItem = (ImageView) findViewById(R.id.iv_menu_item);
         mFragmentManager = getSupportFragmentManager();
-        setFragment(new JournalFragment());
+        setFragment(JournalFragment.newInstance());
         mIvMenuItem.setVisibility(View.VISIBLE);
         mToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

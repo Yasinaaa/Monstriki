@@ -1,138 +1,1897 @@
 {
-  "users": {
-    "DWyVALCmuyfS9DmkfYOW0DA8Ror1": {
-      "id": "DWyVALCmuyfS9DmkfYOW0DA8Ror1",
-      "login": "a@a.com",
-      "password": "qwerty",
-      "name": "Alex",
-      "surname": "Bill",
-      "position": "pupil",
-      "class": [
-        {
-          "number": "1",
-          "letter": "B"
-        }
-      ],
-      "stars": [
-        {
-          "answer": "3",
-          "cleaning": "2"
-        }
-      ]
-    },
-    "NTM8kSKRcFTPAHJRNDt9KUYsiKk1": {
-      "id": "NTM8kSKRcFTPAHJRNDt9KUYsiKk1",
-      "login": "qwerty@q.com",
-      "password": "qwerty",
-      "name": "Json",
-      "surname": "Ja",
-      "position": "pupil",
-      "class": [
-        {
-          "number": "1",
-          "letter": "B"
-        }
-      ],
-      "stars": [
-        {
-          "answer": "5",
-          "cleaning": "4"
-        }
-      ]
-    },
-    "kw1P1VKaamNYYZSoxCy2f9FdET03": {
-      "id": "kw1P1VKaamNYYZSoxCy2f9FdET03",
-      "login": "kenn@a.com",
-      "password": "qwerty",
-      "name": "Kenn",
-      "surname": "Kola",
-      "position": "pupil",
-      "class": [
-        {
-          "number": "1",
-          "letter": "A"
-        }
-      ],
-      "stars": [
-        {
-          "answer": "0",
-          "cleaning": "1"
-        }
-      ]
-    },
-    "ertIBkbUl4W6SWdGbdfR5zojddF2": {
-      "id": "ertIBkbUl4W6SWdGbdfR5zojddF2",
-      "login": "mara@a.com",
-      "password": "qwerty",
-      "name": "Mara",
-      "surname": "Squart",
-      "position": "pupil",
-      "class": [
-        {
-          "number": "1",
-          "letter": "A"
-        }
-      ],
-      "stars": [
-        {
-          "answer": "1",
-          "cleaning": "1"
-        }
-      ]
-    },
-    "eDKiRgBRnFNhJ1VUDUmT6J7heR92": {
-      "id": "eDKiRgBRnFNhJ1VUDUmT6J7heR92",
-      "login": "marta@a.com",
-      "password": "qwerty",
-      "name": "Marta",
-      "surname": "Urt",
-      "position": "teacher",
-      "class": [
-        {
-          "number": "1",
-          "letter": "B"
-        }
-      ]
-    },
-    "o2aDTFWGW6fp3OoOJwkiLUnA4xq1": {
-      "id": "o2aDTFWGW6fp3OoOJwkiLUnA4xq1",
-      "login": "lisa@a.com",
-      "password": "qwerty",
-      "name": "Lisa",
-      "surname": "Sir",
-      "position": "teacher",
-      "class": [
-        {
-          "number": "1",
-          "letter": "A"
-        }
-      ]
-    }
-  },
   "class": [
     {
-      "number": "1",
+      "id": "1",
       "letter": "A",
+      "number": "1",
       "pupils": [
         {
-          "id": "ertIBkbUl4W6SWdGbdfR5zojddF2"
+          "id": "vXw1id7HBhWqrA6yHkIp7PSFAtJ2"
         },
         {
-          "id": "kw1P1VKaamNYYZSoxCy2f9FdET03"
+          "id": "xm3tXUQCR5X6S5jGmFJWtuhXrXA2"
+        },
+        {
+          "id": "0exd6uHg5POXdMCh0ocETNOcmq03"
+        },
+        {
+          "id": "H5VjjJm1mhV0YMk1Odh1lQZP7kZ2"
+        },
+        {
+          "id": "2PNdjaOhNOgqAPdTysmtH02zSIq1"
+        },
+        {
+          "id": "xnTna2zpileVJ8lJV8baziA2fHU2"
+        },
+        {
+          "id": "kl7SDAPaUYOSol0yQ49MSo5yGWu1"
+        },
+        {
+          "id": "InocvaKOfWYX0uY3YrqVVuAWS3o1"
+        },
+        {
+          "id": "d5LuwISE2Ad7T3XVvet4PC9oVSr2"
+        },
+        {
+          "id": "08mkag9KCbSo5xSAl6Y0RwCoFfy2"
+        },
+        {
+          "id": "Y8W6IzIe6JPaY4zOsGUT4gtnEUC3"
+        },
+        {
+          "id": "k36HeqfAp4ZzKIGXmN3p2uONmEf1"
+        },
+        {
+          "id": "RoarS0odkBNnCtipOaFb66uRPSt2"
+        },
+        {
+          "id": "LVkWUILjLraSwx9O5wRWvtQauNo2"
+        },
+        {
+          "id": "KUeHc7LembSc03S3NkYx641pk6i2"
         }
       ]
     },
     {
-      "number": "1",
+      "id": "2",
       "letter": "B",
+      "number": "1",
       "pupils": [
         {
-          "id": "NTM8kSKRcFTPAHJRNDt9KUYsiKk1"
+          "id": "ZCcOj4pXxTaFPPu1xWhIlvMXIIr1"
         },
         {
-          "id": "DWyVALCmuyfS9DmkfYOW0DA8Ror1"
+          "id": "xQhBZhLDpxR1vBvNjvZ5XjUYzN92"
+        },
+        {
+          "id": "ZDuHdquUHtOCv53Kki57HnMvUAB2"
+        },
+        {
+          "id": "jtkKkbViysTn51Dw09WA2q6ec1F3"
+        },
+        {
+          "id": "y4y9O7rlimUaEUuMSKleUuLyXsx1"
+        },
+        {
+          "id": "BWTZ9anUArZ19IN9IzKaqCGkqvR2"
+        },
+        {
+          "id": "ZXAYxM6T62VdJA6ugFIFlyOTS0r1"
+        },
+        {
+          "id": "w9DBRBIIOuWgrJZNbWxxRJk6RYi2"
+        },
+        {
+          "id": "giSx5mljtbXFDnI5RSiL91lFO0w1"
+        },
+        {
+          "id": "op9CroPMmJXd2dawiikYlKtWpu82"
+        },
+        {
+          "id": "aggpdEb0uURJKek2PK0CLfEIrpl2"
+        },
+        {
+          "id": "igcMkh6GcPO1ZYtTKy8eRTisQkb2"
+        },
+        {
+          "id": "bU0UHhgVOgatoKXmQajA0I0m6ZH2"
+        },
+        {
+          "id": "WLoafJ5apshwOIN7icC4vGNmngt2"
+        },
+        {
+          "id": "IaTNm3oFW8hhjYx11Khu1sPXrRd2"
         }
       ]
     }
-  ]
+  ],
+  "monster": [
+    {
+      "body": "2",
+      "eyes": "3",
+      "id": "0",
+      "mouth": "0",
+      "name": "Malik"
+    },
+    {
+      "body": "2",
+      "eyes": "3",
+      "id": "1",
+      "mouth": "0",
+      "name": "Malik"
+    },
+    {
+      "body": "2",
+      "eyes": "1",
+      "id": "2",
+      "mouth": "3",
+      "name": "Sema"
+    },
+    {
+      "body": "0",
+      "eyes": "1",
+      "id": "3",
+      "mouth": "1",
+      "name": "Byaka21"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "4",
+      "mouth": "1",
+      "name": "Myas"
+    },
+    {
+      "body": "2",
+      "eyes": "3",
+      "id": "5",
+      "mouth": "0",
+      "name": "Kia"
+    },
+    {
+      "body": "2",
+      "eyes": "1",
+      "id": "6",
+      "mouth": "3",
+      "name": "Eryk"
+    },
+    {
+      "body": "0",
+      "eyes": "1",
+      "id": "7",
+      "mouth": "1",
+      "name": "Limbo"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "8",
+      "mouth": "1",
+      "name": "Astex"
+    },
+    {
+      "body": "2",
+      "eyes": "3",
+      "id": "9",
+      "mouth": "0",
+      "name": "Mimi"
+    },
+    {
+      "body": "2",
+      "eyes": "1",
+      "id": "10",
+      "mouth": "3",
+      "name": "Till"
+    },
+    {
+      "body": "0",
+      "eyes": "1",
+      "id": "11",
+      "mouth": "1",
+      "name": "Miso"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "12",
+      "mouth": "1",
+      "name": "Lilo"
+    },
+    {
+      "body": "2",
+      "eyes": "3",
+      "id": "13",
+      "mouth": "0",
+      "name": "MILIM"
+    },
+    {
+      "body": "2",
+      "eyes": "1",
+      "id": "14",
+      "mouth": "3",
+      "name": "Grib"
+    },
+    {
+      "body": "0",
+      "eyes": "1",
+      "id": "15",
+      "mouth": "1",
+      "name": "Kisa"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "16",
+      "mouth": "1",
+      "name": "Tito"
+    },
+    {
+      "body": "2",
+      "eyes": "3",
+      "id": "17",
+      "mouth": "0",
+      "name": "Los"
+    },
+    {
+      "body": "2",
+      "eyes": "1",
+      "id": "18",
+      "mouth": "3",
+      "name": "Keny"
+    },
+    {
+      "body": "0",
+      "eyes": "1",
+      "id": "19",
+      "mouth": "1",
+      "name": "Maly"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "20",
+      "mouth": "1",
+      "name": "Tichon"
+    },
+    {
+      "body": "2",
+      "eyes": "3",
+      "id": "21",
+      "mouth": "0",
+      "name": "Eryk"
+    },
+    {
+      "body": "2",
+      "eyes": "1",
+      "id": "22",
+      "mouth": "3",
+      "name": "Fufu"
+    },
+    {
+      "body": "0",
+      "eyes": "1",
+      "id": "23",
+      "mouth": "1",
+      "name": "Asss"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "24",
+      "mouth": "1",
+      "name": "Fad94"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "25",
+      "mouth": "1",
+      "name": "Ork"
+    },
+    {
+      "body": "2",
+      "eyes": "3",
+      "id": "26",
+      "mouth": "0",
+      "name": "Ssdam"
+    },
+    {
+      "body": "2",
+      "eyes": "1",
+      "id": "27",
+      "mouth": "3",
+      "name": "Xixo"
+    },
+    {
+      "body": "0",
+      "eyes": "1",
+      "id": "28",
+      "mouth": "1",
+      "name": "Misa"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "29",
+      "mouth": "1",
+      "name": "Klik"
+    },
+    {
+      "body": "1",
+      "eyes": "1",
+      "id": "30",
+      "mouth": "1",
+      "name": "Misk"
+    }
+  ],
+  "stars": {
+    "1": {
+      "days": {
+        "1512562318887": {
+          "date": "1512562318887",
+          "formatedDate": "06.12.2017",
+          "goals": "3",
+          "id": "1",
+          "tag": "успеваемость"
+        },
+        "1512562368924": {
+          "date": "1512562368924",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "1",
+          "tag": "исполнительность"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "7",
+          "id": "1",
+          "tag": "учеба"
+        },
+        "1512887076401": {
+          "date": "1512887076401",
+          "formatedDate": "07.12.2017",
+          "goals": "7",
+          "id": "11",
+          "tag": "учеба"
+        }
+      },
+      "id": "1"
+    },
+    "2": {
+      "days": {
+        "1512563254749": {
+          "date": "1512563254749",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "2",
+          "tag": "дисциплина"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "4",
+          "id": "2",
+          "tag": "дисциплина"
+        },
+        "1513166611501": {
+          "date": "1513166611501",
+          "formatedDate": "13.12.2017",
+          "goals": "4",
+          "id": "2",
+          "tag": "спорт"
+        }
+      },
+      "id": "2"
+    },
+    "3": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "4",
+          "id": "3",
+          "tag": "дисциплина"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "3",
+          "tag": "помощь"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "4",
+          "id": "3",
+          "tag": "спорт"
+        },
+        "1513168319685": {
+          "date": "1513168319685",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "3",
+          "tag": "дежурство"
+        },
+        "1513174432196": {
+          "date": "1513174432196",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "3",
+          "tag": "подготовленность"
+        }
+      },
+      "id": "3"
+    },
+    "4": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "4",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "1",
+          "id": "4",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "4",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "4",
+          "tag": "учеба"
+        }
+      },
+      "id": "4"
+    },
+    "5": {
+      "days": {
+        "1512562318887": {
+          "date": "1512562318887",
+          "formatedDate": "06.12.2017",
+          "goals": "3",
+          "id": "5",
+          "tag": "успеваемость"
+        },
+        "1512562368924": {
+          "date": "1512562368924",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "5",
+          "tag": "исполнительность"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "2",
+          "id": "5",
+          "tag": "учеба"
+        },
+        "1512887076401": {
+          "date": "1512887076401",
+          "formatedDate": "07.12.2017",
+          "goals": "2",
+          "id": "5",
+          "tag": "учеба"
+        }
+      },
+      "id": "5"
+    },
+    "6": {
+      "days": {
+        "1512563254749": {
+          "date": "1512563254749",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "6",
+          "tag": "дисциплина"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "4",
+          "id": "6",
+          "tag": "дисциплина"
+        },
+        "1513166611501": {
+          "date": "1513166611501",
+          "formatedDate": "13.12.2017",
+          "goals": "4",
+          "id": "6",
+          "tag": "спорт"
+        }
+      },
+      "id": "6"
+    },
+    "7": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "4",
+          "id": "7",
+          "tag": "дисциплина"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "7",
+          "tag": "помощь"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "4",
+          "id": "7",
+          "tag": "спорт"
+        },
+        "1513168319685": {
+          "date": "1513168319685",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "7",
+          "tag": "дежурство"
+        },
+        "1513174432196": {
+          "date": "1513174432196",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "7",
+          "tag": "подготовленность"
+        }
+      },
+      "id": "7"
+    },
+    "8": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "8",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "8",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "8",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "8",
+          "tag": "учеба"
+        }
+      },
+      "id": "8"
+    },
+    "9": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "9",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "9",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "9",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "9",
+          "tag": "учеба"
+        }
+      },
+      "id": "9"
+    },
+    "10": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "10",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "10",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "10",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "10",
+          "tag": "учеба"
+        }
+      },
+      "id": "10"
+    },
+    "11": {
+      "days": {
+        "1512562318887": {
+          "date": "1512562318887",
+          "formatedDate": "06.12.2017",
+          "goals": "3",
+          "id": "11",
+          "tag": "успеваемость"
+        },
+        "1512562368924": {
+          "date": "1512562368924",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "11",
+          "tag": "исполнительность"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "7",
+          "id": "11",
+          "tag": "учеба"
+        },
+        "1512887076401": {
+          "date": "1512887076401",
+          "formatedDate": "07.12.2017",
+          "goals": "7",
+          "id": "11",
+          "tag": "учеба"
+        }
+      },
+      "id": "11"
+    },
+    "12": {
+      "days": {
+        "1512563254749": {
+          "date": "1512563254749",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "12",
+          "tag": "дисциплина"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "4",
+          "id": "12",
+          "tag": "дисциплина"
+        },
+        "1513166611501": {
+          "date": "1513166611501",
+          "formatedDate": "13.12.2017",
+          "goals": "4",
+          "id": "12",
+          "tag": "спорт"
+        }
+      },
+      "id": "12"
+    },
+    "13": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "4",
+          "id": "13",
+          "tag": "дисциплина"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "13",
+          "tag": "помощь"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "4",
+          "id": "13",
+          "tag": "спорт"
+        },
+        "1513168319685": {
+          "date": "1513168319685",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "13",
+          "tag": "дежурство"
+        },
+        "1513174432196": {
+          "date": "1513174432196",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "13",
+          "tag": "подготовленность"
+        }
+      },
+      "id": "13"
+    },
+    "14": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "14",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "1",
+          "id": "14",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "14",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "14",
+          "tag": "учеба"
+        }
+      },
+      "id": "14"
+    },
+    "15": {
+      "days": {
+        "1512562318887": {
+          "date": "1512562318887",
+          "formatedDate": "06.12.2017",
+          "goals": "3",
+          "id": "15",
+          "tag": "успеваемость"
+        },
+        "1512562368924": {
+          "date": "1512562368924",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "15",
+          "tag": "исполнительность"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "2",
+          "id": "15",
+          "tag": "учеба"
+        },
+        "1512887076401": {
+          "date": "1512887076401",
+          "formatedDate": "07.12.2017",
+          "goals": "2",
+          "id": "15",
+          "tag": "учеба"
+        }
+      },
+      "id": "15"
+    },
+    "16": {
+      "days": {
+        "1512563254749": {
+          "date": "1512563254749",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "16",
+          "tag": "дисциплина"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "4",
+          "id": "16",
+          "tag": "дисциплина"
+        },
+        "1513166611501": {
+          "date": "1513166611501",
+          "formatedDate": "13.12.2017",
+          "goals": "4",
+          "id": "16",
+          "tag": "спорт"
+        }
+      },
+      "id": "16"
+    },
+    "17": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "4",
+          "id": "17",
+          "tag": "дисциплина"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "17",
+          "tag": "помощь"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "4",
+          "id": "17",
+          "tag": "спорт"
+        },
+        "1513168319685": {
+          "date": "1513168319685",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "17",
+          "tag": "дежурство"
+        },
+        "1513174432196": {
+          "date": "1513174432196",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "17",
+          "tag": "подготовленность"
+        }
+      },
+      "id": "17"
+    },
+    "18": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "18",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "18",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "18",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "18",
+          "tag": "учеба"
+        }
+      },
+      "id": "18"
+    },
+    "19": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "19",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "19",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "19",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "19",
+          "tag": "учеба"
+        }
+      },
+      "id": "19"
+    },
+    "20": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "20",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "20",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "20",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "20",
+          "tag": "учеба"
+        }
+      },
+      "id": "20"
+    },
+    "21": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "21",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "21",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "21",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "21",
+          "tag": "учеба"
+        }
+      },
+      "id": "21"
+    },
+    "22": {
+      "days": {
+        "1512562318887": {
+          "date": "1512562318887",
+          "formatedDate": "06.12.2017",
+          "goals": "3",
+          "id": "22",
+          "tag": "успеваемость"
+        },
+        "1512562368924": {
+          "date": "1512562368924",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "22",
+          "tag": "исполнительность"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "7",
+          "id": "22",
+          "tag": "учеба"
+        },
+        "1512887076401": {
+          "date": "1512887076401",
+          "formatedDate": "07.12.2017",
+          "goals": "7",
+          "id": "22",
+          "tag": "учеба"
+        }
+      },
+      "id": "22"
+    },
+    "23": {
+      "days": {
+        "1512563254749": {
+          "date": "1512563254749",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "23",
+          "tag": "дисциплина"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "4",
+          "id": "23",
+          "tag": "дисциплина"
+        },
+        "1513166611501": {
+          "date": "1513166611501",
+          "formatedDate": "13.12.2017",
+          "goals": "4",
+          "id": "23",
+          "tag": "спорт"
+        }
+      },
+      "id": "23"
+    },
+    "24": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "4",
+          "id": "24",
+          "tag": "дисциплина"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "24",
+          "tag": "помощь"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "4",
+          "id": "24",
+          "tag": "спорт"
+        },
+        "1513168319685": {
+          "date": "1513168319685",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "24",
+          "tag": "дежурство"
+        },
+        "1513174432196": {
+          "date": "1513174432196",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "24",
+          "tag": "подготовленность"
+        }
+      },
+      "id": "24"
+    },
+    "25": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "25",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "1",
+          "id": "25",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "25",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "25",
+          "tag": "учеба"
+        }
+      },
+      "id": "25"
+    },
+    "26": {
+      "days": {
+        "1512562318887": {
+          "date": "1512562318887",
+          "formatedDate": "06.12.2017",
+          "goals": "3",
+          "id": "26",
+          "tag": "успеваемость"
+        },
+        "1512562368924": {
+          "date": "1512562368924",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "26",
+          "tag": "исполнительность"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "2",
+          "id": "26",
+          "tag": "учеба"
+        },
+        "1512887076401": {
+          "date": "1512887076401",
+          "formatedDate": "07.12.2017",
+          "goals": "2",
+          "id": "26",
+          "tag": "учеба"
+        }
+      },
+      "id": "26"
+    },
+    "27": {
+      "days": {
+        "1512563254749": {
+          "date": "1512563254749",
+          "formatedDate": "06.12.2017",
+          "goals": "2",
+          "id": "27",
+          "tag": "дисциплина"
+        },
+        "1512659494005": {
+          "date": "1512659494005",
+          "formatedDate": "07.12.2017",
+          "goals": "4",
+          "id": "27",
+          "tag": "дисциплина"
+        },
+        "1513166611501": {
+          "date": "1513166611501",
+          "formatedDate": "13.12.2017",
+          "goals": "4",
+          "id": "27",
+          "tag": "спорт"
+        }
+      },
+      "id": "27"
+    },
+    "28": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "4",
+          "id": "28",
+          "tag": "дисциплина"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "3",
+          "id": "28",
+          "tag": "помощь"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "4",
+          "id": "28",
+          "tag": "спорт"
+        },
+        "1513168319685": {
+          "date": "1513168319685",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "28",
+          "tag": "дежурство"
+        },
+        "1513174432196": {
+          "date": "1513174432196",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "28",
+          "tag": "подготовленность"
+        }
+      },
+      "id": "28"
+    },
+    "29": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "29",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "29",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "29",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "29",
+          "tag": "учеба"
+        }
+      },
+      "id": "29"
+    },
+    "30": {
+      "days": {
+        "1512842010329": {
+          "date": "1512842010329",
+          "formatedDate": "09.12.2017",
+          "goals": "3",
+          "id": "30",
+          "tag": "подготовленность"
+        },
+        "1512992653672": {
+          "date": "1512992653672",
+          "formatedDate": "11.12.2017",
+          "goals": "",
+          "id": "30",
+          "tag": "учеба"
+        },
+        "1512993970710": {
+          "date": "1512993970710",
+          "formatedDate": "11.12.2017",
+          "goals": "2",
+          "id": "30",
+          "tag": "учеба"
+        },
+        "1513168319710": {
+          "date": "1513168319710",
+          "formatedDate": "13.12.2017",
+          "goals": "3",
+          "id": "30",
+          "tag": "учеба"
+        }
+      },
+      "id": "30"
+    }
+  },
+  "users": {
+    "HpNPUu2WTDfJ8LA39999u7QFtZr2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "HpNPUu2WTDfJ8LA39999u7QFtZr2",
+      "login": "yarzeva@mail.ru",
+      "monster": "-1",
+      "name": "Светлана",
+      "password": "qwerty",
+      "position": "teacher",
+      "stars": "-1",
+      "surname": "Ярцева",
+      "tag": "-1"
+    },
+    "UOjdlEruLBRapGMo4SAC5PR9Fxu2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "UOjdlEruLBRapGMo4SAC5PR9Fxu2",
+      "login": "apolonova@mail.ru",
+      "monster": "-1",
+      "name": "Надежда",
+      "password": "qwerty",
+      "position": "teacher",
+      "stars": "-1",
+      "surname": "Апполонова",
+      "tag": "-1"
+    },
+    "vXw1id7HBhWqrA6yHkIp7PSFAtJ2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "vXw1id7HBhWqrA6yHkIp7PSFAtJ2",
+      "login": "avzalov@mail.ru",
+      "monster": "1",
+      "name": "Тимур",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "1",
+      "surname": "Авзалов",
+      "tag": "Уборка"
+    },
+    "xm3tXUQCR5X6S5jGmFJWtuhXrXA2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "xm3tXUQCR5X6S5jGmFJWtuhXrXA2",
+      "login": "alexeeva@mail.ru",
+      "monster": "2",
+      "name": "Елизавета",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "2",
+      "surname": "Алексеева",
+      "tag": "Уборка"
+    },
+    "0exd6uHg5POXdMCh0ocETNOcmq03": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "0exd6uHg5POXdMCh0ocETNOcmq03",
+      "login": "andreev@mail.ru",
+      "monster": "3",
+      "name": "Никита",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "3",
+      "surname": "Андреев",
+      "tag": "Уборка"
+    },
+    "H5VjjJm1mhV0YMk1Odh1lQZP7kZ2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "H5VjjJm1mhV0YMk1Odh1lQZP7kZ2",
+      "login": "galeev@mail.ru",
+      "monster": "4",
+      "name": "Адель",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "4",
+      "surname": "Галеев",
+      "tag": "Уборка"
+    },
+    "2PNdjaOhNOgqAPdTysmtH02zSIq1": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "2PNdjaOhNOgqAPdTysmtH02zSIq1",
+      "login": "garmanov@mail.ru",
+      "monster": "5",
+      "name": "Ратмир",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "5",
+      "surname": "Гарманов",
+      "tag": "Уборка"
+    },
+    "xnTna2zpileVJ8lJV8baziA2fHU2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "xnTna2zpileVJ8lJV8baziA2fHU2",
+      "login": "giniyatulin@mail.ru",
+      "monster": "6",
+      "name": "Ильсаф",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "6",
+      "surname": "Гиниятуллин",
+      "tag": "Уборка"
+    },
+    "kl7SDAPaUYOSol0yQ49MSo5yGWu1": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "kl7SDAPaUYOSol0yQ49MSo5yGWu1",
+      "login": "dolgov@mail.ru",
+      "monster": "7",
+      "name": "Никита",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "7",
+      "surname": "Долгов",
+      "tag": "Уборка"
+    },
+    "InocvaKOfWYX0uY3YrqVVuAWS3o1": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "InocvaKOfWYX0uY3YrqVVuAWS3o1",
+      "login": "dunaeva@mail.ru",
+      "monster": "8",
+      "name": "Ксения",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "8",
+      "surname": "Дунаева",
+      "tag": "Уборка"
+    },
+    "d5LuwISE2Ad7T3XVvet4PC9oVSr2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "d5LuwISE2Ad7T3XVvet4PC9oVSr2",
+      "login": "zalaeva@mail.ru",
+      "monster": "9",
+      "name": "Адель",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "9",
+      "surname": "Заляев",
+      "tag": "Уборка"
+    },
+    "08mkag9KCbSo5xSAl6Y0RwCoFfy2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "08mkag9KCbSo5xSAl6Y0RwCoFfy2",
+      "login": "martynova@mail.ru",
+      "monster": "10",
+      "name": "Ульяна",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "10",
+      "surname": "Мартынова",
+      "tag": "Уборка"
+    },
+    "Y8W6IzIe6JPaY4zOsGUT4gtnEUC3": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "Y8W6IzIe6JPaY4zOsGUT4gtnEUC3",
+      "login": "musina@mail.ru",
+      "monster": "11",
+      "name": "Лилия",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "11",
+      "surname": "Мусина",
+      "tag": "Уборка"
+    },
+    "k36HeqfAp4ZzKIGXmN3p2uONmEf1": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "k36HeqfAp4ZzKIGXmN3p2uONmEf1",
+      "login": "nikitina@mail.ru",
+      "monster": "12",
+      "name": "Дарина",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "12",
+      "surname": "Никитина",
+      "tag": "Уборка"
+    },
+    "RoarS0odkBNnCtipOaFb66uRPSt2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "RoarS0odkBNnCtipOaFb66uRPSt2",
+      "login": "pirojkova@mail.ru",
+      "monster": "13",
+      "name": "Арина",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "13",
+      "surname": "Пирожкова",
+      "tag": "Уборка"
+    },
+    "LVkWUILjLraSwx9O5wRWvtQauNo2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "LVkWUILjLraSwx9O5wRWvtQauNo2",
+      "login": "pronkina@mail.ru",
+      "monster": "14",
+      "name": "Анастасия",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "14",
+      "surname": "Пронькина",
+      "tag": "Уборка"
+    },
+    "KUeHc7LembSc03S3NkYx641pk6i2": {
+      "class": [
+        {
+          "id": "1",
+          "letter": "A",
+          "number": "1"
+        }
+      ],
+      "id": "KUeHc7LembSc03S3NkYx641pk6i2",
+      "login": "rukavishkova@mail.ru",
+      "monster": "15",
+      "name": "Мария",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "15",
+      "surname": "Рукавишникова",
+      "tag": "Уборка"
+    },
+    "ZCcOj4pXxTaFPPu1xWhIlvMXIIr1": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "ZCcOj4pXxTaFPPu1xWhIlvMXIIr1",
+      "login": "bobrichina@mail.ru",
+      "monster": "16",
+      "name": "Юлия",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "16",
+      "surname": "Бобрихина",
+      "tag": "Уборка"
+    },
+    "xQhBZhLDpxR1vBvNjvZ5XjUYzN92": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "xQhBZhLDpxR1vBvNjvZ5XjUYzN92",
+      "login": "valiev@mail.ru",
+      "monster": "17",
+      "name": "Тамирлан",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "17",
+      "surname": "Валиев",
+      "tag": "Уборка"
+    },
+    "ZDuHdquUHtOCv53Kki57HnMvUAB2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "ZDuHdquUHtOCv53Kki57HnMvUAB2",
+      "login": "volkov@mail.ru",
+      "monster": "18",
+      "name": "Даниил",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "18",
+      "surname": "Волков",
+      "tag": "Уборка"
+    },
+    "jtkKkbViysTn51Dw09WA2q6ec1F3": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "jtkKkbViysTn51Dw09WA2q6ec1F3",
+      "login": "volodin@mail.ru",
+      "monster": "19",
+      "name": "Алексей",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "19",
+      "surname": "Володин",
+      "tag": "Уборка"
+    },
+    "y4y9O7rlimUaEUuMSKleUuLyXsx1": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "y4y9O7rlimUaEUuMSKleUuLyXsx1",
+      "login": "gavrilova@mail.ru",
+      "monster": "20",
+      "name": "Татьяна",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "20",
+      "surname": "Гаврилова",
+      "tag": "Уборка"
+    },
+    "BWTZ9anUArZ19IN9IzKaqCGkqvR2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "BWTZ9anUArZ19IN9IzKaqCGkqvR2",
+      "login": "klementev@mail.ru",
+      "monster": "21",
+      "name": "Максим",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "21",
+      "surname": "Клементьев",
+      "tag": "Уборка"
+    },
+    "ZXAYxM6T62VdJA6ugFIFlyOTS0r1": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "ZXAYxM6T62VdJA6ugFIFlyOTS0r1",
+      "login": "koveschnikova@mail.ru",
+      "monster": "22",
+      "name": "Анастасия",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "22",
+      "surname": "Ковешникова",
+      "tag": "Уборка"
+    },
+    "w9DBRBIIOuWgrJZNbWxxRJk6RYi2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "w9DBRBIIOuWgrJZNbWxxRJk6RYi2",
+      "login": "konyshev@mail.ru",
+      "monster": "23",
+      "name": "Константин",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "23",
+      "surname": "Конышев",
+      "tag": "Уборка"
+    },
+    "giSx5mljtbXFDnI5RSiL91lFO0w1": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "giSx5mljtbXFDnI5RSiL91lFO0w1",
+      "login": "kornilov@mail.ru",
+      "monster": "24",
+      "name": "Арсений",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "24",
+      "surname": "Корнилин",
+      "tag": "Уборка"
+    },
+    "op9CroPMmJXd2dawiikYlKtWpu82": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "op9CroPMmJXd2dawiikYlKtWpu82",
+      "login": "kochen@mail.ru",
+      "monster": "25",
+      "name": "Даниэль",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "25",
+      "surname": "Кохен",
+      "tag": "Уборка"
+    },
+    "aggpdEb0uURJKek2PK0CLfEIrpl2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "aggpdEb0uURJKek2PK0CLfEIrpl2",
+      "login": "krapivin@mail.ru",
+      "monster": "26",
+      "name": "Егор",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "26",
+      "surname": "Крапивин",
+      "tag": "Уборка"
+    },
+    "igcMkh6GcPO1ZYtTKy8eRTisQkb2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "igcMkh6GcPO1ZYtTKy8eRTisQkb2",
+      "login": "lincer@mail.ru",
+      "monster": "27",
+      "name": "София",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "27",
+      "surname": "Линсцер",
+      "tag": "Уборка"
+    },
+    "bU0UHhgVOgatoKXmQajA0I0m6ZH2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "bU0UHhgVOgatoKXmQajA0I0m6ZH2",
+      "login": "maximov@mail.ru",
+      "monster": "28",
+      "name": "Никита",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "28",
+      "surname": "Максимов",
+      "tag": "Уборка"
+    },
+    "WLoafJ5apshwOIN7icC4vGNmngt2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "WLoafJ5apshwOIN7icC4vGNmngt2",
+      "login": "muchameev@mail.ru",
+      "monster": "29",
+      "name": "Марсель",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "29",
+      "surname": "Мухамеев",
+      "tag": "Уборка"
+    },
+    "IaTNm3oFW8hhjYx11Khu1sPXrRd2": {
+      "class": [
+        {
+          "id": "2",
+          "letter": "B",
+          "number": "1"
+        }
+      ],
+      "id": "IaTNm3oFW8hhjYx11Khu1sPXrRd2",
+      "login": "novikov@mail.ru",
+      "monster": "30",
+      "name": "Андрей",
+      "password": "qwerty",
+      "position": "pupil",
+      "stars": "30",
+      "surname": "Новиков",
+      "tag": "Уборка"
+    }
+  }
 }

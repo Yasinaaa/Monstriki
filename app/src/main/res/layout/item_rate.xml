@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                tools:ignore="MissingPrefix">
+
+    <include
+        android:id="@+id/iv_monster"
+        layout="@layout/fragment_item_monster"
+        android:layout_width="@dimen/width_monster_rate"
+        android:layout_height="@dimen/height_monster_rate"
+        android:textSize="@dimen/textsize_question"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_settings_class"/>
+
+    <TextView
+        android:id="@+id/tv_monster_name"
+        fontPath="fonts/GOTHIC.TTF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_toRightOf="@+id/iv_monster"
+        android:text="Молька"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_large"/>
+
+    <TextView
+        android:id="@+id/tv_monster_donuts"
+        fontPath="fonts/GOTHIC.TTF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_monster_name"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_top_rate"
+        android:layout_toRightOf="@+id/iv_monster"
+        android:text="17"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_xlarge"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/iv_monster_donuts"
+        android:layout_width="@dimen/width_donut_rate"
+        android:layout_height="@dimen/height_donut_rate"
+        android:layout_below="@+id/tv_monster_name"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_toRightOf="@+id/tv_monster_donuts"
+        android:background="@drawable/donut"/>
+
+</RelativeLayout>

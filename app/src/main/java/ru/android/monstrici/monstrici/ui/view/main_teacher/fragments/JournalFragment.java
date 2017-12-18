@@ -1,55 +1,93 @@
 package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TableLayout;
 import android.widget.TextView;
+
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.android.monstrici.monstrici.R;
+import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.User;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.AppComponent;
+import ru.android.monstrici.monstrici.domain.core.dagger.component.CoreComponent;
+import ru.android.monstrici.monstrici.presentation.adapter.journal.holder.JournalViewHolder;
+import ru.android.monstrici.monstrici.presentation.adapter.journal.listener.IJournalItemListener;
+import ru.android.monstrici.monstrici.presentation.presenter.journal.JournalPresenter;
+import ru.android.monstrici.monstrici.presentation.view.journal.IJournalView;
 import ru.android.monstrici.monstrici.ui.view.base.BaseFragment;
+import ru.android.monstrici.monstrici.presentation.adapter.journal.adapter.JournalAdapter;
+import ru.android.monstrici.monstrici.utils.Message;
 import ru.android.monstrici.monstrici.utils.Resources;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
- * Created by yasina on 29.10.17.
+ * Created by elisium
+ *
+ * @Date 08/12/2017
+ * @Author Andrei Gusev
  */
 
-public class JournalFragment extends BaseFragment {
+public class JournalFragment extends BaseFragment
+        implements IJournalView, IJournalItemListener {
 
     protected static final String JOURNAL_DATE = "journal_date";
+    protected static final String JOURNAL_FORM = "journal_form";
+
+    private String mDate, mForm;
+    private long mDateLong;
+
+    @BindView(R.id.tv_form)
+    TextView mTvForm;
+    @BindView(R.id.tv_form_text)
+    TextView mTvFormText;
     @BindView(R.id.tv_journal)
     TextView mTvJournal;
     @BindView(R.id.tv_form_bracket)
     TextView mTvFormBracket;
-    @BindView(R.id.tv_data_bracket)
-    TextView mTvDataBracket;
     @BindView(R.id.tv_data_day)
     TextView mTvData;
-    @BindView(R.id.tableLayout)
-    TableLayout mTableLayout;
+    @BindView(R.id.rv_journal)
+    RecyclerView mRvJournal;
+    @BindView(R.id.fab_save)
+    FloatingActionButton mFabSave;
 
-    private String mDate;
+    @InjectPresenter
+    JournalPresenter mPresenter;
 
-    public JournalFragment() {
+    private JournalAdapter mJournalAdapter;
+
+    @ProvidePresenter
+    public JournalPresenter providePresenter() {
+        JournalPresenter presenter = new JournalPresenter();
+        getComponent(AppComponent.class).inject(presenter);
+        return presenter;
     }
 
-    public static JournalFragment newInstance(){
+    public static JournalFragment newInstance() {
         Bundle args = new Bundle();
-        //args.putInt(Resources.MONSTER_IMAGE, monsterImageId);
         JournalFragment newFragment = new JournalFragment();
         newFragment.setArguments(args);
         return newFragment;
     }
 
-    public static JournalFragment newInstance(String date){
+    public static JournalFragment newInstance(String form, String date) {
         Bundle args = new Bundle();
+        args.putString(JOURNAL_FORM, form);
         args.putString(JOURNAL_DATE, date);
         JournalFragment newFragment = new JournalFragment();
         newFragment.setArguments(args);
@@ -59,9 +97,11 @@ public class JournalFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
+        if (getArguments() != null) {
             mDate = getArguments().getString(JOURNAL_DATE);
+            mForm = getArguments().getString(JOURNAL_FORM);
         }
+        getComponent(CoreComponent.class).inject(this);
     }
 
     @Override
@@ -73,48 +113,94 @@ public class JournalFragment extends BaseFragment {
 
     @Override
     public void init() {
-
-        if (mDate != null){
-            mTvData.setText(mDate);
+        if (mDate == null) {
+            mDateLong = Calendar.getInstance().getTime().getTime();
+            mDate = Resources.DATE_FORMAT.format(mDateLong);
         }
-        for (int i=0; i<10; i++) {
-            LayoutInflater inflater = (LayoutInflater)
-                    getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.item_table_form, null);
+        mTvData.setText(mDate);
 
-            final TextView day = (TextView) view.findViewById(R.id.tv_day_of_week);
-            final TextView on = (TextView) view.findViewById(R.id.tv_date);
-            final TextView off = (TextView) view.findViewById(R.id.tv_off_time);
+        if (mForm != null) {
+            mTvFormText.setText(mForm);
+        }
 
-            if (i == 0) {
-                day.setText(getResources().getString(R.string.pupil));
-                on.setText(getResources().getString(R.string.for_answer));
-                off.setText(getResources().getString(R.string.for_cleaning));
-            } else {
-                day.setText(Resources.mTempPupils[i]);
-                on.setText(String.valueOf(0));
-                off.setText(String.valueOf(1));
+        if (!mDate.contains("-")) {
+            mJournalAdapter = new JournalAdapter(this, getActivity());
+        }else {
+            String[] dates = mDate.split("-");
+            Date startDate = makeDate(dates[0]);
+            Date finishDate = makeDate(dates[1]);
+            mJournalAdapter = new JournalAdapter(startDate,
+                    finishDate, this, getActivity());
+        }
+
+        mRvJournal.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRvJournal.setAdapter(mJournalAdapter);
+
+        mPresenter.getUsers();
+    }
+
+    @Override
+    public void onFormPrepare(String form) {
+        mTvFormText.setText(form);
+    }
+
+    @Override
+    public void onUsersPrepare(User user) {
+        mJournalAdapter.add(user);
+    }
+
+    private Date makeDate(String d){
+        Date startDate = null;
+        try {
+            startDate = Resources.DATE_FORMAT.parse(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return startDate;
+    }
+
+    @Override
+    public void onStarsGet(User user, List<Star> stars) {
+
+    }
+
+    @Override
+    public void showLoading(boolean flag) {
+
+    }
+
+    @Override
+    public void showError(Message message) {
+
+    }
+
+    @OnClick(R.id.fab_save)
+    protected void onFabClick() {
+        Map<String, Star> usersMap = mJournalAdapter.getResultList();
+        for (Map.Entry<String, Star> entry : usersMap.entrySet()) {
+            Star star = entry.getValue();
+            if (star.getGoals().equals("0")) {
+                mJournalAdapter.removeItem(star);
+                mPresenter.removeStars(star, entry.getKey());
+            }else {
+                mPresenter.saveStars(star, entry.getKey());
             }
-
-            mTableLayout.addView(view, i);
+            mJournalAdapter.removeFromResultList(star);
         }
     }
 
     @Override
-    public void setTag() {
-        TAG = "JournalFragment";
-    }
-
-    @OnClick(R.id.tv_data_bracket)
-    public void onDataClick(){
-        openFragment(DataFragment.newInstance(true));
+    public void onItemClick(String userid) {
+        openFragment(PupilFragment.newInstance(userid));
     }
 
     @OnClick(R.id.tv_form_bracket)
-    public void onFormClick(){
-        openFragment(new FormParametersFragment());
+    public void onFormBracketClick() {
+        openFragment(FormParametersFragment.newInstance(false));
     }
 
-
-
+    @OnClick(R.id.tv_form)
+    public void onFormClick() {
+        openFragment(FormParametersFragment.newInstance(false));
+    }
 }

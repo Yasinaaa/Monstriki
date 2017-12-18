@@ -26,15 +26,19 @@ public class DaysOfWeekAdapter extends RecyclerView.Adapter<DaysOfWeekAdapter.Da
     private final String TAG = "DaysOfWeekAdapter";
     private ArrayList<DayOfWeek> mList;
     private Context mContext;
-    private OnItemClicked mOnClick;
+    //private OnItemClicked mOnClick;
 
     public interface OnItemClicked {
         void onItemClick(int image);
     }
 
-    public DaysOfWeekAdapter(ArrayList<DayOfWeek> list, OnItemClicked onClick) {
+    /*public DaysOfWeekAdapter(ArrayList<DayOfWeek> list, OnItemClicked onClick) {
         this.mList = list;
         this.mOnClick = onClick;
+    }*/
+
+    public DaysOfWeekAdapter(ArrayList<DayOfWeek> list) {
+        this.mList = list;
     }
 
     @Override
@@ -52,25 +56,25 @@ public class DaysOfWeekAdapter extends RecyclerView.Adapter<DaysOfWeekAdapter.Da
         holder.mTvDayTitle.setText(day.getDayTitle());
         holder.mTvDate.setText(day.getDate());
 
-        if(day.getDonutsCount() <= 0){
+        /*if(day.getDonutsCount() <= 0){
             holder.mIvDonut.setVisibility(View.GONE);
         }else {
-            Glide.with(mContext).load(R.drawable.donut).into(holder.mIvDonut);
-            holder.mTvDonutNum.setText(String.valueOf(day.getDonutsCount()));
-        }
-
-        holder.itemView.getRootView().setOnClickListener(new View.OnClickListener() {
+            holder.mIvDonut.setImageResource(R.drawable.donut);
+        }*/
+        holder.mIvDonut.setImageResource(R.drawable.donut);
+        holder.mTvDonutNum.setText(String.valueOf(day.getDonutsCount()));
+        /*holder.itemView.getRootView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mOnClick.onItemClick(position);
             }
-        });
+        });*/
     }
 
-    public void setOnClick(OnItemClicked mOnClick)
+    /*public void setOnClick(OnItemClicked mOnClick)
     {
         this.mOnClick = mOnClick;
-    }
+    }*/
 
     @Override
     public int getItemCount() {

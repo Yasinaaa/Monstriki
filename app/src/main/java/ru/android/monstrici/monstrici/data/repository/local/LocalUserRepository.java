@@ -6,7 +6,11 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
+import ru.android.monstrici.monstrici.data.model.Monster;
 import ru.android.monstrici.monstrici.data.model.Response;
+import ru.android.monstrici.monstrici.data.model.SchoolClass;
+import ru.android.monstrici.monstrici.data.model.Star;
+import ru.android.monstrici.monstrici.data.model.StarStorage;
 import ru.android.monstrici.monstrici.data.model.User;
 import ru.android.monstrici.monstrici.data.repository.IUserRepository;
 import ru.android.monstrici.monstrici.domain.base.IDataCallback;
@@ -23,9 +27,33 @@ public class LocalUserRepository implements IUserRepository {
     public LocalUserRepository() {
     }
 
-
     @Override
     public void getUser(String id, @NonNull IDataCallback<User> callback) {
+
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return null;
+    }
+
+    @Override
+    public void getMonster(String monsterId, String userId, @NonNull IDataCallback<Monster> callback) {
+
+    }
+
+    @Override
+    public void getMonsters(String requestId, @NonNull IDataCallback<Monster> callback) {
+
+    }
+
+    @Override
+    public void getStar(String starId, String userId, @NonNull IDataCallback<Star> callback) {
+
+    }
+
+    @Override
+    public void getStars(String userId, @NonNull IDataCallback<Star> callback) {
 
     }
 
@@ -34,12 +62,52 @@ public class LocalUserRepository implements IUserRepository {
     }
 
     @Override
-    public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
-        Response<User> response = new Response<>();
-        User user = new User();
-        user.setId("1");
-        response.setBody(user);
+    public void getUsersByClass(@NonNull IDataCallback<User> callback) {
 
-        callback.onReceiveDataSuccess(response);
+    }
+
+    @Override
+    public void checkLogin(String login, String password, @NonNull IDataCallback<User> callback) {
+//        Response<User> response = new Response<>();
+//        User user = new User();
+//        user.setId("1");
+//        response.setBody(user);
+//
+//        callback.onReceiveDataSuccess(response);
+    }
+
+    @Override
+    public void saveMonster(Monster monster) {
+
+    }
+
+    @Override
+    public void saveUser(User user) {
+
+    }
+
+    @Override
+    public void updateStar(Star star, String userId) {
+
+    }
+
+    @Override
+    public void addStar(Star star, String userId) {
+
+    }
+
+    @Override
+    public void removeStar(Star star, String userId) {
+
+    }
+
+    @Override
+    public void addMonster(Monster monster) {
+
+    }
+
+    @Override
+    public void getClassList(@NonNull IDataCallback<SchoolClass> callback) {
+
     }
 }

@@ -37,6 +37,12 @@ public class PrizeAdapter extends RecyclerView.Adapter<PrizeAdapter.PrizeHolder>
         this.mOnClick = onClick;
     }
 
+    public void add(Prize prize){
+        mList.add(prize);
+        notifyItemInserted(mList.size() - 1);
+        notifyDataSetChanged();
+    }
+
     @Override
     public PrizeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
@@ -49,7 +55,8 @@ public class PrizeAdapter extends RecyclerView.Adapter<PrizeAdapter.PrizeHolder>
     public void onBindViewHolder(final PrizeHolder holder, final int position) {
 
         Prize prize = mList.get(position);
-        Glide.with(mContext).load(prize.getPrizePicture()).into(holder.mIvPrize);
+        holder.mIvPrize.setImageResource(prize.getPrizePicture());
+
         holder.mTvPrizeTitle.setText(prize.getPrizeTitle());
         holder.mTvPrizeDate.setText(prize.getPrizeDate());
 

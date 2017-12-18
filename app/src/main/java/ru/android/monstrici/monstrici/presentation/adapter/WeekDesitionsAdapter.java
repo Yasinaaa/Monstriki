@@ -40,6 +40,11 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
         return new WeekDesitionsAdapter.WeekDesitionsHolder(itemView);
     }
 
+    public void setNewItems(DayDesition[] list) {
+        this.mList = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(final WeekDesitionsAdapter.WeekDesitionsHolder holder,
                                  final int position) {
@@ -47,22 +52,22 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
         if (position == 0){
             holder.mTvDayOfWeek.setText("");
             holder.mTvDate.setText("");
-            holder.mForCleaning.setText(mResource.getString(R.string.for_cleaning));
-            holder.mForAnswer.setText(mResource.getString(R.string.for_answer));
+            holder.mTvGoals.setText(mResource.getString(R.string.points));
+            holder.mTag.setText(mResource.getString(R.string.comment));
 
             setHeight(setWrapContentHeight(),holder.mTvDayOfWeek, holder.mTvDate,
-                    holder.mForCleaning, holder.mForAnswer);
+                    holder.mTvGoals, holder.mTag);
 
         }else {
 
             setHeight(setMatchParentHeight(),holder.mTvDayOfWeek, holder.mTvDate,
-                    holder.mForCleaning, holder.mForAnswer);
+                    holder.mTvGoals, holder.mTag);
             dayDesition = mList[position-1];
             holder.mTvDayOfWeek.setText(mContext.getResources().
                     getString(dayDesition.getDayOfWeek()));
             holder.mTvDate.setText(dayDesition.getDate());
-            holder.mForCleaning.setText(String.valueOf(dayDesition.getForCleaning()));
-            holder.mForAnswer.setText(String.valueOf(dayDesition.getForAnswer()));
+            holder.mTvGoals.setText(String.valueOf(dayDesition.getGoals()));
+            holder.mTag.setText(String.valueOf(dayDesition.getTag()));
         }
 
     }
@@ -91,16 +96,21 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
         return mList.length;
     }
 
+    public void clear() {
+        mList = null;
+        this.notifyItemRangeRemoved(0, getItemCount());
+    }
+
     public class WeekDesitionsHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_day_of_week)
+        @BindView(R.id.tv_pupil_name)
         TextView mTvDayOfWeek;
-        @BindView(R.id.tv_date)
+        @BindView(R.id.tv_donuts_count)
         TextView mTvDate;
-        @BindView(R.id.tv_for_answer)
-        TextView mForAnswer;
-        @BindView(R.id.tv_for_cleaning)
-        TextView mForCleaning;
+        @BindView(R.id.tv_goals)
+        TextView mTvGoals;
+        @BindView(R.id.tv_tag)
+        TextView mTag;
 
         public WeekDesitionsHolder(View itemView) {
             super(itemView);

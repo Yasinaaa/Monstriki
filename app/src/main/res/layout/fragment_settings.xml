@@ -1,24 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/iv_monster"
+    <TextView
+        android:id="@+id/tv_settings_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/settings_name"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_settings_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/settings_class"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_question"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_settings_name"/>
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_settings_teacher"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:text="@string/settings_teacher"-->
+    <!--android:textColor="@color/color_purple"-->
+    <!--android:textSize="@dimen/textsize_question"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/tv_settings_class"/>-->
+
+    <include
+        android:id="@+id/la_monster"
+        layout="@layout/fragment_item_monster"
         android:layout_width="@dimen/width_monster_settings"
         android:layout_height="@dimen/height_monster_settings"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_small"/>
+        android:textSize="@dimen/textsize_question"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_settings_class"/>
 
     <EditText
         android:id="@+id/et_monster_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_monster"
-        android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginRight="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal"/>
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/tv_monster_name"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:maxLength="10"
+        android:maxLines="@integer/max_lines_edit_text"
+        android:textColor="@color/color_purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/la_monster"/>
 
     <ImageView
         android:id="@+id/iv_eyes"
@@ -27,19 +77,27 @@
         android:layout_alignLeft="@+id/et_monster_name"
         android:layout_alignStart="@+id/et_monster_name"
         android:layout_below="@+id/et_monster_name"
-        android:layout_marginTop="@dimen/margin_normal"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_monster_name"
+        app:srcCompat="@drawable/eye"
+        />
 
     <TextView
         android:id="@+id/tv_eyes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_monster_name"
-        android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_toRightOf="@+id/iv_eyes"
-        android:text="@string/eyes"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/currentEyes"
         android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"/>
+        android:textSize="@dimen/textsize_question"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_eyes"
+        app:layout_constraintStart_toEndOf="@+id/iv_eyes"
+        app:layout_constraintTop_toTopOf="@+id/iv_eyes"/>
 
     <ImageView
         android:id="@+id/iv_mouth"
@@ -48,19 +106,27 @@
         android:layout_alignLeft="@+id/et_monster_name"
         android:layout_alignStart="@+id/et_monster_name"
         android:layout_below="@+id/tv_eyes"
-        android:layout_marginTop="@dimen/margin_normal"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_eyes"
+        app:srcCompat="@drawable/mouth"
+        />
 
     <TextView
         android:id="@+id/tv_mouth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_eyes"
-        android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_toRightOf="@+id/iv_eyes"
-        android:text="@string/mouth"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/currentMouth"
         android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"/>
+        android:textSize="@dimen/textsize_question"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_mouth"
+        app:layout_constraintStart_toEndOf="@+id/iv_mouth"
+        app:layout_constraintTop_toTopOf="@+id/iv_mouth"/>
 
     <ImageView
         android:id="@+id/iv_hands"
@@ -68,20 +134,26 @@
         android:layout_height="@dimen/height_monster_body_item_settings"
         android:layout_alignLeft="@+id/et_monster_name"
         android:layout_alignStart="@+id/et_monster_name"
-        android:layout_below="@+id/iv_mouth"
-        android:layout_marginTop="@dimen/margin_normal"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_mouth"
+        app:srcCompat="@drawable/ic_body"/>
 
     <TextView
         android:id="@+id/tv_hands"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_mouth"
-        android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_toRightOf="@+id/iv_eyes"
-        android:text="@string/hands"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/body"
         android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"/>
+        android:textSize="@dimen/textsize_question"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_hands"
+        app:layout_constraintStart_toEndOf="@+id/iv_hands"
+        app:layout_constraintTop_toTopOf="@+id/iv_hands"/>
 
     <ImageView
         android:id="@+id/iv_logout"
@@ -89,33 +161,38 @@
         android:layout_height="@dimen/height_monster_body_item_settings"
         android:layout_alignLeft="@+id/et_monster_name"
         android:layout_alignStart="@+id/et_monster_name"
-        android:layout_below="@+id/iv_hands"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:src="@drawable/ic_exit_to_app"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_hands"
+        app:srcCompat="@drawable/exit_to_app"/>
 
     <TextView
         android:id="@+id/tv_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_hands"
-        android:layout_marginLeft="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_toRightOf="@+id/iv_logout"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="@string/logout"
         android:textColor="@color/color_purple"
-        android:textSize="@dimen/textsize_question"/>
+        android:textSize="@dimen/textsize_question"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_logout"
+        app:layout_constraintStart_toEndOf="@+id/iv_logout"
+        app:layout_constraintTop_toTopOf="@+id/iv_logout"   />
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="@dimen/width_btn_save"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_logout"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="@dimen/margin_large"
-        android:background="@drawable/btn_corner_purple"
-        android:padding="@dimen/padding_small"
-        android:text="@string/save"
-        android:textColor="@color/color_purple"/>
 
-</RelativeLayout>
+    <!--<Button-->
+    <!--android:id="@+id/btn_save"-->
+    <!--android:layout_width="@dimen/width_btn_save"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/iv_logout"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginTop="@dimen/margin_normal"-->
+    <!--android:background="@drawable/btn_corner_purple"-->
+    <!--android:padding="@dimen/padding_small"-->
+    <!--android:text="@string/save"-->
+    <!--android:textColor="@color/color_purple"/>-->
+
+</android.support.constraint.ConstraintLayout>
