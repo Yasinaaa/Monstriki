@@ -140,8 +140,9 @@ public class PupilFragment extends BaseFragment
 
     @Override
     public void setDonutsCount(ArrayList<Star> starsList) {
-        mDayDesitions = mPresenter.getDonutsCount(starsList, getActivity());
+        mStarsList = null;
         mStarsList = starsList;
+        mDayDesitions = mPresenter.getDonutsCount(mStarsList, getActivity());
 
         if (mWeekDesitionsAdapter == null) {
             mWeekDesitionsAdapter = new WeekDesitionsAdapter(mDayDesitions);

@@ -2,6 +2,7 @@ package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -192,6 +193,7 @@ public class JournalFragment extends BaseFragment
             }
             mJournalAdapter.removeFromResultList(star);
         }
+        Snackbar.make(mView, getString(R.string.goal_saved), Snackbar.LENGTH_LONG).show();
     }
 
     @Override

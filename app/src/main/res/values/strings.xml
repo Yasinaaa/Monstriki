@@ -171,4 +171,7 @@
         <item>Я сыт</item>
     </string-array>
 
+    <string name="goal_saved">Изменения сохранены</string>
+
+
 </resources>
