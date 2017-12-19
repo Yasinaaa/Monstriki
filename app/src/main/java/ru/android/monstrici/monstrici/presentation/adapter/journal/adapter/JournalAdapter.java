@@ -31,7 +31,8 @@ import ru.android.monstrici.monstrici.utils.Resources;
 public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         implements IGoalItemListener{
 
-    private Map<String, Star> mResultList;
+    public ArrayList<Star> mResultListStar;
+    public ArrayList<String> mResultListUser;
     private List<User> mList;
     private Context mContext;
     private Date mStartDate, mFinishDate;
@@ -46,14 +47,16 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mFinishDate = finishDate;
         mListener = listener;
         mList = new ArrayList<User>();
-        mResultList = new HashMap<String, Star>();
+        mResultListStar = new ArrayList<Star>();
+        mResultListUser = new ArrayList<String>();
     }
 
     public JournalAdapter(IJournalItemListener listener, Activity activity) {
         mActivity = activity;
         mListener = listener;
         mList = new ArrayList<User>();
-        mResultList = new HashMap<String, Star>();
+        mResultListStar = new ArrayList<Star>();
+        mResultListUser = new ArrayList<String>();
     }
 
     public void updateAdapter(Date startDate, Date finishDate){
@@ -64,7 +67,8 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public void updateAdapter(){
         mList = new ArrayList<User>();
-        mResultList = new HashMap<String, Star>();
+        mResultListStar = new ArrayList<Star>();
+        mResultListUser = new ArrayList<String>();
         notifyDataSetChanged();
     }
 
@@ -104,7 +108,11 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public void removeFromResultList(Star star){
-        mResultList.remove(star);
+
+        //mResultList.remove(star);
+        int d = mResultListStar.indexOf(star);
+        mResultListUser.remove(d);
+        mResultListStar.remove(star);
     }
 
     @Override
@@ -150,7 +158,9 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         mList.get(adapterPosition).getStarStorage().updateStar(star);
 
-        mResultList.put(mList.get(adapterPosition).getId(), star);
+        mResultListStar.add(star);
+        mResultListUser.add(mList.get(adapterPosition).getId());
+        //mResultList.put(mList.get(adapterPosition).getId(), star);
     }
 
     @Override
@@ -158,8 +168,8 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         journalViewHolder.addEmptyStar();
     }
 
-    public Map<String, Star> getResultList(){
+   /* public Map<String, Star> getResultList(){
         return mResultList;
-    }
+    }*/
 
 }
