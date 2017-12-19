@@ -46,7 +46,7 @@ public class JournalViewHolder extends RecyclerView.ViewHolder
     public void bindView(User user, ArrayList<Star> stars, Context context,
                          IGoalItemListener listener) {
         mUser = user;
-        mTvPupilName.setText(user.getName());
+        mTvPupilName.setText(user.getName() + " " + user.getSurname());
         mTvPupilName.setOnClickListener(this);
         //stars.add(addEmptyItem(user.getStarId()));
         //stars.add(null);

@@ -149,6 +149,7 @@ public class JournalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }*/
 
         mList.get(adapterPosition).getStarStorage().updateStar(star);
+
         mResultList.put(mList.get(adapterPosition).getId(), star);
     }
 

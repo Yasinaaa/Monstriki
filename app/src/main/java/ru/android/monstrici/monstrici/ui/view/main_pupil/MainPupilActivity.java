@@ -210,9 +210,13 @@ public class MainPupilActivity extends BaseActivity
         mTvDonutNum = (TextView) findViewById(R.id.tv_donut_num);
         mIvDonut = (ImageView) findViewById(R.id.iv_donut);
         mCurrentFragment = new SweetsFragment();
-        mIvDonut.setOnClickListener(v -> setFragment(mCurrentFragment));
+        if(mIvDonut != null) {
+            mIvDonut.setOnClickListener(v -> setFragment(mCurrentFragment));
+        }
+        if(mIvDonut != null){
+            mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
+        }
         //mPresenter.getStars();
-        mTvDonutNum.setText(String.valueOf(user.getStarStorage().getStarsCount()));
 
     }
 
@@ -245,8 +249,24 @@ public class MainPupilActivity extends BaseActivity
 
     @Override
     public void monsterNameUpdate(String name) {
+
+
+        //TODO:CHANGE
         mTvMonsterName = (TextView) findViewById(R.id.tv_name);
-        mTvMonsterName.setText(name);
+        if (mTvMonsterName == null){
+            mLinearLayout.removeAllViews();
+            mCurrentToolbar = mMainToolbar;
+            mLinearLayout.addView(LayoutInflater.from(getApplicationContext())
+                    .inflate(mMainToolbar,
+                    mLinearLayout, false));
+            mTvMonsterName = (TextView) findViewById(R.id.tv_name);
+            mViewToolbar.setBackground(getResources().getDrawable(R.drawable.toolbar_full));
+
+        }
+        if(name != null && mTvMonsterName != null) {
+            mTvMonsterName.setText(name);
+        }
+        //TODO:CHANGE
         mPresenter.getUser(mUserId);
     }
 
