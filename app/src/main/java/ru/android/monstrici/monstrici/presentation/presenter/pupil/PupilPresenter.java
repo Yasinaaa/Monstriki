@@ -59,7 +59,7 @@ public class PupilPresenter extends BasePresenter<IPupilView> {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
                 getViewState().setDonutsCount(new ArrayList(
-                        response.getBodyMap().values()));
+                        response.getStarStorage().getStars().values()));
             }
 
             @Override
@@ -91,13 +91,13 @@ public class PupilPresenter extends BasePresenter<IPupilView> {
 
         mWeekDates = DateFunctions.createWeekDates(calendar);
         for (int i=0; i<mDayDesitions.length; i++){
-            Star star = findStarByDate(starsList, mWeekDates.get(i));
+            String[] star = findStarByDate(starsList, mWeekDates.get(i));
             mDayDesitions[i].setDate(mWeekDates.get(i));
 
-            if (star != null){
-                mDayDesitions[i].setGoals(Integer.parseInt(star.getGoals()));
-                mDayDesitions[i].setTag(star.getTag().
-                        substring(0, star.getTag().length() - 2));
+            if (!isStarNull(star)){
+                mDayDesitions[i].setGoals(Integer.parseInt(star[0]));
+                mDayDesitions[i].setTag(star[1].
+                        substring(0, star[1].length() - 1));
             }else {
                 mDayDesitions[i].setGoals(0);
             }
@@ -106,20 +106,28 @@ public class PupilPresenter extends BasePresenter<IPupilView> {
         return mDayDesitions;
     }
 
-    private Star findStarByDate(ArrayList<Star> starsList, String date){
+    private boolean isStarNull(String[] star){
+        if (star[0] == null && star[1] == null){
+            return true;
+        }
+        return false;
+    }
 
-        Star searchedStar = null;
+    private String[] findStarByDate(ArrayList<Star> starsList, String date){
+
+        String[] searchedStar = new String[2];
+        /*searchedStar[0]="0";
+        searchedStar[1]="";*/
         int count = 0;
         String tag = "";
 
         for (Star star: starsList){
             Date d2 = new Date(Long.parseLong(star.getDate()));
             if (date.equals(Resources.DATE_FORMAT.format(d2))){
-                searchedStar = star;
                 count += Integer.parseInt(star.getGoals());
                 tag += star.getTag() + ",";
-                searchedStar.setTag(tag);
-                searchedStar.setGoals(String.valueOf(count));
+                searchedStar[0] = String.valueOf(count);
+                searchedStar[1] = tag;
             }
 
         }

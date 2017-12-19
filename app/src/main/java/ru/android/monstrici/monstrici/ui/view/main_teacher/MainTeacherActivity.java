@@ -3,10 +3,12 @@ package ru.android.monstrici.monstrici.ui.view.main_teacher;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -35,12 +37,13 @@ import ru.android.monstrici.monstrici.ui.view.main_teacher.fragments.JournalFrag
 import ru.android.monstrici.monstrici.utils.Message;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
+public class MainTeacherActivity extends BaseActivity
+        implements ITeacherMenu {
 
     private static final String USER_ID = "user_id";
     private String mUserId;
-    //@BindView(R.id.include_toolbar)
-    //View mToolbar;
+    private Fragment mCurrentFragment;
+
     @InjectPresenter
     public TeacherMenuPresenter mPresenter;
 
@@ -79,6 +82,7 @@ public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
     }
 
     class NavigationViewsItems {
+
         @BindView(R.id.tv_teacher_name)
         TextView mTvTeacherName;
         @BindView(R.id.tv_fill_today)
@@ -167,6 +171,7 @@ public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
     }
 
     private void setFragment(BaseFragment baseFragment) {
+        mCurrentFragment = baseFragment;
         mFragmentManager.beginTransaction().replace(R.id.fl_main, baseFragment).commit();
     }
 
@@ -179,4 +184,5 @@ public class MainTeacherActivity extends BaseActivity implements ITeacherMenu {
     public void setTag() {
         TAG = "MainTeacherActivity";
     }
+
 }

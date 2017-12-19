@@ -2,6 +2,8 @@ package ru.android.monstrici.monstrici.ui.view.main_teacher.fragments;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,7 +45,8 @@ import ru.android.monstrici.monstrici.utils.Resources;
  */
 
 public class JournalFragment extends BaseFragment
-        implements IJournalView, IJournalItemListener {
+        implements IJournalView, IJournalItemListener,
+        SwipeRefreshLayout.OnRefreshListener {
 
     protected static final String JOURNAL_DATE = "journal_date";
     protected static final String JOURNAL_FORM = "journal_form";
@@ -65,6 +68,8 @@ public class JournalFragment extends BaseFragment
     RecyclerView mRvJournal;
     @BindView(R.id.fab_save)
     FloatingActionButton mFabSave;
+    @BindView(R.id.swiperefresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @InjectPresenter
     JournalPresenter mPresenter;
@@ -113,6 +118,7 @@ public class JournalFragment extends BaseFragment
 
     @Override
     public void init() {
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         if (mDate == null) {
             mDateLong = Calendar.getInstance().getTime().getTime();
             mDate = Resources.DATE_FORMAT.format(mDateLong);
@@ -187,6 +193,7 @@ public class JournalFragment extends BaseFragment
             }
             mJournalAdapter.removeFromResultList(star);
         }
+        Snackbar.make(mView, getString(R.string.goal_saved), Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -202,5 +209,12 @@ public class JournalFragment extends BaseFragment
     @OnClick(R.id.tv_form)
     public void onFormClick() {
         openFragment(FormParametersFragment.newInstance(false));
+    }
+
+    @Override
+    public void onRefresh() {
+        mJournalAdapter.updateAdapter();
+        mPresenter.getUsers();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

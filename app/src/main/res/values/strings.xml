@@ -82,6 +82,7 @@
     <string name="data">Дата</string>
     <string name="pupil">Ученик</string>
     <string name="points">Баллы</string>
+    <string name="tags">Тэги</string>
     <string name="comment">Тэг</string>
     <string name="choose_tag">Выберите тэг</string>
     <string name="choose">Выбрать</string>
@@ -169,5 +170,8 @@
         <item>Я счастлив</item>
         <item>Я сыт</item>
     </string-array>
+
+    <string name="goal_saved">Изменения сохранены</string>
+
 
 </resources>

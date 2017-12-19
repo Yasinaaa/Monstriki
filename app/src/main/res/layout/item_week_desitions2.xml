@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <TextView
-        android:layout_width="@dimen/height_large_item_linear_layout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_week_title"
-        android:layout_weight="@integer/weight_large_item_linear_layout"
         android:textSize="@dimen/textsize_day_of_week"
         android:textAlignment="center"
         android:text="@string/monday"
@@ -17,36 +16,42 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:layout_width="@dimen/height_large_item_linear_layout"
-        android:layout_height="match_parent"
         android:id="@+id/tv_donuts_count"
-        android:text="18.09.2017"
-        android:layout_weight="1.5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_week_title"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:gravity="center"
-        android:textSize="@dimen/text_size_small_schedule_table_item"
         android:padding="@dimen/padding_small"
-        android:textColor="@color/color_purple" />
+        android:text="18.09.2017"
+        android:textColor="@color/color_purple"
+        android:textSize="@dimen/textsize_medium" />
 
     <TextView
-        android:layout_width="@dimen/height_large_item_linear_layout"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_goals"
         android:layout_weight="@integer/weight_large_item_linear_layout"
-        android:gravity="center"
         android:textSize="@dimen/text_size_small_schedule_table_item"
-        android:padding="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
         android:textColor="@color/color_purple"
+        android:layout_below="@+id/tv_week_title"
         android:text="20"/>
 
     <TextView
-        android:layout_width="@dimen/height_large_item_linear_layout"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_tag"
         android:layout_weight="@integer/weight_large_item_linear_layout"
-        android:gravity="center"
         android:textSize="@dimen/text_size_small_schedule_table_item"
-        android:padding="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
         android:textColor="@color/color_purple"
+        android:layout_below="@+id/tv_goals"
         android:text="10" />
 
-</LinearLayout>
+</RelativeLayout>

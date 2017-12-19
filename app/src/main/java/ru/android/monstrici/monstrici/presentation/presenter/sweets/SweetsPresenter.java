@@ -46,7 +46,7 @@ public class SweetsPresenter extends BasePresenter<ISweetsView> {
             @Override
             public void onReceiveDataSuccess(Response<Star> response) {
                 getViewState().setDonutsCount(new ArrayList(
-                        response.getBodyMap().values()));
+                        response.getStarStorage().getStars().values()));
             }
 
             @Override
@@ -89,7 +89,8 @@ public class SweetsPresenter extends BasePresenter<ISweetsView> {
         Star searchedStar = null;
         int count = 0;
 
-        for (Star star: starsList){
+        for (int i=0; i<starsList.size(); i++){
+            Star star = starsList.get(i);
             Date d2 = new Date(Long.parseLong(star.getDate()));
             if (date.equals(Resources.DATE_FORMAT.format(d2))){
                 searchedStar = star;

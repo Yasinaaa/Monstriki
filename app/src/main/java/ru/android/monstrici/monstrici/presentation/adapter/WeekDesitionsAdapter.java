@@ -29,13 +29,18 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
         this.mList = list;
     }
 
+    public void updateAdapter(DayDesition[] list){
+        mList = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public WeekDesitionsAdapter.WeekDesitionsHolder onCreateViewHolder(ViewGroup parent,
                                                                int viewType) {
         mContext = parent.getContext();
         mResource = mContext.getResources();
         View itemView =
-                LayoutInflater.from(mContext).inflate(R.layout.item_week_desitions,
+                LayoutInflater.from(mContext).inflate(R.layout.item_week_desitions2,
                         parent, false);
         return new WeekDesitionsAdapter.WeekDesitionsHolder(itemView);
     }
@@ -48,28 +53,14 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
     @Override
     public void onBindViewHolder(final WeekDesitionsAdapter.WeekDesitionsHolder holder,
                                  final int position) {
-        DayDesition dayDesition;
-        if (position == 0){
-            holder.mTvDayOfWeek.setText("");
-            holder.mTvDate.setText("");
-            holder.mTvGoals.setText(mResource.getString(R.string.points));
-            holder.mTag.setText(mResource.getString(R.string.comment));
-
-            setHeight(setWrapContentHeight(),holder.mTvDayOfWeek, holder.mTvDate,
-                    holder.mTvGoals, holder.mTag);
-
-        }else {
-
-            setHeight(setMatchParentHeight(),holder.mTvDayOfWeek, holder.mTvDate,
-                    holder.mTvGoals, holder.mTag);
-            dayDesition = mList[position-1];
-            holder.mTvDayOfWeek.setText(mContext.getResources().
-                    getString(dayDesition.getDayOfWeek()));
-            holder.mTvDate.setText(dayDesition.getDate());
-            holder.mTvGoals.setText(String.valueOf(dayDesition.getGoals()));
-            holder.mTag.setText(String.valueOf(dayDesition.getTag()));
-        }
-
+        DayDesition dayDesition = mList[position];
+        holder.mTvDayOfWeek.setText(mContext.getResources().
+                getString(dayDesition.getDayOfWeek()));
+        holder.mTvDate.setText(dayDesition.getDate());
+        holder.mTvGoals.setText(mResource.getString(R.string.points)
+                + ": " + String.valueOf(dayDesition.getGoals()));
+        holder.mTag.setText(mResource.getString(R.string.tags)
+                + ": " + String.valueOf(dayDesition.getTag()));
     }
 
     private void setHeight(int height, View v, View v1, View v2, View v3){
@@ -103,7 +94,7 @@ public class WeekDesitionsAdapter extends RecyclerView.Adapter
 
     public class WeekDesitionsHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_pupil_name)
+        @BindView(R.id.tv_week_title)
         TextView mTvDayOfWeek;
         @BindView(R.id.tv_donuts_count)
         TextView mTvDate;
