@@ -16,6 +16,14 @@ repositories {
 
 apply plugin: 'org.greenrobot.greendao'
 
+sonarqube {
+    properties {
+        property "sonar.projectName", "Yasinaaa_Monstriki"
+        property "sonar.organization", "yasinaaa-github"
+        property "sonar.host.url","https://sonarcloud.io"
+        property "sonar.login","4e04706a2fe2389c622bea17d06f29aa889b6d1d"
+    }
+}
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
